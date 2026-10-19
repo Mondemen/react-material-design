@@ -15,21 +15,29 @@
 	--page-tools-left-size: max(var(--page-tools-left-toolbar-size, var(--page-content-default-spacing, 0px)));
 	--page-tools-right-size: max(var(--page-tools-right-toolbar-size, var(--page-content-default-spacing, 0px)));
 
-	&:has(>.tools.top >.Menubar)
-	{--page-tools-top-menubar-size: calc(48px + #{theme.applySystemToken(measurement-space200)});}
-	&:has(>.tools.top >.Toolbar.floating)
-	{--page-tools-top-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} * 2);}
+	&:where(:has(>.tools.top >.Menubar))
+	{
+		--page-tools-top-menubar-size: calc(48px + #{theme.applySystemToken(measurement-space200)});
+		>.content
+		{padding-top: 48px}
+	}
+	&:where(:has(>.tools.top >.Toolbar.floating))
+	{--page-tools-top-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} + #{theme.applySystemToken(measurement-space200)});}
 
-	&:has(>.tools.bottom >.Toolbar.docked)
-	{--page-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-docked-container-height)} + #{theme.applySystemToken(measurement-space200)});}
-	&:has(>.tools.bottom >.Toolbar.floating)
-	{--page-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} * 2);}
+	&:where(:has(>.tools.bottom >.Toolbar.docked))
+	{
+		--page-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-docked-container-height)} + #{theme.applySystemToken(measurement-space200)});
+		>.content
+		{padding-bottom: #{theme.applyComponentToken(toolbar-docked-container-height)}}
+	}
+	&:where(:has(>.tools.bottom >.Toolbar.floating))
+	{--page-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} + #{theme.applySystemToken(measurement-space200)});}
 
-	&:has(>.tools.left >.Toolbar.floating)
-	{--page-tools-left-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} * 2);}
+	&:where(:has(>.tools.left >.Toolbar.floating))
+	{--page-tools-left-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} + #{theme.applySystemToken(measurement-space200)});}
 
-	&:has(>.tools.right >.Toolbar.floating)
-	{--page-tools-right-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} * 2);}
+	&:where(:has(>.tools.right >.Toolbar.floating))
+	{--page-tools-right-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} + #{theme.applySystemToken(measurement-space200)});}
 
 	>.tools
 	{
@@ -93,9 +101,13 @@
 		}
 	}
 
+	&.inline-padding >.content
+	{padding-inline: var(--page-tools-left-size) var(--page-tools-right-size)}
+	&.block-padding >.content
+	{padding-block: var(--page-tools-top-size) var(--page-tools-bottom-size)}
+
 	>.content
 	{
-		padding: var(--page-tools-top-size) var(--page-tools-right-size) var(--page-tools-bottom-size) var(--page-tools-left-size);
 		flex: 1;
 		width: 100%;
 		height: 100%;

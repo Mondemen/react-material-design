@@ -3,7 +3,8 @@
 .Panes
 {
 	display: flex;
-	height: 300px;
+	width: 100%;
+	height: 100%;
 	background-color: theme.applyComponentToken(panes-container-color);
 
 	&.horizontal

@@ -17,19 +17,23 @@
 	--toolbox-tools-left-size: max(var(--toolbox-tools-left-toolbar-size, var(--toolbox-content-default-spacing, 0)));
 	--toolbox-tools-right-size: max(var(--toolbox-tools-right-toolbar-size, var(--toolbox-content-default-spacing, 0)));
 
-	&:has(>.tools.top >.Toolbar.floating)
-	{--toolbox-tools-top-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} * 2);}
+	&:where(:has(>.tools.top >.Toolbar.floating))
+	{--toolbox-tools-top-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} + #{theme.applySystemToken(measurement-space200)});}
 
-	&:has(>.tools.bottom >.Toolbar.docked)
-	{--toolbox-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-docked-container-height)} + #{theme.applySystemToken(measurement-space200)});}
-	&:has(>.tools.bottom >.Toolbar.floating)
-	{--toolbox-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} * 2);}
+	&:where(:has(>.tools.bottom >.Toolbar.docked))
+	{
+		--toolbox-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-docked-container-height)} + #{theme.applySystemToken(measurement-space200)});
+		>.content
+		{padding-bottom: #{theme.applyComponentToken(toolbar-docked-container-height)}}
+	}
+	&:where(:has(>.tools.bottom >.Toolbar.floating))
+	{--toolbox-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} + #{theme.applySystemToken(measurement-space200)});}
 
-	&:has(>.tools.left >.Toolbar.floating)
-	{--toolbox-tools-left-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} * 2);}
+	&:where(:has(>.tools.left >.Toolbar.floating))
+	{--toolbox-tools-left-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} + #{theme.applySystemToken(measurement-space200)});}
 
-	&:has(>.tools.right >.Toolbar.floating)
-	{--toolbox-tools-right-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} * 2);}
+	&:where(:has(>.tools.right >.Toolbar.floating))
+	{--toolbox-tools-right-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} + #{theme.applySystemToken(measurement-space200)});}
 
 	>.tools
 	{
@@ -95,7 +99,6 @@
 
 	>.content
 	{
-		// padding: var(--toolbox-tools-top-size) var(--toolbox-tools-right-size) var(--toolbox-tools-bottom-size) var(--toolbox-tools-left-size);
 		flex: 1;
 		overflow: auto;
 
