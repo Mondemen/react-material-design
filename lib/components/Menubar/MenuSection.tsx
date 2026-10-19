@@ -14,15 +14,7 @@ export interface MenuSectionData extends MenuSectionProps
 export default function MenuSection(props: PropsWithChildren<MenuSectionProps>)
 {
 	const id = useId();
-	// const [groups, setGroups] = useState<OrderedCollectionChildData<MenuGroupData>[]>([]);
 	const content = useMemo<MenuSectionData>(() => ({id, label: props.label, children: props.children}), [id, props.children, props.label]);
-	// const acceptedChildren = useMemo(() => ["MenuGroup", "MenuItem"], []);
 
-	return (
-		<>
-			<OrderedCollectionChild name="MenuSection" id={id} content={content}/>
-			{/* <MenuContainer setGroups={setGroups}>{props.children}</MenuContainer> */}
-			{/* <OrderedCollection<MenuItemData> name="MenuSection" childName={acceptedChildren} onChildrenChange={setContentProps} compareChild={shallowEqual}>{props.children}</OrderedCollection> */}
-		</>
-	)
+	return (<OrderedCollectionChild name="MenuSection" id={id} content={content}/>);
 }

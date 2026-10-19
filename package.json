@@ -1,6 +1,6 @@
 {
 	"name": "react-material-design",
-	"version": "0.1.0",
+	"version": "0.5.1",
 	"type": "module",
 	"license": "MIT",
 	"author": {
@@ -12,6 +12,7 @@
 	"scripts": {
 		"dev": "vite --clearScreen",
 		"build": "vite build --mode lib",
+		"prepublishOnly": "npm run build",
 		"lint": "oxlint",
 		"preview": "vite preview"
 	},
