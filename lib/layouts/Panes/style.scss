@@ -1,0 +1,88 @@
+@use "../../style" as theme;
+
+.Panes
+{
+	display: flex;
+	height: 300px;
+	background-color: theme.applyComponentToken(panes-container-color);
+
+	&.horizontal
+	{
+		flex-direction: row;
+
+		>.ResizeHandle
+		{
+			cursor: col-resize;
+
+			&::before
+			{
+				width: theme.applyComponentToken(panes-handle-indicator-inline-size);
+				height: theme.applyComponentToken(panes-handle-indicator-block-size);
+			}
+			&.dragging::before
+			{width: theme.applyComponentToken(panes-handle-indicator-dragging-inline-size)}
+		}
+	}
+	&.vertical
+	{
+		flex-direction: column;
+
+		>.ResizeHandle
+		{
+			cursor: row-resize;
+
+			&::before
+			{
+				width: theme.applyComponentToken(panes-handle-indicator-block-size);
+				height: theme.applyComponentToken(panes-handle-indicator-inline-size);
+			}
+			&.dragging::before
+			{height: theme.applyComponentToken(panes-handle-indicator-dragging-inline-size)}
+		}
+	}
+
+	>.ResizeHandle
+	{
+		position: relative;
+		flex: 0 0 theme.applyComponentToken(panes-handle-size);
+
+		&::before
+		{
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: theme.applyComponentToken(panes-handle-indicator-color);
+			border-radius: theme.applyComponentToken(panes-handle-indicator-shape);
+			transition: theme.motion-spring-expressive-fast-effects((width, height, background-color));
+		}
+
+		&.dragging::before
+		{
+			background-color: theme.applyComponentToken(panes-handle-indicator-dragging-color);
+		}
+	}
+	>.Pane
+	{
+		flex: 0 1 var(--pane-size);
+		background-color: theme.applyComponentToken(panes-pane-container-color);
+		border-radius: theme.applyComponentToken(panes-pane-container-shape);
+		overflow: auto;
+		box-sizing: border-box;
+
+		// &:is(.snapped, .collapsed, .recovering)
+		&.animating
+		{transition: theme.motion-spring-expressive-fast-effects((all))}
+
+		&.collapsed
+		{
+			overflow: hidden;
+		}
+
+		&.inline-padding
+		{padding-inline: theme.applySystemToken(measurement-space200)}
+		&.block-padding
+		{padding-block: theme.applySystemToken(measurement-space200)}
+	}
+}

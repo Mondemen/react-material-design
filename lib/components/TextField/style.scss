@@ -1,0 +1,189 @@
+@use "../../style" as theme;
+
+.TextField
+{
+	display: inline-block;
+	min-width: 240px;
+	vertical-align: top;
+
+	>.Field
+	{
+		display: flex;
+		min-width: 100%;
+		max-width: 100%;
+		align-items: center;
+		gap: 12px;
+		padding-inline: 12px;
+		box-sizing: border-box;
+	}
+
+	>.FilledField
+	{
+		&.leadingIcon
+		{
+			--filled-field-label-position-inline-offset: 36px;
+		}
+
+		>.Icon
+		{
+			--icon-size: 24px;
+
+			&:not(.error)
+			{@include theme.color-on-surface-variant-text}
+			&.error
+			{@include theme.color-error-text}
+		}
+
+		>.container
+		{
+			display: flex;
+			flex-direction: column;
+			flex: 1 1 fit-content;
+			min-height: 56px;
+			padding-inline: 4px;
+			padding-block: 8px;
+			width: 0;
+			box-sizing: border-box;
+			cursor: text;
+
+			>.label
+			{
+				@include theme.typescale-body-small;
+				text-align: left;
+				opacity: 0;
+			}
+
+			>.content
+			{
+				display: flex;
+				align-items: center;
+				flex: 1 1 fit-content;
+				gap: 2px;
+
+				&.suffix >input
+				{text-align: right}
+
+				>.prefix, >.suffix
+				{
+					@include theme.typescale-body-large;
+					@include theme.color-on-surface-variant-text;
+				}
+
+				>input
+				{
+					@include theme.typescale-body-large;
+					@include theme.color-on-surface-text;
+					flex: 1;
+					width: 0;
+					height: 100%;
+					border: none;
+					outline: none;
+					box-sizing: border-box;
+					background: transparent;
+					padding: 0px;
+					caret-color: var(--md-sys-color-primary);
+					appearance: textfield;
+					-moz-appearance: textfield;
+
+					&::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+					{
+						-webkit-appearance: none;
+						margin: 0;
+					}
+				}
+			}
+		}
+	}
+	>.OutlinedField
+	{
+		&.leadingIcon
+		{
+			--outlined-field-label-position-inline-offset: 36px;
+		}
+
+		>.Icon
+		{
+			--icon-size: 24px;
+
+			&:not(.error)
+			{@include theme.color-on-surface-variant-text}
+			&.error
+			{@include theme.color-error-text}
+		}
+		>.IconButton
+		{margin-inline: -4px;}
+
+		>.content
+		{
+			display: flex;
+			align-items: center;
+			padding-inline: 4px;
+			flex: 1 1 fit-content;
+			gap: 2px;
+			width: 0;
+
+			&.suffix >input
+			{text-align: right}
+
+			>.prefix, >.suffix
+			{
+				@include theme.typescale-body-large;
+				@include theme.color-on-surface-variant-text;
+			}
+
+			>input
+			{
+				@include theme.typescale-body-large;
+				@include theme.color-on-surface-text;
+				flex: 1;
+				width: 0;
+				min-height: 56px;
+				border: none;
+				outline: none;
+				box-sizing: border-box;
+				background: transparent;
+				padding: 0px;
+				caret-color: var(--md-sys-color-primary);
+				appearance: textfield;
+				-moz-appearance: textfield;
+
+				&::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+				{
+					-webkit-appearance: none;
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	>.support
+	{
+		@include theme.typescale-body-large;
+		@include theme.color-on-surface-variant-text;
+		display: flex;
+		width: min-content;
+		min-width: 100%;
+		text-align: left;
+		padding-top: 4px;
+		padding-inline: 16px;
+		gap: 16px;
+		box-sizing: border-box;
+
+		>.message
+		{
+			flex: 1;
+		}
+	}
+
+	&.error
+	{
+		>.OutlinedField >.content >input
+		{
+			caret-color: var(--md-sys-color-error);
+		}
+		>.support
+		{
+			@include theme.color-error-text;
+		}
+	}
+}

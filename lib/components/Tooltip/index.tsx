@@ -1,0 +1,1 @@
+export {default, type PlainTooltipProps, type RichTooltipProps, type TooltipProps} from "./Tooltip";

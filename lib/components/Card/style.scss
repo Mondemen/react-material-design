@@ -1,0 +1,69 @@
+@use "../../style" as theme;
+
+.Card
+{
+	@include theme.shape-corner-medium;
+	@include theme.on-surface-text;
+	position: relative;
+	display: block;
+	margin: 4px;
+	padding: 0 16px;
+	transition: theme.motion-duration-medium1((background-color, border));
+	text-decoration: none;
+
+	&.box
+	{padding: 16px}
+
+	&.elevated
+	{
+		@include theme.forwardComponentToken(state-hover-state-layer-opacity, elevated-card-hover-state-layer-opacity);
+		@include theme.forwardComponentToken(state-focused-state-layer-opacity, elevated-card-focus-state-layer-opacity);
+		@include theme.forwardComponentToken(state-pressed-state-layer-opacity, elevated-card-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(state-hover-state-layer-color, elevated-card-hover-state-layer-opacity);
+		@include theme.forwardComponentToken(state-dragged-state-layer-opacity, elevated-card-dragged-state-layer-color);
+		@include theme.forwardComponentToken(state-focused-state-layer-color, elevated-card-focus-state-layer-color);
+		@include theme.forwardComponentToken(state-pressed-state-layer-color, elevated-card-pressed-state-layer-color);
+		@include theme.forwardComponentToken(state-dragged-state-layer-color, elevated-card-dragged-state-layer-color);
+		@include theme.forwardComponentToken(state-focus-indicator-color, elevated-card-focus-indicator-color);
+		@include theme.forwardComponentToken(state-focus-indicator-thickness, elevated-card-focus-indicator-thickness);
+		@include theme.forwardComponentToken(state-focus-indicator-outer-offset, elevated-card-focus-indicator-outline-offset);
+
+		background-color: theme.applyComponentToken(elevated-card-container-color);
+		border-radius: theme.applyComponentToken(elevated-card-container-shape);
+		box-shadow: theme.applyComponentToken(elevated-card-container-elevation);
+	}
+
+	&.filled
+	{
+		border-radius: theme.applyComponentToken(elevated-card-container-shape);
+		@include theme.surface-container-highest;
+		@include utils.state_layer(false, false) {@include theme.on-surface}
+
+		&:hover
+		{@include theme.elevation1;}
+	}
+
+	&.outlined
+	{
+		@include theme.surface;
+		border: 1px solid var(--md-sys-color-outline);
+
+		&:hover
+		{@include theme.elevation1;}
+	}
+
+	.selector
+	{
+		@include theme.primary;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 8px;
+		opacity: 0;
+		transition: theme.motion-duration-medium1((opacity));
+
+		&.selected
+		{opacity: 1}
+	}
+}

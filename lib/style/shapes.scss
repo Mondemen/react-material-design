@@ -1,0 +1,221 @@
+@use "./tokens.scss";
+
+@mixin corner-none
+{border-radius: var(--md-sys-shape-corner-none)}
+@mixin corner-extra-small
+{border-radius: var(--md-sys-shape-corner-extra-small)}
+@mixin corner-small
+{border-radius: var(--md-sys-shape-corner-small)}
+@mixin corner-medium
+{border-radius: var(--md-sys-shape-corner-medium)}
+@mixin corner-large
+{border-radius: var(--md-sys-shape-corner-large)}
+@mixin corner-large-increased
+{border-radius: var(--md-sys-shape-corner-large-increased)}
+@mixin corner-extra-large
+{border-radius: var(--md-sys-shape-corner-extra-large)}
+@mixin corner-extra-large-increased
+{border-radius: var(--md-sys-shape-corner-extra-large-increased)}
+@mixin corner-extra-extra-large
+{border-radius: var(--md-sys-shape-corner-extra-extra-large)}
+@mixin corner-full
+{border-radius: var(--md-sys-shape-corner-full)}
+
+@mixin corner-side-none($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-none;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-none;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-none;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-none;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-none;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-extra-small($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-extra-small;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-extra-small;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-extra-small;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-extra-small;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-extra-small;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-small($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-small;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-small;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-small;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-small;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-small;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-medium($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-medium;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-medium;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-medium;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-medium;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-medium;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-large($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-large;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-large;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-large;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-large;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-large;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-large-increased($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-large-increased;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-large-increased;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-large-increased;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-large-increased;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-large-increased;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-extra-large($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-extra-large;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-extra-large;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-extra-large;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-extra-large;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-extra-large;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-extra-large-increased($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-extra-large-increased;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-extra-large-increased;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-extra-large-increased;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-extra-large-increased;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-extra-large-increased;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-extra-extra-large($side)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: tokens.$md-sys-shape-corner-extra-extra-large;
+		border-#{$side}-right-radius: tokens.$md-sys-shape-corner-extra-extra-large;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: tokens.$md-sys-shape-corner-extra-extra-large;
+		border-bottom-#{$side}-radius: tokens.$md-sys-shape-corner-extra-extra-large;
+	}
+	@else if $side == "all"
+	{border-radius: tokens.$md-sys-shape-corner-extra-extra-large;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-full($side, $size: tokens.$md-sys-shape-corner-full-single)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: calc($size / 2);
+		border-#{$side}-right-radius: calc($size / 2);
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: calc($size / 2);
+		border-bottom-#{$side}-radius: calc($size / 2);
+	}
+	@else if $side == "all"
+	{border-radius: calc($size / 2);}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}
+@mixin corner-side-custom($side, $size)
+{
+	@if $side == "top" or $side == "bottom"
+	{
+		border-#{$side}-left-radius: $size;
+		border-#{$side}-right-radius: $size;
+	}
+	@else if $side == "left" or $side == "right"
+	{
+		border-top-#{$side}-radius: $size;
+		border-bottom-#{$side}-radius: $size;
+	}
+	@else if $side == "all"
+	{border-radius: $size;}
+	@else
+	{@error "Unknown side name '#{$side}'"}
+	@content;
+}

@@ -1,0 +1,657 @@
+@use "../../style" as theme;
+
+:root
+{
+	/* Text field - Autocomplete, filled */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-container-color, color-surface-container-highest);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-container-shape, shape-corner-extra-small-top);
+				@include theme.saveComponentToken(filled-autocomplete-menu-container-color, color-surface-container);
+				@include theme.saveComponentToken(filled-autocomplete-menu-container-elevation, elevation-level2);
+				@include theme.saveComponentToken(filled-autocomplete-menu-container-shadow-color, color-shadow);
+				@include theme.saveComponentToken(filled-autocomplete-menu-container-shape, shape-corner-extra-small);
+			/* Label text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(filled-autocomplete-text-field-label-text, body-large);
+			/* Icon */
+				@include theme.saveComponentToken(filled-autocomplete-menu-cascading-menu-indicator-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(filled-autocomplete-menu-cascading-menu-indicator-icon-size, 24px);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-leading-icon-size, 20px);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-trailing-icon-size, 24px);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-autocomplete-text-field-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-active-indicator-color, color-on-surface-variant);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-supporting-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(filled-autocomplete-text-field-supporting-text, body-small);
+			/* Input text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-input-text-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(filled-autocomplete-text-field-input-text, body-large);
+			/* Caret */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-caret-color, color-primary);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-disabled-container-color, color-on-surface);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-disabled-container-opacity, 4%);
+			/* Label text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-disabled-label-text-opacity, 38%);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-disabled-leading-icon-opacity, 38%);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-disabled-trailing-icon-color, color-on-surface);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-disabled-trailing-icon-opacity, 38%);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-disabled-supporting-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-disabled-supporting-text-opacity, 38%);
+			/* Input text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-disabled-input-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-disabled-input-text-opacity, 38%);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-autocomplete-text-field-disabled-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-disabled-active-indicator-color, color-on-surface);
+				@include theme.saveComponentValue(filled-autocomplete-text-field-disabled-active-indicator-opacity, 38%);
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-hover-label-text-color, color-on-surface-variant);
+			/* State layer */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-hover-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-hover-trailing-icon-color, color-on-surface-variant);
+			/* Input text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-hover-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-hover-supporting-text-color, color-on-surface-variant);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-autocomplete-text-field-hover-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-hover-active-indicator-color, color-on-surface);
+		/* Focused */
+			/* Label text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-focus-label-text-color, color-primary);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-focus-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-focus-trailing-icon-color, color-on-surface-variant);
+			/* Input text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-focus-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-focus-supporting-text-color, color-on-surface-variant);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-autocomplete-text-field-focus-active-indicator-height, 2px);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-focus-active-indicator-color, color-primary);
+		/* Error */
+			@include theme.saveComponentToken(filled-autocomplete-text-field-error-active-indicator-color, color-error);
+			@include theme.saveComponentToken(filled-autocomplete-text-field-error-label-text-color, color-error);
+			@include theme.saveComponentToken(filled-autocomplete-text-field-error-input-text-color, color-on-surface);
+			@include theme.saveComponentToken(filled-autocomplete-text-field-error-supporting-text-color, color-error);
+			@include theme.saveComponentToken(filled-autocomplete-text-field-error-leading-icon-color, color-on-surface-variant);
+			@include theme.saveComponentToken(filled-autocomplete-text-field-error-trailing-icon-color, color-error);
+			/* Focus */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-focus-active-indicator-color, color-error);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-focus-label-text-color, color-error);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-focus-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-focus-supporting-text-color, color-error);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-focus-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-focus-trailing-icon-color, color-error);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-focus-caret-color, color-error);
+			/* Hover */
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-hover-active-indicator-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-hover-label-text-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-hover-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-hover-supporting-text-color, color-error);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-hover-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-hover-trailing-icon-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-autocomplete-text-field-error-hover-state-layer-opacity, state-hover-state-layer-opacity);
+	/* Text field - Autocomplete, outlined */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-container-color, color-surface-container-highest);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-container-shape, shape-corner-extra-small);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-outline-color, color-outline);
+				@include theme.saveComponentToken(outlined-autocomplete-menu-container-color, color-surface-container);
+				@include theme.saveComponentToken(outlined-autocomplete-menu-container-elevation, elevation-level2);
+				@include theme.saveComponentToken(outlined-autocomplete-menu-container-shadow-color, color-shadow);
+				@include theme.saveComponentToken(outlined-autocomplete-menu-container-shape, shape-corner-extra-small);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(outlined-autocomplete-text-field-label-text, body-large);
+			/* Icon */
+				@include theme.saveComponentToken(outlined-autocomplete-menu-cascading-menu-indicator-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(outlined-autocomplete-menu-cascading-menu-indicator-icon-size, 24px);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-leading-icon-size, 24px);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-trailing-icon-size, 24px);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-supporting-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(outlined-autocomplete-text-field-supporting-text, body-small);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-input-text-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(outlined-autocomplete-text-field-input-text, body-large);
+			/* Caret */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-caret-color, color-primary);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-disabled-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-disabled-outline-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-disabled-outline-opacity, 12%);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-disabled-label-text-opacity, 38%);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-disabled-leading-icon-opacity, 38%);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-disabled-trailing-icon-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-disabled-trailing-icon-opacity, 38%);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-disabled-supporting-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-disabled-supporting-text-opacity, 38%);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-disabled-input-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-disabled-input-text-opacity, 38%);
+		/* Hovered */
+			/* Container */
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-hover-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-hover-outline-color, color-on-surface);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-hover-label-text-color, color-on-surface-variant);
+			/* State layer */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-hover-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-hover-trailing-icon-color, color-on-surface-variant);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-hover-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-hover-supporting-text-color, color-on-surface-variant);
+		/* Focused */
+			/* Container */
+				@include theme.saveComponentValue(outlined-autocomplete-text-field-focus-outline-width, 2px);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-focus-outline-color, color-primary);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-focus-label-text-color, color-primary);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-focus-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-focus-trailing-icon-color, color-on-surface-variant);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-focus-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-focus-supporting-text-color, color-on-surface-variant);
+		/* Error */
+			@include theme.saveComponentToken(outlined-autocomplete-text-field-error-outline-color, color-error);
+			@include theme.saveComponentToken(outlined-autocomplete-text-field-error-label-text-color, color-error);
+			@include theme.saveComponentToken(outlined-autocomplete-text-field-error-input-text-color, color-on-surface);
+			@include theme.saveComponentToken(outlined-autocomplete-text-field-error-supporting-text-color, color-error);
+			@include theme.saveComponentToken(outlined-autocomplete-text-field-error-leading-icon-color, color-on-surface-variant);
+			@include theme.saveComponentToken(outlined-autocomplete-text-field-error-trailing-icon-color, color-error);
+			/* Focus */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-focus-outline-color, color-error);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-focus-label-text-color, color-error);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-focus-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-focus-supporting-text-color, color-error);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-focus-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-focus-trailing-icon-color, color-error);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-focus-caret-color, color-error);
+			/* Hover */
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-hover-outline-color, color-on-error-container);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-hover-label-text-color, color-on-error-container);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-hover-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-hover-supporting-text-color, color-error);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-hover-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-hover-trailing-icon-color, color-on-error-container);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-autocomplete-text-field-error-hover-state-layer-opacity, state-hover-state-layer-opacity);
+	/* Text field - Filled */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(filled-text-field-container-color, color-surface-container-highest);
+				@include theme.saveComponentToken(filled-text-field-container-shape, shape-corner-extra-small-top);
+			/* Label text */
+				@include theme.saveComponentToken(filled-text-field-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(filled-text-field-label-text, body-large);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-text-field-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(filled-text-field-leading-icon-size, 24px);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-text-field-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(filled-text-field-trailing-icon-size, 24px);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-text-field-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-text-field-active-indicator-color, color-on-surface-variant);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-text-field-supporting-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(filled-text-field-supporting-text, body-small);
+			/* Input text */
+				@include theme.saveComponentToken(filled-text-field-input-text-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(filled-text-field-input-text, body-large);
+				@include theme.saveComponentToken(filled-text-field-input-text-prefix-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filled-text-field-input-text-suffix-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filled-text-field-input-text-placeholder-color, color-on-surface-variant);
+			/* Caret */
+				@include theme.saveComponentToken(filled-text-field-caret-color, color-primary);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(filled-text-field-disabled-container-color, color-on-surface);
+				@include theme.saveComponentValue(filled-text-field-disabled-container-opacity, 4%);
+			/* Label text */
+				@include theme.saveComponentToken(filled-text-field-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-text-field-disabled-label-text-opacity, 38%);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-text-field-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(filled-text-field-disabled-leading-icon-opacity, 38%);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-text-field-disabled-trailing-icon-color, color-on-surface);
+				@include theme.saveComponentValue(filled-text-field-disabled-trailing-icon-opacity, 38%);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-text-field-disabled-supporting-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-text-field-disabled-supporting-text-opacity, 38%);
+			/* Input text */
+				@include theme.saveComponentToken(filled-text-field-disabled-input-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-text-field-disabled-input-text-opacity, 38%);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-text-field-disabled-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-text-field-disabled-active-indicator-color, color-on-surface);
+				@include theme.saveComponentValue(filled-text-field-disabled-active-indicator-opacity, 38%);
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(filled-text-field-hover-label-text-color, color-on-surface-variant);
+			/* State layer */
+				@include theme.saveComponentToken(filled-text-field-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-text-field-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-text-field-hover-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-text-field-hover-trailing-icon-color, color-on-surface-variant);
+			/* Input text */
+				@include theme.saveComponentToken(filled-text-field-hover-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-text-field-hover-supporting-text-color, color-on-surface-variant);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-text-field-hover-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-text-field-hover-active-indicator-color, color-on-surface);
+		/* Focused */
+			/* Label text */
+				@include theme.saveComponentToken(filled-text-field-focus-label-text-color, color-primary);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-text-field-focus-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-text-field-focus-trailing-icon-color, color-on-surface-variant);
+			/* Input text */
+				@include theme.saveComponentToken(filled-text-field-focus-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-text-field-focus-supporting-text-color, color-on-surface-variant);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-text-field-focus-active-indicator-height, 2px);
+				@include theme.saveComponentToken(filled-text-field-focus-active-indicator-color, color-primary);
+				@include theme.saveComponentToken(filled-text-field-focus-active-indicator-thickness, state-focus-indicator-thickness);
+		/* Error */
+			@include theme.saveComponentToken(filled-text-field-error-active-indicator-color, color-error);
+			@include theme.saveComponentToken(filled-text-field-error-label-text-color, color-error);
+			@include theme.saveComponentToken(filled-text-field-error-input-text-color, color-on-surface);
+			@include theme.saveComponentToken(filled-text-field-error-supporting-text-color, color-error);
+			@include theme.saveComponentToken(filled-text-field-error-leading-icon-color, color-on-surface-variant);
+			@include theme.saveComponentToken(filled-text-field-error-trailing-icon-color, color-error);
+			/* Focus */
+				@include theme.saveComponentToken(filled-text-field-error-focus-active-indicator-color, color-error);
+				@include theme.saveComponentToken(filled-text-field-error-focus-label-text-color, color-error);
+				@include theme.saveComponentToken(filled-text-field-error-focus-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(filled-text-field-error-focus-supporting-text-color, color-error);
+				@include theme.saveComponentToken(filled-text-field-error-focus-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filled-text-field-error-focus-trailing-icon-color, color-error);
+				@include theme.saveComponentToken(filled-text-field-error-focus-caret-color, color-error);
+			/* Hover */
+				@include theme.saveComponentToken(filled-text-field-error-hover-active-indicator-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-text-field-error-hover-label-text-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-text-field-error-hover-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(filled-text-field-error-hover-supporting-text-color, color-error);
+				@include theme.saveComponentToken(filled-text-field-error-hover-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filled-text-field-error-hover-trailing-icon-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-text-field-error-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-text-field-error-hover-state-layer-opacity, state-hover-state-layer-opacity);
+	/* Text field - Outlined */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(outlined-text-field-container-shape, shape-corner-extra-small);
+			/* Outline */
+				@include theme.saveComponentValue(outlined-text-field-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-text-field-outline-color, color-outline);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-text-field-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(outlined-text-field-label-text, body-large);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-text-field-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(outlined-text-field-leading-icon-size, 24px);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-text-field-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(outlined-text-field-trailing-icon-size, 24px);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-text-field-supporting-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(outlined-text-field-supporting-text, body-small);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-text-field-input-text-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(outlined-text-field-input-text, body-large);
+				@include theme.saveComponentToken(outlined-text-field-input-text-suffix-color, color-on-surface-variant);
+				@include theme.saveComponentToken(outlined-text-field-input-text-prefix-color, color-on-surface-variant);
+				@include theme.saveComponentToken(outlined-text-field-input-text-placeholder-color, color-on-surface-variant);
+			/* Caret */
+				@include theme.saveComponentToken(outlined-text-field-caret-color, color-primary);
+				@include theme.saveComponentToken(outlined-text-field-error-focus-caret-color, color-error);
+		/* Disabled */
+			/* Label text */
+				@include theme.saveComponentToken(outlined-text-field-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-text-field-disabled-label-text-opacity, 38%);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-text-field-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-text-field-disabled-leading-icon-opacity, 38%);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-text-field-disabled-trailing-icon-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-text-field-disabled-trailing-icon-opacity, 38%);
+			/* Outline */
+				@include theme.saveComponentValue(outlined-text-field-disabled-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-text-field-disabled-outline-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-text-field-disabled-outline-opacity, 12%);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-text-field-disabled-supporting-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-text-field-disabled-supporting-text-opacity, 38%);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-text-field-disabled-input-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-text-field-disabled-input-text-opacity, 38%);
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(outlined-text-field-hover-label-text-color, color-on-surface);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-text-field-hover-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-text-field-hover-trailing-icon-color, color-on-surface-variant);
+			/* Outline */
+				@include theme.saveComponentValue(outlined-text-field-hover-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-text-field-hover-outline-color, color-on-surface);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-text-field-hover-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-text-field-hover-supporting-text-color, color-on-surface-variant);
+		/* Focused */
+			/* Label text */
+				@include theme.saveComponentToken(outlined-text-field-focus-label-text-color, color-primary);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-text-field-focus-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-text-field-focus-trailing-icon-color, color-on-surface-variant);
+			/* Outline */
+				@include theme.saveComponentValue(outlined-text-field-focus-outline-width, 3px);
+				@include theme.saveComponentToken(outlined-text-field-focus-outline-color, color-primary);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-text-field-focus-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-text-field-focus-supporting-text-color, color-on-surface-variant);
+		/* Error */
+			@include theme.saveComponentToken(outlined-text-field-error-outline-color, color-error);
+			@include theme.saveComponentToken(outlined-text-field-error-label-text-color, color-error);
+			@include theme.saveComponentToken(outlined-text-field-error-input-text-color, color-on-surface);
+			@include theme.saveComponentToken(outlined-text-field-error-supporting-text-color, color-error);
+			@include theme.saveComponentToken(outlined-text-field-error-leading-icon-color, color-on-surface-variant);
+			@include theme.saveComponentToken(outlined-text-field-error-trailing-icon-color, color-error);
+			/* Focus */
+				@include theme.saveComponentToken(outlined-text-field-error-focus-outline-color, color-error);
+				@include theme.saveComponentToken(outlined-text-field-error-focus-label-text-color, color-error);
+				@include theme.saveComponentToken(outlined-text-field-error-focus-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-text-field-error-focus-supporting-text-color, color-error);
+				@include theme.saveComponentToken(outlined-text-field-error-focus-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(outlined-text-field-error-focus-trailing-icon-color, color-error);
+			/* Hover */
+				@include theme.saveComponentToken(outlined-text-field-error-hover-outline-color, color-on-error-container);
+				@include theme.saveComponentToken(outlined-text-field-error-hover-label-text-color, color-on-error-container);
+				@include theme.saveComponentToken(outlined-text-field-error-hover-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-text-field-error-hover-supporting-text-color, color-error);
+				@include theme.saveComponentToken(outlined-text-field-error-hover-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(outlined-text-field-error-hover-trailing-icon-color, color-on-error-container);
+	/* Text field - Select, filled */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(filled-select-text-field-container-color, color-surface-container-highest);
+				@include theme.saveComponentToken(filled-select-text-field-container-shape, shape-corner-extra-small-top);
+				@include theme.saveComponentToken(filled-select-menu-container-color, color-surface-container);
+				@include theme.saveComponentToken(filled-select-menu-container-elevation, elevation-level2);
+				@include theme.saveComponentToken(filled-select-menu-container-shadow-color, color-shadow);
+				@include theme.saveComponentToken(filled-select-menu-container-shape, shape-corner-extra-small);
+				@include theme.saveComponentValue(filled-select-menu-list-item-container-height, 48px);
+				@include theme.saveComponentToken(filled-select-menu-list-item-selected-container-color, color-surface-container-highest);
+			/* Label text */
+				@include theme.saveComponentToken(filled-select-text-field-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(filled-select-text-field-label-text, body-large);
+				@include theme.saveComponentToken(filled-select-menu-list-item-label-text-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(filled-select-menu-list-item-label-text, label-large);
+			/* Icon */
+				@include theme.saveComponentToken(filled-select-menu-cascading-menu-indicator-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(filled-select-menu-cascading-menu-indicator-icon-size, 24px);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-select-text-field-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(filled-select-text-field-leading-icon-size, 24px);
+				@include theme.saveComponentValue(filled-select-menu-list-item-with-leading-icon-leading-icon-size, 24px);
+				@include theme.saveComponentToken(filled-select-menu-list-item-with-leading-icon-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-select-text-field-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(filled-select-text-field-trailing-icon-size, 24px);
+				@include theme.saveComponentValue(filled-select-menu-list-item-with-trailing-icon-trailing-icon-size, 24px);
+				@include theme.saveComponentToken(filled-select-menu-list-item-with-trailing-icon-trailing-icon-color, color-on-surface-variant);
+			/* Divider */
+				@include theme.saveComponentToken(filled-select-menu-divider-color, color-surface-variant);
+				@include theme.saveComponentValue(filled-select-menu-divider-height, 1px);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-select-text-field-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-select-text-field-active-indicator-color, color-on-surface-variant);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-select-text-field-supporting-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(filled-select-text-field-supporting-text, body-small);
+			/* Input text */
+				@include theme.saveComponentToken(filled-select-text-field-input-text-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(filled-select-text-field-input-text, body-large);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(filled-select-text-field-disabled-container-color, color-on-surface);
+				@include theme.saveComponentValue(filled-select-text-field-disabled-container-opacity, 4%);
+			/* Label text */
+				@include theme.saveComponentToken(filled-select-text-field-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-select-text-field-disabled-label-text-opacity, 38%);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-select-text-field-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(filled-select-text-field-disabled-leading-icon-opacity, 38%);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-select-text-field-disabled-trailing-icon-color, color-on-surface);
+				@include theme.saveComponentValue(filled-select-text-field-disabled-trailing-icon-opacity, 38%);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-select-text-field-disabled-supporting-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-select-text-field-disabled-supporting-text-opacity, 38%);
+			/* Input text */
+				@include theme.saveComponentToken(filled-select-text-field-disabled-input-text-color, color-on-surface);
+				@include theme.saveComponentValue(filled-select-text-field-disabled-input-text-opacity, 38%);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-select-text-field-disabled-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-select-text-field-disabled-active-indicator-color, color-on-surface);
+				@include theme.saveComponentValue(filled-select-text-field-disabled-active-indicator-opacity, 38%);
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(filled-select-text-field-hover-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(filled-select-text-field-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-select-text-field-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-select-text-field-hover-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-select-text-field-hover-trailing-icon-color, color-on-surface-variant);
+			/* Input text */
+				@include theme.saveComponentToken(filled-select-text-field-hover-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-select-text-field-hover-supporting-text-color, color-on-surface-variant);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-select-text-field-hover-active-indicator-height, 1px);
+				@include theme.saveComponentToken(filled-select-text-field-hover-active-indicator-color, color-on-surface);
+		/* Focused */
+			/* Label text */
+				@include theme.saveComponentToken(filled-select-text-field-focus-label-text-color, color-primary);
+			/* Leading icon */
+				@include theme.saveComponentToken(filled-select-text-field-focus-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(filled-select-text-field-focus-trailing-icon-color, color-primary);
+			/* Input text */
+				@include theme.saveComponentToken(filled-select-text-field-focus-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(filled-select-text-field-focus-supporting-text-color, color-on-surface-variant);
+			/* Active indicator */
+				@include theme.saveComponentValue(filled-select-text-field-focus-active-indicator-height, 2px);
+				@include theme.saveComponentToken(filled-select-text-field-focus-active-indicator-color, color-primary);
+		/* Error */
+			@include theme.saveComponentToken(filled-select-text-field-error-active-indicator-color, color-error);
+			@include theme.saveComponentToken(filled-select-text-field-error-label-text-color, color-error);
+			@include theme.saveComponentToken(filled-select-text-field-error-input-text-color, color-on-surface);
+			@include theme.saveComponentToken(filled-select-text-field-error-supporting-text-color, color-error);
+			@include theme.saveComponentToken(filled-select-text-field-error-leading-icon-color, color-on-surface-variant);
+			@include theme.saveComponentToken(filled-select-text-field-error-trailing-icon-color, color-error);
+			/* Focus */
+				@include theme.saveComponentToken(filled-select-text-field-error-focus-active-indicator-color, color-error);
+				@include theme.saveComponentToken(filled-select-text-field-error-focus-label-text-color, color-error);
+				@include theme.saveComponentToken(filled-select-text-field-error-focus-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(filled-select-text-field-error-focus-supporting-text-color, color-error);
+				@include theme.saveComponentToken(filled-select-text-field-error-focus-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filled-select-text-field-error-focus-trailing-icon-color, color-error);
+			/* Hover */
+				@include theme.saveComponentToken(filled-select-text-field-error-hover-active-indicator-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-select-text-field-error-hover-label-text-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-select-text-field-error-hover-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(filled-select-text-field-error-hover-supporting-text-color, color-error);
+				@include theme.saveComponentToken(filled-select-text-field-error-hover-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filled-select-text-field-error-hover-trailing-icon-color, color-on-error-container);
+				@include theme.saveComponentToken(filled-select-text-field-error-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-select-text-field-error-hover-state-layer-opacity, state-hover-state-layer-opacity);
+	/* Text field - Select, outlined */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(outlined-select-text-field-container-color, color-surface-container-highest);
+				@include theme.saveComponentToken(outlined-select-text-field-container-shape, shape-corner-extra-small);
+				@include theme.saveComponentValue(outlined-select-text-field-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-select-text-field-outline-color, color-outline);
+				@include theme.saveComponentToken(outlined-select-menu-container-color, color-surface-container);
+				@include theme.saveComponentToken(outlined-select-menu-container-elevation, elevation-level2);
+				@include theme.saveComponentToken(outlined-select-menu-container-shadow-color, color-shadow);
+				@include theme.saveComponentToken(outlined-select-menu-container-shape, shape-corner-extra-small);
+				@include theme.saveComponentValue(outlined-select-menu-list-item-container-height, 48px);
+				@include theme.saveComponentToken(outlined-select-menu-list-item-selected-container-color, color-surface-container-highest);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-select-text-field-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(outlined-select-text-field-label-text, body-large);
+				@include theme.saveComponentToken(outlined-select-menu-list-item-label-text-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(outlined-select-menu-list-item-label-text, label-large);
+			/* Icon */
+				@include theme.saveComponentToken(outlined-select-menu-cascading-menu-indicator-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(outlined-select-menu-cascading-menu-indicator-icon-size, 24px);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-select-text-field-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(outlined-select-text-field-leading-icon-size, 24px);
+				@include theme.saveComponentValue(outlined-select-menu-list-item-with-leading-icon-leading-icon-size, 24px);
+				@include theme.saveComponentToken(outlined-select-menu-list-item-with-leading-icon-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-select-text-field-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentValue(outlined-select-text-field-trailing-icon-size, 24px);
+				@include theme.saveComponentValue(outlined-select-menu-list-item-with-trailing-icon-trailing-icon-size, 24px);
+				@include theme.saveComponentToken(outlined-select-menu-list-item-with-trailing-icon-trailing-icon-color, color-on-surface-variant);
+			/* Divider */
+				@include theme.saveComponentToken(outlined-select-menu-divider-color, color-surface-variant);
+				@include theme.saveComponentValue(outlined-select-menu-divider-height, 1px);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-select-text-field-supporting-text-color, color-on-surface-variant);
+				@include theme.saveComponentTypescaleTokens(outlined-select-text-field-supporting-text, body-small);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-select-text-field-input-text-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(outlined-select-text-field-input-text, body-large);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentValue(outlined-select-text-field-disabled-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-select-text-field-disabled-outline-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-select-text-field-disabled-outline-opacity, 12%);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-select-text-field-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-select-text-field-disabled-label-text-opacity, 38%);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-select-text-field-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-select-text-field-disabled-leading-icon-opacity, 38%);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-select-text-field-disabled-trailing-icon-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-select-text-field-disabled-trailing-icon-opacity, 38%);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-select-text-field-disabled-supporting-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-select-text-field-disabled-supporting-text-opacity, 38%);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-select-text-field-disabled-input-text-color, color-on-surface);
+				@include theme.saveComponentValue(outlined-select-text-field-disabled-input-text-opacity, 38%);
+		/* Hovered */
+			/* Container */
+				@include theme.saveComponentValue(outlined-select-text-field-hover-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-select-text-field-hover-outline-color, color-on-surface);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-select-text-field-hover-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(outlined-select-text-field-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-select-text-field-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-select-text-field-hover-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-select-text-field-hover-trailing-icon-color, color-on-surface-variant);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-select-text-field-hover-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-select-text-field-hover-supporting-text-color, color-on-surface-variant);
+		/* Focused */
+			/* Container */
+				@include theme.saveComponentToken(outlined-select-text-field-focus-outline-width, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(outlined-select-text-field-focus-outline-color, color-primary);
+			/* Label text */
+				@include theme.saveComponentToken(outlined-select-text-field-focus-label-text-color, color-primary);
+			/* Leading icon */
+				@include theme.saveComponentToken(outlined-select-text-field-focus-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentToken(outlined-select-text-field-focus-trailing-icon-color, color-primary);
+			/* Input text */
+				@include theme.saveComponentToken(outlined-select-text-field-focus-input-text-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentToken(outlined-select-text-field-focus-supporting-text-color, color-on-surface-variant);
+		/* Error */
+			@include theme.saveComponentToken(outlined-select-text-field-error-outline-color, color-error);
+			@include theme.saveComponentToken(outlined-select-text-field-error-label-text-color, color-error);
+			@include theme.saveComponentToken(outlined-select-text-field-error-input-text-color, color-on-surface);
+			@include theme.saveComponentToken(outlined-select-text-field-error-supporting-text-color, color-error);
+			@include theme.saveComponentToken(outlined-select-text-field-error-leading-icon-color, color-on-surface-variant);
+			@include theme.saveComponentToken(outlined-select-text-field-error-trailing-icon-color, color-error);
+			/* Focus */
+				@include theme.saveComponentToken(outlined-select-text-field-error-focus-outline-color, color-error);
+				@include theme.saveComponentToken(outlined-select-text-field-error-focus-label-text-color, color-error);
+				@include theme.saveComponentToken(outlined-select-text-field-error-focus-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-select-text-field-error-focus-supporting-text-color, color-error);
+				@include theme.saveComponentToken(outlined-select-text-field-error-focus-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(outlined-select-text-field-error-focus-trailing-icon-color, color-error);
+			/* Hover */
+				@include theme.saveComponentToken(outlined-select-text-field-error-hover-outline-color, color-on-error-container);
+				@include theme.saveComponentToken(outlined-select-text-field-error-hover-label-text-color, color-on-error-container);
+				@include theme.saveComponentToken(outlined-select-text-field-error-hover-input-text-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-select-text-field-error-hover-supporting-text-color, color-error);
+				@include theme.saveComponentToken(outlined-select-text-field-error-hover-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(outlined-select-text-field-error-hover-trailing-icon-color, color-on-error-container);
+				@include theme.saveComponentToken(outlined-select-text-field-error-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-select-text-field-error-hover-state-layer-opacity, state-hover-state-layer-opacity);
+}

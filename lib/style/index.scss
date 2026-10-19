@@ -1,0 +1,8 @@
+@forward "tokens.scss";
+@forward "colors.scss";
+@forward "colors.scss" as color-*;
+@forward "shapes.scss" as shape-*;
+@forward "motions.scss" as motion-*;
+@forward "typography.scss";
+@forward "typography.scss" as typescale-*;
+@forward "utils.scss";

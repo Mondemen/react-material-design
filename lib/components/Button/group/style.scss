@@ -1,0 +1,331 @@
+@use "../../../style" as theme;
+
+.ButtonGroup
+{
+	&.standard
+	{
+		>.container
+		{
+			display: flex;
+			gap: inherit;
+		}
+
+		&.align-left >.container
+		{justify-content: left}
+		&.align-center >.container
+		{justify-content: center}
+		&.align-right >.container
+		{justify-content: right}
+
+		&.round >.container >.ButtonContainer >.CommonButton
+		{
+			&.disabled:not(.selected)
+			{border-radius: theme.applyComponentToken(button-container-shape-round)}
+			&.disabled.selected
+			{border-radius: theme.applyComponentToken(button-selected-container-shape-round)}
+			&:not(.disabled, :active, .selected)
+			{border-radius: theme.applyComponentToken(button-container-shape-round)}
+			&:not(.disabled, :active).selected
+			{border-radius: theme.applyComponentToken(button-selected-container-shape-round)}
+		}
+		&.square >.container >.ButtonContainer >.CommonButton
+		{
+			&.disabled:not(.selected)
+			{border-radius: theme.applyComponentToken(button-container-shape-square)}
+			&.disabled.selected
+			{border-radius: theme.applyComponentToken(button-selected-container-shape-square)}
+			&:not(.disabled, :active, .selected)
+			{border-radius: theme.applyComponentToken(button-container-shape-square)}
+			&:not(.disabled, :active).selected
+			{border-radius: theme.applyComponentToken(button-selected-container-shape-square)}
+		}
+		>.container >.ButtonContainer >.CommonButton:active
+		{border-radius: theme.applyComponentToken(button-pressed-container-shape)}
+
+		&.extra-small
+		{
+			@include theme.forwardComponentToken(button-container-height, button-group-standard-xsmall-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-standard-xsmall-container-height);
+			gap: theme.applyComponentToken(button-group-standard-xsmall-between-space);
+		}
+		&.small
+		{
+			@include theme.forwardComponentToken(button-container-height, button-group-standard-small-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-standard-small-container-height);
+			gap: theme.applyComponentToken(button-group-standard-small-between-space);
+		}
+		&.medium
+		{
+			@include theme.forwardComponentToken(button-container-height, button-group-standard-medium-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-standard-medium-container-height);
+			gap: theme.applyComponentToken(button-group-standard-medium-between-space);
+		}
+		&.large
+		{
+			@include theme.forwardComponentToken(button-container-height, button-group-standard-large-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-standard-large-container-height);
+			gap: theme.applyComponentToken(button-group-standard-large-between-space);
+		}
+		&.extra-large
+		{
+			@include theme.forwardComponentToken(button-container-height, button-group-standard-xlarge-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-standard-xlarge-container-height);
+			gap: theme.applyComponentToken(button-group-standard-xlarge-between-space);
+		}
+	}
+
+	&.connected
+	{
+		width: fit-content;
+		gap: theme.applyComponentToken(button-group-connected-between-space);
+
+		>.container
+		{
+			display: flex;
+			gap: inherit;
+		}
+
+		&.round >.container >.ButtonContainer
+		{
+			&:first-child >.CommonButton
+			{
+
+				border-top-left-radius: calc(theme.applyComponentToken(button-container-height) / 2);
+				border-bottom-left-radius: calc(theme.applyComponentToken(button-container-height) / 2);
+			}
+			&:nth-last-child(2) >.CommonButton
+			{
+				border-top-right-radius: calc(theme.applyComponentToken(button-container-height) / 2);
+				border-bottom-right-radius: calc(theme.applyComponentToken(button-container-height) / 2);
+			}
+		}
+
+		>.container >.ButtonContainer >.CommonButton
+		{
+			flex: 1;
+			flex-basis: fit-content;
+			min-width: 48px;
+
+			&:not(.selected, :active)
+			{
+				border-top-left-radius: theme.applyComponentToken(button-group-connected-inner-corner-corner-size);
+				border-bottom-left-radius: theme.applyComponentToken(button-group-connected-inner-corner-corner-size);
+				border-top-right-radius: theme.applyComponentToken(button-group-connected-inner-corner-corner-size);
+				border-bottom-right-radius: theme.applyComponentToken(button-group-connected-inner-corner-corner-size);
+			}
+			&.selected:not(:active)
+			{
+				border-top-left-radius: theme.applyComponentToken(button-group-connected-selected-inner-corner-corner-size);
+				border-bottom-left-radius: theme.applyComponentToken(button-group-connected-selected-inner-corner-corner-size);
+				border-top-right-radius: theme.applyComponentToken(button-group-connected-selected-inner-corner-corner-size);
+				border-bottom-right-radius: theme.applyComponentToken(button-group-connected-selected-inner-corner-corner-size);
+			}
+			&:active
+			{
+				border-top-left-radius: theme.applyComponentToken(button-group-connected-pressed-inner-corner-corner-size);
+				border-bottom-left-radius: theme.applyComponentToken(button-group-connected-pressed-inner-corner-corner-size);
+				border-top-right-radius: theme.applyComponentToken(button-group-connected-pressed-inner-corner-corner-size);
+				border-bottom-right-radius: theme.applyComponentToken(button-group-connected-pressed-inner-corner-corner-size);
+			}
+		}
+
+		&.extra-small
+		{
+			@include theme.forwardComponentToken(button-group-connected-inner-corner-corner-size, button-group-connected-xsmall-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-selected-inner-corner-corner-size, button-group-connected-xsmall-selected-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-pressed-inner-corner-corner-size, button-group-connected-xsmall-pressed-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-between-space, button-group-connected-xsmall-between-space);
+			@include theme.forwardComponentToken(button-container-height, button-group-connected-xsmall-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-connected-xsmall-container-height);
+		}
+		&.small
+		{
+			@include theme.forwardComponentToken(button-group-connected-inner-corner-corner-size, button-group-connected-small-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-selected-inner-corner-corner-size, button-group-connected-small-selected-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-pressed-inner-corner-corner-size, button-group-connected-small-pressed-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-between-space, button-group-connected-small-between-space);
+			@include theme.forwardComponentToken(button-container-height, button-group-connected-small-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-connected-small-container-height);
+		}
+		&.medium
+		{
+			@include theme.forwardComponentToken(button-group-connected-inner-corner-corner-size, button-group-connected-medium-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-selected-inner-corner-corner-size, button-group-connected-medium-selected-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-pressed-inner-corner-corner-size, button-group-connected-medium-pressed-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-between-space, button-group-connected-medium-between-space);
+			@include theme.forwardComponentToken(button-container-height, button-group-connected-medium-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-connected-medium-container-height);
+		}
+		&.large
+		{
+			@include theme.forwardComponentToken(button-group-connected-inner-corner-corner-size, button-group-connected-large-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-selected-inner-corner-corner-size, button-group-connected-large-selected-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-pressed-inner-corner-corner-size, button-group-connected-large-pressed-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-between-space, button-group-connected-large-between-space);
+			@include theme.forwardComponentToken(button-container-height, button-group-connected-large-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-connected-large-container-height);
+		}
+		&.extra-large
+		{
+			@include theme.forwardComponentToken(button-group-connected-inner-corner-corner-size, button-group-connected-xlarge-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-selected-inner-corner-corner-size, button-group-connected-xlarge-selected-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-pressed-inner-corner-corner-size, button-group-connected-xlarge-pressed-inner-corner-corner-size);
+			@include theme.forwardComponentToken(button-group-connected-between-space, button-group-connected-xlarge-between-space);
+			@include theme.forwardComponentToken(button-container-height, button-group-connected-xlarge-container-height);
+			@include theme.forwardComponentToken(icon-button-container-height, button-group-connected-xlarge-container-height);
+		}
+	}
+
+	&.extra-small
+	{
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-xsmall-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-xsmall-icon-size);
+		@include theme.forwardComponentToken(button-container-shape-round, button-xsmall-container-shape-round);
+		@include theme.forwardComponentToken(button-container-shape-square, button-xsmall-container-shape-square);
+		@include theme.forwardComponentToken(button-pressed-container-shape, button-xsmall-pressed-container-shape);
+		@include theme.forwardComponentToken(button-selected-container-shape-round, button-xsmall-selected-container-shape-round);
+		@include theme.forwardComponentToken(button-selected-container-shape-square, button-xsmall-selected-container-shape-square);
+		@include theme.forwardComponentToken(button-leading-space, button-xsmall-leading-space);
+		@include theme.forwardComponentToken(button-icon-label-space, button-xsmall-icon-label-space);
+		@include theme.forwardComponentToken(button-trailing-space, button-xsmall-trailing-space);
+		@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-xsmall-pressed-container-corner-size-motion-spring);
+
+		@include theme.forwardComponentToken(icon-button-icon-size, icon-button-xsmall-icon-size);
+		@include theme.forwardComponentToken(icon-button-container-shape-round, icon-button-xsmall-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-container-shape-square, icon-button-xsmall-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-pressed-container-shape, icon-button-xsmall-pressed-container-shape);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-round, icon-button-xsmall-selected-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-square, icon-button-xsmall-selected-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-default-leading-space, icon-button-xsmall-default-leading-space);
+		@include theme.forwardComponentToken(icon-button-default-trailing-space, icon-button-xsmall-default-trailing-space);
+		@include theme.forwardComponentToken(icon-button-narrow-leading-space, icon-button-xsmall-narrow-leading-space);
+		@include theme.forwardComponentToken(icon-button-narrow-trailing-space, icon-button-xsmall-narrow-trailing-space);
+		@include theme.forwardComponentToken(icon-button-wide-leading-space, icon-button-xsmall-wide-leading-space);
+		@include theme.forwardComponentToken(icon-button-wide-trailing-space, icon-button-xsmall-wide-trailing-space);
+		@include theme.forwardComponentSpringTokens(icon-button-pressed-container-corner-size-motion-spring, icon-button-xsmall-pressed-container-corner-size-motion-spring);
+	}
+
+	&.small
+	{
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-small-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-small-icon-size);
+		@include theme.forwardComponentToken(button-container-shape-round, button-small-container-shape-round);
+		@include theme.forwardComponentToken(button-container-shape-square, button-small-container-shape-square);
+		@include theme.forwardComponentToken(button-pressed-container-shape, button-small-pressed-container-shape);
+		@include theme.forwardComponentToken(button-selected-container-shape-round, button-small-selected-container-shape-round);
+		@include theme.forwardComponentToken(button-selected-container-shape-square, button-small-selected-container-shape-square);
+		@include theme.forwardComponentToken(button-leading-space, button-small-leading-space);
+		@include theme.forwardComponentToken(button-icon-label-space, button-small-icon-label-space);
+		@include theme.forwardComponentToken(button-trailing-space, button-small-trailing-space);
+		@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-small-pressed-container-corner-size-motion-spring);
+
+		@include theme.forwardComponentToken(icon-button-icon-size, icon-button-small-icon-size);
+		@include theme.forwardComponentToken(icon-button-container-shape-round, icon-button-small-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-container-shape-square, icon-button-small-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-pressed-container-shape, icon-button-small-pressed-container-shape);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-round, icon-button-small-selected-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-square, icon-button-small-selected-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-default-leading-space, icon-button-small-default-leading-space);
+		@include theme.forwardComponentToken(icon-button-default-trailing-space, icon-button-small-default-trailing-space);
+		@include theme.forwardComponentToken(icon-button-narrow-leading-space, icon-button-small-narrow-leading-space);
+		@include theme.forwardComponentToken(icon-button-narrow-trailing-space, icon-button-small-narrow-trailing-space);
+		@include theme.forwardComponentToken(icon-button-wide-leading-space, icon-button-small-wide-leading-space);
+		@include theme.forwardComponentToken(icon-button-wide-trailing-space, icon-button-small-wide-trailing-space);
+		@include theme.forwardComponentSpringTokens(icon-button-pressed-container-corner-size-motion-spring, icon-button-small-pressed-container-corner-size-motion-spring);
+	}
+
+	&.medium
+	{
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-medium-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-medium-icon-size);
+		@include theme.forwardComponentToken(button-container-shape-round, button-medium-container-shape-round);
+		@include theme.forwardComponentToken(button-container-shape-square, button-medium-container-shape-square);
+		@include theme.forwardComponentToken(button-pressed-container-shape, button-medium-pressed-container-shape);
+		@include theme.forwardComponentToken(button-selected-container-shape-round, button-medium-selected-container-shape-round);
+		@include theme.forwardComponentToken(button-selected-container-shape-square, button-medium-selected-container-shape-square);
+		@include theme.forwardComponentToken(button-leading-space, button-medium-leading-space);
+		@include theme.forwardComponentToken(button-icon-label-space, button-medium-icon-label-space);
+		@include theme.forwardComponentToken(button-trailing-space, button-medium-trailing-space);
+		@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-medium-pressed-container-corner-size-motion-spring);
+
+		@include theme.forwardComponentToken(icon-button-icon-size, icon-button-medium-icon-size);
+		@include theme.forwardComponentToken(icon-button-container-shape-round, icon-button-medium-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-container-shape-square, icon-button-medium-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-pressed-container-shape, icon-button-medium-pressed-container-shape);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-round, icon-button-medium-selected-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-square, icon-button-medium-selected-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-default-leading-space, icon-button-medium-default-leading-space);
+		@include theme.forwardComponentToken(icon-button-default-trailing-space, icon-button-medium-default-trailing-space);
+		@include theme.forwardComponentToken(icon-button-narrow-leading-space, icon-button-medium-narrow-leading-space);
+		@include theme.forwardComponentToken(icon-button-narrow-trailing-space, icon-button-medium-narrow-trailing-space);
+		@include theme.forwardComponentToken(icon-button-wide-leading-space, icon-button-medium-wide-leading-space);
+		@include theme.forwardComponentToken(icon-button-wide-trailing-space, icon-button-medium-wide-trailing-space);
+		@include theme.forwardComponentSpringTokens(icon-button-pressed-container-corner-size-motion-spring, icon-button-medium-pressed-container-corner-size-motion-spring);
+	}
+
+	&.large
+	{
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-large-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-large-icon-size);
+		@include theme.forwardComponentToken(button-container-shape-round, button-large-container-shape-round);
+		@include theme.forwardComponentToken(button-container-shape-square, button-large-container-shape-square);
+		@include theme.forwardComponentToken(button-pressed-container-shape, button-large-pressed-container-shape);
+		@include theme.forwardComponentToken(button-selected-container-shape-round, button-large-selected-container-shape-round);
+		@include theme.forwardComponentToken(button-selected-container-shape-square, button-large-selected-container-shape-square);
+		@include theme.forwardComponentToken(button-leading-space, button-large-leading-space);
+		@include theme.forwardComponentToken(button-icon-label-space, button-large-icon-label-space);
+		@include theme.forwardComponentToken(button-trailing-space, button-large-trailing-space);
+		@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-large-pressed-container-corner-size-motion-spring);
+
+		@include theme.forwardComponentToken(icon-button-icon-size, icon-button-large-icon-size);
+		@include theme.forwardComponentToken(icon-button-container-shape-round, icon-button-large-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-container-shape-square, icon-button-large-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-pressed-container-shape, icon-button-large-pressed-container-shape);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-round, icon-button-large-selected-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-square, icon-button-large-selected-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-default-leading-space, icon-button-large-default-leading-space);
+		@include theme.forwardComponentToken(icon-button-default-trailing-space, icon-button-large-default-trailing-space);
+		@include theme.forwardComponentToken(icon-button-narrow-leading-space, icon-button-large-narrow-leading-space);
+		@include theme.forwardComponentToken(icon-button-narrow-trailing-space, icon-button-large-narrow-trailing-space);
+		@include theme.forwardComponentToken(icon-button-wide-leading-space, icon-button-large-wide-leading-space);
+		@include theme.forwardComponentToken(icon-button-wide-trailing-space, icon-button-large-wide-trailing-space);
+		@include theme.forwardComponentSpringTokens(icon-button-pressed-container-corner-size-motion-spring, icon-button-large-pressed-container-corner-size-motion-spring);
+	}
+
+	&.extra-large
+	{
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-xlarge-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-xlarge-icon-size);
+		@include theme.forwardComponentToken(button-container-shape-round, button-xlarge-container-shape-round);
+		@include theme.forwardComponentToken(button-container-shape-square, button-xlarge-container-shape-square);
+		@include theme.forwardComponentToken(button-pressed-container-shape, button-xlarge-pressed-container-shape);
+		@include theme.forwardComponentToken(button-selected-container-shape-round, button-xlarge-selected-container-shape-round);
+		@include theme.forwardComponentToken(button-selected-container-shape-square, button-xlarge-selected-container-shape-square);
+		@include theme.forwardComponentToken(button-leading-space, button-xlarge-leading-space);
+		@include theme.forwardComponentToken(button-icon-label-space, button-xlarge-icon-label-space);
+		@include theme.forwardComponentToken(button-trailing-space, button-xlarge-trailing-space);
+		@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-xlarge-pressed-container-corner-size-motion-spring);
+
+		@include theme.forwardComponentToken(icon-button-icon-size, icon-button-xlarge-icon-size);
+		@include theme.forwardComponentToken(icon-button-container-shape-round, icon-button-xlarge-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-container-shape-square, icon-button-xlarge-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-pressed-container-shape, icon-button-xlarge-pressed-container-shape);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-round, icon-button-xlarge-selected-container-shape-round);
+		@include theme.forwardComponentToken(icon-button-selected-container-shape-square, icon-button-xlarge-selected-container-shape-square);
+		@include theme.forwardComponentToken(icon-button-default-leading-space, icon-button-xlarge-default-leading-space);
+		@include theme.forwardComponentToken(icon-button-default-trailing-space, icon-button-xlarge-default-trailing-space);
+		@include theme.forwardComponentToken(icon-button-narrow-leading-space, icon-button-xlarge-narrow-leading-space);
+		@include theme.forwardComponentToken(icon-button-narrow-trailing-space, icon-button-xlarge-narrow-trailing-space);
+		@include theme.forwardComponentToken(icon-button-wide-leading-space, icon-button-xlarge-wide-leading-space);
+		@include theme.forwardComponentToken(icon-button-wide-trailing-space, icon-button-xlarge-wide-trailing-space);
+		@include theme.forwardComponentSpringTokens(icon-button-pressed-container-corner-size-motion-spring, icon-button-xlarge-pressed-container-corner-size-motion-spring);
+	}
+
+	>.error
+	{
+		@include theme.typescale-body-small;
+		@include theme.color-error-text;
+		margin-top: 4px;
+		margin-left: 16px;
+	}
+}

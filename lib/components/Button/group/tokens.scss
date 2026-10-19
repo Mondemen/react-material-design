@@ -1,0 +1,65 @@
+@use "../../../style" as theme;
+
+:root
+{
+	/* Button group connected - Size - Xsmall */
+		@include theme.saveComponentValue(button-group-connected-xsmall-container-height, 32px);
+		@include theme.saveComponentValue(button-group-connected-xsmall-container-shape, calc(var(--md-comp-button-group-connected-xsmall-container-height) / 2));
+		@include theme.saveComponentValue(button-group-connected-xsmall-between-space, 2px);
+		@include theme.saveComponentValue(button-group-connected-xsmall-selected-inner-corner-corner-size, calc(var(--md-comp-button-group-connected-xsmall-container-height) / 4));
+		@include theme.saveComponentToken(button-group-connected-xsmall-pressed-inner-corner-corner-size, shape-corner-extra-small);
+		@include theme.saveComponentToken(button-group-connected-xsmall-inner-corner-corner-size, shape-corner-small);
+	/* Button group connected - Size - Small */
+		@include theme.saveComponentValue(button-group-connected-small-container-height, 40px);
+		@include theme.saveComponentValue(button-group-connected-small-container-shape, calc(var(--md-comp-button-group-connected-small-container-height) / 2));
+		@include theme.saveComponentValue(button-group-connected-small-between-space, 2px);
+		@include theme.saveComponentValue(button-group-connected-small-selected-inner-corner-corner-size, calc(var(--md-comp-button-group-connected-small-container-height) / 4));
+		@include theme.saveComponentToken(button-group-connected-small-pressed-inner-corner-corner-size, shape-corner-extra-small);
+		@include theme.saveComponentToken(button-group-connected-small-inner-corner-corner-size, shape-corner-small);
+	/* Button group connected - Size - Medium */
+		@include theme.saveComponentValue(button-group-connected-medium-container-height, 56px);
+		@include theme.saveComponentValue(button-group-connected-medium-container-shape, calc(var(--md-comp-button-group-connected-medium-container-height) / 2));
+		@include theme.saveComponentValue(button-group-connected-medium-between-space, 2px);
+		@include theme.saveComponentValue(button-group-connected-medium-selected-inner-corner-corner-size, calc(var(--md-comp-button-group-connected-medium-container-height) / 4));
+		@include theme.saveComponentToken(button-group-connected-medium-pressed-inner-corner-corner-size, shape-corner-extra-small);
+		@include theme.saveComponentToken(button-group-connected-medium-inner-corner-corner-size, shape-corner-small);
+	/* Button group connected - Size - Large */
+		@include theme.saveComponentValue(button-group-connected-large-container-height, 96px);
+		@include theme.saveComponentValue(button-group-connected-large-container-shape, calc(var(--md-comp-button-group-connected-large-container-height) / 2));
+		@include theme.saveComponentValue(button-group-connected-large-between-space, 2px);
+		@include theme.saveComponentValue(button-group-connected-large-selected-inner-corner-corner-size, calc(var(--md-comp-button-group-connected-large-container-height) / 4));
+		@include theme.saveComponentToken(button-group-connected-large-pressed-inner-corner-corner-size, shape-corner-medium);
+		@include theme.saveComponentToken(button-group-connected-large-inner-corner-corner-size, shape-corner-large);
+	/* Button group connected - Size - Xlarge */
+		@include theme.saveComponentValue(button-group-connected-xlarge-container-height, 136px);
+		@include theme.saveComponentValue(button-group-connected-xlarge-container-shape, calc(var(--md-comp-button-group-connected-xlarge-container-height) / 2));
+		@include theme.saveComponentValue(button-group-connected-xlarge-between-space, 2px);
+		@include theme.saveComponentValue(button-group-connected-xlarge-selected-inner-corner-corner-size, calc(var(--md-comp-button-group-connected-xlarge-container-height) / 4));
+		@include theme.saveComponentToken(button-group-connected-xlarge-pressed-inner-corner-corner-size, shape-corner-large);
+		@include theme.saveComponentToken(button-group-connected-xlarge-inner-corner-corner-size, shape-corner-large-increased);
+	/* Button group standard - Size - Xsmall */
+		@include theme.saveComponentValue(button-group-standard-xsmall-container-height, 32px);
+		@include theme.saveComponentValue(button-group-standard-xsmall-between-space, 18px);
+		/* Pressed */
+			@include theme.saveComponentValue(button-group-standard-xsmall-pressed-item-width-multiplier, 15%);
+	/* Button group standard - Size - Small */
+		@include theme.saveComponentValue(button-group-standard-small-container-height, 40px);
+		@include theme.saveComponentValue(button-group-standard-small-between-space, 12px);
+		/* Pressed */
+			@include theme.saveComponentValue(button-group-standard-small-pressed-item-width-multiplier, 15%);
+	/* Button group standard - Size - Medium */
+		@include theme.saveComponentValue(button-group-standard-medium-container-height, 56px);
+		@include theme.saveComponentValue(button-group-standard-medium-between-space, 8px);
+		/* Pressed */
+			@include theme.saveComponentValue(button-group-standard-medium-pressed-item-width-multiplier, 15%);
+	/* Button group standard - Size - Large */
+		@include theme.saveComponentValue(button-group-standard-large-container-height, 96px);
+		@include theme.saveComponentValue(button-group-standard-large-between-space, 8px);
+		/* Pressed */
+			@include theme.saveComponentValue(button-group-standard-large-pressed-item-width-multiplier, 15%);
+	/* Button group standard - Size - Xlarge */
+		@include theme.saveComponentValue(button-group-standard-xlarge-container-height, 136px);
+		@include theme.saveComponentValue(button-group-standard-xlarge-between-space, 8px);
+		/* Pressed */
+			@include theme.saveComponentValue(button-group-standard-xlarge-pressed-item-width-multiplier, 15%);
+}

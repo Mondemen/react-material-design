@@ -1,0 +1,25 @@
+@use "../../style" as theme;
+
+:root
+{
+	/* Panes */
+		@include theme.saveComponentToken(panes-container-shape, shape-corner-large);
+		@include theme.saveComponentToken(panes-container-color, color-surface);
+
+		/* Handle */
+			@include theme.saveComponentValue(panes-handle-size, 24px);
+
+			/* Handle - Indicator */
+				@include theme.saveComponentValue(panes-handle-indicator-inline-size, 4px);
+				@include theme.saveComponentValue(panes-handle-indicator-block-size, 48px);
+				@include theme.saveComponentToken(panes-handle-indicator-shape, shape-corner-small);
+				@include theme.saveComponentToken(panes-handle-indicator-color, color-outline);
+
+			/* Handle - Indicator - Drag */
+				@include theme.saveComponentValue(panes-handle-indicator-dragging-inline-size, 10px);
+				@include theme.saveComponentToken(panes-handle-indicator-dragging-color, color-on-surface);
+
+		/* Pane */
+			@include theme.saveComponentToken(panes-pane-container-shape, shape-corner-large);
+			@include theme.saveComponentToken(panes-pane-container-color, color-surface-container-lowest);
+}

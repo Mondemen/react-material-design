@@ -1,0 +1,450 @@
+@use "../../style" as theme;
+@use "../../style/utils.scss" as utils;
+
+.Chip
+{
+	@include theme.applyComponentTypescaleTokens(chip-label-text);
+	@include theme.forwardComponentToken(icon-color, chip-icon-color);
+	@include theme.forwardComponentToken(state-hover-state-layer-opacity, chip-hovered-state-layer-opacity);
+	@include theme.forwardComponentToken(state-focused-state-layer-opacity, chip-focused-state-layer-opacity);
+	@include theme.forwardComponentToken(state-pressed-state-layer-opacity, chip-pressed-state-layer-opacity);
+	@include theme.forwardComponentToken(state-hover-state-layer-color, chip-hovered-state-layer-color);
+	@include theme.forwardComponentToken(state-focused-state-layer-color, chip-focused-state-layer-color);
+	@include theme.forwardComponentToken(state-pressed-state-layer-color, chip-pressed-state-layer-color);
+	@include theme.forwardComponentToken(state-focus-indicator-color, chip-focus-indicator-color);
+	@include theme.forwardComponentToken(state-focus-indicator-thickness, chip-focus-indicator-thickness);
+	@include theme.forwardComponentToken(state-focus-indicator-outer-offset, chip-focus-indicator-outline-offset);
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	border: none;
+	vertical-align: middle;
+	box-sizing: border-box;
+	transition:
+		theme.motion-spring-expressive-fast-spatial((height, min-height, font, margin, padding, gap, border-radius)),
+		theme.motion-spring-expressive-fast-effects((background-color, color, box-shadow, outline, opacity));
+
+	height: theme.applyComponentToken(chip-container-height);
+	min-height: theme.applyComponentToken(chip-container-height);
+	gap: theme.applyComponentToken(chip-icon-label-space, 0px);
+	padding-left: theme.applyComponentToken(chip-leading-space);
+	padding-right: theme.applyComponentToken(chip-trailing-space);
+	background-color: theme.applyComponentToken(chip-container-color);
+	color: theme.applyComponentToken(chip-label-text-color);
+	box-shadow: theme.applyComponentToken(chip-container-elevation);
+	border-radius: theme.applyComponentToken(chip-container-shape);
+
+	&, &:focus:not(:focus-visible)
+	{
+		outline: solid theme.applyComponentToken(chip-outline-width, 0px) theme.applyComponentColorOpacityToken(chip-outline);
+		outline-offset: calc(-1 * theme.applyComponentToken(chip-outline-width, 0px));
+	}
+
+	&.disabled
+	{
+		@include theme.forwardComponentColorOpacityTokens(icon, chip-disabled-icon, theme.applyComponentToken(chip-icon-color), theme.applyComponentToken(chip-icon-opacity, 1));
+		background-color: theme.applyComponentColorOpacityToken(chip-disabled-container, theme.applyComponentToken(chip-container-color), theme.applyComponentToken(chip-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(chip-disabled-label-text, theme.applyComponentToken(chip-label-text-color), theme.applyComponentToken(chip-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(chip-disabled-container-elevation);
+		outline: solid theme.applyComponentToken(chip-disabled-outline-width, theme.applyComponentToken(chip-outline-width, 0px)) theme.applyComponentColorOpacityToken(chip-disabled-outline, theme.applyComponentToken(chip-outline-color), theme.applyComponentToken(chip-outline-opacity, 1));
+		outline-offset: calc(-1 * theme.applyComponentToken(chip-disabled-outline-width, theme.applyComponentToken(chip-outline-width, 0px)));
+		cursor: default;
+
+		>.icon.leading
+		{@include theme.forwardComponentColorOpacityTokens(icon, chip-disabled-leading-icon, theme.applyComponentToken(chip-leading-icon-color), theme.applyComponentToken(chip-leading-icon-opacity))}
+		>.icon.trailing
+		{@include theme.forwardComponentColorOpacityTokens(icon, chip-disabled-trailing-icon, theme.applyComponentToken(chip-trailing-icon-color), theme.applyComponentToken(chip-trailing-icon-opacity))}
+	}
+	&:hover:not(.disabled, :focus-visible, :active, .dragged)
+	{
+		@include theme.forwardComponentToken(icon-color, chip-hovered-icon-color);
+		background-color: theme.applyComponentColorOpacityToken(chip-hovered-container, theme.applyComponentToken(chip-container-color), theme.applyComponentToken(chip-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(chip-hovered-label-text, theme.applyComponentToken(chip-label-text-color), theme.applyComponentToken(chip-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(chip-hovered-container-elevation, theme.applyComponentToken(chip-container-elevation));
+		outline: solid theme.applyComponentToken(chip-hovered-outline-width, theme.applyComponentToken(chip-outline-width, 0px)) theme.applyComponentColorOpacityToken(chip-hovered-outline, theme.applyComponentToken(chip-outline-color), theme.applyComponentToken(chip-outline-opacity, 1));
+		outline-offset: calc(-1 * theme.applyComponentToken(chip-hovered-outline-width, theme.applyComponentToken(chip-outline-width, 0px)));
+
+		>.icon.leading
+		{@include theme.forwardComponentToken(icon-color, chip-hovered-leading-icon-color)}
+		>.icon.trailing
+		{@include theme.forwardComponentToken(icon-color, chip-hovered-trailing-icon-color)}
+	}
+	&:focus-visible:not(.disabled, :active, .dragged)
+	{
+		@include theme.forwardComponentToken(icon-color, chip-focused-icon-color);
+		background-color: theme.applyComponentColorOpacityToken(chip-focused-container, theme.applyComponentToken(chip-container-color), theme.applyComponentToken(chip-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(chip-focused-label-text, theme.applyComponentToken(chip-label-text-color), theme.applyComponentToken(chip-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(chip-focused-container-elevation, theme.applyComponentToken(chip-container-elevation));
+		outline: solid theme.applyComponentToken(chip-focused-outline-width, theme.applyComponentToken(chip-outline-width, 0px)) theme.applyComponentColorOpacityToken(chip-focused-outline, theme.applyComponentToken(chip-outline-color), theme.applyComponentToken(chip-outline-opacity, 1));
+		outline-offset: calc(-1 * theme.applyComponentToken(chip-focused-outline-width, theme.applyComponentToken(chip-outline-width, 0px)));
+
+		>.icon.leading
+		{@include theme.forwardComponentToken(icon-color, chip-focused-leading-icon-color)}
+		>.icon.trailing
+		{@include theme.forwardComponentToken(icon-color, chip-focused-trailing-icon-color)}
+	}
+	&:active:not(.disabled, .dragged)
+	{
+		@include theme.forwardComponentToken(icon-color, chip-pressed-icon-color);
+		background-color: theme.applyComponentColorOpacityToken(chip-pressed-container, theme.applyComponentToken(chip-container-color), theme.applyComponentToken(chip-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(chip-pressed-label-text, theme.applyComponentToken(chip-label-text-color), theme.applyComponentToken(chip-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(chip-pressed-container-elevation, theme.applyComponentToken(chip-container-elevation));
+		outline: solid theme.applyComponentToken(chip-pressed-outline-width, theme.applyComponentToken(chip-outline-width, 0px)) theme.applyComponentColorOpacityToken(chip-pressed-outline, theme.applyComponentToken(chip-outline-color), theme.applyComponentToken(chip-outline-opacity, 1));
+		outline-offset: calc(-1 * theme.applyComponentToken(chip-pressed-outline-width, theme.applyComponentToken(chip-outline-width, 0px)));
+
+		>.icon.leading
+		{@include theme.forwardComponentToken(icon-color, chip-pressed-leading-icon-color)}
+		>.icon.trailing
+		{@include theme.forwardComponentToken(icon-color, chip-pressed-trailing-icon-color)}
+	}
+	&.dragged:not(.disabled)
+	{
+		@include theme.forwardComponentToken(icon-color, chip-dragged-icon-color);
+		background-color: theme.applyComponentColorOpacityToken(chip-dragged-container, theme.applyComponentToken(chip-container-color), theme.applyComponentToken(chip-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(chip-dragged-label-text, theme.applyComponentToken(chip-label-text-color), theme.applyComponentToken(chip-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(chip-dragged-container-elevation, theme.applyComponentToken(chip-container-elevation));
+		outline: solid theme.applyComponentToken(chip-dragged-outline-width, theme.applyComponentToken(chip-outline-width, 0px)) theme.applyComponentColorOpacityToken(chip-dragged-outline, theme.applyComponentToken(chip-outline-color), theme.applyComponentToken(chip-outline-opacity, 1));
+		outline-offset: calc(-1 * theme.applyComponentToken(chip-dragged-outline-width, theme.applyComponentToken(chip-outline-width, 0px)));
+
+		>.icon.leading
+		{@include theme.forwardComponentToken(icon-color, chip-dragged-leading-icon-color)}
+		>.icon.trailing
+		{@include theme.forwardComponentToken(icon-color, chip-dragged-trailing-icon-color)}
+	}
+
+	>.icon
+	{
+		@include theme.forwardComponentToken(icon-size, chip-icon-size);
+		&.avatar
+		{@include theme.forwardComponentToken(icon-size, chip-avatar-size)}
+		&.leading
+		{
+			@include theme.forwardComponentToken(icon-size, chip-leading-icon-size, theme.applyComponentToken(chip-icon-size));
+			@include theme.forwardComponentToken(icon-color, chip-leading-icon-color);
+			@include theme.forwardComponentToken(icon-opacity, chip-leading-icon-opacity, 1);
+		}
+		&.trailing
+		{
+			@include theme.forwardComponentToken(icon-size, chip-trailing-icon-size, theme.applyComponentToken(chip-icon-size));
+			@include theme.forwardComponentToken(icon-color, chip-trailing-icon-color);
+			@include theme.forwardComponentToken(icon-opacity, chip-trailing-icon-opacity, 1);
+		}
+	}
+
+	&.assist
+	{
+		@include theme.forwardComponentToken(chip-container-shape, assist-chip-container-shape);
+		@include theme.forwardComponentToken(chip-container-height, assist-chip-container-height);
+		@include theme.forwardComponentTypescaleTokens(chip-label-text, assist-chip-label-text);
+		@include theme.forwardComponentToken(chip-label-text-color, assist-chip-label-text-color);
+		@include theme.forwardComponentToken(chip-icon-size, assist-chip-with-icon-icon-size);
+		@include theme.forwardComponentToken(chip-leading-icon-color, assist-chip-with-icon-icon-color);
+		@include theme.forwardComponentToken(chip-focus-indicator-color, assist-chip-focus-indicator-color);
+		@include theme.forwardComponentToken(chip-focus-indicator-thickness, assist-chip-focus-indicator-thickness);
+		@include theme.forwardComponentToken(chip-focus-indicator-outline-offset, assist-chip-focus-indicator-outline-offset);
+
+		@include theme.forwardComponentColorOpacityTokens(chip-disabled-label-text, assist-chip-disabled-label-text);
+		@include theme.forwardComponentColorOpacityTokens(chip-disabled-leading-icon, assist-chip-with-icon-disabled-icon);
+
+		@include theme.forwardComponentToken(chip-hovered-state-layer-opacity, assist-chip-hover-state-layer-opacity);
+		@include theme.forwardComponentToken(chip-hovered-state-layer-color, assist-chip-hover-state-layer-color);
+		@include theme.forwardComponentToken(chip-hovered-label-text-color, assist-chip-hover-label-text-color);
+		@include theme.forwardComponentToken(chip-hovered-leading-icon-color, assist-chip-with-icon-hover-icon-color);
+		@include theme.forwardComponentToken(chip-focused-state-layer-opacity, assist-chip-focus-state-layer-opacity);
+		@include theme.forwardComponentToken(chip-focused-state-layer-color, assist-chip-focus-state-layer-color);
+		@include theme.forwardComponentToken(chip-focused-label-text-color, assist-chip-focus-label-text-color);
+		@include theme.forwardComponentToken(chip-focused-leading-icon-color, assist-chip-with-icon-focus-icon-color);
+		@include theme.forwardComponentToken(chip-pressed-state-layer-opacity, assist-chip-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(chip-pressed-state-layer-color, assist-chip-pressed-state-layer-color);
+		@include theme.forwardComponentToken(chip-pressed-label-text-color, assist-chip-pressed-label-text-color);
+		@include theme.forwardComponentToken(chip-pressed-leading-icon-color, assist-chip-with-icon-pressed-icon-color);
+		@include theme.forwardComponentToken(chip-dragged-state-layer-opacity, assist-chip-dragged-state-layer-opacity);
+		@include theme.forwardComponentToken(chip-dragged-state-layer-color, assist-chip-dragged-state-layer-color);
+		@include theme.forwardComponentToken(chip-dragged-label-text-color, assist-chip-dragged-label-text-color);
+		@include theme.forwardComponentToken(chip-dragged-leading-icon-color, assist-chip-with-icon-dragged-icon-color);
+		@include theme.forwardComponentToken(chip-dragged-container-elevation, assist-chip-dragged-container-elevation);
+
+		&.flat
+		{
+			@include theme.forwardComponentToken(chip-container-elevation, assist-chip-flat-container-elevation);
+			@include theme.forwardComponentColorOpacityTokens(chip-outline, assist-chip-flat-outline, $default-opacity: 1);
+			@include theme.forwardComponentToken(chip-outline-width, assist-chip-flat-outline-width);
+			@include theme.forwardComponentColorOpacityTokens(chip-disabled-outline, assist-chip-flat-disabled-outline);
+			@include theme.forwardComponentColorOpacityTokens(chip-focused-outline, assist-chip-flat-focus-outline);
+		}
+		&.elevated
+		{
+			@include theme.forwardComponentToken(chip-container-elevation, assist-chip-elevated-container-elevation);
+			@include theme.forwardComponentToken(chip-container-color, assist-chip-elevated-container-color);
+			@include theme.forwardComponentToken(chip-disabled-container-elevation, assist-chip-elevated-disabled-container-elevation);
+			@include theme.forwardComponentColorOpacityTokens(chip-disabled-container, assist-chip-elevated-disabled-container);
+			@include theme.forwardComponentToken(chip-hovered-container-elevation, assist-chip-elevated-hover-container-elevation);
+			@include theme.forwardComponentToken(chip-focused-container-elevation, assist-chip-elevated-focus-container-elevation);
+			@include theme.forwardComponentToken(chip-pressed-container-elevation, assist-chip-elevated-pressed-container-elevation);
+		}
+
+		&.icon.label
+		{
+			@include theme.saveComponentValue(chip-icon-label-space, 8px);
+			@include theme.saveComponentValue(chip-leading-space, 8px);
+			@include theme.saveComponentValue(chip-trailing-space, 16px);
+		}
+		&:not(.icon.label)
+		{
+			@include theme.saveComponentValue(chip-leading-space, 16px);
+			@include theme.saveComponentValue(chip-trailing-space, 16px);
+		}
+	}
+	&.filter
+	{
+		@include theme.forwardComponentToken(chip-container-shape, filter-chip-container-shape);
+		@include theme.forwardComponentToken(chip-container-height, filter-chip-container-height);
+		@include theme.forwardComponentTypescaleTokens(chip-label-text, filter-chip-label-text);
+		@include theme.forwardComponentToken(chip-icon-size, filter-chip-with-icon-icon-size);
+		@include theme.forwardComponentToken(chip-focus-indicator-color, filter-chip-focus-indicator-color);
+		@include theme.forwardComponentToken(chip-focus-indicator-thickness, filter-chip-focus-indicator-thickness);
+		@include theme.forwardComponentToken(chip-focus-indicator-outline-offset, filter-chip-focus-indicator-outline-offset);
+		@include theme.forwardComponentColorOpacityTokens(chip-disabled-label-text, filter-chip-disabled-label-text);
+		@include theme.forwardComponentColorOpacityTokens(chip-disabled-leading-icon, filter-chip-with-leading-icon-disabled-leading-icon);
+		@include theme.forwardComponentColorOpacityTokens(chip-disabled-trailing-icon, filter-chip-with-trailing-icon-disabled-trailing-icon);
+		@include theme.forwardComponentToken(chip-dragged-container-elevation, filter-chip-dragged-container-elevation);
+
+		&.flat
+		{
+			@include theme.forwardComponentToken(chip-container-elevation, filter-chip-flat-container-elevation);
+		}
+		&.elevated
+		{
+			@include theme.forwardComponentToken(chip-container-elevation, filter-chip-elevated-container-elevation);
+			@include theme.forwardComponentToken(chip-disabled-container-elevation, filter-chip-elevated-disabled-container-elevation);
+			@include theme.forwardComponentColorOpacityTokens(chip-disabled-container, filter-chip-elevated-disabled-container);
+			@include theme.forwardComponentToken(chip-hovered-container-elevation, filter-chip-elevated-hover-container-elevation);
+			@include theme.forwardComponentToken(chip-focused-container-elevation, filter-chip-elevated-focus-container-elevation);
+			@include theme.forwardComponentToken(chip-pressed-container-elevation, filter-chip-elevated-pressed-container-elevation);
+		}
+		&:not(.selected)
+		{
+			@include theme.forwardComponentToken(chip-label-text-color, filter-chip-unselected-label-text-color);
+			@include theme.forwardComponentToken(chip-leading-icon-color, filter-chip-with-leading-icon-unselected-leading-icon-color);
+			@include theme.forwardComponentToken(chip-trailing-icon-color, filter-chip-with-trailing-icon-unselected-leading-icon-color);
+			@include theme.forwardComponentToken(chip-hovered-state-layer-opacity, filter-chip-unselected-hover-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-hovered-state-layer-color, filter-chip-unselected-hover-state-layer-color);
+			@include theme.forwardComponentToken(chip-hovered-label-text-color, filter-chip-unselected-hover-label-text-color);
+			@include theme.forwardComponentToken(chip-hovered-leading-icon-color, filter-chip-with-leading-icon-unselected-hover-leading-icon-color);
+			@include theme.forwardComponentToken(chip-hovered-trailing-icon-color, filter-chip-with-trailing-icon-unselected-hover-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-focused-state-layer-opacity, filter-chip-unselected-focus-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-focused-state-layer-color, filter-chip-unselected-focus-state-layer-color);
+			@include theme.forwardComponentToken(chip-focused-label-text-color, filter-chip-unselected-focus-label-text-color);
+			@include theme.forwardComponentToken(chip-focused-leading-icon-color, filter-chip-with-leading-icon-unselected-focus-leading-icon-color);
+			@include theme.forwardComponentToken(chip-focused-trailing-icon-color, filter-chip-with-trailing-icon-unselected-focus-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-pressed-state-layer-opacity, filter-chip-unselected-pressed-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-pressed-state-layer-color, filter-chip-unselected-pressed-state-layer-color);
+			@include theme.forwardComponentToken(chip-pressed-label-text-color, filter-chip-unselected-pressed-label-text-color);
+			@include theme.forwardComponentToken(chip-pressed-leading-icon-color, filter-chip-with-leading-icon-unselected-pressed-leading-icon-color);
+			@include theme.forwardComponentToken(chip-pressed-trailing-icon-color, filter-chip-with-trailing-icon-unselected-pressed-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-dragged-state-layer-opacity, filter-chip-unselected-dragged-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-dragged-state-layer-color, filter-chip-unselected-dragged-state-layer-color);
+			@include theme.forwardComponentToken(chip-dragged-label-text-color, filter-chip-unselected-dragged-label-text-color);
+			@include theme.forwardComponentToken(chip-dragged-leading-icon-color, filter-chip-with-leading-icon-unselected-dragged-leading-icon-color);
+			@include theme.forwardComponentToken(chip-dragged-trailing-icon-color, filter-chip-with-trailing-icon-unselected-dragged-trailing-icon-color);
+
+			&.flat
+			{
+				@include theme.forwardComponentToken(chip-outline-color, filter-chip-flat-unselected-outline-color);
+				@include theme.saveComponentValue(chip-outline-opacity, 1);
+				@include theme.forwardComponentToken(chip-outline-width, filter-chip-flat-unselected-outline-width);
+				@include theme.forwardComponentColorOpacityTokens(chip-disabled-outline, filter-chip-flat-disabled-unselected-outline);
+				@include theme.forwardComponentToken(chip-hovered-container-elevation, filter-chip-flat-unselected-hover-container-elevation);
+				@include theme.forwardComponentToken(chip-focused-container-elevation, filter-chip-flat-unselected-focus-container-elevation);
+				@include theme.forwardComponentToken(chip-focused-outline-color, filter-chip-flat-unselected-focus-outline-color);
+				@include theme.forwardComponentToken(chip-pressed-container-elevation, filter-chip-flat-unselected-pressed-container-elevation);
+			}
+			&.elevated
+			{
+				@include theme.forwardComponentToken(chip-container-color, filter-chip-elevated-unselected-container-color);
+			}
+		}
+		&.selected
+		{
+			@include theme.forwardComponentToken(chip-label-text-color, filter-chip-selected-label-text-color);
+			@include theme.forwardComponentToken(chip-leading-icon-color, filter-chip-with-leading-icon-selected-leading-icon-color);
+			@include theme.forwardComponentToken(chip-trailing-icon-color, filter-chip-with-trailing-icon-selected-leading-icon-color);
+			@include theme.forwardComponentToken(chip-hovered-state-layer-opacity, filter-chip-selected-hover-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-hovered-state-layer-color, filter-chip-selected-hover-state-layer-color);
+			@include theme.forwardComponentToken(chip-hovered-label-text-color, filter-chip-selected-hover-label-text-color);
+			@include theme.forwardComponentToken(chip-hovered-leading-icon-color, filter-chip-with-leading-icon-selected-hover-leading-icon-color);
+			@include theme.forwardComponentToken(chip-hovered-trailing-icon-color, filter-chip-with-trailing-icon-selected-hover-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-focused-state-layer-opacity, filter-chip-selected-focus-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-focused-state-layer-color, filter-chip-selected-focus-state-layer-color);
+			@include theme.forwardComponentToken(chip-focused-label-text-color, filter-chip-selected-focus-label-text-color);
+			@include theme.forwardComponentToken(chip-focused-leading-icon-color, filter-chip-with-leading-icon-selected-focus-leading-icon-color);
+			@include theme.forwardComponentToken(chip-focused-trailing-icon-color, filter-chip-with-trailing-icon-selected-focus-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-pressed-state-layer-opacity, filter-chip-selected-pressed-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-pressed-state-layer-color, filter-chip-selected-pressed-state-layer-color);
+			@include theme.forwardComponentToken(chip-pressed-label-text-color, filter-chip-selected-pressed-label-text-color);
+			@include theme.forwardComponentToken(chip-pressed-leading-icon-color, filter-chip-with-leading-icon-selected-pressed-leading-icon-color);
+			@include theme.forwardComponentToken(chip-pressed-trailing-icon-color, filter-chip-with-trailing-icon-selected-pressed-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-dragged-state-layer-opacity, filter-chip-selected-dragged-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-dragged-state-layer-color, filter-chip-selected-dragged-state-layer-color);
+			@include theme.forwardComponentToken(chip-dragged-label-text-color, filter-chip-selected-dragged-label-text-color);
+			@include theme.forwardComponentToken(chip-dragged-leading-icon-color, filter-chip-with-leading-icon-selected-dragged-leading-icon-color);
+			@include theme.forwardComponentToken(chip-dragged-trailing-icon-color, filter-chip-with-trailing-icon-selected-dragged-trailing-icon-color);
+
+			&.flat
+			{
+				@include theme.forwardComponentToken(chip-container-color, filter-chip-flat-selected-container-color);
+				@include theme.forwardComponentToken(chip-outline-width, filter-chip-flat-selected-outline-width);
+				@include theme.forwardComponentColorOpacityTokens(chip-disabled-container, filter-chip-flat-disabled-selected-container);
+				@include theme.forwardComponentToken(chip-hovered-container-elevation, filter-chip-flat-selected-hover-container-elevation);
+				@include theme.forwardComponentToken(chip-focused-container-elevation, filter-chip-flat-selected-focus-container-elevation);
+				@include theme.forwardComponentToken(chip-pressed-container-elevation, filter-chip-flat-selected-pressed-container-elevation);
+			}
+			&.elevated
+			{
+				@include theme.forwardComponentToken(chip-container-color, filter-chip-elevated-selected-container-color);
+			}
+		}
+
+		&.icon.label
+		{
+			@include theme.saveComponentValue(chip-icon-label-space, 8px);
+			@include theme.saveComponentValue(chip-leading-space, 8px);
+			@include theme.saveComponentValue(chip-trailing-space, 16px);
+		}
+		&:not(.icon.label)
+		{
+			@include theme.saveComponentValue(chip-leading-space, 16px);
+			@include theme.saveComponentValue(chip-trailing-space, 16px);
+		}
+	}
+	&.input
+	{
+		@include theme.forwardComponentToken(chip-container-shape, input-chip-container-shape);
+		@include theme.forwardComponentToken(chip-container-height, input-chip-container-height);
+		@include theme.forwardComponentTypescaleTokens(chip-label-text, input-chip-label-text);
+		@include theme.forwardComponentToken(chip-leading-icon-size, input-chip-with-leading-icon-leading-icon-size);
+		@include theme.forwardComponentToken(chip-trailing-icon-size, input-chip-with-trailing-icon-trailing-icon-size);
+		@include theme.forwardComponentToken(chip-focus-indicator-color, input-chip-focus-indicator-color);
+		@include theme.forwardComponentToken(chip-focus-indicator-thickness, input-chip-focus-indicator-thickness);
+		@include theme.forwardComponentToken(chip-focus-indicator-outline-offset, input-chip-focus-indicator-outline-offset);
+		@include theme.forwardComponentColorOpacityTokens(chip-disabled-label-text, input-chip-disabled-label-text);
+		@include theme.forwardComponentToken(chip-dragged-container-elevation, input-chip-dragged-container-elevation);
+
+		&:not(.selected)
+		{
+			@include theme.forwardComponentToken(chip-label-text-color, input-chip-unselected-label-text-color);
+			@include theme.forwardComponentToken(chip-leading-icon-color, input-chip-with-leading-icon-unselected-leading-icon-color);
+			@include theme.forwardComponentToken(chip-trailing-icon-color, input-chip-with-trailing-icon-unselected-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-outline-width, input-chip-unselected-outline-width);
+			@include theme.forwardComponentToken(chip-outline-color, input-chip-unselected-outline-color);
+			@include theme.saveComponentValue(chip-outline-opacity, 1);
+			@include theme.forwardComponentColorOpacityTokens(chip-disabled-container, input-chip-disabled-unselected-outline);
+			@include theme.forwardComponentToken(chip-hovered-state-layer-opacity, input-chip-unselected-hover-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-hovered-state-layer-color, input-chip-unselected-hover-state-layer-color);
+			@include theme.forwardComponentToken(chip-hovered-label-text-color, input-chip-unselected-hover-label-text-color);
+			@include theme.forwardComponentToken(chip-hovered-leading-icon-color, input-chip-with-leading-icon-unselected-hover-leading-icon-color);
+			@include theme.forwardComponentToken(chip-hovered-trailing-icon-color, input-chip-with-trailing-icon-unselected-hover-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-focused-state-layer-opacity, input-chip-unselected-focus-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-focused-state-layer-color, input-chip-unselected-focus-state-layer-color);
+			@include theme.forwardComponentToken(chip-focused-label-text-color, input-chip-unselected-focus-label-text-color);
+			@include theme.forwardComponentToken(chip-focused-leading-icon-color, input-chip-with-leading-icon-unselected-focus-leading-icon-color);
+			@include theme.forwardComponentToken(chip-focused-trailing-icon-color, input-chip-with-trailing-icon-unselected-focus-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-focused-outline-color, input-chip-unselected-focus-outline-color);
+			@include theme.forwardComponentToken(chip-pressed-state-layer-opacity, input-chip-unselected-pressed-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-pressed-state-layer-color, input-chip-unselected-pressed-state-layer-color);
+			@include theme.forwardComponentToken(chip-pressed-label-text-color, input-chip-unselected-pressed-label-text-color);
+			@include theme.forwardComponentToken(chip-pressed-leading-icon-color, input-chip-with-leading-icon-unselected-pressed-leading-icon-color);
+			@include theme.forwardComponentToken(chip-pressed-trailing-icon-color, input-chip-with-trailing-icon-unselected-pressed-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-dragged-state-layer-opacity, input-chip-unselected-dragged-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-dragged-state-layer-color, input-chip-unselected-dragged-state-layer-color);
+			@include theme.forwardComponentToken(chip-dragged-label-text-color, input-chip-unselected-dragged-label-text-color);
+			@include theme.forwardComponentToken(chip-dragged-leading-icon-color, input-chip-with-leading-icon-unselected-dragged-leading-icon-color);
+			@include theme.forwardComponentToken(chip-dragged-trailing-icon-color, input-chip-with-trailing-icon-unselected-dragged-trailing-icon-color);
+
+			&.disabled
+			{
+				@include theme.forwardComponentColorOpacityTokens(chip-leading-icon, input-chip-with-leading-icon-disabled-leading-icon);
+				@include theme.forwardComponentColorOpacityTokens(chip-trailing-icon, input-chip-with-trailing-icon-disabled-trailing-icon);
+			}
+		}
+		&.selected
+		{
+			@include theme.forwardComponentToken(chip-label-text-color, input-chip-selected-label-text-color);
+			@include theme.forwardComponentToken(chip-leading-icon-color, input-chip-with-leading-icon-selected-leading-icon-color);
+			@include theme.forwardComponentToken(chip-trailing-icon-color, input-chip-with-trailing-icon-selected-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-container-color, input-chip-selected-container-color);
+			@include theme.forwardComponentToken(chip-outline-width, input-chip-selected-outline-width);
+			@include theme.saveComponentValue(chip-outline-opacity, 1);
+			@include theme.forwardComponentColorOpacityTokens(chip-disabled-container, input-chip-disabled-selected-outline);
+			@include theme.forwardComponentToken(chip-hovered-state-layer-opacity, input-chip-selected-hover-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-hovered-state-layer-color, input-chip-selected-hover-state-layer-color);
+			@include theme.forwardComponentToken(chip-hovered-label-text-color, input-chip-selected-hover-label-text-color);
+			@include theme.forwardComponentToken(chip-hovered-leading-icon-color, input-chip-with-leading-icon-selected-hover-leading-icon-color);
+			@include theme.forwardComponentToken(chip-hovered-trailing-icon-color, input-chip-with-trailing-icon-selected-hover-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-focused-state-layer-opacity, input-chip-selected-focus-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-focused-state-layer-color, input-chip-selected-focus-state-layer-color);
+			@include theme.forwardComponentToken(chip-focused-label-text-color, input-chip-selected-focus-label-text-color);
+			@include theme.forwardComponentToken(chip-focused-leading-icon-color, input-chip-with-leading-icon-selected-focus-leading-icon-color);
+			@include theme.forwardComponentToken(chip-focused-trailing-icon-color, input-chip-with-trailing-icon-selected-focus-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-pressed-state-layer-opacity, input-chip-selected-pressed-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-pressed-state-layer-color, input-chip-selected-pressed-state-layer-color);
+			@include theme.forwardComponentToken(chip-pressed-label-text-color, input-chip-selected-pressed-label-text-color);
+			@include theme.forwardComponentToken(chip-pressed-leading-icon-color, input-chip-with-leading-icon-selected-pressed-leading-icon-color);
+			@include theme.forwardComponentToken(chip-pressed-trailing-icon-color, input-chip-with-trailing-icon-selected-pressed-trailing-icon-color);
+			@include theme.forwardComponentToken(chip-dragged-state-layer-opacity, input-chip-selected-dragged-state-layer-opacity);
+			@include theme.forwardComponentToken(chip-dragged-state-layer-color, input-chip-selected-dragged-state-layer-color);
+			@include theme.forwardComponentToken(chip-dragged-label-text-color, input-chip-selected-dragged-label-text-color);
+			@include theme.forwardComponentToken(chip-dragged-leading-icon-color, input-chip-with-leading-icon-selected-dragged-leading-icon-color);
+			@include theme.forwardComponentToken(chip-dragged-trailing-icon-color, input-chip-with-trailing-icon-selected-dragged-trailing-icon-color);
+		}
+
+		&.icon.label
+		{
+			@include theme.saveComponentValue(chip-icon-label-space, 8px);
+			&:not(.leading)
+			{@include theme.saveComponentValue(chip-leading-space, 12px)}
+			&.leading
+			{@include theme.saveComponentValue(chip-leading-space, 8px)}
+			&:not(.trailing)
+			{@include theme.saveComponentValue(chip-trailing-space, 8px)}
+			&.trailing
+			{@include theme.saveComponentValue(chip-trailing-space, 8px)}
+		}
+		&:not(.icon.label)
+		{
+			@include theme.saveComponentValue(chip-leading-space, 12px);
+			@include theme.saveComponentValue(chip-trailing-space, 12px);
+		}
+
+		>.icon.trailing
+		{
+			.StateLayer
+			{
+				min-width: 24px;
+				min-height: 24px;
+
+				>.target
+				{
+					min-width: 100%;
+					min-height: 100%;
+				}
+			}
+			.delete-button
+			{
+				@include theme.saveComponentValue(state-focus-indicator-outer-offset, -2px);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: theme.applyComponentToken(input-chip-with-trailing-icon-unselected-trailing-icon-size);
+				height: theme.applyComponentToken(input-chip-with-trailing-icon-unselected-trailing-icon-size);
+				padding: 0;
+				border: none;
+				outline: none;
+				background-color: transparent;
+				border-radius: 100%;
+			}
+		}
+	}
+}

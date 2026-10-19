@@ -1,0 +1,50 @@
+@use "../../../style" as theme;
+
+@keyframes transitionable-fade-in
+{
+	from {opacity: 0}
+	to {opacity: 1}
+}
+@keyframes transitionable-fade-out
+{
+	from {opacity: 1}
+	to {opacity: 0}
+}
+
+.Transitionable
+{
+	position: relative;
+	width: var(--md-comp-transitionable-width);
+	height: var(--md-comp-transitionable-height);
+
+	&:has(>.value:empty)
+	{
+		width: 0px;
+		height: 0px;
+	}
+
+	&:not(.static)
+	{
+		transition: theme.motion-spring-expressive-fast-spatial((width, height));
+
+		>.value.transition
+		{animation: theme.motion-spring-expressive-fast-effects(transitionable-fade-in, forwards)}
+		>.previous-value.transition
+		{animation: theme.motion-spring-expressive-fast-effects(transitionable-fade-out, forwards)}
+	}
+
+	&, >.value, >.previous-value
+	{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-wrap: nowrap;
+	}
+
+	>.previous-value
+	{
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+	}
+}

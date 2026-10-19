@@ -1,0 +1,194 @@
+@use "../../../style" as theme;
+
+.OutlinedField
+{
+	--outlined-field-border-size: 1px;
+	--outlined-field-border-radius: 4px;
+	--outlined-field-border-color: var(--md-sys-color-outline);
+
+	position: relative;
+	width: fit-content;
+	height: fit-content;
+	min-height: 10px;
+	box-sizing: border-box;
+	border-radius: var(--outlined-field-border-radius);
+	transition: theme.motion-spring-expressive-fast-effects((border, border-radius, color));
+
+	>.border-top
+	{
+		@include theme.body-small;
+		position: absolute;
+		display: flex;
+		inset: 0px;
+		pointer-events: none;
+
+		>.border
+		{
+			box-sizing: border-box;
+			transition: theme.motion-spring-expressive-fast-effects((border, border-radius, color));
+
+			&.start
+			{
+				width: 12px;
+				height: calc(var(--outlined-field-border-radius) + var(--outlined-field-border-size) * 2);
+				border-top: var(--outlined-field-border-size) solid var(--outlined-field-border-color);
+				&:dir(ltr)
+				{
+					border-top-left-radius: var(--outlined-field-border-radius);
+					border-left: var(--outlined-field-border-size) solid transparent;
+				}
+				&:dir(rtl)
+				{
+					border-top-right-radius: var(--outlined-field-border-radius);
+					border-right: var(--outlined-field-border-size) solid transparent;
+				}
+			}
+			&.end
+			{
+				flex: 1;
+				height: calc(var(--outlined-field-border-radius) + var(--outlined-field-border-size) * 2);
+				border-top: var(--outlined-field-border-size) solid var(--outlined-field-border-color);
+				&:dir(ltr)
+				{
+					border-top-right-radius: var(--outlined-field-border-radius);
+					border-right: var(--outlined-field-border-size) solid transparent;
+				}
+				&:dir(rtl)
+				{
+					border-top-left-radius: var(--outlined-field-border-radius);
+					border-left: var(--outlined-field-border-size) solid transparent;
+				}
+			}
+		}
+
+		>.label
+		{
+			position: relative;
+			padding-inline: 4px;
+			height: var(--outlined-field-border-size);
+			color: transparent;
+			overflow: hidden;
+			user-select: none;
+
+			>.border
+			{
+				position: absolute;
+				display: block;
+				top: 0;
+				width: 50%;
+				border-top: var(--outlined-field-border-size) solid var(--outlined-field-border-color);
+				transition: theme.motion-spring-expressive-fast-effects((width, border));
+
+				&.start
+				{left: 0}
+				&.end
+				{right: 0}
+			}
+		}
+	}
+	>.borders
+	{
+		position: absolute;
+		inset: 0;
+		border-radius: var(--outlined-field-border-radius);
+		border: var(--outlined-field-border-size) solid var(--outlined-field-border-color);
+		border-top-color: transparent;
+		transition: theme.motion-spring-expressive-fast-effects((border, border-radius));
+		pointer-events: none;
+	}
+
+	>.label
+	{
+		@include theme.on-surface-variant-text;
+		@include theme.body-large;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		transition: theme.motion-spring-expressive-fast-spatial((inset, transform, font-size)), theme.motion-spring-expressive-fast-effects((color));
+		user-select: none;
+		pointer-events: none;
+		z-index: 1;
+
+		&:dir(ltr)
+		{
+			left: calc(16px + var(--outlined-field-label-position-inline-offset, 0px));
+		}
+		&:dir(rtl)
+		{
+			left: auto;
+			right: calc(16px + var(--outlined-field-label-position-inline-offset, 0px));
+		}
+	}
+
+	&.filled, &.focus
+	{
+		>.border-top >.label >.border
+		{width: 0px}
+		>.label
+		{
+			@include theme.body-small;
+			top: 0px;
+
+			&:dir(ltr)
+			{
+				left: 16px;
+			}
+			&:dir(rtl)
+			{
+				left: auto;
+				right: 16px;
+			}
+		}
+	}
+
+	&:hover:not(.focus, .disabled, .error)
+	{
+		--outlined-field-border-color: var(--md-sys-color-on-surface);
+		>.label
+		{
+			@include theme.on-surface-text;
+		}
+	}
+	&.focus:not(.disabled, .error)
+	{
+		--outlined-field-border-size: 3px;
+		--outlined-field-border-color: var(--md-sys-color-primary);
+		>.label
+		{
+			@include theme.primary-text;
+		}
+	}
+	&.disabled
+	{
+		--outlined-field-border-color: rgba(from var(--md-sys-color-on-surface) r g b / 12%);
+		>.label
+		{
+			color: rgba(from var(--md-sys-color-on-surface) r g b / 38%)
+		}
+	}
+
+	&.error
+	{
+		--outlined-field-border-color: var(--md-sys-color-error);
+
+		>.label
+		{@include theme.error-text}
+	}
+	&:hover.error
+	{
+		--outlined-field-border-color: var(--md-sys-color-on-error-container);
+		>.label
+		{
+			@include theme.on-error-container-text;
+		}
+	}
+	&.focus.error
+	{
+		--outlined-field-border-size: 3px;
+		--outlined-field-border-color: var(--md-sys-color-error);
+		>.label
+		{
+			@include theme.error-text;
+		}
+	}
+}

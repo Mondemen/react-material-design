@@ -1,0 +1,50 @@
+@use "../../style" as theme;
+
+.Divider
+{
+	display: flex;
+	align-items: center;
+	align-self: stretch;
+
+	.line
+	{
+		background-color: theme.applyComponentToken(divider-color);
+		transition: theme.motion-duration-medium1((background-color));
+	}
+
+	.text
+	{
+		@include theme.on-surface-variant-text;
+		@include theme.label-large;
+		transition: theme.motion-duration-medium1((color));
+	}
+
+	&:not(.vertical)
+	{
+		margin: 8px;
+
+		.line
+		{
+			flex: auto;
+			height: theme.applyComponentToken(divider-thickness);
+		}
+	}
+
+	&.vertical
+	{
+		flex-direction: column;
+
+		.line
+		{
+			flex: auto;
+			width: theme.applyComponentToken(divider-thickness);
+		}
+
+		.text
+		{
+			margin: 8px 0;
+			writing-mode: vertical-rl;
+			text-orientation: upright;
+		}
+	}
+}

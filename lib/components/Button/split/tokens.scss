@@ -1,0 +1,75 @@
+@use "../../../style" as theme;
+
+:root
+{
+	/* Split button - Size - Xsmall */
+		@include theme.saveComponentValue(split-button-xsmall-container-height, 32px);
+		@include theme.saveComponentValue(split-button-xsmall-container-shape, calc(var(--md-comp-split-button-xsmall-container-height) / 2));
+		@include theme.saveComponentValue(split-button-xsmall-between-space, 2px);
+		@include theme.saveComponentToken(split-button-xsmall-inner-corner-pressed-corner-size, shape-corner-small);
+		@include theme.saveComponentToken(split-button-xsmall-inner-corner-hovered-corner-size, shape-corner-small);
+		@include theme.saveComponentToken(split-button-xsmall-inner-corner-corner-size, shape-corner-extra-small);
+		@include theme.saveComponentValue(split-button-xsmall-leading-button-leading-space, 12px);
+		@include theme.saveComponentValue(split-button-xsmall-leading-button-trailing-space, 10px);
+		@include theme.saveComponentValue(split-button-xsmall-trailing-button-icon-size, 22px);
+		@include theme.saveComponentValue(split-button-xsmall-trailing-button-icon-selected-offset, 1px);
+		@include theme.saveComponentValue(split-button-xsmall-trailing-button-trailing-space, 13px);
+		@include theme.saveComponentValue(split-button-xsmall-trailing-button-leading-space, 13px);
+		@include theme.saveComponentValue(split-button-xsmall-trailing-button-inner-corner-selected-corner-size, calc(var(--md-comp-split-button-xsmall-container-height) / 2));
+	/* Split button - Size - Small */
+		@include theme.saveComponentValue(split-button-small-container-height, 40px);
+		@include theme.saveComponentValue(split-button-small-container-shape, calc(var(--md-comp-split-button-small-container-height) / 2));
+		@include theme.saveComponentValue(split-button-small-between-space, 2px);
+		@include theme.saveComponentToken(split-button-small-inner-corner-pressed-corner-size, shape-corner-medium);
+		@include theme.saveComponentToken(split-button-small-inner-corner-hovered-corner-size, shape-corner-medium);
+		@include theme.saveComponentToken(split-button-small-inner-corner-corner-size, shape-corner-extra-small);
+		@include theme.saveComponentValue(split-button-small-leading-button-leading-space, 16px);
+		@include theme.saveComponentValue(split-button-small-leading-button-trailing-space, 12px);
+		@include theme.saveComponentValue(split-button-small-trailing-button-icon-size, 22px);
+		@include theme.saveComponentValue(split-button-small-trailing-button-icon-selected-offset, 1px);
+		@include theme.saveComponentValue(split-button-small-trailing-button-leading-space, 13px);
+		@include theme.saveComponentValue(split-button-small-trailing-button-trailing-space, 13px);
+		@include theme.saveComponentValue(split-button-small-trailing-button-inner-corner-selected-corner-size, calc(var(--md-comp-split-button-small-container-height) / 2));
+	/* Split button - Size - Medium */
+		@include theme.saveComponentValue(split-button-medium-container-height, 56px);
+		@include theme.saveComponentValue(split-button-medium-container-shape, calc(var(--md-comp-split-button-medium-container-height) / 2));
+		@include theme.saveComponentValue(split-button-medium-between-space, 2px);
+		@include theme.saveComponentToken(split-button-medium-inner-corner-pressed-corner-size, shape-corner-medium);
+		@include theme.saveComponentToken(split-button-medium-inner-corner-hovered-corner-size, shape-corner-medium);
+		@include theme.saveComponentToken(split-button-medium-inner-corner-corner-size, shape-corner-extra-small);
+		@include theme.saveComponentValue(split-button-medium-leading-button-leading-space, 24px);
+		@include theme.saveComponentValue(split-button-medium-leading-button-trailing-space, 24px);
+		@include theme.saveComponentValue(split-button-medium-trailing-button-icon-size, 26px);
+		@include theme.saveComponentValue(split-button-medium-trailing-button-icon-selected-offset, 2px);
+		@include theme.saveComponentValue(split-button-medium-trailing-button-leading-space, 15px);
+		@include theme.saveComponentValue(split-button-medium-trailing-button-trailing-space, 15px);
+		@include theme.saveComponentValue(split-button-medium-trailing-button-inner-corner-selected-corner-size, calc(var(--md-comp-split-button-medium-container-height) / 2));
+	/* Split button - Size - Large */
+		@include theme.saveComponentValue(split-button-large-container-height, 96px);
+		@include theme.saveComponentValue(split-button-large-container-shape, calc(var(--md-comp-split-button-large-container-height) / 2));
+		@include theme.saveComponentValue(split-button-large-between-space, 2px);
+		@include theme.saveComponentToken(split-button-large-inner-corner-pressed-corner-size, shape-corner-large-increased);
+		@include theme.saveComponentToken(split-button-large-inner-corner-hovered-corner-size, shape-corner-large-increased);
+		@include theme.saveComponentToken(split-button-large-inner-corner-corner-size, shape-corner-small);
+		@include theme.saveComponentValue(split-button-large-leading-button-leading-space, 48px);
+		@include theme.saveComponentValue(split-button-large-leading-button-trailing-space, 48px);
+		@include theme.saveComponentValue(split-button-large-trailing-button-icon-size, 38px);
+		@include theme.saveComponentValue(split-button-large-trailing-button-icon-selected-offset, 3px);
+		@include theme.saveComponentValue(split-button-large-trailing-button-leading-space, 29px);
+		@include theme.saveComponentValue(split-button-large-trailing-button-trailing-space, 29px);
+		@include theme.saveComponentValue(split-button-large-trailing-button-inner-corner-selected-corner-size, calc(var(--md-comp-split-button-large-container-height) / 2));
+	/* Split button - Size - Xlarge */
+		@include theme.saveComponentValue(split-button-xlarge-container-height, 136px);
+		@include theme.saveComponentValue(split-button-xlarge-container-shape, calc(var(--md-comp-split-button-xlarge-container-height) / 2));
+		@include theme.saveComponentValue(split-button-xlarge-between-space, 2px);
+		@include theme.saveComponentToken(split-button-xlarge-inner-corner-corner-size, shape-corner-medium);
+		@include theme.saveComponentToken(split-button-xlarge-inner-corner-hovered-corner-size, shape-corner-large-increased);
+		@include theme.saveComponentToken(split-button-xlarge-inner-corner-pressed-corner-size, shape-corner-large-increased);
+		@include theme.saveComponentValue(split-button-xlarge-leading-button-leading-space, 64px);
+		@include theme.saveComponentValue(split-button-xlarge-leading-button-trailing-space, 64px);
+		@include theme.saveComponentValue(split-button-xlarge-trailing-button-icon-size, 50px);
+		@include theme.saveComponentValue(split-button-xlarge-trailing-button-icon-selected-offset, 6px);
+		@include theme.saveComponentValue(split-button-xlarge-trailing-button-leading-space, 43px);
+		@include theme.saveComponentValue(split-button-xlarge-trailing-button-trailing-space, 43px);
+		@include theme.saveComponentValue(split-button-xlarge-trailing-button-inner-corner-selected-corner-size, calc(var(--md-comp-split-button-xlarge-container-height) / 2));
+}

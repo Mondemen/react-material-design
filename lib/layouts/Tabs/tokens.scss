@@ -1,0 +1,112 @@
+@use "../../style" as theme;
+
+:root
+{
+	/* Tabs - Primary navigation */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(primary-navigation-tab-container-color, color-surface);
+				@include theme.saveComponentToken(primary-navigation-tab-container-shape, shape-corner-none);
+				@include theme.saveComponentValue(primary-navigation-tab-container-height, 48px);
+				@include theme.saveComponentValue(primary-navigation-tab-with-icon-and-label-text-container-height, 64px);
+				@include theme.saveComponentToken(primary-navigation-tab-container-elevation, elevation-level0);
+			/* Label text */
+				@include theme.saveComponentTypescaleTokens(primary-navigation-tab-with-label-text-label-text, title-small);
+				@include theme.saveComponentToken(primary-navigation-tab-with-label-text-active-label-text-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-with-label-text-inactive-label-text-color, color-on-surface-variant);
+			/* Icon */
+				@include theme.saveComponentValue(primary-navigation-tab-with-icon-icon-size, 24px);
+				@include theme.saveComponentToken(primary-navigation-tab-with-icon-active-icon-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-with-icon-inactive-icon-color, color-on-surface-variant);
+			/* Active indicator */
+				@include theme.saveComponentToken(primary-navigation-tab-active-indicator-color, color-primary);
+				@include theme.saveComponentValue(primary-navigation-tab-active-indicator-height, 3px);
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(primary-navigation-tab-with-label-text-active-hover-label-text-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-with-label-text-inactive-hover-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(primary-navigation-tab-active-hover-state-layer-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-active-hover-state-layer-opacity, state-hover-state-layer-opacity);
+				@include theme.saveComponentToken(primary-navigation-tab-inactive-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(primary-navigation-tab-inactive-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(primary-navigation-tab-with-icon-active-hover-icon-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-with-icon-inactive-hover-icon-color, color-on-surface);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(primary-navigation-tab-focus-indicator-color, color-secondary);
+				@include theme.saveComponentToken(primary-navigation-tab-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(primary-navigation-tab-focus-indicator-outline-offset, state-focus-indicator-inner-offset);
+			/* Label text */
+				@include theme.saveComponentToken(primary-navigation-tab-with-label-text-active-focus-label-text-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-with-label-text-inactive-focus-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(primary-navigation-tab-active-focus-state-layer-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-active-focus-state-layer-opacity, state-focus-state-layer-opacity);
+				@include theme.saveComponentToken(primary-navigation-tab-inactive-focus-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(primary-navigation-tab-inactive-focus-state-layer-opacity, state-focus-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(primary-navigation-tab-with-icon-active-focus-icon-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-with-icon-inactive-focus-icon-color, color-on-surface);
+		/* Pressed (ripple) */
+			/* Label text */
+				@include theme.saveComponentToken(primary-navigation-tab-with-label-text-active-pressed-label-text-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-with-label-text-inactive-pressed-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(primary-navigation-tab-active-pressed-state-layer-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-active-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+				@include theme.saveComponentToken(primary-navigation-tab-inactive-pressed-state-layer-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-inactive-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(primary-navigation-tab-with-icon-active-pressed-icon-color, color-primary);
+				@include theme.saveComponentToken(primary-navigation-tab-with-icon-inactive-pressed-icon-color, color-on-surface);
+
+	/* Tabs - Secondary navigation */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(secondary-navigation-tab-container-color, color-surface);
+				@include theme.saveComponentToken(secondary-navigation-tab-container-shape, shape-corner-none);
+				@include theme.saveComponentValue(secondary-navigation-tab-container-height, 48px);
+				@include theme.saveComponentToken(secondary-navigation-tab-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(secondary-navigation-tab-container-shadow-color, color-shadow);
+			/* Label text */
+				@include theme.saveComponentTypescaleTokens(secondary-navigation-tab-label-text, title-small);
+				@include theme.saveComponentToken(secondary-navigation-tab-active-label-text-color, color-on-surface);
+				@include theme.saveComponentToken(secondary-navigation-tab-inactive-label-text-color, color-on-surface-variant);
+			/* Icon */
+				@include theme.saveComponentValue(secondary-navigation-tab-with-icon-icon-size, 24px);
+				@include theme.saveComponentToken(secondary-navigation-tab-with-icon-active-icon-color, color-on-surface);
+				@include theme.saveComponentToken(secondary-navigation-tab-with-icon-inactive-icon-color, color-on-surface-variant);
+			/* Active indicator */
+				@include theme.saveComponentToken(secondary-navigation-tab-active-indicator-color, color-primary);
+				@include theme.saveComponentValue(secondary-navigation-tab-active-indicator-height, 2px);
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(secondary-navigation-tab-hover-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(secondary-navigation-tab-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(secondary-navigation-tab-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(secondary-navigation-tab-with-icon-hover-icon-color, color-on-surface);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(secondary-navigation-tab-focus-indicator-color, color-secondary);
+				@include theme.saveComponentToken(secondary-navigation-tab-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(secondary-navigation-tab-focus-indicator-outline-offset, state-focus-indicator-inner-offset);
+			/* Label text */
+				@include theme.saveComponentToken(secondary-navigation-tab-focus-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(secondary-navigation-tab-focus-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(secondary-navigation-tab-focus-state-layer-opacity, state-focus-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(secondary-navigation-tab-with-icon-focus-icon-color, color-on-surface);
+		/* Pressed (ripple) */
+			/* Label text */
+				@include theme.saveComponentToken(secondary-navigation-tab-pressed-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(secondary-navigation-tab-pressed-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(secondary-navigation-tab-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(secondary-navigation-tab-with-icon-pressed-icon-color, color-on-surface);
+}

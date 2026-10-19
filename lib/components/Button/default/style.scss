@@ -1,0 +1,625 @@
+@use "sass:string";
+@use "sass:selector";
+@use "../../../style" as theme;
+@use "../style.scss" as common;
+
+.Button
+{
+	@include theme.applyComponentTypescaleTokens(button-label-text);
+	@include theme.forwardComponentToken(icon-color, button-icon-color);
+	@include theme.forwardComponentToken(state-hover-state-layer-opacity, button-hovered-state-layer-opacity);
+	@include theme.forwardComponentToken(state-focused-state-layer-opacity, button-focused-state-layer-opacity);
+	@include theme.forwardComponentToken(state-pressed-state-layer-opacity, button-pressed-state-layer-opacity);
+	@include theme.forwardComponentToken(state-hover-state-layer-color, button-hovered-state-layer-color);
+	@include theme.forwardComponentToken(state-focused-state-layer-color, button-focused-state-layer-color);
+	@include theme.forwardComponentToken(state-pressed-state-layer-color, button-pressed-state-layer-color);
+	@include theme.forwardComponentToken(state-focus-indicator-color, button-focus-indicator-color);
+	@include theme.forwardComponentToken(state-focus-indicator-thickness, button-focus-indicator-thickness);
+	@include theme.forwardComponentToken(state-focus-indicator-outer-offset, button-focus-indicator-outline-offset);
+	width: calc(theme.applyComponentToken(button-leading-space) + theme.applyComponentToken(button-container-width) + theme.applyComponentToken(button-trailing-space) + var(--button-width-extra, 0px));
+	min-width: calc(theme.applyComponentToken(button-leading-space) + theme.applyComponentToken(button-container-width) + theme.applyComponentToken(button-trailing-space) + var(--button-width-extra, 0px));
+	height: theme.applyComponentToken(button-container-height);
+	min-height: theme.applyComponentToken(button-container-height);
+	gap: theme.applyComponentToken(button-gap-space, 0px);
+	padding-left: theme.applyComponentToken(button-leading-space);
+	padding-right: theme.applyComponentToken(button-trailing-space);
+	background-color: theme.applyComponentToken(button-container-color);
+	color: theme.applyComponentToken(button-label-text-color);
+	box-shadow: theme.applyComponentToken(button-container-elevation);
+
+	&, &:focus:not(:focus-visible)
+	{
+		outline: solid theme.applyComponentToken(button-outline-width, 0px) theme.applyComponentColorOpacityToken(button-outline);
+		outline-offset: calc(-1 * theme.applyComponentToken(button-outline-width, 0px));
+	}
+
+	&.icon.label
+	{@include theme.forwardComponentToken(button-gap-space, button-icon-label-space)}
+
+	>.container >.icon
+	{@include theme.forwardComponentToken(icon-size, button-icon-size)}
+
+	&.selectable:not(.disabled)
+	{
+		@include theme.forwardComponentToken(icon-color, button-unselected-icon-color);
+		@include theme.forwardComponentToken(state-hover-state-layer-color, button-unselected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(state-focused-state-layer-color, button-unselected-focused-state-layer-color);
+		@include theme.forwardComponentToken(state-pressed-state-layer-color, button-unselected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-container-color, button-unselected-container-color);
+		@include theme.forwardComponentToken(button-container-opacity, button-unselected-container-opacity);
+		@include theme.forwardComponentToken(button-label-text-color, button-unselected-label-text-color);
+
+		&.selected
+		{
+			@include theme.forwardComponentToken(icon-color, button-selected-icon-color);
+			@include theme.forwardComponentToken(state-hover-state-layer-color, button-selected-hovered-state-layer-color);
+			@include theme.forwardComponentToken(state-focused-state-layer-color, button-selected-focused-state-layer-color);
+			@include theme.forwardComponentToken(state-pressed-state-layer-color, button-selected-pressed-state-layer-color);
+			@include theme.forwardComponentToken(button-container-color, button-selected-container-color);
+			@include theme.forwardComponentToken(button-container-opacity, button-selected-container-opacity);
+			@include theme.forwardComponentToken(button-label-text-color, button-selected-label-text-color);
+			outline: solid 0px transparent;
+			outline-offset: 0px;
+		}
+	}
+
+	&.disabled
+	{
+		@include theme.forwardComponentColorOpacityTokens(icon, button-disabled-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+		background-color: theme.applyComponentColorOpacityToken(button-disabled-container, theme.applyComponentToken(button-container-color), theme.applyComponentToken(button-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(button-disabled-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(button-disabled-container-elevation, theme.applyComponentToken(button-container-elevation));
+		outline: solid theme.applyComponentToken(button-disabled-outline-width, theme.applyComponentToken(button-outline-width, 0px)) theme.applyComponentColorOpacityToken(button-disabled-outline, theme.applyComponentToken(button-outline-color, transparent), theme.applyComponentToken(button-outline-opacity, 0));
+		outline-offset: calc(-1 * theme.applyComponentToken(button-disabled-outline-width, theme.applyComponentToken(button-outline-width, 0px)));
+		cursor: default;
+	}
+	&:hover:not(.disabled, :focus-visible, :active, .dragged)
+	{
+		@include theme.forwardComponentColorOpacityTokens(icon, button-hovered-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+		background-color: theme.applyComponentColorOpacityToken(button-hovered-container, theme.applyComponentToken(button-container-color), theme.applyComponentToken(button-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(button-hovered-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(button-hovered-container-elevation, theme.applyComponentToken(button-container-elevation));
+		outline: solid theme.applyComponentToken(button-hovered-outline-width, theme.applyComponentToken(button-outline-width, 0px)) theme.applyComponentColorOpacityToken(button-hovered-outline, theme.applyComponentToken(button-outline-color, transparent), theme.applyComponentToken(button-outline-opacity, 0));
+		outline-offset: calc(-1 * theme.applyComponentToken(button-hovered-outline-width, theme.applyComponentToken(button-outline-width, 0px)));
+
+		&.selectable:not(.disabled)
+		{
+			@include theme.forwardComponentColorOpacityTokens(icon, button-unselected-hovered-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+			color: theme.applyComponentColorOpacityToken(button-unselected-hovered-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+			&.selected
+			{
+				@include theme.forwardComponentColorOpacityTokens(icon, button-selected-hovered-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+				color: theme.applyComponentColorOpacityToken(button-selected-hovered-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+			}
+		}
+	}
+	&:focus-visible:not(.disabled, :active, .dragged)
+	{
+		@include theme.forwardComponentColorOpacityTokens(icon, button-focused-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+		background-color: theme.applyComponentColorOpacityToken(button-focused-container, theme.applyComponentToken(button-container-color), theme.applyComponentToken(button-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(button-focused-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(button-focused-container-elevation, theme.applyComponentToken(button-container-elevation));
+		outline: solid theme.applyComponentToken(button-focused-outline-width, theme.applyComponentToken(button-outline-width, 0px)) theme.applyComponentColorOpacityToken(button-focused-outline, theme.applyComponentToken(button-outline-color, transparent), theme.applyComponentToken(button-outline-opacity, 0));
+		outline-offset: calc(-1 * theme.applyComponentToken(button-focused-outline-width, theme.applyComponentToken(button-outline-width, 0px)));
+
+		&.selectable:not(.disabled)
+		{
+			@include theme.forwardComponentColorOpacityTokens(icon, button-unselected-focused-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+			color: theme.applyComponentColorOpacityToken(button-unselected-focused-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+			&.selected
+			{
+				@include theme.forwardComponentColorOpacityTokens(icon, button-selected-focused-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+				color: theme.applyComponentColorOpacityToken(button-selected-focused-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+			}
+		}
+	}
+	&:active:not(.disabled, .dragged)
+	{
+		@include theme.forwardComponentColorOpacityTokens(icon, button-pressed-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+		background-color: theme.applyComponentColorOpacityToken(button-pressed-container, theme.applyComponentToken(button-container-color), theme.applyComponentToken(button-container-opacity, 1));
+		color: theme.applyComponentColorOpacityToken(button-pressed-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+		box-shadow: theme.applyComponentToken(button-pressed-container-elevation, theme.applyComponentToken(button-container-elevation));
+		outline: solid theme.applyComponentToken(button-pressed-outline-width, theme.applyComponentToken(button-outline-width, 0px)) theme.applyComponentColorOpacityToken(button-pressed-outline, theme.applyComponentToken(button-outline-color, transparent), theme.applyComponentToken(button-outline-opacity, 0));
+		outline-offset: calc(-1 * theme.applyComponentToken(button-pressed-outline-width, theme.applyComponentToken(button-outline-width, 0px)));
+
+		&.selectable:not(.disabled)
+		{
+			@include theme.forwardComponentColorOpacityTokens(icon, button-unselected-pressed-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+			color: theme.applyComponentColorOpacityToken(button-unselected-pressed-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+			&.selected
+			{
+				@include theme.forwardComponentColorOpacityTokens(icon, button-selected-pressed-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
+				color: theme.applyComponentColorOpacityToken(button-selected-pressed-label-text, theme.applyComponentToken(button-label-text-color), theme.applyComponentToken(button-label-text-opacity, 1));
+			}
+		}
+	}
+
+	&.elevated
+	{
+		@include theme.forwardComponentToken(button-container-color, button-elevated-container-color);
+		@include theme.forwardComponentToken(button-icon-color, button-elevated-icon-color);
+		@include theme.forwardComponentToken(button-label-text-color, button-elevated-label-text-color);
+		@include theme.forwardComponentToken(button-container-elevation, button-elevated-container-elevation);
+		@include theme.forwardComponentToken(button-hovered-state-layer-opacity, button-elevated-hovered-state-layer-opacity);
+		@include theme.forwardComponentToken(button-hovered-state-layer-color, button-elevated-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-hovered-label-text-color, button-elevated-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-icon-color, button-elevated-hovered-icon-color);
+		@include theme.forwardComponentToken(button-focused-state-layer-opacity, button-elevated-focused-state-layer-opacity);
+		@include theme.forwardComponentToken(button-focused-state-layer-color, button-elevated-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-focused-label-text-color, button-elevated-focused-label-text-color);
+		@include theme.forwardComponentToken(button-focused-icon-color, button-elevated-focused-icon-color);
+		@include theme.forwardComponentToken(button-pressed-state-layer-opacity, button-elevated-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(button-pressed-state-layer-color, button-elevated-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-pressed-label-text-color, button-elevated-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-pressed-icon-color, button-elevated-pressed-icon-color);
+		@include theme.forwardComponentToken(button-unselected-container-color, button-elevated-unselected-container-color);
+		@include theme.forwardComponentToken(button-unselected-icon-color, button-elevated-unselected-icon-color);
+		@include theme.forwardComponentToken(button-unselected-label-text-color, button-elevated-unselected-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-state-layer-color, button-elevated-unselected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, button-elevated-unselected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-icon-color, button-elevated-unselected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-unselected-focused-state-layer-color, button-elevated-unselected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-focused-label-text-color, button-elevated-unselected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-focused-icon-color, button-elevated-unselected-focused-icon-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-state-layer-color, button-elevated-unselected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, button-elevated-unselected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-icon-color, button-elevated-unselected-pressed-icon-color);
+		@include theme.forwardComponentToken(button-selected-container-color, button-elevated-selected-container-color);
+		@include theme.forwardComponentToken(button-selected-icon-color, button-elevated-selected-icon-color);
+		@include theme.forwardComponentToken(button-selected-label-text-color, button-elevated-selected-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-state-layer-color, button-elevated-selected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-hovered-label-text-color, button-elevated-selected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-icon-color, button-elevated-selected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-selected-focused-state-layer-color, button-elevated-selected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-focused-label-text-color, button-elevated-selected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-selected-focused-icon-color, button-elevated-selected-focused-icon-color);
+		@include theme.forwardComponentToken(button-selected-pressed-state-layer-color, button-elevated-selected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-pressed-label-text-color, button-elevated-selected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-selected-pressed-icon-color, button-elevated-selected-pressed-icon-color);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-container, button-elevated-disabled-container);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-icon, button-elevated-disabled-icon);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-label-text, button-elevated-disabled-label-text);
+		@include theme.forwardComponentToken(button-disabled-container-elevation, button-elevated-disabled-container-elevation);
+	}
+	&.filled
+	{
+		@include theme.forwardComponentToken(button-container-color, button-filled-container-color);
+		@include theme.forwardComponentToken(button-icon-color, button-filled-icon-color);
+		@include theme.forwardComponentToken(button-label-text-color, button-filled-label-text-color);
+		@include theme.forwardComponentToken(button-container-elevation, button-filled-container-elevation);
+		@include theme.forwardComponentToken(button-hovered-state-layer-opacity, button-filled-hovered-state-layer-opacity);
+		@include theme.forwardComponentToken(button-hovered-state-layer-color, button-filled-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-hovered-label-text-color, button-filled-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-icon-color, button-filled-hovered-icon-color);
+		@include theme.forwardComponentToken(button-focused-state-layer-opacity, button-filled-focused-state-layer-opacity);
+		@include theme.forwardComponentToken(button-focused-state-layer-color, button-filled-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-focused-label-text-color, button-filled-focused-label-text-color);
+		@include theme.forwardComponentToken(button-focused-icon-color, button-filled-focused-icon-color);
+		@include theme.forwardComponentToken(button-pressed-state-layer-opacity, button-filled-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(button-pressed-state-layer-color, button-filled-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-pressed-label-text-color, button-filled-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-pressed-icon-color, button-filled-pressed-icon-color);
+		@include theme.forwardComponentToken(button-unselected-container-color, button-filled-unselected-container-color);
+		@include theme.forwardComponentToken(button-unselected-icon-color, button-filled-unselected-icon-color);
+		@include theme.forwardComponentToken(button-unselected-label-text-color, button-filled-unselected-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-state-layer-color, button-filled-unselected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, button-filled-unselected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-icon-color, button-filled-unselected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-unselected-focused-state-layer-color, button-filled-unselected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-focused-label-text-color, button-filled-unselected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-focused-icon-color, button-filled-unselected-focused-icon-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-state-layer-color, button-filled-unselected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, button-filled-unselected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-icon-color, button-filled-unselected-pressed-icon-color);
+		@include theme.forwardComponentToken(button-selected-container-color, button-filled-selected-container-color);
+		@include theme.forwardComponentToken(button-selected-icon-color, button-filled-selected-icon-color);
+		@include theme.forwardComponentToken(button-selected-label-text-color, button-filled-selected-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-state-layer-color, button-filled-selected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-hovered-label-text-color, button-filled-selected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-icon-color, button-filled-selected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-selected-focused-state-layer-color, button-filled-selected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-focused-label-text-color, button-filled-selected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-selected-focused-icon-color, button-filled-selected-focused-icon-color);
+		@include theme.forwardComponentToken(button-selected-pressed-state-layer-color, button-filled-selected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-pressed-label-text-color, button-filled-selected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-selected-pressed-icon-color, button-filled-selected-pressed-icon-color);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-container, button-filled-disabled-container);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-icon, button-filled-disabled-icon);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-label-text, button-filled-disabled-label-text);
+		@include theme.forwardComponentToken(button-disabled-container-elevation, button-filled-disabled-container-elevation);
+	}
+	&.tonal
+	{
+		@include theme.forwardComponentToken(button-container-color, button-tonal-container-color);
+		@include theme.forwardComponentToken(button-icon-color, button-tonal-icon-color);
+		@include theme.forwardComponentToken(button-label-text-color, button-tonal-label-text-color);
+		@include theme.forwardComponentToken(button-container-elevation, button-tonal-container-elevation);
+		@include theme.forwardComponentToken(button-hovered-state-layer-opacity, button-tonal-hovered-state-layer-opacity);
+		@include theme.forwardComponentToken(button-hovered-state-layer-color, button-tonal-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-hovered-label-text-color, button-tonal-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-icon-color, button-tonal-hovered-icon-color);
+		@include theme.forwardComponentToken(button-focused-state-layer-opacity, button-tonal-focused-state-layer-opacity);
+		@include theme.forwardComponentToken(button-focused-state-layer-color, button-tonal-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-focused-label-text-color, button-tonal-focused-label-text-color);
+		@include theme.forwardComponentToken(button-focused-icon-color, button-tonal-focused-icon-color);
+		@include theme.forwardComponentToken(button-pressed-state-layer-opacity, button-tonal-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(button-pressed-state-layer-color, button-tonal-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-pressed-label-text-color, button-tonal-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-pressed-icon-color, button-tonal-pressed-icon-color);
+		@include theme.forwardComponentToken(button-unselected-container-color, button-tonal-unselected-container-color);
+		@include theme.forwardComponentToken(button-unselected-icon-color, button-tonal-unselected-icon-color);
+		@include theme.forwardComponentToken(button-unselected-label-text-color, button-tonal-unselected-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-state-layer-color, button-tonal-unselected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, button-tonal-unselected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-icon-color, button-tonal-unselected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-unselected-focused-state-layer-color, button-tonal-unselected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-focused-label-text-color, button-tonal-unselected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-focused-icon-color, button-tonal-unselected-focused-icon-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-state-layer-color, button-tonal-unselected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, button-tonal-unselected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-icon-color, button-tonal-unselected-pressed-icon-color);
+		@include theme.forwardComponentToken(button-selected-container-color, button-tonal-selected-container-color);
+		@include theme.forwardComponentToken(button-selected-icon-color, button-tonal-selected-icon-color);
+		@include theme.forwardComponentToken(button-selected-label-text-color, button-tonal-selected-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-state-layer-color, button-tonal-selected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-hovered-label-text-color, button-tonal-selected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-icon-color, button-tonal-selected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-selected-focused-state-layer-color, button-tonal-selected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-focused-label-text-color, button-tonal-selected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-selected-focused-icon-color, button-tonal-selected-focused-icon-color);
+		@include theme.forwardComponentToken(button-selected-pressed-state-layer-color, button-tonal-selected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-pressed-label-text-color, button-tonal-selected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-selected-pressed-icon-color, button-tonal-selected-pressed-icon-color);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-container, button-tonal-disabled-container);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-icon, button-tonal-disabled-icon);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-label-text, button-tonal-disabled-label-text);
+		@include theme.forwardComponentToken(button-disabled-container-elevation, button-tonal-disabled-container-elevation);
+	}
+	&.tertiary
+	{
+		@include theme.forwardComponentToken(button-container-color, button-tertiary-container-color);
+		@include theme.forwardComponentToken(button-icon-color, button-tertiary-icon-color);
+		@include theme.forwardComponentToken(button-label-text-color, button-tertiary-label-text-color);
+		@include theme.forwardComponentToken(button-container-elevation, button-tertiary-container-elevation);
+		@include theme.forwardComponentToken(button-hovered-state-layer-opacity, button-tertiary-hovered-state-layer-opacity);
+		@include theme.forwardComponentToken(button-hovered-state-layer-color, button-tertiary-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-hovered-label-text-color, button-tertiary-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-icon-color, button-tertiary-hovered-icon-color);
+		@include theme.forwardComponentToken(button-focused-state-layer-opacity, button-tertiary-focused-state-layer-opacity);
+		@include theme.forwardComponentToken(button-focused-state-layer-color, button-tertiary-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-focused-label-text-color, button-tertiary-focused-label-text-color);
+		@include theme.forwardComponentToken(button-focused-icon-color, button-tertiary-focused-icon-color);
+		@include theme.forwardComponentToken(button-pressed-state-layer-opacity, button-tertiary-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(button-pressed-state-layer-color, button-tertiary-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-pressed-label-text-color, button-tertiary-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-pressed-icon-color, button-tertiary-pressed-icon-color);
+		@include theme.forwardComponentToken(button-unselected-container-color, button-tertiary-unselected-container-color);
+		@include theme.forwardComponentToken(button-unselected-icon-color, button-tertiary-unselected-icon-color);
+		@include theme.forwardComponentToken(button-unselected-label-text-color, button-tertiary-unselected-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-state-layer-color, button-tertiary-unselected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, button-tertiary-unselected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-icon-color, button-tertiary-unselected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-unselected-focused-state-layer-color, button-tertiary-unselected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-focused-label-text-color, button-tertiary-unselected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-focused-icon-color, button-tertiary-unselected-focused-icon-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-state-layer-color, button-tertiary-unselected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, button-tertiary-unselected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-icon-color, button-tertiary-unselected-pressed-icon-color);
+		@include theme.forwardComponentToken(button-selected-container-color, button-tertiary-selected-container-color);
+		@include theme.forwardComponentToken(button-selected-icon-color, button-tertiary-selected-icon-color);
+		@include theme.forwardComponentToken(button-selected-label-text-color, button-tertiary-selected-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-state-layer-color, button-tertiary-selected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-hovered-label-text-color, button-tertiary-selected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-icon-color, button-tertiary-selected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-selected-focused-state-layer-color, button-tertiary-selected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-focused-label-text-color, button-tertiary-selected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-selected-focused-icon-color, button-tertiary-selected-focused-icon-color);
+		@include theme.forwardComponentToken(button-selected-pressed-state-layer-color, button-tertiary-selected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-pressed-label-text-color, button-tertiary-selected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-selected-pressed-icon-color, button-tertiary-selected-pressed-icon-color);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-container, button-tertiary-disabled-container);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-icon, button-tertiary-disabled-icon);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-label-text, button-tertiary-disabled-label-text);
+		@include theme.forwardComponentToken(button-disabled-container-elevation, button-tertiary-disabled-container-elevation);
+	}
+	&.success
+	{
+		@include theme.forwardComponentToken(button-container-color, button-success-container-color);
+		@include theme.forwardComponentToken(button-icon-color, button-success-icon-color);
+		@include theme.forwardComponentToken(button-label-text-color, button-success-label-text-color);
+		@include theme.forwardComponentToken(button-container-elevation, button-success-container-elevation);
+		@include theme.forwardComponentToken(button-hovered-state-layer-opacity, button-success-hovered-state-layer-opacity);
+		@include theme.forwardComponentToken(button-hovered-state-layer-color, button-success-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-hovered-label-text-color, button-success-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-icon-color, button-success-hovered-icon-color);
+		@include theme.forwardComponentToken(button-focused-state-layer-opacity, button-success-focused-state-layer-opacity);
+		@include theme.forwardComponentToken(button-focused-state-layer-color, button-success-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-focused-label-text-color, button-success-focused-label-text-color);
+		@include theme.forwardComponentToken(button-focused-icon-color, button-success-focused-icon-color);
+		@include theme.forwardComponentToken(button-pressed-state-layer-opacity, button-success-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(button-pressed-state-layer-color, button-success-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-pressed-label-text-color, button-success-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-pressed-icon-color, button-success-pressed-icon-color);
+		@include theme.forwardComponentToken(button-unselected-container-color, button-success-unselected-container-color);
+		@include theme.forwardComponentToken(button-unselected-icon-color, button-success-unselected-icon-color);
+		@include theme.forwardComponentToken(button-unselected-label-text-color, button-success-unselected-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-state-layer-color, button-success-unselected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, button-success-unselected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-icon-color, button-success-unselected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-unselected-focused-state-layer-color, button-success-unselected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-focused-label-text-color, button-success-unselected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-focused-icon-color, button-success-unselected-focused-icon-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-state-layer-color, button-success-unselected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, button-success-unselected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-icon-color, button-success-unselected-pressed-icon-color);
+		@include theme.forwardComponentToken(button-selected-container-color, button-success-selected-container-color);
+		@include theme.forwardComponentToken(button-selected-icon-color, button-success-selected-icon-color);
+		@include theme.forwardComponentToken(button-selected-label-text-color, button-success-selected-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-state-layer-color, button-success-selected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-hovered-label-text-color, button-success-selected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-icon-color, button-success-selected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-selected-focused-state-layer-color, button-success-selected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-focused-label-text-color, button-success-selected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-selected-focused-icon-color, button-success-selected-focused-icon-color);
+		@include theme.forwardComponentToken(button-selected-pressed-state-layer-color, button-success-selected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-pressed-label-text-color, button-success-selected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-selected-pressed-icon-color, button-success-selected-pressed-icon-color);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-container, button-success-disabled-container);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-icon, button-success-disabled-icon);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-label-text, button-success-disabled-label-text);
+		@include theme.forwardComponentToken(button-disabled-container-elevation, button-success-disabled-container-elevation);
+	}
+	&.error
+	{
+		@include theme.forwardComponentToken(button-container-color, button-error-container-color);
+		@include theme.forwardComponentToken(button-icon-color, button-error-icon-color);
+		@include theme.forwardComponentToken(button-label-text-color, button-error-label-text-color);
+		@include theme.forwardComponentToken(button-container-elevation, button-error-container-elevation);
+		@include theme.forwardComponentToken(button-hovered-state-layer-opacity, button-error-hovered-state-layer-opacity);
+		@include theme.forwardComponentToken(button-hovered-state-layer-color, button-error-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-hovered-label-text-color, button-error-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-icon-color, button-error-hovered-icon-color);
+		@include theme.forwardComponentToken(button-focused-state-layer-opacity, button-error-focused-state-layer-opacity);
+		@include theme.forwardComponentToken(button-focused-state-layer-color, button-error-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-focused-label-text-color, button-error-focused-label-text-color);
+		@include theme.forwardComponentToken(button-focused-icon-color, button-error-focused-icon-color);
+		@include theme.forwardComponentToken(button-pressed-state-layer-opacity, button-error-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(button-pressed-state-layer-color, button-error-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-pressed-label-text-color, button-error-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-pressed-icon-color, button-error-pressed-icon-color);
+		@include theme.forwardComponentToken(button-unselected-container-color, button-error-unselected-container-color);
+		@include theme.forwardComponentToken(button-unselected-icon-color, button-error-unselected-icon-color);
+		@include theme.forwardComponentToken(button-unselected-label-text-color, button-error-unselected-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-state-layer-color, button-error-unselected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, button-error-unselected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-icon-color, button-error-unselected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-unselected-focused-state-layer-color, button-error-unselected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-focused-label-text-color, button-error-unselected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-focused-icon-color, button-error-unselected-focused-icon-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-state-layer-color, button-error-unselected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, button-error-unselected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-icon-color, button-error-unselected-pressed-icon-color);
+		@include theme.forwardComponentToken(button-selected-container-color, button-error-selected-container-color);
+		@include theme.forwardComponentToken(button-selected-icon-color, button-error-selected-icon-color);
+		@include theme.forwardComponentToken(button-selected-label-text-color, button-error-selected-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-state-layer-color, button-error-selected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-hovered-label-text-color, button-error-selected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-icon-color, button-error-selected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-selected-focused-state-layer-color, button-error-selected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-focused-label-text-color, button-error-selected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-selected-focused-icon-color, button-error-selected-focused-icon-color);
+		@include theme.forwardComponentToken(button-selected-pressed-state-layer-color, button-error-selected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-pressed-label-text-color, button-error-selected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-selected-pressed-icon-color, button-error-selected-pressed-icon-color);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-container, button-error-disabled-container);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-icon, button-error-disabled-icon);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-label-text, button-error-disabled-label-text);
+		@include theme.forwardComponentToken(button-disabled-container-elevation, button-error-disabled-container-elevation);
+	}
+	&.outlined
+	{
+		@include theme.saveComponentValue(button-container-color, transparent);
+		@include theme.saveComponentValue(button-container-opacity, 0);
+		@include theme.forwardComponentToken(button-outline-color, button-outlined-outline-color);
+		@include theme.saveComponentValue(button-outline-opacity, 1);
+		@include theme.forwardComponentToken(button-icon-color, button-outlined-icon-color);
+		@include theme.forwardComponentToken(button-label-text-color, button-outlined-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-state-layer-opacity, button-outlined-hovered-state-layer-opacity);
+		@include theme.forwardComponentToken(button-hovered-state-layer-color, button-outlined-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-hovered-outline-color, button-outlined-hovered-outline-color);
+		@include theme.forwardComponentToken(button-hovered-label-text-color, button-outlined-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-icon-color, button-outlined-hovered-icon-color);
+		@include theme.forwardComponentToken(button-focused-state-layer-opacity, button-outlined-focused-state-layer-opacity);
+		@include theme.forwardComponentToken(button-focused-state-layer-color, button-outlined-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-focused-outline-color, button-outlined-focused-outline-color);
+		@include theme.forwardComponentToken(button-focused-label-text-color, button-outlined-focused-label-text-color);
+		@include theme.forwardComponentToken(button-focused-icon-color, button-outlined-focused-icon-color);
+		@include theme.forwardComponentToken(button-pressed-state-layer-opacity, button-outlined-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(button-pressed-state-layer-color, button-outlined-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-pressed-outline-color, button-outlined-pressed-outline-color);
+		@include theme.forwardComponentToken(button-pressed-label-text-color, button-outlined-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-pressed-icon-color, button-outlined-pressed-icon-color);
+		@include theme.saveComponentValue(button-unselected-container-color, transparent);
+		@include theme.saveComponentValue(button-unselected-container-opacity, 0);
+		@include theme.forwardComponentToken(button-unselected-icon-color, button-outlined-unselected-icon-color);
+		@include theme.forwardComponentToken(button-unselected-label-text-color, button-outlined-unselected-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-state-layer-color, button-outlined-unselected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-outline-color, button-outlined-unselected-hovered-outline-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, button-outlined-unselected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-hovered-icon-color, button-outlined-unselected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-unselected-focused-state-layer-color, button-outlined-unselected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-focused-outline-color, button-outlined-unselected-focused-outline-color);
+		@include theme.forwardComponentToken(button-unselected-focused-label-text-color, button-outlined-unselected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-focused-icon-color, button-outlined-unselected-focused-icon-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-state-layer-color, button-outlined-unselected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-outline-color, button-outlined-unselected-pressed-outline-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, button-outlined-unselected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-unselected-pressed-icon-color, button-outlined-unselected-pressed-icon-color);
+		@include theme.forwardComponentToken(button-selected-container-color, button-outlined-selected-container-color);
+		@include theme.saveComponentValue(button-selected-container-opacity, 1);
+		@include theme.forwardComponentToken(button-selected-icon-color, button-outlined-selected-icon-color);
+		@include theme.forwardComponentToken(button-selected-label-text-color, button-outlined-selected-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-state-layer-color, button-outlined-selected-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-hovered-label-text-color, button-outlined-selected-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-selected-hovered-icon-color, button-outlined-selected-hovered-icon-color);
+		@include theme.forwardComponentToken(button-selected-focused-state-layer-color, button-outlined-selected-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-focused-label-text-color, button-outlined-selected-focused-label-text-color);
+		@include theme.forwardComponentToken(button-selected-focused-icon-color, button-outlined-selected-focused-icon-color);
+		@include theme.forwardComponentToken(button-selected-pressed-state-layer-color, button-outlined-selected-pressed-state-layer-color);
+		@include theme.forwardComponentToken(button-selected-pressed-label-text-color, button-outlined-selected-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-selected-pressed-icon-color, button-outlined-selected-pressed-icon-color);
+		@include theme.forwardComponentToken(button-disabled-outline-color, button-outlined-unselected-disabled-outline-color);
+		@include theme.forwardComponentToken(button-disabled-container-opacity, button-outlined-disabled-container-opacity);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-label-text, button-outlined-disabled-label-text);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-icon, button-outlined-disabled-icon);
+
+		&.selected
+		{
+			@include theme.forwardComponentToken(button-disabled-container-color, button-outlined-selected-disabled-container-color);
+			@include theme.forwardComponentToken(button-disabled-outline-color, button-outlined-disabled-outline-color);
+			@include theme.saveComponentValue(button-disabled-outline-width, 0px);
+		}
+	}
+	&.text
+	{
+		@include theme.saveComponentValue(button-container-color, transparent);
+		@include theme.saveComponentValue(button-container-opacity, 0);
+		@include theme.forwardComponentToken(button-icon-color, button-text-icon-color);
+		@include theme.forwardComponentToken(button-label-text-color, button-text-label-text-color);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-container, button-text-disabled-container);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-icon, button-text-disabled-icon);
+		@include theme.forwardComponentColorOpacityTokens(button-disabled-label-text, button-text-disabled-label-text);
+		@include theme.forwardComponentToken(button-hovered-label-text-color, button-text-hovered-label-text-color);
+		@include theme.forwardComponentToken(button-hovered-icon-color, button-text-hovered-icon-color);
+		@include theme.forwardComponentToken(button-hovered-state-layer-opacity, button-text-hovered-state-layer-opacity);
+		@include theme.forwardComponentToken(button-hovered-state-layer-color, button-text-hovered-state-layer-color);
+		@include theme.forwardComponentToken(button-focused-label-text-color, button-text-focused-label-text-color);
+		@include theme.forwardComponentToken(button-focused-icon-color, button-text-focused-icon-color);
+		@include theme.forwardComponentToken(button-focused-state-layer-opacity, button-text-focused-state-layer-opacity);
+		@include theme.forwardComponentToken(button-focused-state-layer-color, button-text-focused-state-layer-color);
+		@include theme.forwardComponentToken(button-pressed-label-text-color, button-text-pressed-label-text-color);
+		@include theme.forwardComponentToken(button-pressed-icon-color, button-text-pressed-icon-color);
+		@include theme.forwardComponentToken(button-pressed-state-layer-opacity, button-text-pressed-state-layer-opacity);
+		@include theme.forwardComponentToken(button-pressed-state-layer-color, button-text-pressed-state-layer-color);
+	}
+}
+
+:not(.ButtonGroup) >.Button
+{
+	&.width-stretch
+	{width: 100%}
+}
+
+#{common.buttonSelector(".Button")}
+{
+	&.disabled
+	{
+		&.round:not(.selected)
+		{border-radius: theme.applyComponentToken(button-container-shape-round)}
+		&.square:not(.selected)
+		{border-radius: theme.applyComponentToken(button-container-shape-square)}
+		&.round.selected
+		{border-radius: theme.applyComponentToken(button-selected-container-shape-round)}
+		&.square.selected
+		{border-radius: theme.applyComponentToken(button-selected-container-shape-square)}
+	}
+
+	&:not(.disabled)
+	{
+		&:not(:active)
+		{
+			&.round:not(.selected)
+			{border-radius: theme.applyComponentToken(button-container-shape-round)}
+			&.square:not(.selected)
+			{border-radius: theme.applyComponentToken(button-container-shape-square)}
+			&.round.selected
+			{border-radius: theme.applyComponentToken(button-selected-container-shape-round)}
+			&.square.selected
+			{border-radius: theme.applyComponentToken(button-selected-container-shape-square)}
+		}
+		&:active
+		{border-radius: theme.applyComponentToken(button-pressed-container-shape)}
+	}
+}
+
+#{common.buttonContainerSelector(".Button", ".extra-small")}
+{
+	@include theme.forwardComponentToken(button-container-height, button-xsmall-container-height);
+	@include theme.forwardComponentToken(button-outline-width, button-xsmall-outlined-outline-width);
+	@include theme.forwardComponentTypescaleTokens(button-label-text, button-xsmall-label-text);
+	@include theme.forwardComponentToken(button-icon-size, button-xsmall-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-xsmall-leading-space);
+	@include theme.forwardComponentToken(button-icon-label-space, button-xsmall-icon-label-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-xsmall-trailing-space);
+	@include theme.forwardComponentToken(button-container-shape-round, button-xsmall-container-shape-round);
+	@include theme.forwardComponentToken(button-container-shape-square, button-xsmall-container-shape-square);
+	@include theme.forwardComponentToken(button-pressed-container-shape, button-xsmall-pressed-container-shape);
+	@include theme.forwardComponentToken(button-selected-container-shape-round, button-xsmall-selected-container-shape-round);
+	@include theme.forwardComponentToken(button-selected-container-shape-square, button-xsmall-selected-container-shape-square);
+	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-xsmall-pressed-container-corner-size-motion-spring);
+}
+
+#{common.buttonContainerSelector(".Button", ".small")}
+{
+	@include theme.forwardComponentToken(button-container-height, button-small-container-height);
+	@include theme.forwardComponentToken(button-outline-width, button-small-outlined-outline-width);
+	@include theme.forwardComponentTypescaleTokens(button-label-text, button-small-label-text);
+	@include theme.forwardComponentToken(button-icon-size, button-small-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-small-leading-space);
+	@include theme.forwardComponentToken(button-icon-label-space, button-small-icon-label-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-small-trailing-space);
+	@include theme.forwardComponentToken(button-container-shape-round, button-small-container-shape-round);
+	@include theme.forwardComponentToken(button-container-shape-square, button-small-container-shape-square);
+	@include theme.forwardComponentToken(button-pressed-container-shape, button-small-pressed-container-shape);
+	@include theme.forwardComponentToken(button-selected-container-shape-round, button-small-selected-container-shape-round);
+	@include theme.forwardComponentToken(button-selected-container-shape-square, button-small-selected-container-shape-square);
+	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-small-pressed-container-corner-size-motion-spring);
+}
+#{common.buttonContainerSelector(".Button", ".medium")}
+{
+	@include theme.forwardComponentToken(button-container-height, button-medium-container-height);
+	@include theme.forwardComponentToken(button-outline-width, button-medium-outlined-outline-width);
+	@include theme.forwardComponentTypescaleTokens(button-label-text, button-medium-label-text);
+	@include theme.forwardComponentToken(button-icon-size, button-medium-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-medium-leading-space);
+	@include theme.forwardComponentToken(button-icon-label-space, button-medium-icon-label-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-medium-trailing-space);
+	@include theme.forwardComponentToken(button-container-shape-round, button-medium-container-shape-round);
+	@include theme.forwardComponentToken(button-container-shape-square, button-medium-container-shape-square);
+	@include theme.forwardComponentToken(button-pressed-container-shape, button-medium-pressed-container-shape);
+	@include theme.forwardComponentToken(button-selected-container-shape-round, button-medium-selected-container-shape-round);
+	@include theme.forwardComponentToken(button-selected-container-shape-square, button-medium-selected-container-shape-square);
+	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-medium-pressed-container-corner-size-motion-spring);
+}
+#{common.buttonContainerSelector(".Button", ".large")}
+{
+	@include theme.forwardComponentToken(button-container-height, button-large-container-height);
+	@include theme.forwardComponentToken(button-outline-width, button-large-outlined-outline-width);
+	@include theme.forwardComponentTypescaleTokens(button-label-text, button-large-label-text);
+	@include theme.forwardComponentToken(button-icon-size, button-large-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-large-leading-space);
+	@include theme.forwardComponentToken(button-icon-label-space, button-large-icon-label-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-large-trailing-space);
+	@include theme.forwardComponentToken(button-container-shape-round, button-large-container-shape-round);
+	@include theme.forwardComponentToken(button-container-shape-square, button-large-container-shape-square);
+	@include theme.forwardComponentToken(button-pressed-container-shape, button-large-pressed-container-shape);
+	@include theme.forwardComponentToken(button-selected-container-shape-round, button-large-selected-container-shape-round);
+	@include theme.forwardComponentToken(button-selected-container-shape-square, button-large-selected-container-shape-square);
+	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-large-pressed-container-corner-size-motion-spring);
+}
+#{common.buttonContainerSelector(".Button", ".extra-large")}
+{
+	@include theme.forwardComponentToken(button-container-height, button-xlarge-container-height);
+	@include theme.forwardComponentToken(button-outline-width, button-xlarge-outlined-outline-width);
+	@include theme.forwardComponentTypescaleTokens(button-label-text, button-xlarge-label-text);
+	@include theme.forwardComponentToken(button-icon-size, button-xlarge-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-xlarge-leading-space);
+	@include theme.forwardComponentToken(button-icon-label-space, button-xlarge-icon-label-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-xlarge-trailing-space);
+	@include theme.forwardComponentToken(button-container-shape-round, button-xlarge-container-shape-round);
+	@include theme.forwardComponentToken(button-container-shape-square, button-xlarge-container-shape-square);
+	@include theme.forwardComponentToken(button-pressed-container-shape, button-xlarge-pressed-container-shape);
+	@include theme.forwardComponentToken(button-selected-container-shape-round, button-xlarge-selected-container-shape-round);
+	@include theme.forwardComponentToken(button-selected-container-shape-square, button-xlarge-selected-container-shape-square);
+	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-xlarge-pressed-container-corner-size-motion-spring);
+}

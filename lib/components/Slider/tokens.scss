@@ -1,0 +1,126 @@
+@use "../../style" as theme;
+
+:root
+{
+	/* Slider */
+		/* Enabled */
+			/* Stop indicator */
+				@include theme.saveComponentValue(slider-stop-indicator-size, 4px);
+				@include theme.saveComponentToken(slider-stop-indicator-shape, shape-corner-full);
+				@include theme.saveComponentToken(slider-stop-indicator-trailing-space, measurement-space50);
+				@include theme.saveComponentToken(slider-stop-indicator-color, color-on-secondary-container);
+				@include theme.saveComponentToken(slider-stop-indicator-color-selected, color-on-primary);
+			/* Container */
+				@include theme.saveComponentToken(slider-active-stop-indicator-container-color, color-on-primary);
+				@include theme.saveComponentValue(slider-active-stop-indicator-container-opacity, 100%);
+				@include theme.saveComponentToken(slider-inactive-stop-indicator-container-color, color-on-secondary-container);
+				@include theme.saveComponentValue(slider-inactive-stop-indicator-container-opacity, 100%);
+			/* Track */
+				@include theme.saveComponentValue(slider-active-track-height, 16px);
+				@include theme.saveComponentValue(slider-inactive-track-height, 16px);
+				@include theme.saveComponentToken(slider-active-track-shape, shape-corner-full);
+				@include theme.saveComponentToken(slider-active-track-outer-corner-corner-size, shape-corner-full);
+				@include theme.saveComponentToken(slider-inactive-track-shape, shape-corner-full);
+				@include theme.saveComponentToken(slider-active-track-color, color-primary);
+				@include theme.saveComponentToken(slider-inactive-track-color, color-secondary-container);
+			/* Handle */
+				@include theme.saveComponentValue(slider-handle-height, 44px);
+				@include theme.saveComponentValue(slider-handle-width, 4px);
+				@include theme.saveComponentToken(slider-handle-shape, shape-corner-full);
+				@include theme.saveComponentToken(slider-handle-color, color-primary);
+				@include theme.saveComponentToken(slider-active-handle-color, color-primary);
+				@include theme.saveComponentValue(slider-active-handle-height, 44px);
+				@include theme.saveComponentValue(slider-active-handle-width, 4px);
+				@include theme.saveComponentToken(slider-active-handle-shape, shape-corner-full);
+				@include theme.saveComponentToken(slider-active-handle-leading-space, measurement-space75);
+				@include theme.saveComponentToken(slider-active-handle-trailing-space, measurement-space75);
+				@include theme.saveComponentToken(slider-active-handle-padding, measurement-space75);
+		/* Disabled */
+			/* Stop indicator */
+				@include theme.saveComponentToken(slider-disabled-active-stop-indicator-container-color, color-inverse-on-surface);
+				@include theme.saveComponentToken(slider-disabled-inactive-stop-indicator-container-color, color-on-surface);
+			/* Track */
+				@include theme.saveComponentToken(slider-disabled-active-track-color, color-on-surface);
+				@include theme.saveComponentValue(slider-disabled-active-track-opacity, 38%);
+				@include theme.saveComponentToken(slider-disabled-inactive-track-color, color-on-surface);
+				@include theme.saveComponentValue(slider-disabled-inactive-track-opacity, 12%);
+			/* Handle */
+				@include theme.saveComponentToken(slider-disabled-handle-color, color-on-surface);
+				@include theme.saveComponentValue(slider-disabled-handle-opacity, 38%);
+				@include theme.saveComponentValue(slider-disabled-handle-width, 4px);
+		/* Hovered */
+			/* Handle */
+				@include theme.saveComponentValue(slider-hover-handle-width, 4px);
+		/* Focused */
+			/* Track */
+				@include theme.saveComponentToken(slider-focus-active-track-color, color-primary);
+				@include theme.saveComponentToken(slider-focus-inactive-track-color, color-secondary-container);
+			/* Handle */
+				@include theme.saveComponentValue(slider-focus-handle-width, 2px);
+		/* Pressed (ripple) */
+			/* Handle */
+				@include theme.saveComponentToken(slider-pressed-handle-color, color-primary);
+				@include theme.saveComponentValue(slider-pressed-handle-width, 2px);
+			/* Track */
+				@include theme.saveComponentToken(slider-pressed-active-track-color, color-primary);
+				@include theme.saveComponentToken(slider-pressed-inactive-track-color, color-secondary-container);
+			/* Value indicator */
+				@include theme.saveComponentToken(slider-value-indicator-container-color, color-inverse-surface);
+				@include theme.saveComponentTypescaleTokens(slider-value-indicator-label-label-text, label-large);
+				@include theme.saveComponentToken(slider-value-indicator-label-label-text-color, color-inverse-on-surface);
+				@include theme.saveComponentToken(slider-value-indicator-active-bottom-space, measurement-space150);
+	/* Slider - Size - Xsmall */
+		/* Active track */
+			@include theme.saveComponentValue(slider-xsmall-active-track-height, 16px);
+			@include theme.saveComponentValue(slider-xsmall-active-track-shape-leading, 8px);
+		/* Inactive track */
+			@include theme.saveComponentValue(slider-xsmall-inactive-track-height, 16px);
+			@include theme.saveComponentValue(slider-xsmall-inactive-track-shape-trailing, 8px);
+		/* Handle */
+			@include theme.saveComponentValue(slider-xsmall-active-handle-height, 44px);
+	/* Slider - Size - Small */
+		/* Active track */
+			@include theme.saveComponentValue(slider-small-active-track-height, 24px);
+			@include theme.saveComponentValue(slider-small-active-track-shape-leading, 8px);
+		/* Inactive track */
+			@include theme.saveComponentValue(slider-small-inactive-track-height, 24px);
+			@include theme.saveComponentValue(slider-small-inactive-track-shape-trailing, 8px);
+		/* Handle */
+			@include theme.saveComponentValue(slider-small-active-handle-height, 44px);
+	/* Slider - Size - Medium */
+		/* Active track */
+			@include theme.saveComponentValue(slider-medium-active-track-height, 40px);
+			@include theme.saveComponentValue(slider-medium-active-track-shape-leading, 12px);
+		/* Inactive track */
+			@include theme.saveComponentValue(slider-medium-inactive-track-height, 40px);
+			@include theme.saveComponentValue(slider-medium-inactive-track-shape-trailing, 12px);
+		/* Handle */
+			@include theme.saveComponentValue(slider-medium-active-handle-height, 44px);
+		/* Icon */
+			@include theme.saveComponentValue(slider-medium-icon-padding, 6px);
+			@include theme.saveComponentValue(slider-medium-icon-size, 24px);
+	/* Slider - Size - Large */
+		/* Active track */
+			@include theme.saveComponentValue(slider-large-active-track-height, 56px);
+			@include theme.saveComponentValue(slider-large-active-track-shape-leading, 16px);
+		/* Inactive track */
+			@include theme.saveComponentValue(slider-large-inactive-track-height, 56px);
+			@include theme.saveComponentValue(slider-large-inactive-track-shape-trailing, 16px);
+		/* Handle */
+			@include theme.saveComponentValue(slider-large-active-handle-height, 68px);
+		/* Icon */
+			@include theme.saveComponentValue(slider-large-icon-padding, 6px);
+			@include theme.saveComponentValue(slider-large-icon-size, 24px);
+	/* Slider - Size - Xlarge */
+		/* Active track */
+			@include theme.saveComponentValue(slider-xlarge-active-track-height, 96px);
+			@include theme.saveComponentValue(slider-xlarge-active-track-shape-leading, 28px);
+		/* Inactive track */
+			@include theme.saveComponentValue(slider-xlarge-inactive-track-height, 96px);
+			@include theme.saveComponentValue(slider-xlarge-inactive-track-shape-trailing, 28px);
+		/* Handle */
+			@include theme.saveComponentValue(slider-xlarge-active-handle-height, 108px);
+		/* Icon */
+			@include theme.saveComponentValue(slider-xlarge-icon-padding, 8px);
+			@include theme.saveComponentValue(slider-xlarge-icon-size, 32px);
+}

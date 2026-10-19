@@ -1,0 +1,7 @@
+@use "../../style" as theme;
+
+.Menubar
+{
+	background-color: theme.applySystemToken(color-surface-container-high);
+	padding-inline: theme.applySystemToken(measurement-space100);
+}

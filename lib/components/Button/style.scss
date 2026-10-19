@@ -1,0 +1,86 @@
+@use "../../style" as theme;
+
+@function buttonSelector($name, $size: "")
+{@return ":not(.ButtonGroup, .SplitButton) >* >.ButtonContainer >#{$name}#{$size}";}
+@function buttonContainerSelector($name, $size: "")
+{@return ":not(.ButtonGroup, .SplitButton) >* >.ButtonContainer#{$size}:has(>#{$name})";}
+
+.ButtonContainer
+{
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 48px;
+	min-height: 48px;
+	padding: 0px;
+	text-decoration: none;
+	border: none;
+	vertical-align: middle;
+	box-sizing: border-box;
+
+	>.menu-hover
+	{
+		position: absolute;
+		width: 100%;
+		top: calc(theme.applyComponentToken(button-container-height) + max(0px, calc((48px - theme.applyComponentToken(button-container-height)) / 2)));
+		height: 4px;
+
+		&:has(+ .Menu.visible)
+		{height: 4px}
+	}
+	>.Menu
+	{
+		position: absolute;
+		z-index: 1000;
+		top: calc(theme.applyComponentToken(button-container-height) + max(0px, calc((48px - theme.applyComponentToken(button-container-height)) / 2)) + 4px);
+
+		>.MenuGroup
+		{
+			width: auto;
+		}
+	}
+}
+
+.CommonButton
+{
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	// height: inherit;
+	border-radius: inherit;
+	padding: 0px;
+	text-decoration: none;
+	border: none;
+	vertical-align: middle;
+	box-sizing: border-box;
+	transition:
+		theme.motion-spring-expressive-fast-spatial((width, min-width, height, min-height, font, margin, padding, gap, border-radius)),
+		theme.motion-spring-expressive-fast-effects((background-color, color, box-shadow, outline, opacity));
+
+	>.container
+	{
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: inherit;
+		transition: inherit;
+
+		&.size-ref
+		{
+			position: absolute;
+			gap: theme.applyComponentToken(button-gap-space);
+			visibility: hidden;
+			transition: unset;
+		}
+	}
+
+	&.disabled
+	{cursor: default}
+	&:not(.disabled)
+	{cursor: pointer}
+
+	&:focus
+	{outline-width: 3px}
+}

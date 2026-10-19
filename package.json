@@ -1,0 +1,170 @@
+{
+	"name": "react-material-design",
+	"version": "0.1.0",
+	"type": "module",
+	"license": "MIT",
+	"author": {
+		"name": "Mondemen"
+	},
+	"repository": {
+		"url": "git+https://github.com/Mondemen/react-material-design.git"
+	},
+	"scripts": {
+		"dev": "vite --clearScreen",
+		"build": "vite build --mode lib",
+		"lint": "oxlint",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@material/material-color-utilities": "^0.4.0",
+		"bezier-easing": "^3.2.0",
+		"classnames": "^2.5.1",
+		"react-dom-event-hooks": "^1.2.2"
+	},
+	"peerDependencies": {
+		"@fontsource/roboto": "*",
+		"@fontsource/roboto-flex": "*",
+		"@fontsource/roboto-mono": "*",
+		"material-symbols": ">=0.4.0",
+		"react": ">=19.3.0",
+		"react-dom": ">=19.3.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.29.7",
+		"@rolldown/plugin-babel": "^0.2.4",
+		"@types/babel__core": "^7.20.5",
+		"@types/node": "^24.19.2",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"@vitejs/plugin-react": "^6.1.2",
+		"babel-plugin-react-compiler": "^1.0.0",
+		"commander": "^15.0.0",
+		"globals": "^17.13.0",
+		"oxlint": "^1.88.0",
+		"sass": "^1.105.2",
+		"sass-alias": "^2.0.1",
+		"tsx": "^4.23.15",
+		"typescript": "^6.0.3",
+		"unplugin-dts": "^1.1.2",
+		"vite": "^8.3.4",
+		"vite-plugin-lib-inject-css": "^2.2.2",
+		"vite-tsconfig-paths": "^6.1.1"
+	},
+	"exports": {
+		"./Theme": {
+			"types": "./dist/components/Theme/index.d.ts",
+			"import": "./dist/components/Theme/index.js",
+			"require": "./dist/components/Theme/index.cjs"
+		},
+		"./Button": {
+			"types": "./dist/components/Button/default/index.d.ts",
+			"import": "./dist/components/Button/default/index.js",
+			"require": "./dist/components/Button/default/index.cjs"
+		},
+		"./ButtonIcon": {
+			"types": "./dist/components/Button/icon/index.d.ts",
+			"import": "./dist/components/Button/icon/index.js",
+			"require": "./dist/components/Button/icon/index.cjs"
+		},
+		"./ButtonGroup": {
+			"types": "./dist/components/Button/group/index.d.ts",
+			"import": "./dist/components/Button/group/index.js",
+			"require": "./dist/components/Button/group/index.cjs"
+		},
+		"./SplitButton": {
+			"types": "./dist/components/Button/split/index.d.ts",
+			"import": "./dist/components/Button/split/index.js",
+			"require": "./dist/components/Button/split/index.cjs"
+		},
+		"./Chip": {
+			"types": "./dist/components/Chip/index.d.ts",
+			"import": "./dist/components/Chip/index.js",
+			"require": "./dist/components/Chip/index.cjs"
+		},
+		"./ContextMenu": {
+			"types": "./dist/components/ContextMenu/index.d.ts",
+			"import": "./dist/components/ContextMenu/index.js",
+			"require": "./dist/components/ContextMenu/index.cjs"
+		},
+		"./Dialog": {
+			"types": "./dist/components/Dialog/index.d.ts",
+			"import": "./dist/components/Dialog/index.js",
+			"require": "./dist/components/Dialog/index.cjs"
+		},
+		"./Divider": {
+			"types": "./dist/components/Divider/index.d.ts",
+			"import": "./dist/components/Divider/index.js",
+			"require": "./dist/components/Divider/index.cjs"
+		},
+		"./Icon": {
+			"types": "./dist/components/Icon/index.d.ts",
+			"import": "./dist/components/Icon/index.js",
+			"require": "./dist/components/Icon/index.cjs"
+		},
+		"./Menu": {
+			"types": "./dist/components/Menu/index.d.ts",
+			"import": "./dist/components/Menu/index.js",
+			"require": "./dist/components/Menu/index.cjs"
+		},
+		"./Menubar": {
+			"types": "./dist/components/Menubar/index.d.ts",
+			"import": "./dist/components/Menubar/index.js",
+			"require": "./dist/components/Menubar/index.cjs"
+		},
+		"./NumberField": {
+			"types": "./dist/components/NumberField/index.d.ts",
+			"import": "./dist/components/NumberField/index.js",
+			"require": "./dist/components/NumberField/index.cjs"
+		},
+		"./Select": {
+			"types": "./dist/components/Select/index.d.ts",
+			"import": "./dist/components/Select/index.js",
+			"require": "./dist/components/Select/index.cjs"
+		},
+		"./Slider": {
+			"types": "./dist/components/Slider/index.d.ts",
+			"import": "./dist/components/Slider/index.js",
+			"require": "./dist/components/Slider/index.cjs"
+		},
+		"./TextField": {
+			"types": "./dist/components/TextField/index.d.ts",
+			"import": "./dist/components/TextField/index.js",
+			"require": "./dist/components/TextField/index.cjs"
+		},
+		"./Toolbar": {
+			"types": "./dist/components/Toolbar/index.d.ts",
+			"import": "./dist/components/Toolbar/index.js",
+			"require": "./dist/components/Toolbar/index.cjs"
+		},
+		"./Tooltip": {
+			"types": "./dist/components/Tooltip/index.d.ts",
+			"import": "./dist/components/Tooltip/index.js",
+			"require": "./dist/components/Tooltip/index.cjs"
+		},
+		"./Page": {
+			"types": "./dist/layouts/Page/index.d.ts",
+			"import": "./dist/layouts/Page/index.js",
+			"require": "./dist/layouts/Page/index.cjs"
+		},
+		"./Panes": {
+			"types": "./dist/layouts/Panes/index.d.ts",
+			"import": "./dist/layouts/Panes/index.js",
+			"require": "./dist/layouts/Panes/index.cjs"
+		},
+		"./Tabs": {
+			"types": "./dist/layouts/Tabs/index.d.ts",
+			"import": "./dist/layouts/Tabs/index.js",
+			"require": "./dist/layouts/Tabs/index.cjs"
+		},
+		"./Toolbox": {
+			"types": "./dist/layouts/Toolbox/index.d.ts",
+			"import": "./dist/layouts/Toolbox/index.js",
+			"require": "./dist/layouts/Toolbox/index.cjs"
+		},
+		"./Content": {
+			"types": "./dist/layouts/Content.d.ts",
+			"import": "./dist/layouts/Content.js",
+			"require": "./dist/layouts/Content.cjs"
+		}
+	}
+}

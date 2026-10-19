@@ -1,0 +1,153 @@
+@use "../../style" as theme;
+
+$offset: 125;
+$duration: 1.5s;
+
+@keyframes circular-rotator
+{
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+
+@keyframes circular-dash
+{
+	0%
+	{stroke-dashoffset: 0;}
+	50%
+	{
+		stroke-dashoffset: 125;
+		transform: rotate(310deg);
+	}
+	100%
+	{
+		stroke-dashoffset: 0;
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes linear-indeterminate
+{
+	0%
+	{
+		left: -35%;
+		right: 100%;
+	}
+	60%
+	{
+		left: 100%;
+		right: -90%;
+	}
+	100%
+	{
+		left: 100%;
+		right: -90%;
+	}
+}
+
+@keyframes linear-indeterminate-short
+{
+	0%
+	{
+		left: -200%;
+		right: 100%;
+	}
+	60%
+	{
+		left: 107%;
+		right: -8%;
+	}
+	100%
+	{
+		left: 107%;
+		right: -8%;
+	}
+}
+
+.ProgressIndicator
+{
+	&.circular
+	{
+		width: 66px;
+		height: 66px;
+
+		.ProgressIndicator_circular
+		{
+			width: 100%;
+			height: 100%;
+
+			&:not(.progress)
+			{
+				animation: circular-rotator $duration + 0.5 linear infinite;
+
+				.ProgressIndicator_path
+				{
+					stroke-dasharray: $offset;
+					stroke-dashoffset: 0;
+					animation: circular-dash $duration ease-in-out infinite;
+				}
+			}
+
+			&.progress
+			{
+				transform: rotate(-90deg);
+			}
+
+			.ProgressIndicator_path
+			{
+				stroke: var(--md-sys-color-primary);
+				transform-origin: center;
+				transition: stroke-dashoffset 250ms;
+			}
+		}
+	}
+
+	.ProgressIndicator_linear
+	{
+		@include theme.surface_container_highest;
+		position: relative;
+		width: 100%;
+		height: 4px;
+		border-radius: 2px;
+		overflow: hidden;
+
+		.ProgressIndicator_indicator
+		{
+			@include theme.primary;
+
+			&:before, &:after
+			{
+				content: '';
+				position: absolute;
+				background-color: inherit;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				will-change: left, right;
+			}
+
+			&:before
+			{animation: linear-indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;}
+
+			&:after
+			{
+				animation: linear-indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+				animation-delay: 1.15s;
+			}
+		}
+	}
+
+	&#page_loader_indicator
+	{
+		position: fixed;
+		display: none;
+		width: 100%;
+		top: 0;
+		left: 0;
+		z-index: 99;
+
+		&.visible
+		{
+			display: initial;
+		}
+	}
+}

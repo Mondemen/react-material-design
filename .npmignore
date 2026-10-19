@@ -1,0 +1,12 @@
+src
+lib
+public
+scripts
+*.tgz
+*.html
+tsconfig*
+*.config.ts
+*.config.js
+.oxlintrc.json
+*.tgz
+.eslintcache

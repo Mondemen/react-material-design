@@ -1,0 +1,116 @@
+@use "../../style" as theme;
+
+.Toolbox
+{
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	justify-content: stretch;
+	width: 100%;
+	height: 100%;
+	flex: 1;
+	box-sizing: border-box;
+
+	--toolbox-content-default-spacing: #{theme.applySystemToken(measurement-space200)};
+	--toolbox-tools-top-size: max(var(--toolbox-tools-top-toolbar-size, var(--toolbox-content-default-spacing, 0)));
+	--toolbox-tools-bottom-size: max(var(--toolbox-tools-bottom-toolbar-size, var(--toolbox-content-default-spacing, 0)));
+	--toolbox-tools-left-size: max(var(--toolbox-tools-left-toolbar-size, var(--toolbox-content-default-spacing, 0)));
+	--toolbox-tools-right-size: max(var(--toolbox-tools-right-toolbar-size, var(--toolbox-content-default-spacing, 0)));
+
+	&:has(>.tools.top >.Toolbar.floating)
+	{--toolbox-tools-top-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} * 2);}
+
+	&:has(>.tools.bottom >.Toolbar.docked)
+	{--toolbox-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-docked-container-height)} + #{theme.applySystemToken(measurement-space200)});}
+	&:has(>.tools.bottom >.Toolbar.floating)
+	{--toolbox-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} * 2);}
+
+	&:has(>.tools.left >.Toolbar.floating)
+	{--toolbox-tools-left-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} * 2);}
+
+	&:has(>.tools.right >.Toolbar.floating)
+	{--toolbox-tools-right-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} * 2);}
+
+	>.tools
+	{
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 4;
+		pointer-events: none;
+
+		& >*
+		{pointer-events: initial}
+
+		&.top
+		{
+			top: 0;
+			left: 0;
+			right: 0;
+
+			>.Toolbar.floating
+			{margin-top: theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)}
+		}
+		&.bottom
+		{
+			bottom: 0;
+			left: 0;
+			right: 0;
+
+			&:not(:has(>.Toolbar.docked))
+			{padding-inline: theme.applySystemToken(measurement-space200)}
+
+			>.Toolbar.docked
+			{flex: 1}
+			>.Toolbar.floating
+			{margin-bottom: theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)}
+		}
+		&.left
+		{
+			top: 0;
+			bottom: 0;
+			left: 0;
+			padding-block: theme.applySystemToken(measurement-space300);
+
+			>.Toolbar.floating
+			{margin-left: theme.applyComponentToken(toolbar-floating-vertical-container-external-space)}
+		}
+		&.right
+		{
+			top: 0;
+			bottom: 0;
+			right: 0;
+			padding-block: theme.applySystemToken(measurement-space300);
+
+			>.Toolbar.floating
+			{margin-right: theme.applyComponentToken(toolbar-floating-vertical-container-external-space)}
+		}
+	}
+
+	&.inline-padding >.content
+	{padding-inline: var(--toolbox-tools-left-size) var(--toolbox-tools-right-size)}
+	&.block-padding >.content
+	{padding-block: var(--toolbox-tools-top-size) var(--toolbox-tools-bottom-size)}
+
+	>.content
+	{
+		// padding: var(--toolbox-tools-top-size) var(--toolbox-tools-right-size) var(--toolbox-tools-bottom-size) var(--toolbox-tools-left-size);
+		flex: 1;
+		overflow: auto;
+
+		>*
+		{
+			--toolbox-tools-top-size: initial;
+			--toolbox-tools-bottom-size: initial;
+			--toolbox-tools-left-size: initial;
+			--toolbox-tools-right-size: initial;
+			--toolbox-tools-top-menubar-size: initial;
+			--toolbox-tools-top-toolbar-size: initial;
+			--toolbox-tools-bottom-toolbar-size: initial;
+			--toolbox-tools-bottom-toolbar-size: initial;
+			--toolbox-tools-left-toolbar-size: initial;
+			--toolbox-tools-right-toolbar-size: initial;
+		}
+	}
+}

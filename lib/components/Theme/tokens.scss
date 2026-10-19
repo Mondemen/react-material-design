@@ -1,0 +1,555 @@
+@use "../Button/default/tokens.scss" as Button;
+@use "../Button/icon/tokens.scss" as IconButton;
+@use "../Button/group/tokens.scss" as ButtonGroup;
+@use "../Button/split/tokens.scss" as SplitButton;
+@use "../Chip/tokens.scss" as Chip;
+@use "../Dialog/tokens.scss" as Dialog;
+@use "../Divider/tokens.scss" as Divider;
+@use "../Icon/tokens.scss" as Icon;
+@use "../Menu/tokens.scss" as Menu;
+@use "../Slider/tokens.scss" as Slider;
+@use "../Toolbar/tokens.scss" as Toolbar;
+@use "../Tooltip/tokens.scss" as Tooltip;
+
+@use "../../layouts/Panes/tokens.scss" as Panes;
+@use "../../layouts/Tabs/tokens.scss" as Tabs;
+@use "../../style/tokens.scss";
+
+:root /* Color */
+{
+	--md-sys-color-shadow: #000000;
+}
+
+:root /* Elevation */
+{
+	--md-sys-elevation-level0: rgb(from var(--md-sys-color-shadow) r g b / 20%) 0px 0px 0px 0px, rgb(from var(--md-sys-color-shadow) r g b / 14%) 0px 0px 0px 0px, rgb(from var(--md-sys-color-shadow) r g b / 12%) 0px 0px 0px 0px;
+	--md-sys-elevation-level1: rgb(from var(--md-sys-color-shadow) r g b / 20%) 0px 2px 1px -1px, rgb(from var(--md-sys-color-shadow) r g b / 14%) 0px 1px 1px 0px, rgb(from var(--md-sys-color-shadow) r g b / 12%) 0px 1px 3px 0px;
+	--md-sys-elevation-level2: rgb(from var(--md-sys-color-shadow) r g b / 20%) 0px 3px 3px -2px, rgb(from var(--md-sys-color-shadow) r g b / 14%) 0px 3px 4px 0px, rgb(from var(--md-sys-color-shadow) r g b / 12%) 0px 1px 8px 0px;
+	--md-sys-elevation-level3: rgb(from var(--md-sys-color-shadow) r g b / 20%) 0px 3px 5px -1px, rgb(from var(--md-sys-color-shadow) r g b / 14%) 0px 6px 10px 0px, rgb(from var(--md-sys-color-shadow) r g b / 12%) 0px 1px 18px 0px;
+	--md-sys-elevation-level4: rgb(from var(--md-sys-color-shadow) r g b / 20%) 0px 5px 5px -3px, rgb(from var(--md-sys-color-shadow) r g b / 14%) 0px 8px 10px 1px, rgb(from var(--md-sys-color-shadow) r g b / 12%) 0px 3px 14px 2px;
+	--md-sys-elevation-level5: rgb(from var(--md-sys-color-shadow) r g b / 20%) 0px 7px 8px -4px, rgb(from var(--md-sys-color-shadow) r g b / 14%) 0px 12px 17px 2px, rgb(from var(--md-sys-color-shadow) r g b / 12%) 0px 5px 22px 4px;
+}
+
+:root /* Spacing */
+{
+	--md-sys-measurement-space0: 0px;
+	--md-sys-measurement-space25: 2px;
+	--md-sys-measurement-space50: 4px;
+	--md-sys-measurement-space75: 6px;
+	--md-sys-measurement-space100: 8px;
+	--md-sys-measurement-space125: 10px;
+	--md-sys-measurement-space150: 12px;
+	--md-sys-measurement-space175: 14px;
+	--md-sys-measurement-space200: 16px;
+	--md-sys-measurement-space250: 20px;
+	--md-sys-measurement-space300: 24px;
+	--md-sys-measurement-space400: 32px;
+	--md-sys-measurement-space450: 36px;
+	--md-sys-measurement-space500: 40px;
+	--md-sys-measurement-space600: 48px;
+	--md-sys-measurement-space700: 56px;
+	--md-sys-measurement-space800: 64px;
+	--md-sys-measurement-space900: 72px;
+}
+
+:root /* Shapes */
+{
+	--md-sys-shape-corner-none: #{tokens.$md-sys-shape-corner-none};
+	--md-sys-shape-corner-extra-small: #{tokens.$md-sys-shape-corner-extra-small};
+	--md-sys-shape-corner-small: #{tokens.$md-sys-shape-corner-small};
+	--md-sys-shape-corner-medium: #{tokens.$md-sys-shape-corner-medium};
+	--md-sys-shape-corner-large: #{tokens.$md-sys-shape-corner-large};
+	--md-sys-shape-corner-large-increased: #{tokens.$md-sys-shape-corner-large-increased};
+	--md-sys-shape-corner-extra-large: #{tokens.$md-sys-shape-corner-extra-large};
+	--md-sys-shape-corner-extra-large-increased: #{tokens.$md-sys-shape-corner-extra-large-increased};
+	--md-sys-shape-corner-extra-extra-large: #{tokens.$md-sys-shape-corner-extra-extra-large};
+	--md-sys-shape-corner-full: #{tokens.$md-sys-shape-corner-full};
+}
+
+:root /* Motions */
+{
+	--md-sys-motion-spring-expressive-fast-spatial-duration: 350ms;
+	--md-sys-motion-spring-expressive-fast-effects-duration: 150ms;
+	--md-sys-motion-spring-expressive-default-spatial-duration: 500ms;
+	--md-sys-motion-spring-expressive-default-effects-duration: 200ms;
+	--md-sys-motion-spring-expressive-slow-spatial-duration: 650ms;
+	--md-sys-motion-spring-expressive-slow-effects-duration: 300ms;
+
+	--md-sys-motion-spring-standard-fast-spatial-duration: 350ms;
+	--md-sys-motion-spring-standard-fast-effects-duration: 150ms;
+	--md-sys-motion-spring-standard-default-spatial-duration: 500ms;
+	--md-sys-motion-spring-standard-default-effects-duration: 200ms;
+	--md-sys-motion-spring-standard-slow-spatial-duration: 750ms;
+	--md-sys-motion-spring-standard-slow-effects-duration: 300ms;
+
+	--md-sys-motion-spring-expressive-fast-spatial-easing: cubic-bezier(0.42, 1.67, 0.21, 0.9);
+	--md-sys-motion-spring-expressive-fast-effects-easing: cubic-bezier(0.31, 0.94, 0.34, 1);
+	--md-sys-motion-spring-expressive-default-spatial-easing: cubic-bezier(0.38, 1.21, 0.22, 1);
+	--md-sys-motion-spring-expressive-default-effects-easing: cubic-bezier(0.34, 0.8, 0.34, 1);
+	--md-sys-motion-spring-expressive-slow-spatial-easing: cubic-bezier(0.39, 1.29, 0.35, 0.98);
+	--md-sys-motion-spring-expressive-slow-effects-easing: cubic-bezier(0.34, 0.88, 0.34, 1);
+
+	--md-sys-motion-spring-standard-fast-spatial-easing: cubic-bezier(0.27, 1.06, 0.18, 1);
+	--md-sys-motion-spring-standard-fast-effects-easing: cubic-bezier(0.31, 0.94, 0.34, 1);
+	--md-sys-motion-spring-standard-default-spatial-easing: cubic-bezier(0.27, 1.06, 0.18, 1);
+	--md-sys-motion-spring-standard-default-effects-easing: cubic-bezier(0.34, 0.8, 0.34, 1);
+	--md-sys-motion-spring-standard-slow-spatial-easing: cubic-bezier(0.27, 1.06, 0.18, 1);
+	--md-sys-motion-spring-standard-slow-effects-easing: cubic-bezier(0.34, 0.88, 0.34, 1);
+}
+
+:root /* Typescales */
+{
+	/* display-large */
+	--md-sys-typescale-display-large-font: #{tokens.$md-sys-typescale-display-large-font};
+	--md-sys-typescale-display-large-weight: #{tokens.$md-sys-typescale-display-large-weight};
+	--md-sys-typescale-display-large-size: #{tokens.$md-sys-typescale-display-large-size};
+	--md-sys-typescale-display-large-tracking: #{tokens.$md-sys-typescale-display-large-tracking};
+	--md-sys-typescale-display-large-line-height: #{tokens.$md-sys-typescale-display-large-line-height};
+	--md-sys-typescale-display-large-wght: #{tokens.$md-sys-typescale-display-large-wght};
+	--md-sys-typescale-display-large-grad: #{tokens.$md-sys-typescale-display-large-grad};
+	--md-sys-typescale-display-large-wdth: #{tokens.$md-sys-typescale-display-large-wdth};
+	--md-sys-typescale-display-large-rond: #{tokens.$md-sys-typescale-display-large-rond};
+	--md-sys-typescale-display-large-opsz: #{tokens.$md-sys-typescale-display-large-opsz};
+	--md-sys-typescale-display-large-crsv: #{tokens.$md-sys-typescale-display-large-crsv};
+	--md-sys-typescale-display-large-slnt: #{tokens.$md-sys-typescale-display-large-slnt};
+	--md-sys-typescale-display-large-fill: #{tokens.$md-sys-typescale-display-large-fill};
+	--md-sys-typescale-display-large-hexp: #{tokens.$md-sys-typescale-display-large-hexp};
+	/* display-medium */
+	--md-sys-typescale-display-medium-font: #{tokens.$md-sys-typescale-display-medium-font};
+	--md-sys-typescale-display-medium-weight: #{tokens.$md-sys-typescale-display-medium-weight};
+	--md-sys-typescale-display-medium-size: #{tokens.$md-sys-typescale-display-medium-size};
+	--md-sys-typescale-display-medium-tracking: #{tokens.$md-sys-typescale-display-medium-tracking};
+	--md-sys-typescale-display-medium-line-height: #{tokens.$md-sys-typescale-display-medium-line-height};
+	--md-sys-typescale-display-medium-wght: #{tokens.$md-sys-typescale-display-medium-wght};
+	--md-sys-typescale-display-medium-grad: #{tokens.$md-sys-typescale-display-medium-grad};
+	--md-sys-typescale-display-medium-wdth: #{tokens.$md-sys-typescale-display-medium-wdth};
+	--md-sys-typescale-display-medium-rond: #{tokens.$md-sys-typescale-display-medium-rond};
+	--md-sys-typescale-display-medium-opsz: #{tokens.$md-sys-typescale-display-medium-opsz};
+	--md-sys-typescale-display-medium-crsv: #{tokens.$md-sys-typescale-display-medium-crsv};
+	--md-sys-typescale-display-medium-slnt: #{tokens.$md-sys-typescale-display-medium-slnt};
+	--md-sys-typescale-display-medium-fill: #{tokens.$md-sys-typescale-display-medium-fill};
+	--md-sys-typescale-display-medium-hexp: #{tokens.$md-sys-typescale-display-medium-hexp};
+	/* display-small */
+	--md-sys-typescale-display-small-font: #{tokens.$md-sys-typescale-display-small-font};
+	--md-sys-typescale-display-small-weight: #{tokens.$md-sys-typescale-display-small-weight};
+	--md-sys-typescale-display-small-size: #{tokens.$md-sys-typescale-display-small-size};
+	--md-sys-typescale-display-small-tracking: #{tokens.$md-sys-typescale-display-small-tracking};
+	--md-sys-typescale-display-small-line-height: #{tokens.$md-sys-typescale-display-small-line-height};
+	--md-sys-typescale-display-small-wght: #{tokens.$md-sys-typescale-display-small-wght};
+	--md-sys-typescale-display-small-grad: #{tokens.$md-sys-typescale-display-small-grad};
+	--md-sys-typescale-display-small-wdth: #{tokens.$md-sys-typescale-display-small-wdth};
+	--md-sys-typescale-display-small-rond: #{tokens.$md-sys-typescale-display-small-rond};
+	--md-sys-typescale-display-small-opsz: #{tokens.$md-sys-typescale-display-small-opsz};
+	--md-sys-typescale-display-small-crsv: #{tokens.$md-sys-typescale-display-small-crsv};
+	--md-sys-typescale-display-small-slnt: #{tokens.$md-sys-typescale-display-small-slnt};
+	--md-sys-typescale-display-small-fill: #{tokens.$md-sys-typescale-display-small-fill};
+	--md-sys-typescale-display-small-hexp: #{tokens.$md-sys-typescale-display-small-hexp};
+	/* headline-large */
+	--md-sys-typescale-headline-large-font: #{tokens.$md-sys-typescale-headline-large-font};
+	--md-sys-typescale-headline-large-weight: #{tokens.$md-sys-typescale-headline-large-weight};
+	--md-sys-typescale-headline-large-size: #{tokens.$md-sys-typescale-headline-large-size};
+	--md-sys-typescale-headline-large-tracking: #{tokens.$md-sys-typescale-headline-large-tracking};
+	--md-sys-typescale-headline-large-line-height: #{tokens.$md-sys-typescale-headline-large-line-height};
+	--md-sys-typescale-headline-large-wght: #{tokens.$md-sys-typescale-headline-large-wght};
+	--md-sys-typescale-headline-large-grad: #{tokens.$md-sys-typescale-headline-large-grad};
+	--md-sys-typescale-headline-large-wdth: #{tokens.$md-sys-typescale-headline-large-wdth};
+	--md-sys-typescale-headline-large-rond: #{tokens.$md-sys-typescale-headline-large-rond};
+	--md-sys-typescale-headline-large-opsz: #{tokens.$md-sys-typescale-headline-large-opsz};
+	--md-sys-typescale-headline-large-crsv: #{tokens.$md-sys-typescale-headline-large-crsv};
+	--md-sys-typescale-headline-large-slnt: #{tokens.$md-sys-typescale-headline-large-slnt};
+	--md-sys-typescale-headline-large-fill: #{tokens.$md-sys-typescale-headline-large-fill};
+	--md-sys-typescale-headline-large-hexp: #{tokens.$md-sys-typescale-headline-large-hexp};
+	/* headline-medium */
+	--md-sys-typescale-headline-medium-font: #{tokens.$md-sys-typescale-headline-medium-font};
+	--md-sys-typescale-headline-medium-weight: #{tokens.$md-sys-typescale-headline-medium-weight};
+	--md-sys-typescale-headline-medium-size: #{tokens.$md-sys-typescale-headline-medium-size};
+	--md-sys-typescale-headline-medium-tracking: #{tokens.$md-sys-typescale-headline-medium-tracking};
+	--md-sys-typescale-headline-medium-line-height: #{tokens.$md-sys-typescale-headline-medium-line-height};
+	--md-sys-typescale-headline-medium-wght: #{tokens.$md-sys-typescale-headline-medium-wght};
+	--md-sys-typescale-headline-medium-grad: #{tokens.$md-sys-typescale-headline-medium-grad};
+	--md-sys-typescale-headline-medium-wdth: #{tokens.$md-sys-typescale-headline-medium-wdth};
+	--md-sys-typescale-headline-medium-rond: #{tokens.$md-sys-typescale-headline-medium-rond};
+	--md-sys-typescale-headline-medium-opsz: #{tokens.$md-sys-typescale-headline-medium-opsz};
+	--md-sys-typescale-headline-medium-crsv: #{tokens.$md-sys-typescale-headline-medium-crsv};
+	--md-sys-typescale-headline-medium-slnt: #{tokens.$md-sys-typescale-headline-medium-slnt};
+	--md-sys-typescale-headline-medium-fill: #{tokens.$md-sys-typescale-headline-medium-fill};
+	--md-sys-typescale-headline-medium-hexp: #{tokens.$md-sys-typescale-headline-medium-hexp};
+	/* headline-small */
+	--md-sys-typescale-headline-small-font: #{tokens.$md-sys-typescale-headline-small-font};
+	--md-sys-typescale-headline-small-weight: #{tokens.$md-sys-typescale-headline-small-weight};
+	--md-sys-typescale-headline-small-size: #{tokens.$md-sys-typescale-headline-small-size};
+	--md-sys-typescale-headline-small-tracking: #{tokens.$md-sys-typescale-headline-small-tracking};
+	--md-sys-typescale-headline-small-line-height: #{tokens.$md-sys-typescale-headline-small-line-height};
+	--md-sys-typescale-headline-small-wght: #{tokens.$md-sys-typescale-headline-small-wght};
+	--md-sys-typescale-headline-small-grad: #{tokens.$md-sys-typescale-headline-small-grad};
+	--md-sys-typescale-headline-small-wdth: #{tokens.$md-sys-typescale-headline-small-wdth};
+	--md-sys-typescale-headline-small-rond: #{tokens.$md-sys-typescale-headline-small-rond};
+	--md-sys-typescale-headline-small-opsz: #{tokens.$md-sys-typescale-headline-small-opsz};
+	--md-sys-typescale-headline-small-crsv: #{tokens.$md-sys-typescale-headline-small-crsv};
+	--md-sys-typescale-headline-small-slnt: #{tokens.$md-sys-typescale-headline-small-slnt};
+	--md-sys-typescale-headline-small-fill: #{tokens.$md-sys-typescale-headline-small-fill};
+	--md-sys-typescale-headline-small-hexp: #{tokens.$md-sys-typescale-headline-small-hexp};
+	/* title-large */
+	--md-sys-typescale-title-large-font: #{tokens.$md-sys-typescale-title-large-font};
+	--md-sys-typescale-title-large-weight: #{tokens.$md-sys-typescale-title-large-weight};
+	--md-sys-typescale-title-large-size: #{tokens.$md-sys-typescale-title-large-size};
+	--md-sys-typescale-title-large-tracking: #{tokens.$md-sys-typescale-title-large-tracking};
+	--md-sys-typescale-title-large-line-height: #{tokens.$md-sys-typescale-title-large-line-height};
+	--md-sys-typescale-title-large-wght: #{tokens.$md-sys-typescale-title-large-wght};
+	--md-sys-typescale-title-large-grad: #{tokens.$md-sys-typescale-title-large-grad};
+	--md-sys-typescale-title-large-wdth: #{tokens.$md-sys-typescale-title-large-wdth};
+	--md-sys-typescale-title-large-rond: #{tokens.$md-sys-typescale-title-large-rond};
+	--md-sys-typescale-title-large-opsz: #{tokens.$md-sys-typescale-title-large-opsz};
+	--md-sys-typescale-title-large-crsv: #{tokens.$md-sys-typescale-title-large-crsv};
+	--md-sys-typescale-title-large-slnt: #{tokens.$md-sys-typescale-title-large-slnt};
+	--md-sys-typescale-title-large-fill: #{tokens.$md-sys-typescale-title-large-fill};
+	--md-sys-typescale-title-large-hexp: #{tokens.$md-sys-typescale-title-large-hexp};
+	/* title-medium */
+	--md-sys-typescale-title-medium-font: #{tokens.$md-sys-typescale-title-medium-font};
+	--md-sys-typescale-title-medium-weight: #{tokens.$md-sys-typescale-title-medium-weight};
+	--md-sys-typescale-title-medium-size: #{tokens.$md-sys-typescale-title-medium-size};
+	--md-sys-typescale-title-medium-tracking: #{tokens.$md-sys-typescale-title-medium-tracking};
+	--md-sys-typescale-title-medium-line-height: #{tokens.$md-sys-typescale-title-medium-line-height};
+	--md-sys-typescale-title-medium-wght: #{tokens.$md-sys-typescale-title-medium-wght};
+	--md-sys-typescale-title-medium-grad: #{tokens.$md-sys-typescale-title-medium-grad};
+	--md-sys-typescale-title-medium-wdth: #{tokens.$md-sys-typescale-title-medium-wdth};
+	--md-sys-typescale-title-medium-rond: #{tokens.$md-sys-typescale-title-medium-rond};
+	--md-sys-typescale-title-medium-opsz: #{tokens.$md-sys-typescale-title-medium-opsz};
+	--md-sys-typescale-title-medium-crsv: #{tokens.$md-sys-typescale-title-medium-crsv};
+	--md-sys-typescale-title-medium-slnt: #{tokens.$md-sys-typescale-title-medium-slnt};
+	--md-sys-typescale-title-medium-fill: #{tokens.$md-sys-typescale-title-medium-fill};
+	--md-sys-typescale-title-medium-hexp: #{tokens.$md-sys-typescale-title-medium-hexp};
+	/* title-small */
+	--md-sys-typescale-title-small-font: #{tokens.$md-sys-typescale-title-small-font};
+	--md-sys-typescale-title-small-weight: #{tokens.$md-sys-typescale-title-small-weight};
+	--md-sys-typescale-title-small-size: #{tokens.$md-sys-typescale-title-small-size};
+	--md-sys-typescale-title-small-tracking: #{tokens.$md-sys-typescale-title-small-tracking};
+	--md-sys-typescale-title-small-line-height: #{tokens.$md-sys-typescale-title-small-line-height};
+	--md-sys-typescale-title-small-wght: #{tokens.$md-sys-typescale-title-small-wght};
+	--md-sys-typescale-title-small-grad: #{tokens.$md-sys-typescale-title-small-grad};
+	--md-sys-typescale-title-small-wdth: #{tokens.$md-sys-typescale-title-small-wdth};
+	--md-sys-typescale-title-small-rond: #{tokens.$md-sys-typescale-title-small-rond};
+	--md-sys-typescale-title-small-opsz: #{tokens.$md-sys-typescale-title-small-opsz};
+	--md-sys-typescale-title-small-crsv: #{tokens.$md-sys-typescale-title-small-crsv};
+	--md-sys-typescale-title-small-slnt: #{tokens.$md-sys-typescale-title-small-slnt};
+	--md-sys-typescale-title-small-fill: #{tokens.$md-sys-typescale-title-small-fill};
+	--md-sys-typescale-title-small-hexp: #{tokens.$md-sys-typescale-title-small-hexp};
+	/* body-large */
+	--md-sys-typescale-body-large-font: #{tokens.$md-sys-typescale-body-large-font};
+	--md-sys-typescale-body-large-weight: #{tokens.$md-sys-typescale-body-large-weight};
+	--md-sys-typescale-body-large-size: #{tokens.$md-sys-typescale-body-large-size};
+	--md-sys-typescale-body-large-tracking: #{tokens.$md-sys-typescale-body-large-tracking};
+	--md-sys-typescale-body-large-line-height: #{tokens.$md-sys-typescale-body-large-line-height};
+	--md-sys-typescale-body-large-wght: #{tokens.$md-sys-typescale-body-large-wght};
+	--md-sys-typescale-body-large-grad: #{tokens.$md-sys-typescale-body-large-grad};
+	--md-sys-typescale-body-large-wdth: #{tokens.$md-sys-typescale-body-large-wdth};
+	--md-sys-typescale-body-large-rond: #{tokens.$md-sys-typescale-body-large-rond};
+	--md-sys-typescale-body-large-opsz: #{tokens.$md-sys-typescale-body-large-opsz};
+	--md-sys-typescale-body-large-crsv: #{tokens.$md-sys-typescale-body-large-crsv};
+	--md-sys-typescale-body-large-slnt: #{tokens.$md-sys-typescale-body-large-slnt};
+	--md-sys-typescale-body-large-fill: #{tokens.$md-sys-typescale-body-large-fill};
+	--md-sys-typescale-body-large-hexp: #{tokens.$md-sys-typescale-body-large-hexp};
+	/* body-medium */
+	--md-sys-typescale-body-medium-font: #{tokens.$md-sys-typescale-body-medium-font};
+	--md-sys-typescale-body-medium-weight: #{tokens.$md-sys-typescale-body-medium-weight};
+	--md-sys-typescale-body-medium-size: #{tokens.$md-sys-typescale-body-medium-size};
+	--md-sys-typescale-body-medium-tracking: #{tokens.$md-sys-typescale-body-medium-tracking};
+	--md-sys-typescale-body-medium-line-height: #{tokens.$md-sys-typescale-body-medium-line-height};
+	--md-sys-typescale-body-medium-wght: #{tokens.$md-sys-typescale-body-medium-wght};
+	--md-sys-typescale-body-medium-grad: #{tokens.$md-sys-typescale-body-medium-grad};
+	--md-sys-typescale-body-medium-wdth: #{tokens.$md-sys-typescale-body-medium-wdth};
+	--md-sys-typescale-body-medium-rond: #{tokens.$md-sys-typescale-body-medium-rond};
+	--md-sys-typescale-body-medium-opsz: #{tokens.$md-sys-typescale-body-medium-opsz};
+	--md-sys-typescale-body-medium-crsv: #{tokens.$md-sys-typescale-body-medium-crsv};
+	--md-sys-typescale-body-medium-slnt: #{tokens.$md-sys-typescale-body-medium-slnt};
+	--md-sys-typescale-body-medium-fill: #{tokens.$md-sys-typescale-body-medium-fill};
+	--md-sys-typescale-body-medium-hexp: #{tokens.$md-sys-typescale-body-medium-hexp};
+	/* body-small */
+	--md-sys-typescale-body-small-font: #{tokens.$md-sys-typescale-body-small-font};
+	--md-sys-typescale-body-small-weight: #{tokens.$md-sys-typescale-body-small-weight};
+	--md-sys-typescale-body-small-size: #{tokens.$md-sys-typescale-body-small-size};
+	--md-sys-typescale-body-small-tracking: #{tokens.$md-sys-typescale-body-small-tracking};
+	--md-sys-typescale-body-small-line-height: #{tokens.$md-sys-typescale-body-small-line-height};
+	--md-sys-typescale-body-small-wght: #{tokens.$md-sys-typescale-body-small-wght};
+	--md-sys-typescale-body-small-grad: #{tokens.$md-sys-typescale-body-small-grad};
+	--md-sys-typescale-body-small-wdth: #{tokens.$md-sys-typescale-body-small-wdth};
+	--md-sys-typescale-body-small-rond: #{tokens.$md-sys-typescale-body-small-rond};
+	--md-sys-typescale-body-small-opsz: #{tokens.$md-sys-typescale-body-small-opsz};
+	--md-sys-typescale-body-small-crsv: #{tokens.$md-sys-typescale-body-small-crsv};
+	--md-sys-typescale-body-small-slnt: #{tokens.$md-sys-typescale-body-small-slnt};
+	--md-sys-typescale-body-small-fill: #{tokens.$md-sys-typescale-body-small-fill};
+	--md-sys-typescale-body-small-hexp: #{tokens.$md-sys-typescale-body-small-hexp};
+	/* label-large */
+	--md-sys-typescale-label-large-font: #{tokens.$md-sys-typescale-label-large-font};
+	--md-sys-typescale-label-large-weight: #{tokens.$md-sys-typescale-label-large-weight};
+	--md-sys-typescale-label-large-size: #{tokens.$md-sys-typescale-label-large-size};
+	--md-sys-typescale-label-large-tracking: #{tokens.$md-sys-typescale-label-large-tracking};
+	--md-sys-typescale-label-large-line-height: #{tokens.$md-sys-typescale-label-large-line-height};
+	--md-sys-typescale-label-large-wght: #{tokens.$md-sys-typescale-label-large-wght};
+	--md-sys-typescale-label-large-grad: #{tokens.$md-sys-typescale-label-large-grad};
+	--md-sys-typescale-label-large-wdth: #{tokens.$md-sys-typescale-label-large-wdth};
+	--md-sys-typescale-label-large-rond: #{tokens.$md-sys-typescale-label-large-rond};
+	--md-sys-typescale-label-large-opsz: #{tokens.$md-sys-typescale-label-large-opsz};
+	--md-sys-typescale-label-large-crsv: #{tokens.$md-sys-typescale-label-large-crsv};
+	--md-sys-typescale-label-large-slnt: #{tokens.$md-sys-typescale-label-large-slnt};
+	--md-sys-typescale-label-large-fill: #{tokens.$md-sys-typescale-label-large-fill};
+	--md-sys-typescale-label-large-hexp: #{tokens.$md-sys-typescale-label-large-hexp};
+	/* label-medium */
+	--md-sys-typescale-label-medium-font: #{tokens.$md-sys-typescale-label-medium-font};
+	--md-sys-typescale-label-medium-weight: #{tokens.$md-sys-typescale-label-medium-weight};
+	--md-sys-typescale-label-medium-size: #{tokens.$md-sys-typescale-label-medium-size};
+	--md-sys-typescale-label-medium-tracking: #{tokens.$md-sys-typescale-label-medium-tracking};
+	--md-sys-typescale-label-medium-line-height: #{tokens.$md-sys-typescale-label-medium-line-height};
+	--md-sys-typescale-label-medium-wght: #{tokens.$md-sys-typescale-label-medium-wght};
+	--md-sys-typescale-label-medium-grad: #{tokens.$md-sys-typescale-label-medium-grad};
+	--md-sys-typescale-label-medium-wdth: #{tokens.$md-sys-typescale-label-medium-wdth};
+	--md-sys-typescale-label-medium-rond: #{tokens.$md-sys-typescale-label-medium-rond};
+	--md-sys-typescale-label-medium-opsz: #{tokens.$md-sys-typescale-label-medium-opsz};
+	--md-sys-typescale-label-medium-crsv: #{tokens.$md-sys-typescale-label-medium-crsv};
+	--md-sys-typescale-label-medium-slnt: #{tokens.$md-sys-typescale-label-medium-slnt};
+	--md-sys-typescale-label-medium-fill: #{tokens.$md-sys-typescale-label-medium-fill};
+	--md-sys-typescale-label-medium-hexp: #{tokens.$md-sys-typescale-label-medium-hexp};
+	/* label-small */
+	--md-sys-typescale-label-small-font: #{tokens.$md-sys-typescale-label-small-font};
+	--md-sys-typescale-label-small-weight: #{tokens.$md-sys-typescale-label-small-weight};
+	--md-sys-typescale-label-small-size: #{tokens.$md-sys-typescale-label-small-size};
+	--md-sys-typescale-label-small-tracking: #{tokens.$md-sys-typescale-label-small-tracking};
+	--md-sys-typescale-label-small-line-height: #{tokens.$md-sys-typescale-label-small-line-height};
+	--md-sys-typescale-label-small-wght: #{tokens.$md-sys-typescale-label-small-wght};
+	--md-sys-typescale-label-small-grad: #{tokens.$md-sys-typescale-label-small-grad};
+	--md-sys-typescale-label-small-wdth: #{tokens.$md-sys-typescale-label-small-wdth};
+	--md-sys-typescale-label-small-rond: #{tokens.$md-sys-typescale-label-small-rond};
+	--md-sys-typescale-label-small-opsz: #{tokens.$md-sys-typescale-label-small-opsz};
+	--md-sys-typescale-label-small-crsv: #{tokens.$md-sys-typescale-label-small-crsv};
+	--md-sys-typescale-label-small-slnt: #{tokens.$md-sys-typescale-label-small-slnt};
+	--md-sys-typescale-label-small-fill: #{tokens.$md-sys-typescale-label-small-fill};
+	--md-sys-typescale-label-small-hexp: #{tokens.$md-sys-typescale-label-small-hexp};
+
+
+
+	/* display-large */
+	--md-sys-typescale-emphasized-display-large-font: #{tokens.$md-sys-typescale-emphasized-display-large-font};
+	--md-sys-typescale-emphasized-display-large-weight: #{tokens.$md-sys-typescale-emphasized-display-large-weight};
+	--md-sys-typescale-emphasized-display-large-size: #{tokens.$md-sys-typescale-emphasized-display-large-size};
+	--md-sys-typescale-emphasized-display-large-tracking: #{tokens.$md-sys-typescale-emphasized-display-large-tracking};
+	--md-sys-typescale-emphasized-display-large-line-height: #{tokens.$md-sys-typescale-emphasized-display-large-line-height};
+	--md-sys-typescale-emphasized-display-large-wght: #{tokens.$md-sys-typescale-emphasized-display-large-wght};
+	--md-sys-typescale-emphasized-display-large-grad: #{tokens.$md-sys-typescale-emphasized-display-large-grad};
+	--md-sys-typescale-emphasized-display-large-wdth: #{tokens.$md-sys-typescale-emphasized-display-large-wdth};
+	--md-sys-typescale-emphasized-display-large-rond: #{tokens.$md-sys-typescale-emphasized-display-large-rond};
+	--md-sys-typescale-emphasized-display-large-opsz: #{tokens.$md-sys-typescale-emphasized-display-large-opsz};
+	--md-sys-typescale-emphasized-display-large-crsv: #{tokens.$md-sys-typescale-emphasized-display-large-crsv};
+	--md-sys-typescale-emphasized-display-large-slnt: #{tokens.$md-sys-typescale-emphasized-display-large-slnt};
+	--md-sys-typescale-emphasized-display-large-fill: #{tokens.$md-sys-typescale-emphasized-display-large-fill};
+	--md-sys-typescale-emphasized-display-large-hexp: #{tokens.$md-sys-typescale-emphasized-display-large-hexp};
+	/* display-medium */
+	--md-sys-typescale-emphasized-display-medium-font: #{tokens.$md-sys-typescale-emphasized-display-medium-font};
+	--md-sys-typescale-emphasized-display-medium-weight: #{tokens.$md-sys-typescale-emphasized-display-medium-weight};
+	--md-sys-typescale-emphasized-display-medium-size: #{tokens.$md-sys-typescale-emphasized-display-medium-size};
+	--md-sys-typescale-emphasized-display-medium-tracking: #{tokens.$md-sys-typescale-emphasized-display-medium-tracking};
+	--md-sys-typescale-emphasized-display-medium-line-height: #{tokens.$md-sys-typescale-emphasized-display-medium-line-height};
+	--md-sys-typescale-emphasized-display-medium-wght: #{tokens.$md-sys-typescale-emphasized-display-medium-wght};
+	--md-sys-typescale-emphasized-display-medium-grad: #{tokens.$md-sys-typescale-emphasized-display-medium-grad};
+	--md-sys-typescale-emphasized-display-medium-wdth: #{tokens.$md-sys-typescale-emphasized-display-medium-wdth};
+	--md-sys-typescale-emphasized-display-medium-rond: #{tokens.$md-sys-typescale-emphasized-display-medium-rond};
+	--md-sys-typescale-emphasized-display-medium-opsz: #{tokens.$md-sys-typescale-emphasized-display-medium-opsz};
+	--md-sys-typescale-emphasized-display-medium-crsv: #{tokens.$md-sys-typescale-emphasized-display-medium-crsv};
+	--md-sys-typescale-emphasized-display-medium-slnt: #{tokens.$md-sys-typescale-emphasized-display-medium-slnt};
+	--md-sys-typescale-emphasized-display-medium-fill: #{tokens.$md-sys-typescale-emphasized-display-medium-fill};
+	--md-sys-typescale-emphasized-display-medium-hexp: #{tokens.$md-sys-typescale-emphasized-display-medium-hexp};
+	/* display-small */
+	--md-sys-typescale-emphasized-display-small-font: #{tokens.$md-sys-typescale-emphasized-display-small-font};
+	--md-sys-typescale-emphasized-display-small-weight: #{tokens.$md-sys-typescale-emphasized-display-small-weight};
+	--md-sys-typescale-emphasized-display-small-size: #{tokens.$md-sys-typescale-emphasized-display-small-size};
+	--md-sys-typescale-emphasized-display-small-tracking: #{tokens.$md-sys-typescale-emphasized-display-small-tracking};
+	--md-sys-typescale-emphasized-display-small-line-height: #{tokens.$md-sys-typescale-emphasized-display-small-line-height};
+	--md-sys-typescale-emphasized-display-small-wght: #{tokens.$md-sys-typescale-emphasized-display-small-wght};
+	--md-sys-typescale-emphasized-display-small-grad: #{tokens.$md-sys-typescale-emphasized-display-small-grad};
+	--md-sys-typescale-emphasized-display-small-wdth: #{tokens.$md-sys-typescale-emphasized-display-small-wdth};
+	--md-sys-typescale-emphasized-display-small-rond: #{tokens.$md-sys-typescale-emphasized-display-small-rond};
+	--md-sys-typescale-emphasized-display-small-opsz: #{tokens.$md-sys-typescale-emphasized-display-small-opsz};
+	--md-sys-typescale-emphasized-display-small-crsv: #{tokens.$md-sys-typescale-emphasized-display-small-crsv};
+	--md-sys-typescale-emphasized-display-small-slnt: #{tokens.$md-sys-typescale-emphasized-display-small-slnt};
+	--md-sys-typescale-emphasized-display-small-fill: #{tokens.$md-sys-typescale-emphasized-display-small-fill};
+	--md-sys-typescale-emphasized-display-small-hexp: #{tokens.$md-sys-typescale-emphasized-display-small-hexp};
+	/* headline-large */
+	--md-sys-typescale-emphasized-headline-large-font: #{tokens.$md-sys-typescale-emphasized-headline-large-font};
+	--md-sys-typescale-emphasized-headline-large-weight: #{tokens.$md-sys-typescale-emphasized-headline-large-weight};
+	--md-sys-typescale-emphasized-headline-large-size: #{tokens.$md-sys-typescale-emphasized-headline-large-size};
+	--md-sys-typescale-emphasized-headline-large-tracking: #{tokens.$md-sys-typescale-emphasized-headline-large-tracking};
+	--md-sys-typescale-emphasized-headline-large-line-height: #{tokens.$md-sys-typescale-emphasized-headline-large-line-height};
+	--md-sys-typescale-emphasized-headline-large-wght: #{tokens.$md-sys-typescale-emphasized-headline-large-wght};
+	--md-sys-typescale-emphasized-headline-large-grad: #{tokens.$md-sys-typescale-emphasized-headline-large-grad};
+	--md-sys-typescale-emphasized-headline-large-wdth: #{tokens.$md-sys-typescale-emphasized-headline-large-wdth};
+	--md-sys-typescale-emphasized-headline-large-rond: #{tokens.$md-sys-typescale-emphasized-headline-large-rond};
+	--md-sys-typescale-emphasized-headline-large-opsz: #{tokens.$md-sys-typescale-emphasized-headline-large-opsz};
+	--md-sys-typescale-emphasized-headline-large-crsv: #{tokens.$md-sys-typescale-emphasized-headline-large-crsv};
+	--md-sys-typescale-emphasized-headline-large-slnt: #{tokens.$md-sys-typescale-emphasized-headline-large-slnt};
+	--md-sys-typescale-emphasized-headline-large-fill: #{tokens.$md-sys-typescale-emphasized-headline-large-fill};
+	--md-sys-typescale-emphasized-headline-large-hexp: #{tokens.$md-sys-typescale-emphasized-headline-large-hexp};
+	/* headline-medium */
+	--md-sys-typescale-emphasized-headline-medium-font: #{tokens.$md-sys-typescale-emphasized-headline-medium-font};
+	--md-sys-typescale-emphasized-headline-medium-weight: #{tokens.$md-sys-typescale-emphasized-headline-medium-weight};
+	--md-sys-typescale-emphasized-headline-medium-size: #{tokens.$md-sys-typescale-emphasized-headline-medium-size};
+	--md-sys-typescale-emphasized-headline-medium-tracking: #{tokens.$md-sys-typescale-emphasized-headline-medium-tracking};
+	--md-sys-typescale-emphasized-headline-medium-line-height: #{tokens.$md-sys-typescale-emphasized-headline-medium-line-height};
+	--md-sys-typescale-emphasized-headline-medium-wght: #{tokens.$md-sys-typescale-emphasized-headline-medium-wght};
+	--md-sys-typescale-emphasized-headline-medium-grad: #{tokens.$md-sys-typescale-emphasized-headline-medium-grad};
+	--md-sys-typescale-emphasized-headline-medium-wdth: #{tokens.$md-sys-typescale-emphasized-headline-medium-wdth};
+	--md-sys-typescale-emphasized-headline-medium-rond: #{tokens.$md-sys-typescale-emphasized-headline-medium-rond};
+	--md-sys-typescale-emphasized-headline-medium-opsz: #{tokens.$md-sys-typescale-emphasized-headline-medium-opsz};
+	--md-sys-typescale-emphasized-headline-medium-crsv: #{tokens.$md-sys-typescale-emphasized-headline-medium-crsv};
+	--md-sys-typescale-emphasized-headline-medium-slnt: #{tokens.$md-sys-typescale-emphasized-headline-medium-slnt};
+	--md-sys-typescale-emphasized-headline-medium-fill: #{tokens.$md-sys-typescale-emphasized-headline-medium-fill};
+	--md-sys-typescale-emphasized-headline-medium-hexp: #{tokens.$md-sys-typescale-emphasized-headline-medium-hexp};
+	/* headline-small */
+	--md-sys-typescale-emphasized-headline-small-font: #{tokens.$md-sys-typescale-emphasized-headline-small-font};
+	--md-sys-typescale-emphasized-headline-small-weight: #{tokens.$md-sys-typescale-emphasized-headline-small-weight};
+	--md-sys-typescale-emphasized-headline-small-size: #{tokens.$md-sys-typescale-emphasized-headline-small-size};
+	--md-sys-typescale-emphasized-headline-small-tracking: #{tokens.$md-sys-typescale-emphasized-headline-small-tracking};
+	--md-sys-typescale-emphasized-headline-small-line-height: #{tokens.$md-sys-typescale-emphasized-headline-small-line-height};
+	--md-sys-typescale-emphasized-headline-small-wght: #{tokens.$md-sys-typescale-emphasized-headline-small-wght};
+	--md-sys-typescale-emphasized-headline-small-grad: #{tokens.$md-sys-typescale-emphasized-headline-small-grad};
+	--md-sys-typescale-emphasized-headline-small-wdth: #{tokens.$md-sys-typescale-emphasized-headline-small-wdth};
+	--md-sys-typescale-emphasized-headline-small-rond: #{tokens.$md-sys-typescale-emphasized-headline-small-rond};
+	--md-sys-typescale-emphasized-headline-small-opsz: #{tokens.$md-sys-typescale-emphasized-headline-small-opsz};
+	--md-sys-typescale-emphasized-headline-small-crsv: #{tokens.$md-sys-typescale-emphasized-headline-small-crsv};
+	--md-sys-typescale-emphasized-headline-small-slnt: #{tokens.$md-sys-typescale-emphasized-headline-small-slnt};
+	--md-sys-typescale-emphasized-headline-small-fill: #{tokens.$md-sys-typescale-emphasized-headline-small-fill};
+	--md-sys-typescale-emphasized-headline-small-hexp: #{tokens.$md-sys-typescale-emphasized-headline-small-hexp};
+	/* title-large */
+	--md-sys-typescale-emphasized-title-large-font: #{tokens.$md-sys-typescale-emphasized-title-large-font};
+	--md-sys-typescale-emphasized-title-large-weight: #{tokens.$md-sys-typescale-emphasized-title-large-weight};
+	--md-sys-typescale-emphasized-title-large-size: #{tokens.$md-sys-typescale-emphasized-title-large-size};
+	--md-sys-typescale-emphasized-title-large-tracking: #{tokens.$md-sys-typescale-emphasized-title-large-tracking};
+	--md-sys-typescale-emphasized-title-large-line-height: #{tokens.$md-sys-typescale-emphasized-title-large-line-height};
+	--md-sys-typescale-emphasized-title-large-wght: #{tokens.$md-sys-typescale-emphasized-title-large-wght};
+	--md-sys-typescale-emphasized-title-large-grad: #{tokens.$md-sys-typescale-emphasized-title-large-grad};
+	--md-sys-typescale-emphasized-title-large-wdth: #{tokens.$md-sys-typescale-emphasized-title-large-wdth};
+	--md-sys-typescale-emphasized-title-large-rond: #{tokens.$md-sys-typescale-emphasized-title-large-rond};
+	--md-sys-typescale-emphasized-title-large-opsz: #{tokens.$md-sys-typescale-emphasized-title-large-opsz};
+	--md-sys-typescale-emphasized-title-large-crsv: #{tokens.$md-sys-typescale-emphasized-title-large-crsv};
+	--md-sys-typescale-emphasized-title-large-slnt: #{tokens.$md-sys-typescale-emphasized-title-large-slnt};
+	--md-sys-typescale-emphasized-title-large-fill: #{tokens.$md-sys-typescale-emphasized-title-large-fill};
+	--md-sys-typescale-emphasized-title-large-hexp: #{tokens.$md-sys-typescale-emphasized-title-large-hexp};
+	/* title-medium */
+	--md-sys-typescale-emphasized-title-medium-font: #{tokens.$md-sys-typescale-emphasized-title-medium-font};
+	--md-sys-typescale-emphasized-title-medium-weight: #{tokens.$md-sys-typescale-emphasized-title-medium-weight};
+	--md-sys-typescale-emphasized-title-medium-size: #{tokens.$md-sys-typescale-emphasized-title-medium-size};
+	--md-sys-typescale-emphasized-title-medium-tracking: #{tokens.$md-sys-typescale-emphasized-title-medium-tracking};
+	--md-sys-typescale-emphasized-title-medium-line-height: #{tokens.$md-sys-typescale-emphasized-title-medium-line-height};
+	--md-sys-typescale-emphasized-title-medium-wght: #{tokens.$md-sys-typescale-emphasized-title-medium-wght};
+	--md-sys-typescale-emphasized-title-medium-grad: #{tokens.$md-sys-typescale-emphasized-title-medium-grad};
+	--md-sys-typescale-emphasized-title-medium-wdth: #{tokens.$md-sys-typescale-emphasized-title-medium-wdth};
+	--md-sys-typescale-emphasized-title-medium-rond: #{tokens.$md-sys-typescale-emphasized-title-medium-rond};
+	--md-sys-typescale-emphasized-title-medium-opsz: #{tokens.$md-sys-typescale-emphasized-title-medium-opsz};
+	--md-sys-typescale-emphasized-title-medium-crsv: #{tokens.$md-sys-typescale-emphasized-title-medium-crsv};
+	--md-sys-typescale-emphasized-title-medium-slnt: #{tokens.$md-sys-typescale-emphasized-title-medium-slnt};
+	--md-sys-typescale-emphasized-title-medium-fill: #{tokens.$md-sys-typescale-emphasized-title-medium-fill};
+	--md-sys-typescale-emphasized-title-medium-hexp: #{tokens.$md-sys-typescale-emphasized-title-medium-hexp};
+	/* title-small */
+	--md-sys-typescale-emphasized-title-small-font: #{tokens.$md-sys-typescale-emphasized-title-small-font};
+	--md-sys-typescale-emphasized-title-small-weight: #{tokens.$md-sys-typescale-emphasized-title-small-weight};
+	--md-sys-typescale-emphasized-title-small-size: #{tokens.$md-sys-typescale-emphasized-title-small-size};
+	--md-sys-typescale-emphasized-title-small-tracking: #{tokens.$md-sys-typescale-emphasized-title-small-tracking};
+	--md-sys-typescale-emphasized-title-small-line-height: #{tokens.$md-sys-typescale-emphasized-title-small-line-height};
+	--md-sys-typescale-emphasized-title-small-wght: #{tokens.$md-sys-typescale-emphasized-title-small-wght};
+	--md-sys-typescale-emphasized-title-small-grad: #{tokens.$md-sys-typescale-emphasized-title-small-grad};
+	--md-sys-typescale-emphasized-title-small-wdth: #{tokens.$md-sys-typescale-emphasized-title-small-wdth};
+	--md-sys-typescale-emphasized-title-small-rond: #{tokens.$md-sys-typescale-emphasized-title-small-rond};
+	--md-sys-typescale-emphasized-title-small-opsz: #{tokens.$md-sys-typescale-emphasized-title-small-opsz};
+	--md-sys-typescale-emphasized-title-small-crsv: #{tokens.$md-sys-typescale-emphasized-title-small-crsv};
+	--md-sys-typescale-emphasized-title-small-slnt: #{tokens.$md-sys-typescale-emphasized-title-small-slnt};
+	--md-sys-typescale-emphasized-title-small-fill: #{tokens.$md-sys-typescale-emphasized-title-small-fill};
+	--md-sys-typescale-emphasized-title-small-hexp: #{tokens.$md-sys-typescale-emphasized-title-small-hexp};
+	/* body-large */
+	--md-sys-typescale-emphasized-body-large-font: #{tokens.$md-sys-typescale-emphasized-body-large-font};
+	--md-sys-typescale-emphasized-body-large-weight: #{tokens.$md-sys-typescale-emphasized-body-large-weight};
+	--md-sys-typescale-emphasized-body-large-size: #{tokens.$md-sys-typescale-emphasized-body-large-size};
+	--md-sys-typescale-emphasized-body-large-tracking: #{tokens.$md-sys-typescale-emphasized-body-large-tracking};
+	--md-sys-typescale-emphasized-body-large-line-height: #{tokens.$md-sys-typescale-emphasized-body-large-line-height};
+	--md-sys-typescale-emphasized-body-large-wght: #{tokens.$md-sys-typescale-emphasized-body-large-wght};
+	--md-sys-typescale-emphasized-body-large-grad: #{tokens.$md-sys-typescale-emphasized-body-large-grad};
+	--md-sys-typescale-emphasized-body-large-wdth: #{tokens.$md-sys-typescale-emphasized-body-large-wdth};
+	--md-sys-typescale-emphasized-body-large-rond: #{tokens.$md-sys-typescale-emphasized-body-large-rond};
+	--md-sys-typescale-emphasized-body-large-opsz: #{tokens.$md-sys-typescale-emphasized-body-large-opsz};
+	--md-sys-typescale-emphasized-body-large-crsv: #{tokens.$md-sys-typescale-emphasized-body-large-crsv};
+	--md-sys-typescale-emphasized-body-large-slnt: #{tokens.$md-sys-typescale-emphasized-body-large-slnt};
+	--md-sys-typescale-emphasized-body-large-fill: #{tokens.$md-sys-typescale-emphasized-body-large-fill};
+	--md-sys-typescale-emphasized-body-large-hexp: #{tokens.$md-sys-typescale-emphasized-body-large-hexp};
+	/* body-medium */
+	--md-sys-typescale-emphasized-body-medium-font: #{tokens.$md-sys-typescale-emphasized-body-medium-font};
+	--md-sys-typescale-emphasized-body-medium-weight: #{tokens.$md-sys-typescale-emphasized-body-medium-weight};
+	--md-sys-typescale-emphasized-body-medium-size: #{tokens.$md-sys-typescale-emphasized-body-medium-size};
+	--md-sys-typescale-emphasized-body-medium-tracking: #{tokens.$md-sys-typescale-emphasized-body-medium-tracking};
+	--md-sys-typescale-emphasized-body-medium-line-height: #{tokens.$md-sys-typescale-emphasized-body-medium-line-height};
+	--md-sys-typescale-emphasized-body-medium-wght: #{tokens.$md-sys-typescale-emphasized-body-medium-wght};
+	--md-sys-typescale-emphasized-body-medium-grad: #{tokens.$md-sys-typescale-emphasized-body-medium-grad};
+	--md-sys-typescale-emphasized-body-medium-wdth: #{tokens.$md-sys-typescale-emphasized-body-medium-wdth};
+	--md-sys-typescale-emphasized-body-medium-rond: #{tokens.$md-sys-typescale-emphasized-body-medium-rond};
+	--md-sys-typescale-emphasized-body-medium-opsz: #{tokens.$md-sys-typescale-emphasized-body-medium-opsz};
+	--md-sys-typescale-emphasized-body-medium-crsv: #{tokens.$md-sys-typescale-emphasized-body-medium-crsv};
+	--md-sys-typescale-emphasized-body-medium-slnt: #{tokens.$md-sys-typescale-emphasized-body-medium-slnt};
+	--md-sys-typescale-emphasized-body-medium-fill: #{tokens.$md-sys-typescale-emphasized-body-medium-fill};
+	--md-sys-typescale-emphasized-body-medium-hexp: #{tokens.$md-sys-typescale-emphasized-body-medium-hexp};
+	/* body-small */
+	--md-sys-typescale-emphasized-body-small-font: #{tokens.$md-sys-typescale-emphasized-body-small-font};
+	--md-sys-typescale-emphasized-body-small-weight: #{tokens.$md-sys-typescale-emphasized-body-small-weight};
+	--md-sys-typescale-emphasized-body-small-size: #{tokens.$md-sys-typescale-emphasized-body-small-size};
+	--md-sys-typescale-emphasized-body-small-tracking: #{tokens.$md-sys-typescale-emphasized-body-small-tracking};
+	--md-sys-typescale-emphasized-body-small-line-height: #{tokens.$md-sys-typescale-emphasized-body-small-line-height};
+	--md-sys-typescale-emphasized-body-small-wght: #{tokens.$md-sys-typescale-emphasized-body-small-wght};
+	--md-sys-typescale-emphasized-body-small-grad: #{tokens.$md-sys-typescale-emphasized-body-small-grad};
+	--md-sys-typescale-emphasized-body-small-wdth: #{tokens.$md-sys-typescale-emphasized-body-small-wdth};
+	--md-sys-typescale-emphasized-body-small-rond: #{tokens.$md-sys-typescale-emphasized-body-small-rond};
+	--md-sys-typescale-emphasized-body-small-opsz: #{tokens.$md-sys-typescale-emphasized-body-small-opsz};
+	--md-sys-typescale-emphasized-body-small-crsv: #{tokens.$md-sys-typescale-emphasized-body-small-crsv};
+	--md-sys-typescale-emphasized-body-small-slnt: #{tokens.$md-sys-typescale-emphasized-body-small-slnt};
+	--md-sys-typescale-emphasized-body-small-fill: #{tokens.$md-sys-typescale-emphasized-body-small-fill};
+	--md-sys-typescale-emphasized-body-small-hexp: #{tokens.$md-sys-typescale-emphasized-body-small-hexp};
+	/* label-large */
+	--md-sys-typescale-emphasized-label-large-font: #{tokens.$md-sys-typescale-emphasized-label-large-font};
+	--md-sys-typescale-emphasized-label-large-weight: #{tokens.$md-sys-typescale-emphasized-label-large-weight};
+	--md-sys-typescale-emphasized-label-large-size: #{tokens.$md-sys-typescale-emphasized-label-large-size};
+	--md-sys-typescale-emphasized-label-large-tracking: #{tokens.$md-sys-typescale-emphasized-label-large-tracking};
+	--md-sys-typescale-emphasized-label-large-line-height: #{tokens.$md-sys-typescale-emphasized-label-large-line-height};
+	--md-sys-typescale-emphasized-label-large-wght: #{tokens.$md-sys-typescale-emphasized-label-large-wght};
+	--md-sys-typescale-emphasized-label-large-grad: #{tokens.$md-sys-typescale-emphasized-label-large-grad};
+	--md-sys-typescale-emphasized-label-large-wdth: #{tokens.$md-sys-typescale-emphasized-label-large-wdth};
+	--md-sys-typescale-emphasized-label-large-rond: #{tokens.$md-sys-typescale-emphasized-label-large-rond};
+	--md-sys-typescale-emphasized-label-large-opsz: #{tokens.$md-sys-typescale-emphasized-label-large-opsz};
+	--md-sys-typescale-emphasized-label-large-crsv: #{tokens.$md-sys-typescale-emphasized-label-large-crsv};
+	--md-sys-typescale-emphasized-label-large-slnt: #{tokens.$md-sys-typescale-emphasized-label-large-slnt};
+	--md-sys-typescale-emphasized-label-large-fill: #{tokens.$md-sys-typescale-emphasized-label-large-fill};
+	--md-sys-typescale-emphasized-label-large-hexp: #{tokens.$md-sys-typescale-emphasized-label-large-hexp};
+	/* label-medium */
+	--md-sys-typescale-emphasized-label-medium-font: #{tokens.$md-sys-typescale-emphasized-label-medium-font};
+	--md-sys-typescale-emphasized-label-medium-weight: #{tokens.$md-sys-typescale-emphasized-label-medium-weight};
+	--md-sys-typescale-emphasized-label-medium-size: #{tokens.$md-sys-typescale-emphasized-label-medium-size};
+	--md-sys-typescale-emphasized-label-medium-tracking: #{tokens.$md-sys-typescale-emphasized-label-medium-tracking};
+	--md-sys-typescale-emphasized-label-medium-line-height: #{tokens.$md-sys-typescale-emphasized-label-medium-line-height};
+	--md-sys-typescale-emphasized-label-medium-wght: #{tokens.$md-sys-typescale-emphasized-label-medium-wght};
+	--md-sys-typescale-emphasized-label-medium-grad: #{tokens.$md-sys-typescale-emphasized-label-medium-grad};
+	--md-sys-typescale-emphasized-label-medium-wdth: #{tokens.$md-sys-typescale-emphasized-label-medium-wdth};
+	--md-sys-typescale-emphasized-label-medium-rond: #{tokens.$md-sys-typescale-emphasized-label-medium-rond};
+	--md-sys-typescale-emphasized-label-medium-opsz: #{tokens.$md-sys-typescale-emphasized-label-medium-opsz};
+	--md-sys-typescale-emphasized-label-medium-crsv: #{tokens.$md-sys-typescale-emphasized-label-medium-crsv};
+	--md-sys-typescale-emphasized-label-medium-slnt: #{tokens.$md-sys-typescale-emphasized-label-medium-slnt};
+	--md-sys-typescale-emphasized-label-medium-fill: #{tokens.$md-sys-typescale-emphasized-label-medium-fill};
+	--md-sys-typescale-emphasized-label-medium-hexp: #{tokens.$md-sys-typescale-emphasized-label-medium-hexp};
+	/* label-small */
+	--md-sys-typescale-emphasized-label-small-font: #{tokens.$md-sys-typescale-emphasized-label-small-font};
+	--md-sys-typescale-emphasized-label-small-weight: #{tokens.$md-sys-typescale-emphasized-label-small-weight};
+	--md-sys-typescale-emphasized-label-small-size: #{tokens.$md-sys-typescale-emphasized-label-small-size};
+	--md-sys-typescale-emphasized-label-small-tracking: #{tokens.$md-sys-typescale-emphasized-label-small-tracking};
+	--md-sys-typescale-emphasized-label-small-line-height: #{tokens.$md-sys-typescale-emphasized-label-small-line-height};
+	--md-sys-typescale-emphasized-label-small-wght: #{tokens.$md-sys-typescale-emphasized-label-small-wght};
+	--md-sys-typescale-emphasized-label-small-grad: #{tokens.$md-sys-typescale-emphasized-label-small-grad};
+	--md-sys-typescale-emphasized-label-small-wdth: #{tokens.$md-sys-typescale-emphasized-label-small-wdth};
+	--md-sys-typescale-emphasized-label-small-rond: #{tokens.$md-sys-typescale-emphasized-label-small-rond};
+	--md-sys-typescale-emphasized-label-small-opsz: #{tokens.$md-sys-typescale-emphasized-label-small-opsz};
+	--md-sys-typescale-emphasized-label-small-crsv: #{tokens.$md-sys-typescale-emphasized-label-small-crsv};
+	--md-sys-typescale-emphasized-label-small-slnt: #{tokens.$md-sys-typescale-emphasized-label-small-slnt};
+	--md-sys-typescale-emphasized-label-small-fill: #{tokens.$md-sys-typescale-emphasized-label-small-fill};
+	--md-sys-typescale-emphasized-label-small-hexp: #{tokens.$md-sys-typescale-emphasized-label-small-hexp};
+}

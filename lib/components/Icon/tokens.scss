@@ -1,0 +1,12 @@
+@use "../../style" as theme;
+
+:root
+{
+	@include theme.saveComponentValue(icon-color, currentcolor);
+	@include theme.saveComponentValue(icon-opacity, 100%);
+	@include theme.saveComponentValue(icon-size, 24px);
+	@include theme.saveComponentValue(icon-grade, 0);
+	@include theme.saveComponentValue(icon-weight, 400);
+	@include theme.saveComponentValue(icon-optical-size, 24);
+	@include theme.saveComponentSpringTokens(icon-spring, motion-spring-expressive-fast-effects);
+}

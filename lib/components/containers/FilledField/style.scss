@@ -1,0 +1,105 @@
+@use "../../../style" as theme;
+
+.FilledField
+{
+	@include theme.color-surface-container-highest;
+	@include theme.shape-corner-side-extra-small("top");
+
+	--filled-field-border-size: 1px;
+	--filled-field-border-color: var(--md-sys-color-on-surface-variant);
+	overflow: hidden;
+
+	>.label
+	{
+		@include theme.on-surface-variant-text;
+		@include theme.body-large;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		transition: theme.motion-spring-expressive-fast-spatial((inset, transform, font-size)), theme.motion-spring-expressive-fast-effects((color));
+		user-select: none;
+		pointer-events: none;
+		z-index: 1;
+
+		&:dir(ltr)
+		{
+			left: calc(16px + var(--filled-field-label-position-inline-offset, 0px));
+		}
+		&:dir(rtl)
+		{
+			left: auto;
+			right: calc(16px + var(--filled-field-label-position-inline-offset, 0px));
+		}
+	}
+	>.indicator
+	{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: var(--filled-field-border-size);
+		background-color: var(--filled-field-border-color);
+		transition: theme.motion-spring-expressive-fast-effects((height, color));
+	}
+
+	&.filled, &.focus
+	{
+		>.label
+		{
+			@include theme.body-small;
+			top: 8px;
+			transform: translateY(0);
+		}
+	}
+
+	&:hover:not(.focus, .disabled, .error)
+	{
+		--filled-field-border-color: var(--md-sys-color-on-surface);
+		>.label
+		{
+			@include theme.on-surface-text;
+		}
+	}
+	&.focus:not(.disabled, .error)
+	{
+		--filled-field-border-size: 3px;
+		--filled-field-border-color: var(--md-sys-color-primary);
+		>.label
+		{
+			@include theme.primary-text;
+		}
+	}
+	&.disabled
+	{
+		--filled-field-border-color: rgba(from var(--md-sys-color-on-surface) r g b / 12%);
+		>.label
+		{
+			color: rgba(from var(--md-sys-color-on-surface) r g b / 38%)
+		}
+	}
+
+	&.error
+	{
+		--outlined-field-border-color: var(--md-sys-color-error);
+
+		>.label
+		{@include theme.error-text}
+	}
+	&:hover.error
+	{
+		--outlined-field-border-color: var(--md-sys-color-on-error-container);
+		>.label
+		{
+			@include theme.on-error-container-text;
+		}
+	}
+	&.focus.error
+	{
+		--outlined-field-border-size: 3px;
+		--outlined-field-border-color: var(--md-sys-color-error);
+		>.label
+		{
+			@include theme.error-text;
+		}
+	}
+}

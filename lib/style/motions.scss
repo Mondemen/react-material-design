@@ -1,0 +1,119 @@
+@use "sass:string" as string;
+
+@function combine-transitions($properties, $duration, $timing-function: "", $delay: "", $fill-mode: "")
+{
+	$result: "";
+
+	@if ($timing-function != "") {$timing-function: " " + $timing-function}
+	@if ($delay != "") {$delay: " " + $delay}
+	@if ($fill-mode != "") {$fill-mode: " " + $fill-mode}
+	@each $property in $properties {$result: $result + ", " + $property + " " + $duration + $timing-function + $delay + $fill-mode;}
+	@return string.unquote(string.slice($result, 2));
+}
+
+@function duration-short1($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 50ms, $timing-function, $delay);}
+
+@function duration-short2($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 100ms, $timing-function, $delay);}
+
+@function duration-short3($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 150ms, $timing-function, $delay);}
+
+@function duration-short4($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 200ms, $timing-function, $delay);}
+
+@function duration-medium1($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 250ms, $timing-function, $delay);}
+
+@function duration-medium2($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 300ms, $timing-function, $delay);}
+
+@function duration-medium3($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 350ms, $timing-function, $delay);}
+
+@function duration-medium4($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 400ms, $timing-function, $delay);}
+
+@function duration-long1($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 450ms, $timing-function, $delay);}
+
+@function duration-long2($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 500ms, $timing-function, $delay);}
+
+@function duration-long3($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 550ms, $timing-function, $delay);}
+
+@function duration-long4($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 600ms, $timing-function, $delay);}
+
+@function duration-extra-long1($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 700ms, $timing-function, $delay);}
+
+@function duration-extra-long2($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 800ms, $timing-function, $delay);}
+
+@function duration-extra-long3($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 900ms, $timing-function, $delay);}
+
+@function duration-extra-long4($properties, $timing-function: "", $delay: "")
+{@return combine-transitions($properties, 1000ms, $timing-function, $delay);}
+
+@function easing-linear()
+{@return cubic-bezier(0, 0, 1, 1);}
+
+@function easing-standard()
+{@return cubic-bezier(0.2, 0, 0, 1);}
+
+@function easing-standard-accelerate()
+{@return cubic-bezier(0.3, 0, 1, 1);}
+
+@function easing-standard-decelerate()
+{@return cubic-bezier(0, 0, 0, 1);}
+
+@function easing-emphasized()
+{@return cubic-bezier(0.2, 0, 0, 1);}
+
+@function easing-emphasized-decelerate()
+{@return cubic-bezier(0.05, 0.7, 0.1, 1);}
+
+@function easing-emphasized-accelerate()
+{@return cubic-bezier(0.3, 0, 0.8, 0.15);}
+
+@function easing-legacy()
+{@return cubic-bezier(0.4, 0, 0.2, 1);}
+
+@function easing-legacy-decelerate()
+{@return cubic-bezier(0.0, 0, 0.2, 1);}
+
+@function easing-legacy-accelerate()
+{@return cubic-bezier(0.4, 0, 1.0, 1);}
+
+
+@function spring-expressive-fast-spatial($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-expressive-fast-spatial-duration), var(--md-sys-motion-spring-expressive-fast-spatial-easing), $delay, $fill-mode);}
+@function spring-expressive-default-spatial($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-expressive-default-spatial-duration), var(--md-sys-motion-spring-expressive-default-spatial-easing), $delay, $fill-mode);}
+@function spring-expressive-slow-spatial($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-expressive-slow-spatial-duration), var(--md-sys-motion-spring-expressive-slow-spatial-easing), $delay, $fill-mode);}
+
+@function spring-expressive-fast-effects($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-expressive-fast-effects-duration), var(--md-sys-motion-spring-expressive-fast-effects-easing), $delay, $fill-mode);}
+@function spring-expressive-default-effects($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-expressive-default-effects-duration), var(--md-sys-motion-spring-expressive-default-effects-easing), $delay, $fill-mode);}
+@function spring-expressive-slow-effects($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-expressive-slow-effects-duration), var(--md-sys-motion-spring-expressive-slow-effects-easing), $delay, $fill-mode);}
+
+@function spring-standard-fast-spatial($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-standard-fast-spatial-duration), var(--md-sys-motion-spring-standard-fast-spatial-easing), $delay, $fill-mode);}
+@function spring-standard-default-spatial($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-standard-default-spatial-duration), var(--md-sys-motion-spring-standard-default-spatial-easing), $delay, $fill-mode);}
+@function spring-standard-slow-spatial($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-standard-slow-spatial-duration), var(--md-sys-motion-spring-standard-slow-spatial-easing), $delay, $fill-mode);}
+
+@function spring-standard-fast-effects($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-standard-fast-effects-duration), var(--md-sys-motion-spring-standard-fast-effects-easing), $delay, $fill-mode);}
+@function spring-standard-default-effects($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-standard-default-effects-duration), var(--md-sys-motion-spring-standard-default-effects-easing), $delay, $fill-mode);}
+@function spring-standard-slow-effects($properties, $delay: "", $fill-mode: "")
+{@return combine-transitions($properties, var(--md-sys-motion-spring-standard-slow-effects-duration), var(--md-sys-motion-spring-standard-slow-effects-easing), $delay, $fill-mode);}

@@ -1,0 +1,80 @@
+@use "../../style" as theme;
+
+.Dialog
+{
+	/* Dialog - Basic */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(dialog-container-color, color-surface-container-high);
+				@include theme.saveComponentToken(dialog-container-elevation, elevation-level3);
+				@include theme.saveComponentToken(dialog-container-shape, shape-corner-extra-large);
+			/* Label text */
+				@include theme.saveComponentTypescaleTokens(dialog-action-label-text, label-large);
+				@include theme.saveComponentToken(dialog-action-label-text-color, color-primary);
+			/* Icon */
+				@include theme.saveComponentValue(dialog-with-icon-icon-size, 24px);
+				@include theme.saveComponentToken(dialog-with-icon-icon-color, color-secondary);
+			/* Headline */
+				@include theme.saveComponentTypescaleTokens(dialog-headline, headline-small);
+				@include theme.saveComponentToken(dialog-headline-color, color-on-surface);
+			/* Supporting text */
+				@include theme.saveComponentTypescaleTokens(dialog-supporting-text, body-medium);
+				@include theme.saveComponentToken(dialog-supporting-text-color, color-on-surface-variant);
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(dialog-action-hover-label-text-color, color-primary);
+			/* State layer */
+				@include theme.saveComponentToken(dialog-action-hover-state-layer-color, color-primary);
+				@include theme.saveComponentToken(dialog-action-hover-state-layer-opacity, state-hover-state-layer-opacity);
+		/* Focused */
+			/* Label text */
+				@include theme.saveComponentToken(dialog-action-focus-label-text-color, color-primary);
+			/* State layer */
+				@include theme.saveComponentToken(dialog-action-focus-state-layer-color, color-primary);
+				@include theme.saveComponentToken(dialog-action-focus-state-layer-opacity, state-focus-state-layer-opacity);
+		/* Pressed (ripple) */
+			/* Label text */
+				@include theme.saveComponentToken(dialog-action-pressed-label-text-color, color-primary);
+			/* State layer */
+				@include theme.saveComponentToken(dialog-action-pressed-state-layer-color, color-primary);
+				@include theme.saveComponentToken(dialog-action-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+	/* Dialog - Full screen */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(full-screen-dialog-header-on-scroll-container-color, color-surface-container);
+				@include theme.saveComponentToken(full-screen-dialog-container-color, color-surface);
+				@include theme.saveComponentToken(full-screen-dialog-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(full-screen-dialog-container-shape, shape-corner-none);
+				@include theme.saveComponentValue(full-screen-dialog-header-container-height, 56px);
+				@include theme.saveComponentToken(full-screen-dialog-header-container-color, color-surface);
+				@include theme.saveComponentToken(full-screen-dialog-header-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(full-screen-dialog-header-on-scroll-container-elevation, elevation-level2);
+			/* Label text */
+				@include theme.saveComponentTypescaleTokens(full-screen-dialog-header-action-label-text, label-large);
+				@include theme.saveComponentToken(full-screen-dialog-header-action-label-text-color, color-primary);
+			/* Icon */
+				@include theme.saveComponentToken(full-screen-dialog-header-icon-color, color-on-surface);
+				@include theme.saveComponentValue(full-screen-dialog-header-icon-size, 24px);
+			/* Headline */
+				@include theme.saveComponentToken(full-screen-dialog-header-headline-color, color-on-surface);
+				@include theme.saveComponentTypescaleTokens(full-screen-dialog-header-headline, title-large);
+			/* Divider */
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(full-screen-dialog-header-action-hover-label-text-color, color-primary);
+			/* State layer */
+				@include theme.saveComponentToken(full-screen-dialog-header-action-hover-state-layer-color, color-primary);
+				@include theme.saveComponentToken(full-screen-dialog-header-action-hover-state-layer-opacity, state-hover-state-layer-opacity);
+		/* Focused */
+			/* Label text */
+				@include theme.saveComponentToken(full-screen-dialog-header-action-focus-label-text-color, color-primary);
+			/* State layer */
+				@include theme.saveComponentToken(full-screen-dialog-header-action-focus-state-layer-color, color-primary);
+				@include theme.saveComponentToken(full-screen-dialog-header-action-focus-state-layer-opacity, state-focus-state-layer-opacity);
+		/* Pressed (ripple) */
+			/* Label text */
+				@include theme.saveComponentToken(full-screen-dialog-header-action-pressed-label-text-color, color-primary);
+			/* State layer */
+				@include theme.saveComponentToken(full-screen-dialog-header-action-pressed-state-layer-color, color-primary);
+				@include theme.saveComponentToken(full-screen-dialog-header-action-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+}

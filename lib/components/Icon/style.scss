@@ -1,0 +1,49 @@
+@use "../../style" as theme;
+
+.Icon
+{
+	&.outlined
+	{
+		font-family: "Material Symbols Outlined";
+	}
+	&.rounded
+	{
+		font-family: "Material Symbols Rounded";
+	}
+	&.sharp
+	{
+		font-family: "Material Symbols Sharp";
+	}
+
+	&.fill
+	{font-variation-settings: "FILL" 1, "GRAD" theme.applyComponentToken(icon-grade), "wght" theme.applyComponentToken(icon-weight), "opsz" theme.applyComponentToken(icon-optical-size);}
+	&:not(.fill)
+	{font-variation-settings: "FILL" 0, "GRAD" theme.applyComponentToken(icon-grade), "wght" theme.applyComponentToken(icon-weight), "opsz" theme.applyComponentToken(icon-optical-size);}
+
+	// font-variation-settings: "FILL" 0, "GRAD" theme.applyComponentToken(icon-grade), "wght" theme.applyComponentToken(icon-weight), "opsz" theme.applyComponentToken(icon-optical-size);
+
+	// display: inline-flex;
+	// align-items: center;
+	// justify-content: center;
+	// width: theme.applyComponentToken(icon-size);
+	// height: theme.applyComponentToken(icon-size);
+	color: theme.applyComponentColorOpacityToken(icon);
+	font-style: normal;
+	font-size: theme.applyComponentToken(icon-size);
+	font-weight: theme.applyComponentToken(icon-weight);
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-moz-font-feature-settings: 'liga';
+	-webkit-font-feature-settings: 'liga';
+	font-feature-settings: 'liga';
+	-moz-osx-font-smoothing: grayscale;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	transition: theme.applyMotionSpringTokens(icon-spring, (font-variation-settings, color));
+	// transition: theme.motion-spring-expressive-fast-effects((font-variation-settings));
+}

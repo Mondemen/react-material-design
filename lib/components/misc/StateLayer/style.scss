@@ -1,0 +1,139 @@
+@use "../../../style" as theme;
+
+:root
+{
+	--md-sys-state-disabled-state-layer-opacity: 0%; // Or 8% or 38%
+	--md-sys-state-hover-state-layer-opacity: 8%;
+	--md-sys-state-focus-state-layer-opacity: 10%;
+	--md-sys-state-pressed-state-layer-opacity: 10%;
+	--md-sys-state-dragged-state-layer-opacity: 16%;
+
+	--md-sys-state-focus-indicator-thickness: 3px;
+	--md-sys-state-focus-indicator-outer-offset: 2px;
+
+	@include theme.saveComponentValue(state-layer-color, currentcolor);
+	@include theme.saveComponentValue(state-layer-opacity, state-disabled-state-layer-opacity);
+
+	@include theme.saveComponentToken(state-disabled-state-layer-opacity, state-disabled-state-layer-opacity);
+	@include theme.saveComponentToken(state-hover-state-layer-opacity, state-hover-state-layer-opacity);
+	@include theme.saveComponentToken(state-focus-state-layer-opacity, state-focus-state-layer-opacity);
+	@include theme.saveComponentToken(state-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+	@include theme.saveComponentToken(state-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+
+	@include theme.saveComponentToken(state-focus-indicator-thickness, state-focus-indicator-thickness);
+	@include theme.saveComponentToken(state-focus-indicator-outer-offset, state-focus-indicator-outer-offset);
+}
+
+:has(> .StateLayer)
+{
+	position: relative;
+
+	>:not(.StateLayer)
+	{z-index: 2}
+
+	&.disabled >.StateLayer
+	{
+		@include theme.forwardComponentToken(state-layer-color, state-disabled-state-layer-color, transparent);
+		@include theme.forwardComponentToken(state-layer-opacity, state-disabled-state-layer-opacity);
+	}
+	&:is(:hover, .hovered):not(.disabled, :focus-visible, :active, .dragged) >.StateLayer
+	{
+		@include theme.forwardComponentToken(state-layer-color, state-hover-state-layer-color, transparent);
+		@include theme.forwardComponentToken(state-layer-opacity, state-hover-state-layer-opacity);
+	}
+	&:focus-visible:not(.disabled, :active, .dragged) >.StateLayer
+	{
+		@include theme.forwardComponentToken(state-layer-color, state-focus-state-layer-color, transparent);
+		@include theme.forwardComponentToken(state-layer-opacity, state-focus-state-layer-opacity);
+		outline-color: theme.applyComponentToken(state-focus-indicator-color, transparent);
+	}
+	&:active:not(.disabled, .dragged) >.StateLayer
+	{
+		@include theme.forwardComponentToken(state-layer-color, state-pressed-state-layer-color, transparent);
+		@include theme.forwardComponentToken(state-layer-opacity, state-pressed-state-layer-opacity);
+	}
+	&.dragged:not(.disabled) >.StateLayer
+	{
+		@include theme.forwardComponentToken(state-layer-color, state-dragged-state-layer-color, transparent);
+		@include theme.forwardComponentToken(state-layer-opacity, state-dragged-state-layer-opacity);
+	}
+}
+
+.StateLayer
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	outline: solid theme.applyComponentToken(state-focus-indicator-thickness) transparent;
+	outline-offset: theme.applyComponentToken(state-focus-indicator-outer-offset);
+	transform: translate(-50%, -50%);
+	border-radius: inherit;
+	background-color: rgba(from theme.applyComponentToken(state-layer-color, currentColor) r g b / theme.applyComponentToken(state-layer-opacity));
+	transition: theme.motion-spring-expressive-fast-effects((background-color, outline, outline-offset, border-radius));
+	z-index: 1;
+
+	>.target
+	{
+		position: absolute;
+		display: block;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		min-width: 48px;
+		min-height: 48px;
+		transform: translate(-50%, -50%);
+		border-radius: inherit;
+	}
+
+	&:not(.disabled) >.ripples
+	{
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		overflow: hidden;
+		pointer-events: none;
+
+		& >.ripple
+		{
+			position: absolute;
+			border-radius: 50%;
+			transform: scale(0);
+			background-color: currentColor;
+			opacity: 10%;
+			z-index: -1;
+			transition: theme.motion-spring-expressive-fast-effects((background-color, opacity));
+
+			&.start
+			{animation: startRippleEffect 225ms forwards}
+			&.end
+			{animation: endRippleEffect 150ms forwards}
+
+			@keyframes startRippleEffect
+			{
+				from
+				{
+					opacity: 0;
+					transform: scale(0);
+				}
+				25%
+				{opacity: 10%;}
+				to
+				{transform: scale(2.5);}
+			}
+
+			@keyframes endRippleEffect
+			{
+				from
+				{transform: scale(2.5);}
+				to
+				{
+					transform: scale(2.5);
+					opacity: 0;
+				}
+			}
+		}
+	}
+}

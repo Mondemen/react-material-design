@@ -1,0 +1,284 @@
+@use "../../style" as theme;
+@use "../../style/utils.scss";
+
+@keyframes dialog-backdrop-open
+{
+	from {opacity: 0}
+	to {opacity: 0.4}
+}
+@keyframes dialog-backdrop-close
+{
+	from {opacity: 0.4}
+	to {opacity: 0}
+}
+
+@supports not (width: calc-size(auto, size))
+{
+	@keyframes dialog-basic-container-open
+	{
+		from {height: 0; opacity: 0}
+		to {height: var(--modal-height); opacity: 1}
+	}
+	@keyframes dialog-basic-container-close
+	{
+		from {height: var(--modal-height); opacity: 1}
+		to {height: calc(var(--modal-height) / 100 * 20); opacity: 0}
+	}
+}
+@supports (width: calc-size(auto, size))
+{
+	@keyframes dialog-basic-container-open
+	{
+		from {height: 0; opacity: 0}
+		to {height: calc-size(auto, size); opacity: 1}
+	}
+	@keyframes dialog-basic-container-close
+	{
+		from {height: calc-size(auto, size); pacity: 1}
+		to {height: calc-size(auto, size / 100 * 20); opacity: 0}
+	}
+}
+
+@keyframes dialog-fullscreen-container-open
+{
+	from {transform: translateY(100%); opacity: 0}
+	to {transform: translateY(0px); opacity: 1}
+}
+@keyframes dialog-fullscreen-container-close
+{
+	from {transform: translateY(0px); opacity: 1}
+	to {transform: translateY(100%); opacity: 0}
+}
+
+@keyframes dialog-basic-content-open
+{
+	from {opacity: 0}
+	to {opacity: 1}
+}
+@keyframes dialog-basic-content-close
+{
+	from {opacity: 1}
+	to {opacity: 0}
+}
+
+.Dialog
+{
+	position: fixed;
+	width: 100dvw;
+	height: 100dvh;
+	border: none;
+	outline: none;
+	margin: 0;
+	padding: 0;
+	max-width: unset;
+	max-height: unset;
+	background-color: transparent;
+	box-sizing: border-box;
+	transform-origin: top center;
+	overflow: hidden;
+
+	&[open]
+	{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&::before
+	{
+		@include theme.color-scrim;
+		content: "";
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+	}
+
+	&::backdrop
+	{
+		opacity: 0;
+	}
+	&.open
+	{
+		&::before
+		{animation: theme.motion-spring-expressive-default-effects(dialog-backdrop-open, forwards)}
+		>.modal
+		{
+			&:not(.fullscreen)
+			{
+				animation: theme.motion-spring-expressive-default-spatial(dialog-basic-container-open, forwards);
+				>.container
+				{animation: theme.motion-spring-expressive-slow-spatial(dialog-basic-content-open, forwards)}
+			}
+			&.fullscreen
+			{animation: theme.motion-spring-standard-slow-spatial(dialog-fullscreen-container-open, forwards)}
+		}
+	}
+	&.close
+	{
+		&::before
+		{animation: theme.motion-spring-expressive-default-effects(dialog-backdrop-close, forwards)}
+		>.modal
+		{
+			&:not(.fullscreen)
+			{
+				animation: theme.motion-spring-expressive-default-spatial(dialog-basic-container-close, forwards);
+				>.container
+				{animation: theme.motion-spring-expressive-fast-effects(dialog-basic-content-close, forwards)}
+			}
+			&.fullscreen
+			{animation: theme.motion-spring-standard-slow-spatial(dialog-fullscreen-container-close, forwards)}
+		}
+	}
+
+	>.modal
+	{
+		@include theme.color-on-surface-variant-text;
+		overflow: hidden;
+
+		&:not(.fullscreen)
+		{
+			min-width: 280px;
+			max-width: 560px;
+			max-height: calc(100dvh - 16px * 2);
+			background-color: theme.applyComponentToken(dialog-container-color);
+			border-radius: theme.applyComponentToken(dialog-container-shape);
+			box-shadow: theme.applyComponentToken(dialog-container-elevation);
+
+			&.extra-small
+			{width: 280px}
+			&.small
+			{width: 350px}
+			&.medium
+			{width: 420px}
+			&.large
+			{width: 490px}
+			&.extra-large
+			{width: 560px}
+
+			&.headline.icon >.container >.description >.headline
+			{align-self: center}
+
+			>.container
+			{
+				display: flex;
+				flex-direction: column;
+				// width: 100%;
+				max-height: calc(100dvh - 32px);
+				padding: 24px;
+				box-sizing: border-box;
+				gap: 24px;
+
+				>.description
+				{
+					display: flex;
+					flex-direction: column;
+					gap: 16px;
+
+					>.Icon
+					{
+						align-self: center;
+						color: theme.applyComponentToken(dialog-with-icon-icon-color);
+					}
+					>.headline
+					{
+						@include theme.applyComponentTypescaleTokens(dialog-headline);
+						color: theme.applyComponentToken(dialog-headline-color);
+					}
+					>.supporting-text
+					{
+						@include theme.applyComponentTypescaleTokens(dialog-supporting-text);
+						color: theme.applyComponentToken(dialog-supporting-text-color);
+					}
+				}
+
+				>.content
+				{
+					overflow: auto;
+				}
+
+				>.Divider
+				{
+					margin: 0;
+					margin-block: -6px;
+				}
+
+				>.actions
+				{
+					display: flex;
+					justify-content: flex-end;
+					gap: 8px;
+
+					>.Button
+					{color: theme.applyComponentToken(dialog-action-label-text-color)}
+				}
+			}
+		}
+
+		&.fullscreen
+		{
+			position: fixed;
+			inset: 0;
+			background-color: theme.applyComponentToken(full-screen-dialog-container-color);
+			border-radius: theme.applyComponentToken(full-screen-dialog-container-shape);
+			box-shadow: theme.applyComponentToken(full-screen-dialog-container-elevation);
+
+			>.container
+			{
+				display: flex;
+				flex-direction: column;
+				position: fixed;
+				inset: 0;
+
+				&.on-scroll >.header
+				{box-shadow: theme.applyComponentToken(full-screen-dialog-header-on-scroll-container-elevation)}
+
+				>.header
+				{
+					display: flex;
+					align-items: center;
+					flex: 0 0 theme.applyComponentToken(full-screen-dialog-header-container-height);
+					height: theme.applyComponentToken(full-screen-dialog-header-container-height);
+					padding-inline: 8px;
+					gap: 8px;
+					background-color: theme.applyComponentToken(full-screen-dialog-header-container-color);
+					box-shadow: theme.applyComponentToken(full-screen-dialog-header-container-elevation);
+					transition: theme.motion-spring-expressive-fast-effects((background-color, box-shadow));
+
+					>.icon
+					{
+						@include theme.forwardComponentToken(icon-size, full-screen-dialog-header-icon-size);
+						@include theme.shape-corner-full;
+						color: theme.applyComponentToken(full-screen-dialog-header-icon-color);
+					}
+					>.headline
+					{
+						@include theme.applyComponentTypescaleTokens(full-screen-dialog-header-headline);
+						flex: 1;
+						color: theme.applyComponentToken(full-screen-dialog-header-headline-color);
+
+						&::before
+						{
+							content: "";
+							vertical-align: middle;
+						}
+					}
+					>.action
+					{
+						@include theme.applyComponentTypescaleTokens(full-screen-dialog-header-action-label-text);
+						color: theme.applyComponentToken(full-screen-dialog-header-action-label-text-color);
+					}
+				}
+
+				>.content
+				{
+					flex: 1;
+					padding: 12px 24px;
+					padding-bottom: 24px;
+					overflow: auto;
+				}
+			}
+		}
+	}
+
+	>.content-hide {display: none}
+}

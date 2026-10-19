@@ -1,0 +1,26 @@
+@use "../../style" as theme;
+
+.FloatingElement:has(>.Tooltip)
+{z-index: 1000}
+.Tooltip
+{
+	// z-index: 1000;
+	transition: theme.motion-spring-expressive-fast-effects((opacity, background-color, color));
+
+	&:not(.open)
+	{
+		opacity: 0;
+		pointer-events: none;
+	}
+	&.open
+	{opacity: 1}
+
+	&.plain
+	{
+		@include theme.applyComponentTypescaleTokens(plain-tooltip-supporting-text);
+		padding-inline: theme.applySystemToken(measurement-space100);
+		background-color: theme.applyComponentToken(plain-tooltip-container-color);
+		color: theme.applyComponentToken(plain-tooltip-supporting-text-color);
+		border-radius: theme.applyComponentToken(plain-tooltip-container-shape);
+	}
+}

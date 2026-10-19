@@ -1,0 +1,54 @@
+@use "../../style" as theme;
+
+.TextField.NumberField
+{
+	>.FilledField >.arrow, >.OutlinedField >.arrow
+	{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-self: stretch;
+		gap: 2px;
+
+		>.button
+		{
+			@include theme.shape-corner-extra-small;
+			@include theme.on-surface-variant-text;
+			display: flex;
+			width: 36px;
+			height: 22px;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+		}
+	}
+
+	>.FilledField >.arrow
+	{
+		margin-top: -1px;
+
+		>.button
+		{@include theme.color-surface-container}
+
+		&:nth-last-child(2)
+		{
+			&:dir(ltr)
+			{margin-right: -8px}
+			&:dir(rtl)
+			{margin-left: -8px}
+		}
+	}
+	>.OutlinedField >.arrow
+	{
+		>.button
+		{@include theme.color-surface-container-highest}
+
+		&:last-child
+		{
+			&:dir(ltr)
+			{margin-right: -6px}
+			&:dir(rtl)
+			{margin-left: -8px}
+		}
+	}
+}

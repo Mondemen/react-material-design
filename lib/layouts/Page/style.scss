@@ -1,0 +1,118 @@
+@use "../../style" as theme;
+
+.Page
+{
+	display: flex;
+	align-items: stretch;
+	justify-content: stretch;
+	min-width: 100dvw;
+	min-height: 100dvh;
+	box-sizing: border-box;
+
+	--page-content-default-spacing: #{theme.applySystemToken(measurement-space300)};
+	--page-tools-top-size: max(var(--page-tools-top-menubar-size, var(--page-content-default-spacing, 0px)), var(--page-tools-top-toolbar-size, var(--page-content-default-spacing, 0px)));
+	--page-tools-bottom-size: max(var(--page-tools-bottom-toolbar-size, var(--page-content-default-spacing, 0px)));
+	--page-tools-left-size: max(var(--page-tools-left-toolbar-size, var(--page-content-default-spacing, 0px)));
+	--page-tools-right-size: max(var(--page-tools-right-toolbar-size, var(--page-content-default-spacing, 0px)));
+
+	&:has(>.tools.top >.Menubar)
+	{--page-tools-top-menubar-size: calc(48px + #{theme.applySystemToken(measurement-space200)});}
+	&:has(>.tools.top >.Toolbar.floating)
+	{--page-tools-top-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} * 2);}
+
+	&:has(>.tools.bottom >.Toolbar.docked)
+	{--page-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-docked-container-height)} + #{theme.applySystemToken(measurement-space200)});}
+	&:has(>.tools.bottom >.Toolbar.floating)
+	{--page-tools-bottom-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-horizontal-container-height)} + #{theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)} * 2);}
+
+	&:has(>.tools.left >.Toolbar.floating)
+	{--page-tools-left-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} * 2);}
+
+	&:has(>.tools.right >.Toolbar.floating)
+	{--page-tools-right-toolbar-size: calc(#{theme.applyComponentToken(toolbar-floating-vertical-container-width)} + #{theme.applyComponentToken(toolbar-floating-vertical-container-external-space)} * 2);}
+
+	>.tools
+	{
+		position: fixed;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 5;
+		pointer-events: none;
+
+		& >*
+		{pointer-events: initial}
+
+		&.top
+		{
+			top: 0;
+			left: 0;
+			right: 0;
+
+			&:not(:has(>.Menubar))
+			{padding-inline: theme.applySystemToken(measurement-space200)}
+
+			>.Menubar
+			{flex: 1}
+			>.Toolbar.floating
+			{margin-top: theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)}
+		}
+		&.bottom
+		{
+			bottom: 0;
+			left: 0;
+			right: 0;
+
+			&:not(:has(>.Toolbar.docked))
+			{padding-inline: theme.applySystemToken(measurement-space200)}
+
+			>.Toolbar.docked
+			{flex: 1}
+			>.Toolbar.floating
+			{margin-bottom: theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)}
+		}
+		&.left
+		{
+			top: 0;
+			bottom: 0;
+			left: 0;
+			padding-block: theme.applySystemToken(measurement-space300);
+
+			>.Toolbar.floating
+			{margin-left: theme.applyComponentToken(toolbar-floating-vertical-container-external-space)}
+		}
+		&.right
+		{
+			top: 0;
+			bottom: 0;
+			right: 0;
+			padding-block: theme.applySystemToken(measurement-space300);
+
+			>.Toolbar.floating
+			{margin-right: theme.applyComponentToken(toolbar-floating-vertical-container-external-space)}
+		}
+	}
+
+	>.content
+	{
+		padding: var(--page-tools-top-size) var(--page-tools-right-size) var(--page-tools-bottom-size) var(--page-tools-left-size);
+		flex: 1;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+
+		>*
+		{
+			--page-tools-top-size: initial;
+			--page-tools-bottom-size: initial;
+			--page-tools-left-size: initial;
+			--page-tools-right-size: initial;
+			--page-tools-top-menubar-size: initial;
+			--page-tools-top-toolbar-size: initial;
+			--page-tools-bottom-toolbar-size: initial;
+			--page-tools-bottom-toolbar-size: initial;
+			--page-tools-left-toolbar-size: initial;
+			--page-tools-right-toolbar-size: initial;
+		}
+	}
+}

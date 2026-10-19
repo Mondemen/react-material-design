@@ -1,0 +1,10 @@
+@use "../../style" as theme;
+
+:root
+{
+	/* Divider */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentValue(divider-thickness, 1px);
+				@include theme.saveComponentToken(divider-color, color-outline-variant);
+}

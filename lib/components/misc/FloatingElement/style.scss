@@ -1,0 +1,24 @@
+.FloatingElementTarget
+{display: none}
+
+.FloatingElement
+{
+	&:not(.open)
+	{pointer-events: none}
+
+	&.bottom >* {transform-origin: top center}
+	&.bottom.start >* {transform-origin: top left}
+	&.bottom.end >* {transform-origin: top right}
+
+	&.top >* {transform-origin: bottom center}
+	&.top.start >* {transform-origin: bottom left}
+	&.top.end >* {transform-origin: bottom right}
+
+	&.right >* {transform-origin: left center}
+	&.right.start >* {transform-origin: left top}
+	&.right.end >* {transform-origin: left bottom}
+
+	&.left >* {transform-origin: right center}
+	&.left.start >* {transform-origin: right top}
+	&.left.end >* {transform-origin: right bottom}
+}

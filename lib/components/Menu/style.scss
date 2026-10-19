@@ -1,0 +1,299 @@
+@use "../../style" as theme;
+
+.MenuGroup >.item:has(.SubMenu):not(:hover) >.SubMenu, .Menu:is(.context-menu, .sub-component):not(.visible)
+{
+	opacity: 0;
+	visibility: hidden;
+	>.MenuGroup >.item >.MenuItem
+	{padding-block: 0}
+}
+
+.Menu, .SubMenu
+{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: theme.applyComponentToken(menus-group-padding);
+	width: fit-content;
+	height: var(--menu-height, auto);
+	transition: theme.motion-spring-expressive-fast-spatial((gap)), theme.motion-spring-expressive-fast-effects((opacity, visibility));
+
+	&.top
+	{justify-content: flex-end}
+	&.bottom
+	{justify-content: flex-start}
+
+	&.SubMenu
+	{
+		transition: theme.motion-spring-expressive-fast-spatial((gap), 300ms), theme.motion-spring-expressive-fast-effects((opacity, visibility), 300ms);
+
+		.MenuGroup >.item >.MenuItem
+		{
+			transition:
+				theme.motion-spring-expressive-fast-spatial((height, min-height, font, margin, padding, gap, border-radius)),
+				theme.motion-spring-expressive-fast-spatial((padding-block), 300ms),
+				theme.motion-spring-expressive-fast-effects((background-color, color, box-shadow, outline, opacity));
+		}
+	}
+
+	>.size-ref
+	{
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		top: 0;
+		left: 0;
+		visibility: hidden;
+		gap: theme.applyComponentToken(menus-group-padding);
+	}
+
+	&.density-1 >.MenuGroup >.item >.MenuItem, &.density-1 >.size-ref >.MenuGroup >.item >.MenuItem
+	{
+		padding-top: theme.applyComponentToken(menus-menu-item-top-space-1);
+		padding-bottom: theme.applyComponentToken(menus-menu-item-bottom-space-1);
+	}
+	&.density-2 >.MenuGroup >.item >.MenuItem, &.density-2 >.size-ref >.MenuGroup >.item >.MenuItem
+	{
+		padding-top: theme.applyComponentToken(menus-menu-item-top-space-2);
+		padding-bottom: theme.applyComponentToken(menus-menu-item-bottom-space-2);
+	}
+	&.density-3 >.MenuGroup >.item >.MenuItem, &.density-3 >.size-ref >.MenuGroup >.item >.MenuItem
+	{
+		padding-top: theme.applyComponentToken(menus-menu-item-top-space-3);
+		padding-bottom: theme.applyComponentToken(menus-menu-item-bottom-space-3);
+	}
+
+	&.context-menu
+	{
+		position: fixed;
+		z-index: 10000;
+	}
+
+	&.standard-color
+	{
+		.MenuGroup
+		{
+			background-color: theme.applyComponentToken(menus-standard-container-color);
+
+			>.label
+			{color: theme.applyComponentToken(menus-standard-section-label-text-color)}
+
+			>.item >.MenuItem
+			{
+				&:not(.selected)
+				{
+					@include theme.forwardComponentToken(state-hover-state-layer-opacity, menus-standard-menu-item-hovered-state-layer-opacity);
+					@include theme.forwardComponentToken(state-focused-state-layer-opacity, menus-standard-menu-item-focused-state-layer-opacity);
+					@include theme.forwardComponentToken(state-pressed-state-layer-opacity, menus-standard-menu-item-pressed-state-layer-opacity);
+					@include theme.forwardComponentToken(state-hover-state-layer-color, menus-standard-menu-item-hovered-state-layer-color);
+					@include theme.forwardComponentToken(state-focused-state-layer-color, menus-standard-menu-item-focused-state-layer-color);
+					@include theme.forwardComponentToken(state-pressed-state-layer-color, menus-standard-menu-item-pressed-state-layer-color);
+					color: theme.applyComponentToken(menus-standard-menu-item-label-text-color);
+					background-color: theme.applyComponentToken(menus-standard-menu-item-container-color);
+
+					>.icon
+					{
+						&.leading
+						{
+							@include theme.forwardComponentToken(icon-color, menus-standard-menu-item-leading-icon-color);
+							@include theme.forwardComponentToken(icon-opacity, menus-standard-menu-item-leading-icon-opacity, 1);
+						}
+						&.trailing
+						{
+							@include theme.forwardComponentToken(icon-color, menus-standard-menu-item-trailing-icon-color);
+							@include theme.forwardComponentToken(icon-opacity, menus-standard-menu-item-trailing-icon-opacity, 1);
+						}
+					}
+				}
+
+				&.selected
+				{
+					color: theme.applyComponentToken(menus-standard-menu-item-selected-label-text-color);
+					background-color: theme.applyComponentToken(menus-standard-menu-item-selected-container-color);
+
+					>.icon
+					{
+						&.leading
+						{
+							@include theme.forwardComponentToken(icon-color, menus-standard-menu-item-selected-leading-icon-color);
+							@include theme.forwardComponentToken(icon-opacity, menus-standard-menu-item-selected-leading-icon-opacity, 1);
+						}
+						&.trailing
+						{
+							@include theme.forwardComponentToken(icon-color, menus-standard-menu-item-selected-trailing-icon-color);
+							@include theme.forwardComponentToken(icon-opacity, menus-standard-menu-item-selected-trailing-icon-opacity, 1);
+						}
+					}
+				}
+			}
+		}
+	}
+	&.vibrant-color
+	{
+		.MenuGroup
+		{
+			background-color: theme.applyComponentToken(menus-vibrant-container-color);
+
+			>.label
+			{color: theme.applyComponentToken(menus-vibrant-section-label-text-color)}
+
+			>.item >.MenuItem
+			{
+				&:not(.selectect)
+				{
+					@include theme.forwardComponentToken(state-hover-state-layer-opacity, menus-vibrant-menu-item-hovered-state-layer-opacity);
+					@include theme.forwardComponentToken(state-focused-state-layer-opacity, menus-vibrant-menu-item-focused-state-layer-opacity);
+					@include theme.forwardComponentToken(state-pressed-state-layer-opacity, menus-vibrant-menu-item-pressed-state-layer-opacity);
+					@include theme.forwardComponentToken(state-hover-state-layer-color, menus-vibrant-menu-item-hovered-state-layer-color);
+					@include theme.forwardComponentToken(state-focused-state-layer-color, menus-vibrant-menu-item-focused-state-layer-color);
+					@include theme.forwardComponentToken(state-pressed-state-layer-color, menus-vibrant-menu-item-pressed-state-layer-color);
+
+					color: theme.applyComponentToken(menus-vibrant-menu-item-label-text-color);
+					background-color: theme.applyComponentToken(menus-vibrant-menu-item-container-color);
+
+					>.icon
+					{
+						&.leading
+						{
+							@include theme.forwardComponentToken(icon-color, menus-vibrant-menu-item-leading-icon-color);
+							@include theme.forwardComponentToken(icon-opacity, menus-vibrant-menu-item-leading-icon-opacity, 1);
+						}
+						&.trailing
+						{
+							@include theme.forwardComponentToken(icon-color, menus-vibrant-menu-item-trailing-icon-color);
+							@include theme.forwardComponentToken(icon-opacity, menus-vibrant-menu-item-trailing-icon-opacity, 1);
+						}
+					}
+				}
+
+				&.selected
+				{
+					@include theme.forwardComponentToken(state-hover-state-layer-opacity, menus-vibrant-menu-item-selected-hovered-state-layer-opacity);
+					@include theme.forwardComponentToken(state-focused-state-layer-opacity, menus-vibrant-menu-item-selected-focused-state-layer-opacity);
+					@include theme.forwardComponentToken(state-pressed-state-layer-opacity, menus-vibrant-menu-item-selected-pressed-state-layer-opacity);
+					@include theme.forwardComponentToken(state-hover-state-layer-color, menus-vibrant-menu-item-selected-hovered-state-layer-color);
+					@include theme.forwardComponentToken(state-focused-state-layer-color, menus-vibrant-menu-item-selected-focused-state-layer-color);
+					@include theme.forwardComponentToken(state-pressed-state-layer-color, menus-vibrant-menu-item-selected-pressed-state-layer-color);
+					color: theme.applyComponentToken(menus-vibrant-menu-item-selected-label-text-color);
+					background-color: theme.applyComponentToken(menus-vibrant-menu-item-selected-container-color);
+
+					>.icon
+					{
+						&.leading
+						{
+							@include theme.forwardComponentToken(icon-color, menus-vibrant-menu-item-selected-leading-icon-color);
+							@include theme.forwardComponentToken(icon-opacity, menus-vibrant-menu-item-selected-leading-icon-opacity, 1);
+						}
+						&.trailing
+						{
+							@include theme.forwardComponentToken(icon-color, menus-vibrant-menu-item-selected-trailing-icon-color);
+							@include theme.forwardComponentToken(icon-opacity, menus-vibrant-menu-item-selected-trailing-icon-opacity, 1);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	>.MenuGroup, >.size-ref >.MenuGroup
+	{
+		display: flex;
+		flex-direction: column;
+		gap: theme.applyComponentToken(menus-gap);
+		padding: theme.applyComponentToken(menus-group-padding);
+		border-radius: theme.applyComponentToken(menus-container-shape);
+		box-shadow: theme.applyComponentToken(menus-container-elevation);
+		width: 200px;
+
+		>.label
+		{
+			@include theme.applyComponentTypescaleTokens(menus-menu-item-label-text);
+			padding-block: theme.applySystemToken(measurement-space100);
+			padding-left: theme.applyComponentToken(menus-horizontal-menu-item-leading-space);
+			padding-right: theme.applyComponentToken(menus-horizontal-menu-item-trailing-space);
+
+		}
+
+		>.item
+		{
+			position: relative;
+
+			>.MenuItem
+			{
+				@include theme.applyComponentTypescaleTokens(menus-menu-item-label-text);
+				@include theme.forwardComponentToken(state-focus-indicator-color, menus-menu-item-focus-indicator-color);
+				@include theme.forwardComponentToken(state-focus-indicator-thickness, menus-menu-item-focus-indicator-thickness);
+				@include theme.forwardComponentToken(state-focus-indicator-outer-offset, menus-menu-item-focus-indicator-outline-offset);
+
+				display: flex;
+				align-items: center;
+				width: 100%;
+				// height: theme.applyComponentToken(menus-menu-item-height);
+				padding-top: theme.applyComponentToken(menus-menu-item-top-space);
+				padding-bottom: theme.applyComponentToken(menus-menu-item-bottom-space);
+				padding-left: theme.applyComponentToken(menus-horizontal-menu-item-leading-space);
+				padding-right: theme.applyComponentToken(menus-horizontal-menu-item-trailing-space);
+				border-radius: theme.applyComponentToken(menus-menu-item-shape);
+				text-decoration: none;
+				border: none;
+				outline: none;
+				user-select: none;
+				cursor: pointer;
+				transition:
+					theme.motion-spring-expressive-fast-spatial((height, min-height, font, margin, padding, gap, border-radius)),
+					theme.motion-spring-expressive-fast-effects((background-color, color, box-shadow, outline, opacity));
+
+				&:first-child
+				{
+					border-top-left-radius: theme.applyComponentToken(menus-menu-item-first-child-shape);
+					border-top-right-radius: theme.applyComponentToken(menus-menu-item-first-child-shape);
+					border-bottom-left-radius: theme.applyComponentToken(menus-menu-item-first-child-inner-corner-corner-size);
+					border-bottom-right-radius: theme.applyComponentToken(menus-menu-item-first-child-inner-corner-corner-size);
+				}
+
+				&:last-child
+				{
+					border-top-left-radius: theme.applyComponentToken(menus-menu-item-last-child-inner-corner-corner-size);
+					border-top-right-radius: theme.applyComponentToken(menus-menu-item-last-child-inner-corner-corner-size);
+					border-bottom-left-radius: theme.applyComponentToken(menus-menu-item-last-child-shape);
+					border-bottom-right-radius: theme.applyComponentToken(menus-menu-item-last-child-shape);
+				}
+
+				&:is(:first-child, :last-child)
+				{
+					border-top-left-radius: theme.applyComponentToken(menus-menu-item-first-child-shape);
+					border-top-right-radius: theme.applyComponentToken(menus-menu-item-first-child-shape);
+					border-bottom-left-radius: theme.applyComponentToken(menus-menu-item-last-child-shape);
+					border-bottom-right-radius: theme.applyComponentToken(menus-menu-item-last-child-shape);
+				}
+
+				>.icon
+				{
+					&.leading
+					{
+						@include theme.forwardComponentToken(icon-size, menus-menu-item-leading-icon-size);
+						margin-right: theme.applyComponentToken(menus-menu-item-leading-space);
+					}
+					&.trailing
+					{
+						@include theme.forwardComponentToken(icon-size, menus-menu-item-trailing-icon-size);
+						margin-left: theme.applyComponentToken(menus-menu-item-trailing-space);
+					}
+				}
+
+				>.spacer
+				{flex: 1}
+			}
+
+			>.SubMenu
+			{
+				position: absolute;
+				top: 0;
+				left: 100%;
+			}
+		}
+
+		>.Divider
+		{margin-block: 2px}
+	}
+}

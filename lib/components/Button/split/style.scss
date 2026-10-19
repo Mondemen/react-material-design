@@ -1,0 +1,280 @@
+@use "../../../style" as theme;
+
+.SplitButton
+{
+	display: inline-block;
+	vertical-align: middle;
+
+	>.container
+	{
+		display: inline-flex;
+		gap: theme.applyComponentToken(split-button-between-space);
+
+		>.ButtonContainer
+		{
+			>.leading
+			{
+				@include theme.forwardComponentToken(button-container-height, split-button-container-height);
+				@include theme.forwardComponentToken(button-leading-space, split-button-leading-button-leading-space);
+				@include theme.forwardComponentToken(button-trailing-space, split-button-leading-button-trailing-space);
+
+				@supports not (selector(:dir(ltr)) and selector(:dir(rtl)))
+				{
+					border-top-left-radius: theme.applyComponentToken(split-button-container-shape);
+					border-bottom-left-radius: theme.applyComponentToken(split-button-container-shape);
+					border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+					border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+
+					&:hover:not(:active)
+					{
+						border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+						border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+					}
+					&:active
+					{
+						border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+						border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+					}
+				}
+				@supports selector(:dir(ltr)) and selector(:dir(rtl))
+				{
+					&:dir(ltr)
+					{
+						border-top-left-radius: theme.applyComponentToken(split-button-container-shape);
+						border-bottom-left-radius: theme.applyComponentToken(split-button-container-shape);
+						border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+						border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+
+						&:hover:not(:active)
+						{
+							border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+							border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+						}
+						&:active
+						{
+							border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+							border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+						}
+					}
+					&:dir(rtl)
+					{
+						border-top-right-radius: theme.applyComponentToken(split-button-container-shape);
+						border-bottom-right-radius: theme.applyComponentToken(split-button-container-shape);
+						border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+						border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+
+						&:hover:not(:active)
+						{
+							border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+							border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+						}
+						&:active
+						{
+							border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+							border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+						}
+					}
+				}
+			}
+			>.trailing
+			{
+				@include theme.forwardComponentToken(icon-button-container-height, split-button-container-height);
+				@include theme.forwardComponentToken(icon-button-default-leading-space, split-button-trailing-button-leading-space);
+				@include theme.forwardComponentToken(icon-button-default-trailing-space, split-button-trailing-button-trailing-space);
+				@include theme.forwardComponentToken(icon-button-icon-size, split-button-trailing-button-icon-size);
+
+				&:not(.selected)
+				{
+					@include theme.saveComponentValue(icon-button-default-leading-space, calc(theme.applyComponentToken(split-button-trailing-button-leading-space) - theme.applyComponentToken(split-button-trailing-button-icon-selected-offset)));
+					@include theme.saveComponentValue(icon-button-default-trailing-space, calc(theme.applyComponentToken(split-button-trailing-button-trailing-space) + theme.applyComponentToken(split-button-trailing-button-icon-selected-offset)));
+				}
+
+				@supports not (selector(:dir(ltr)) and selector(:dir(rtl)))
+				{
+					border-top-right-radius: theme.applyComponentToken(split-button-container-shape);
+					border-bottom-right-radius: theme.applyComponentToken(split-button-container-shape);
+					border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+					border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+
+					&:hover:not(:active, .selected)
+					{
+						border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+						border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+					}
+					&:active:not(.selected)
+					{
+						border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+						border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+					}
+				}
+				@supports selector(:dir(ltr)) and selector(:dir(rtl))
+				{
+					&:dir(ltr)
+					{
+						border-top-right-radius: theme.applyComponentToken(split-button-container-shape);
+						border-bottom-right-radius: theme.applyComponentToken(split-button-container-shape);
+						border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+						border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+
+						&:hover:not(:active, .selected)
+						{
+							border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+							border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+						}
+						&:active:not(.selected)
+						{
+							border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+							border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+						}
+					}
+					&:dir(rtl)
+					{
+						border-top-left-radius: theme.applyComponentToken(split-button-container-shape);
+						border-bottom-left-radius: theme.applyComponentToken(split-button-container-shape);
+						border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+						border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
+
+						&:hover:not(:active, .selected)
+						{
+							border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+							border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
+						}
+						&:active:not(.selected)
+						{
+							border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+							border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-pressed-corner-size);
+						}
+					}
+				}
+
+				>.container >.Transitionable >span >.Icon
+				{transition: theme.motion-spring-standard-fast-spatial((transform))}
+				&.selected
+				{
+					@supports not (selector(:dir(ltr)) and selector(:dir(rtl)))
+					{
+						border-top-left-radius: theme.applyComponentToken(split-button-trailing-button-inner-corner-selected-corner-size);
+						border-bottom-left-radius: theme.applyComponentToken(split-button-trailing-button-inner-corner-selected-corner-size);
+					}
+					@supports selector(:dir(ltr)) and selector(:dir(rtl))
+					{
+						&:dir(ltr)
+						{
+							border-top-left-radius: theme.applyComponentToken(split-button-trailing-button-inner-corner-selected-corner-size);
+							border-bottom-left-radius: theme.applyComponentToken(split-button-trailing-button-inner-corner-selected-corner-size);
+						}
+						&:dir(rtl)
+						{
+							border-top-right-radius: theme.applyComponentToken(split-button-trailing-button-inner-corner-selected-corner-size);
+							border-bottom-right-radius: theme.applyComponentToken(split-button-trailing-button-inner-corner-selected-corner-size);
+						}
+					}
+
+					>.container >.Transitionable >span >.Icon
+					{transform: rotate(0.5turn)}
+				}
+			}
+		}
+	}
+
+	&.extra-small
+	{
+		@include theme.forwardComponentToken(split-button-container-height, split-button-xsmall-container-height);
+		@include theme.forwardComponentToken(split-button-container-shape, split-button-xsmall-container-shape);
+		@include theme.forwardComponentToken(split-button-between-space, split-button-xsmall-between-space);
+		@include theme.forwardComponentToken(split-button-inner-corner-corner-size, split-button-xsmall-inner-corner-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-hovered-corner-size, split-button-xsmall-inner-corner-hovered-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-pressed-corner-size, split-button-xsmall-inner-corner-pressed-corner-size);
+		@include theme.forwardComponentToken(split-button-leading-button-leading-space, split-button-xsmall-leading-button-leading-space);
+		@include theme.forwardComponentToken(split-button-leading-button-trailing-space, split-button-xsmall-leading-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-leading-space, split-button-xsmall-trailing-button-leading-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-trailing-space, split-button-xsmall-trailing-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-size, split-button-xsmall-trailing-button-icon-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-inner-corner-selected-corner-size, split-button-xsmall-trailing-button-inner-corner-selected-corner-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-selected-offset, split-button-xsmall-trailing-button-icon-selected-offset);
+
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-xsmall-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-xsmall-icon-size);
+		@include theme.forwardComponentToken(button-icon-label-space, button-xsmall-icon-label-space);
+	}
+	&.small
+	{
+		@include theme.forwardComponentToken(split-button-container-height, split-button-small-container-height);
+		@include theme.forwardComponentToken(split-button-container-shape, split-button-small-container-shape);
+		@include theme.forwardComponentToken(split-button-between-space, split-button-small-between-space);
+		@include theme.forwardComponentToken(split-button-inner-corner-corner-size, split-button-small-inner-corner-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-hovered-corner-size, split-button-small-inner-corner-hovered-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-pressed-corner-size, split-button-small-inner-corner-pressed-corner-size);
+		@include theme.forwardComponentToken(split-button-leading-button-leading-space, split-button-small-leading-button-leading-space);
+		@include theme.forwardComponentToken(split-button-leading-button-trailing-space, split-button-small-leading-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-leading-space, split-button-small-trailing-button-leading-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-trailing-space, split-button-small-trailing-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-size, split-button-small-trailing-button-icon-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-inner-corner-selected-corner-size, split-button-small-trailing-button-inner-corner-selected-corner-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-selected-offset, split-button-small-trailing-button-icon-selected-offset);
+
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-small-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-small-icon-size);
+		@include theme.forwardComponentToken(button-icon-label-space, button-small-icon-label-space);
+	}
+	&.medium
+	{
+		@include theme.forwardComponentToken(split-button-container-height, split-button-medium-container-height);
+		@include theme.forwardComponentToken(split-button-container-shape, split-button-medium-container-shape);
+		@include theme.forwardComponentToken(split-button-between-space, split-button-medium-between-space);
+		@include theme.forwardComponentToken(split-button-inner-corner-corner-size, split-button-medium-inner-corner-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-hovered-corner-size, split-button-medium-inner-corner-hovered-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-pressed-corner-size, split-button-medium-inner-corner-pressed-corner-size);
+		@include theme.forwardComponentToken(split-button-leading-button-leading-space, split-button-medium-leading-button-leading-space);
+		@include theme.forwardComponentToken(split-button-leading-button-trailing-space, split-button-medium-leading-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-leading-space, split-button-medium-trailing-button-leading-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-trailing-space, split-button-medium-trailing-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-size, split-button-medium-trailing-button-icon-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-inner-corner-selected-corner-size, split-button-medium-trailing-button-inner-corner-selected-corner-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-selected-offset, split-button-medium-trailing-button-icon-selected-offset);
+
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-medium-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-medium-icon-size);
+		@include theme.forwardComponentToken(button-icon-label-space, button-medium-icon-label-space);
+	}
+	&.large
+	{
+		@include theme.forwardComponentToken(split-button-container-height, split-button-large-container-height);
+		@include theme.forwardComponentToken(split-button-container-shape, split-button-large-container-shape);
+		@include theme.forwardComponentToken(split-button-between-space, split-button-large-between-space);
+		@include theme.forwardComponentToken(split-button-inner-corner-corner-size, split-button-large-inner-corner-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-hovered-corner-size, split-button-large-inner-corner-hovered-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-pressed-corner-size, split-button-large-inner-corner-pressed-corner-size);
+		@include theme.forwardComponentToken(split-button-leading-button-leading-space, split-button-large-leading-button-leading-space);
+		@include theme.forwardComponentToken(split-button-leading-button-trailing-space, split-button-large-leading-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-leading-space, split-button-large-trailing-button-leading-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-trailing-space, split-button-large-trailing-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-size, split-button-large-trailing-button-icon-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-inner-corner-selected-corner-size, split-button-large-trailing-button-inner-corner-selected-corner-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-selected-offset, split-button-large-trailing-button-icon-selected-offset);
+
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-large-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-large-icon-size);
+		@include theme.forwardComponentToken(button-icon-label-space, button-large-icon-label-space);
+	}
+	&.extra-large
+	{
+		@include theme.forwardComponentToken(split-button-container-height, split-button-xlarge-container-height);
+		@include theme.forwardComponentToken(split-button-container-shape, split-button-xlarge-container-shape);
+		@include theme.forwardComponentToken(split-button-between-space, split-button-xlarge-between-space);
+		@include theme.forwardComponentToken(split-button-inner-corner-corner-size, split-button-xlarge-inner-corner-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-hovered-corner-size, split-button-xlarge-inner-corner-hovered-corner-size);
+		@include theme.forwardComponentToken(split-button-inner-corner-pressed-corner-size, split-button-xlarge-inner-corner-pressed-corner-size);
+		@include theme.forwardComponentToken(split-button-leading-button-leading-space, split-button-xlarge-leading-button-leading-space);
+		@include theme.forwardComponentToken(split-button-leading-button-trailing-space, split-button-xlarge-leading-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-leading-space, split-button-xlarge-trailing-button-leading-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-trailing-space, split-button-xlarge-trailing-button-trailing-space);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-size, split-button-xlarge-trailing-button-icon-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-inner-corner-selected-corner-size, split-button-xlarge-trailing-button-inner-corner-selected-corner-size);
+		@include theme.forwardComponentToken(split-button-trailing-button-icon-selected-offset, split-button-xlarge-trailing-button-icon-selected-offset);
+
+		@include theme.forwardComponentTypescaleTokens(button-label-text, button-xlarge-label-text);
+		@include theme.forwardComponentToken(button-icon-size, button-xlarge-icon-size);
+		@include theme.forwardComponentToken(button-icon-label-space, button-xlarge-icon-label-space);
+	}
+}

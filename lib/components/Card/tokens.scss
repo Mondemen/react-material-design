@@ -1,0 +1,146 @@
+@use "../../style" as theme;
+
+.Card
+{
+	/* Card - Elevated */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(elevated-card-container-color, color-surface-container-low);
+				@include theme.saveComponentToken(elevated-card-container-elevation, elevation-level1);
+				@include theme.saveComponentToken(elevated-card-container-shape, shape-corner-medium);
+				@include theme.saveComponentToken(elevated-card-container-shadow-color, color-shadow);
+			/* Icon */
+				@include theme.saveComponentToken(elevated-card-icon-color, color-primary);
+				@include theme.saveComponentValue(elevated-card-icon-size, 24px);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(elevated-card-disabled-container-elevation, elevation-level1);
+				@include theme.saveComponentValue(elevated-card-disabled-container-opacity, 38%);
+				@include theme.saveComponentToken(elevated-card-disabled-container-color, color-surface);
+		/* Hovered */
+			/* Container */
+				@include theme.saveComponentToken(elevated-card-hover-container-elevation, elevation-level2);
+			/* State layer */
+				@include theme.saveComponentToken(elevated-card-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(elevated-card-hover-state-layer-opacity, state-hover-state-layer-opacity);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(elevated-card-focus-indicator-color, color-secondary);
+				@include theme.saveComponentToken(elevated-card-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(elevated-card-focus-indicator-outline-offset, state-focus-indicator-outer-offset);
+			/* Container */
+				@include theme.saveComponentToken(elevated-card-focus-container-elevation, elevation-level1);
+			/* State layer */
+				@include theme.saveComponentToken(elevated-card-focus-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(elevated-card-focus-state-layer-opacity, state-focus-state-layer-opacity);
+		/* Pressed (ripple) */
+			/* Container */
+				@include theme.saveComponentToken(elevated-card-pressed-container-elevation, elevation-level1);
+			/* State layer */
+				@include theme.saveComponentToken(elevated-card-pressed-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(elevated-card-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+		/* Dragged */
+			/* Container */
+				@include theme.saveComponentToken(elevated-card-dragged-container-elevation, elevation-level4);
+			/* State layer */
+				@include theme.saveComponentToken(elevated-card-dragged-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(elevated-card-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+	/* Card - Filled */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(filled-card-container-color, color-surface-container-highest);
+				@include theme.saveComponentToken(filled-card-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(filled-card-container-shape, shape-corner-medium);
+				@include theme.saveComponentToken(filled-card-container-shadow-color, color-shadow);
+			/* Icon */
+				@include theme.saveComponentToken(filled-card-icon-color, color-primary);
+				@include theme.saveComponentValue(filled-card-icon-size, 24px);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(filled-card-disabled-container-elevation, elevation-level0);
+				@include theme.saveComponentValue(filled-card-disabled-container-opacity, 38%);
+				@include theme.saveComponentToken(filled-card-disabled-container-color, color-on-surface);
+		/* Hovered */
+			/* Container */
+				@include theme.saveComponentToken(filled-card-hover-container-elevation, elevation-level1);
+			/* State layer */
+				@include theme.saveComponentToken(filled-card-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-card-hover-state-layer-opacity, state-hover-state-layer-opacity);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(filled-card-focus-indicator-color, color-secondary);
+				@include theme.saveComponentToken(filled-card-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(filled-card-focus-indicator-outline-offset, state-focus-indicator-outer-offset);
+			/* Container */
+				@include theme.saveComponentToken(filled-card-focus-container-elevation, elevation-level0);
+			/* State layer */
+				@include theme.saveComponentToken(filled-card-focus-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-card-focus-state-layer-opacity, state-focus-state-layer-opacity);
+		/* Pressed (ripple) */
+			/* Container */
+				@include theme.saveComponentToken(filled-card-pressed-container-elevation, elevation-level0);
+			/* State layer */
+				@include theme.saveComponentToken(filled-card-pressed-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-card-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+		/* Dragged */
+			/* Container */
+				@include theme.saveComponentToken(filled-card-dragged-container-elevation, elevation-level3);
+			/* State layer */
+				@include theme.saveComponentToken(filled-card-dragged-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(filled-card-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+	/* Card - Outlined */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(outlined-card-container-color, color-surface);
+				@include theme.saveComponentToken(outlined-card-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(outlined-card-container-shape, shape-corner-medium);
+			/* Outline */
+				@include theme.saveComponentToken(outlined-card-container-shadow-color, color-shadow);
+				@include theme.saveComponentValue(outlined-card-outline-width, 1px);
+				@include theme.saveComponentToken(outlined-card-outline-color, color-outline-variant);
+			/* Icon */
+				@include theme.saveComponentToken(outlined-card-icon-color, color-primary);
+				@include theme.saveComponentValue(outlined-card-icon-size, 24px);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(outlined-card-disabled-container-elevation, elevation-level0);
+			/* Outline */
+				@include theme.saveComponentToken(outlined-card-disabled-outline-color, color-outline);
+				@include theme.saveComponentValue(outlined-card-disabled-outline-opacity, 12%);
+		/* Hovered */
+			/* Container */
+				@include theme.saveComponentToken(outlined-card-hover-container-elevation, elevation-level1);
+			/* State layer */
+				@include theme.saveComponentToken(outlined-card-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-card-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Outline */
+				@include theme.saveComponentToken(outlined-card-hover-outline-color, color-outline-variant);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(outlined-card-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(outlined-card-focus-indicator-outline-offset, state-focus-indicator-outer-offset);
+				@include theme.saveComponentToken(outlined-card-focus-indicator-color, color-secondary);
+			/* Container */
+				@include theme.saveComponentToken(outlined-card-focus-container-elevation, elevation-level0);
+			/* State layer */
+				@include theme.saveComponentToken(outlined-card-focus-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-card-focus-state-layer-opacity, state-focus-state-layer-opacity);
+			/* Outline */
+				@include theme.saveComponentToken(outlined-card-focus-outline-color, color-on-surface);
+		/* Pressed (ripple) */
+			/* Container */
+				@include theme.saveComponentToken(outlined-card-pressed-container-elevation, elevation-level0);
+			/* State layer */
+				@include theme.saveComponentToken(outlined-card-pressed-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-card-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+			/* Outline */
+				@include theme.saveComponentToken(outlined-card-pressed-outline-color, color-outline-variant);
+		/* Dragged */
+			/* Container */
+				@include theme.saveComponentToken(outlined-card-dragged-container-elevation, elevation-level3);
+			/* State layer */
+				@include theme.saveComponentToken(outlined-card-dragged-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(outlined-card-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+			/* Outline */
+				@include theme.saveComponentToken(outlined-card-dragged-outline-color, color-outline-variant);
+}

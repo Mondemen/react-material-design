@@ -1,0 +1,382 @@
+@use "../../style" as theme;
+
+:root
+{
+	/* Chip - Assist */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(assist-chip-container-shape, shape-corner-small);
+				@include theme.saveComponentValue(assist-chip-container-height, 32px);
+				@include theme.saveComponentToken(assist-chip-flat-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(assist-chip-flat-outline-color, color-outline-variant);
+				@include theme.saveComponentValue(assist-chip-flat-outline-width, 1px);
+				@include theme.saveComponentToken(assist-chip-elevated-container-elevation, elevation-level1);
+				@include theme.saveComponentToken(assist-chip-elevated-container-color, color-surface-container-low);
+				@include theme.saveComponentToken(assist-chip-elevated-container-shadow-color, color-shadow);
+			/* Label text */
+				@include theme.saveComponentTypescaleTokens(assist-chip-label-text, label-large);
+				@include theme.saveComponentToken(assist-chip-label-text-color, color-on-surface);
+			/* Icon */
+				@include theme.saveComponentValue(assist-chip-with-icon-icon-size, 18px);
+				@include theme.saveComponentToken(assist-chip-with-icon-icon-color, color-primary);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(assist-chip-flat-disabled-outline-color, color-on-surface);
+				@include theme.saveComponentValue(assist-chip-flat-disabled-outline-opacity, 12%);
+				@include theme.saveComponentToken(assist-chip-elevated-disabled-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(assist-chip-elevated-disabled-container-color, color-on-surface);
+				@include theme.saveComponentValue(assist-chip-elevated-disabled-container-opacity, 12%);
+			/* Label text */
+				@include theme.saveComponentToken(assist-chip-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(assist-chip-disabled-label-text-opacity, 38%);
+			/* Icon */
+				@include theme.saveComponentToken(assist-chip-with-icon-disabled-icon-color, color-on-surface);
+				@include theme.saveComponentValue(assist-chip-with-icon-disabled-icon-opacity, 38%);
+		/* Hovered */
+			/* Container */
+				@include theme.saveComponentToken(assist-chip-elevated-hover-container-elevation, elevation-level2);
+			/* Label text */
+				@include theme.saveComponentToken(assist-chip-hover-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(assist-chip-hover-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(assist-chip-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(assist-chip-with-icon-hover-icon-color, color-primary);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(assist-chip-focus-indicator-color, color-secondary);
+				@include theme.saveComponentToken(assist-chip-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(assist-chip-focus-indicator-outline-offset, state-focus-indicator-outer-offset);
+			/* Container */
+				@include theme.saveComponentToken(assist-chip-flat-focus-outline-color, color-on-surface);
+				@include theme.saveComponentToken(assist-chip-elevated-focus-container-elevation, elevation-level1);
+			/* Label text */
+				@include theme.saveComponentToken(assist-chip-focus-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(assist-chip-focus-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(assist-chip-focus-state-layer-opacity, state-focus-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(assist-chip-with-icon-focus-icon-color, color-primary);
+		/* Pressed (ripple) */
+			/* Container */
+				@include theme.saveComponentToken(assist-chip-elevated-pressed-container-elevation, elevation-level1);
+			/* Label text */
+				@include theme.saveComponentToken(assist-chip-pressed-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(assist-chip-pressed-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(assist-chip-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(assist-chip-with-icon-pressed-icon-color, color-primary);
+		/* Dragged */
+			/* Container */
+				@include theme.saveComponentToken(assist-chip-dragged-container-elevation, elevation-level4);
+			/* Label text */
+				@include theme.saveComponentToken(assist-chip-dragged-label-text-color, color-on-surface);
+			/* State layer */
+				@include theme.saveComponentToken(assist-chip-dragged-state-layer-color, color-on-surface);
+				@include theme.saveComponentToken(assist-chip-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(assist-chip-with-icon-dragged-icon-color, color-primary);
+
+	/* Chip - Filter */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(filter-chip-container-shape, shape-corner-small);
+				@include theme.saveComponentValue(filter-chip-container-height, 32px);
+				@include theme.saveComponentToken(filter-chip-flat-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(filter-chip-flat-unselected-outline-color, color-outline-variant);
+				@include theme.saveComponentValue(filter-chip-flat-unselected-outline-width, 1px);
+				@include theme.saveComponentToken(filter-chip-flat-selected-container-color, color-secondary-container);
+				@include theme.saveComponentValue(filter-chip-flat-selected-outline-width, 0px);
+				@include theme.saveComponentToken(filter-chip-elevated-container-elevation, elevation-level1);
+				@include theme.saveComponentToken(filter-chip-elevated-container-shadow-color, color-shadow);
+				@include theme.saveComponentToken(filter-chip-elevated-unselected-container-color, color-surface-container-low);
+				@include theme.saveComponentToken(filter-chip-elevated-selected-container-color, color-secondary-container);
+			/* Label text */
+				@include theme.saveComponentTypescaleTokens(filter-chip-label-text, label-large);
+				@include theme.saveComponentToken(filter-chip-unselected-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-selected-label-text-color, color-on-secondary-container);
+			/* Icon */
+				@include theme.saveComponentValue(filter-chip-with-icon-icon-size, 18px);
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-selected-leading-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-unselected-leading-icon-color, color-primary);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-selected-trailing-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-unselected-trailing-icon-color, color-on-surface-variant);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(filter-chip-flat-disabled-unselected-outline-color, color-on-surface);
+				@include theme.saveComponentValue(filter-chip-flat-disabled-unselected-outline-opacity, 12%);
+				@include theme.saveComponentToken(filter-chip-flat-disabled-selected-container-color, color-on-surface);
+				@include theme.saveComponentValue(filter-chip-flat-disabled-selected-container-opacity, 12%);
+				@include theme.saveComponentToken(filter-chip-elevated-disabled-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(filter-chip-elevated-disabled-container-color, color-on-surface);
+				@include theme.saveComponentValue(filter-chip-elevated-disabled-container-opacity, 12%);
+			/* Label text */
+				@include theme.saveComponentToken(filter-chip-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(filter-chip-disabled-label-text-opacity, 38%);
+			/* Icon */
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(filter-chip-with-leading-icon-disabled-leading-icon-opacity, 38%);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-disabled-trailing-icon-color, color-on-surface);
+				@include theme.saveComponentValue(filter-chip-with-trailing-icon-disabled-trailing-icon-opacity, 38%);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(filter-chip-focus-indicator-color, color-secondary);
+				@include theme.saveComponentToken(filter-chip-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(filter-chip-focus-indicator-outline-offset, state-focus-indicator-outer-offset);
+			/* Container */
+				@include theme.saveComponentToken(filter-chip-elevated-focus-container-elevation, elevation-level1);
+				@include theme.saveComponentToken(filter-chip-flat-unselected-focus-outline-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-flat-selected-focus-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(filter-chip-flat-unselected-focus-container-elevation, elevation-level0);
+			/* Label text */
+				@include theme.saveComponentToken(filter-chip-unselected-focus-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-selected-focus-label-text-color, color-on-secondary-container);
+			/* State layer */
+				@include theme.saveComponentToken(filter-chip-unselected-focus-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-unselected-focus-state-layer-opacity, state-focus-state-layer-opacity);
+				@include theme.saveComponentToken(filter-chip-selected-focus-state-layer-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-selected-focus-state-layer-opacity, state-focus-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-unselected-focus-leading-icon-color, color-primary);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-unselected-focus-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-selected-focus-leading-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-selected-focus-trailing-icon-color, color-on-secondary-container);
+		/* Hovered */
+			/* Container */
+				@include theme.saveComponentToken(filter-chip-elevated-hover-container-elevation, elevation-level2);
+				@include theme.saveComponentToken(filter-chip-flat-selected-hover-container-elevation, elevation-level1);
+				@include theme.saveComponentToken(filter-chip-flat-unselected-hover-container-elevation, elevation-level0);
+			/* Label text */
+				@include theme.saveComponentToken(filter-chip-unselected-hover-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-selected-hover-label-text-color, color-on-secondary-container);
+			/* State layer */
+				@include theme.saveComponentToken(filter-chip-unselected-hover-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-unselected-hover-state-layer-opacity, state-hover-state-layer-opacity);
+				@include theme.saveComponentToken(filter-chip-selected-hover-state-layer-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-selected-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-selected-hover-trailing-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-selected-hover-leading-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-unselected-hover-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-unselected-hover-leading-icon-color, color-primary);
+		/* Pressed (ripple) */
+			/* Container */
+				@include theme.saveComponentToken(filter-chip-elevated-pressed-container-elevation, elevation-level1);
+				@include theme.saveComponentToken(filter-chip-flat-selected-pressed-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(filter-chip-flat-unselected-pressed-container-elevation, elevation-level0);
+			/* Label text */
+				@include theme.saveComponentToken(filter-chip-unselected-pressed-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-selected-pressed-label-text-color, color-on-secondary-container);
+			/* State layer */
+				@include theme.saveComponentToken(filter-chip-unselected-pressed-state-layer-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-unselected-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+				@include theme.saveComponentToken(filter-chip-selected-pressed-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-selected-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-unselected-pressed-leading-icon-color, color-primary);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-unselected-pressed-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-selected-pressed-leading-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-selected-pressed-trailing-icon-color, color-on-secondary-container);
+		/* Dragged */
+			/* Container */
+				@include theme.saveComponentToken(filter-chip-dragged-container-elevation, elevation-level4);
+			/* Label text */
+				@include theme.saveComponentToken(filter-chip-unselected-dragged-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-selected-dragged-label-text-color, color-on-secondary-container);
+			/* State layer */
+				@include theme.saveComponentToken(filter-chip-unselected-dragged-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-unselected-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+				@include theme.saveComponentToken(filter-chip-selected-dragged-state-layer-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-selected-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+			/* Icon */
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-unselected-dragged-leading-icon-color, color-primary);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-unselected-dragged-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(filter-chip-with-leading-icon-selected-dragged-leading-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(filter-chip-with-trailing-icon-selected-dragged-trailing-icon-color, color-on-secondary-container);
+	/* Chip - Input */
+		/* Enabled */
+			/* Avatar */
+				@include theme.saveComponentValue(input-chip-with-avatar-avatar-size, 24px);
+				@include theme.saveComponentToken(input-chip-with-avatar-avatar-shape, shape-corner-full);
+			/* Container */
+				@include theme.saveComponentToken(input-chip-container-shape, shape-corner-small);
+				@include theme.saveComponentValue(input-chip-container-height, 32px);
+				@include theme.saveComponentToken(input-chip-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(input-chip-unselected-outline-color, color-outline-variant);
+				@include theme.saveComponentValue(input-chip-unselected-outline-width, 1px);
+				@include theme.saveComponentToken(input-chip-selected-container-color, color-secondary-container);
+				@include theme.saveComponentValue(input-chip-selected-outline-width, 0px);
+			/* Label text */
+				@include theme.saveComponentTypescaleTokens(input-chip-label-text, label-large);
+				@include theme.saveComponentToken(input-chip-selected-label-text-color, color-on-secondary-container);
+				@include theme.saveComponentToken(input-chip-unselected-label-text-color, color-on-surface-variant);
+			/* Leading icon */
+				@include theme.saveComponentValue(input-chip-with-leading-icon-leading-icon-size, 18px);
+				@include theme.saveComponentToken(input-chip-with-leading-icon-selected-leading-icon-color, color-primary);
+				@include theme.saveComponentToken(input-chip-with-leading-icon-unselected-leading-icon-color, color-on-surface-variant);
+			/* Trailing icon */
+				@include theme.saveComponentValue(input-chip-with-trailing-icon-trailing-icon-size, 18px);
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-selected-trailing-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-unselected-trailing-icon-color, color-on-surface-variant);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(input-chip-disabled-unselected-outline-color, color-on-surface);
+				@include theme.saveComponentValue(input-chip-disabled-unselected-outline-opacity, 12%);
+				@include theme.saveComponentToken(input-chip-disabled-selected-container-color, color-on-surface);
+				@include theme.saveComponentValue(input-chip-disabled-selected-container-opacity, 12%);
+			/* Label text */
+				@include theme.saveComponentToken(input-chip-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(input-chip-disabled-label-text-opacity, 38%);
+			/* Leading icon */
+				@include theme.saveComponentToken(input-chip-with-leading-icon-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(input-chip-with-leading-icon-disabled-leading-icon-opacity, 38%);
+			/* Trailing icon */
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-disabled-trailing-icon-color, color-on-surface);
+				@include theme.saveComponentValue(input-chip-with-trailing-icon-disabled-trailing-icon-opacity, 38%);
+			/* Avatar */
+				@include theme.saveComponentValue(input-chip-with-avatar-disabled-avatar-opacity, 38%);
+		/* Hovered */
+			/* Label text */
+				@include theme.saveComponentToken(input-chip-unselected-hover-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-selected-hover-label-text-color, color-on-secondary-container);
+			/* State layer */
+				@include theme.saveComponentToken(input-chip-unselected-hover-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-unselected-hover-state-layer-opacity, state-hover-state-layer-opacity);
+				@include theme.saveComponentToken(input-chip-selected-hover-state-layer-color, color-on-secondary-container);
+				@include theme.saveComponentToken(input-chip-selected-hover-state-layer-opacity, state-hover-state-layer-opacity);
+			/* Leading icon */
+				@include theme.saveComponentToken(input-chip-with-leading-icon-unselected-hover-leading-icon-color, color-primary);
+				@include theme.saveComponentToken(input-chip-with-leading-icon-selected-hover-leading-icon-color, color-primary);
+			/* Trailing icon */
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-unselected-hover-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-selected-hover-trailing-icon-color, color-on-secondary-container);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(input-chip-focus-indicator-color, color-secondary);
+				@include theme.saveComponentToken(input-chip-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(input-chip-focus-indicator-outline-offset, state-focus-indicator-outer-offset);
+			/* Container */
+				@include theme.saveComponentToken(input-chip-unselected-focus-outline-color, color-on-surface-variant);
+			/* Label text */
+				@include theme.saveComponentToken(input-chip-unselected-focus-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-selected-focus-label-text-color, color-on-secondary-container);
+			/* State layer */
+				@include theme.saveComponentToken(input-chip-unselected-focus-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-unselected-focus-state-layer-opacity, state-focus-state-layer-opacity);
+				@include theme.saveComponentToken(input-chip-selected-focus-state-layer-color, color-on-secondary-container);
+				@include theme.saveComponentToken(input-chip-selected-focus-state-layer-opacity, state-focus-state-layer-opacity);
+			/* Leading icon */
+				@include theme.saveComponentToken(input-chip-with-leading-icon-unselected-focus-leading-icon-color, color-primary);
+				@include theme.saveComponentToken(input-chip-with-leading-icon-selected-focus-leading-icon-color, color-primary);
+			/* Trailing icon */
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-unselected-focus-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-selected-focus-trailing-icon-color, color-on-secondary-container);
+		/* Pressed (ripple) */
+			/* Label text */
+				@include theme.saveComponentToken(input-chip-unselected-pressed-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-selected-pressed-label-text-color, color-on-secondary-container);
+			/* State layer */
+				@include theme.saveComponentToken(input-chip-unselected-pressed-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-unselected-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+				@include theme.saveComponentToken(input-chip-selected-pressed-state-layer-color, color-on-secondary-container);
+				@include theme.saveComponentToken(input-chip-selected-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+			/* Leading icon */
+				@include theme.saveComponentToken(input-chip-with-leading-icon-unselected-pressed-leading-icon-color, color-primary);
+				@include theme.saveComponentToken(input-chip-with-leading-icon-selected-pressed-leading-icon-color, color-primary);
+			/* Trailing icon */
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-unselected-pressed-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-selected-pressed-trailing-icon-color, color-on-secondary-container);
+		/* Dragged */
+			/* Container */
+				@include theme.saveComponentToken(input-chip-dragged-container-elevation, elevation-level4);
+			/* Label text */
+				@include theme.saveComponentToken(input-chip-unselected-dragged-label-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-selected-dragged-label-text-color, color-on-secondary-container);
+			/* State layer */
+				@include theme.saveComponentToken(input-chip-unselected-dragged-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-unselected-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+				@include theme.saveComponentToken(input-chip-selected-dragged-state-layer-color, color-on-secondary-container);
+				@include theme.saveComponentToken(input-chip-selected-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+			/* Trailing icon */
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-unselected-dragged-trailing-icon-color, color-primary);
+				@include theme.saveComponentToken(input-chip-with-trailing-icon-selected-dragged-trailing-icon-color, color-primary);
+			/* Leading icon */
+				@include theme.saveComponentToken(input-chip-with-leading-icon-unselected-dragged-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(input-chip-with-leading-icon-selected-dragged-leading-icon-color, color-on-secondary-container);
+	/* Chip - Suggestion */
+		/* Enabled */
+			/* Container */
+				@include theme.saveComponentToken(suggestion-chip-container-shape, shape-corner-small);
+				@include theme.saveComponentValue(suggestion-chip-container-height, 32px);
+				@include theme.saveComponentToken(suggestion-chip-flat-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(suggestion-chip-flat-outline-color, color-outline-variant);
+				@include theme.saveComponentValue(suggestion-chip-flat-outline-width, 1px);
+				@include theme.saveComponentToken(suggestion-chip-elevated-container-elevation, elevation-level1);
+				@include theme.saveComponentToken(suggestion-chip-elevated-container-color, color-surface-container-low);
+				@include theme.saveComponentToken(suggestion-chip-elevated-container-shadow-color, color-shadow);
+			/* Icon */
+				@include theme.saveComponentToken(suggestion-chip-with-leading-icon-leading-icon-color, color-primary);
+				@include theme.saveComponentValue(suggestion-chip-with-leading-icon-leading-icon-size, 18px);
+			/* Label text */
+				@include theme.saveComponentTypescaleTokens(suggestion-chip-label-text, label-large);
+				@include theme.saveComponentToken(suggestion-chip-label-text-color, color-on-surface-variant);
+		/* Disabled */
+			/* Container */
+				@include theme.saveComponentToken(suggestion-chip-flat-disabled-outline-color, color-on-surface);
+				@include theme.saveComponentValue(suggestion-chip-flat-disabled-outline-opacity, 12%);
+				@include theme.saveComponentToken(suggestion-chip-elevated-disabled-container-elevation, elevation-level0);
+				@include theme.saveComponentToken(suggestion-chip-elevated-disabled-container-color, color-on-surface);
+				@include theme.saveComponentValue(suggestion-chip-elevated-disabled-container-opacity, 12%);
+			/* Icon */
+				@include theme.saveComponentToken(suggestion-chip-with-leading-icon-disabled-leading-icon-color, color-on-surface);
+				@include theme.saveComponentValue(suggestion-chip-with-leading-icon-disabled-leading-icon-opacity, 38%);
+			/* Label text */
+				@include theme.saveComponentToken(suggestion-chip-disabled-label-text-color, color-on-surface);
+				@include theme.saveComponentValue(suggestion-chip-disabled-label-text-opacity, 38%);
+		/* Hovered */
+			/* Container */
+				@include theme.saveComponentToken(suggestion-chip-elevated-hover-container-elevation, elevation-level2);
+			/* Icon */
+				@include theme.saveComponentToken(suggestion-chip-with-leading-icon-hover-leading-icon-color, color-primary);
+			/* Label text */
+				@include theme.saveComponentToken(suggestion-chip-hover-label-text-color, color-on-surface-variant);
+			/* State layer */
+				@include theme.saveComponentToken(suggestion-chip-hover-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(suggestion-chip-hover-state-layer-opacity, state-hover-state-layer-opacity);
+		/* Focused */
+			/* Focus indicator */
+				@include theme.saveComponentToken(suggestion-chip-focus-indicator-color, color-secondary);
+				@include theme.saveComponentToken(suggestion-chip-focus-indicator-thickness, state-focus-indicator-thickness);
+				@include theme.saveComponentToken(suggestion-chip-focus-indicator-outline-offset, state-focus-indicator-outer-offset);
+			/* Container */
+				@include theme.saveComponentToken(suggestion-chip-flat-focus-outline-color, color-on-surface-variant);
+				@include theme.saveComponentToken(suggestion-chip-elevated-focus-container-elevation, elevation-level1);
+			/* Icon */
+				@include theme.saveComponentToken(suggestion-chip-with-leading-icon-focus-leading-icon-color, color-primary);
+			/* Label text */
+				@include theme.saveComponentToken(suggestion-chip-focus-label-text-color, color-on-surface-variant);
+			/* State layer */
+				@include theme.saveComponentToken(suggestion-chip-focus-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(suggestion-chip-focus-state-layer-opacity, state-focus-state-layer-opacity);
+		/* Pressed (ripple) */
+			/* Container */
+				@include theme.saveComponentToken(suggestion-chip-elevated-pressed-container-elevation, elevation-level1);
+			/* Icon */
+				@include theme.saveComponentToken(suggestion-chip-with-leading-icon-pressed-leading-icon-color, color-primary);
+			/* Label text */
+				@include theme.saveComponentToken(suggestion-chip-pressed-label-text-color, color-on-surface-variant);
+			/* State layer */
+				@include theme.saveComponentToken(suggestion-chip-pressed-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(suggestion-chip-pressed-state-layer-opacity, state-pressed-state-layer-opacity);
+		/* Dragged */
+			/* Container */
+				@include theme.saveComponentToken(suggestion-chip-dragged-container-elevation, elevation-level4);
+			/* Icon */
+				@include theme.saveComponentToken(suggestion-chip-with-leading-icon-dragged-leading-icon-color, color-primary);
+			/* Label text */
+				@include theme.saveComponentToken(suggestion-chip-dragged-label-text-color, color-on-surface-variant);
+			/* State layer */
+				@include theme.saveComponentToken(suggestion-chip-dragged-state-layer-color, color-on-surface-variant);
+				@include theme.saveComponentToken(suggestion-chip-dragged-state-layer-opacity, state-dragged-state-layer-opacity);
+}

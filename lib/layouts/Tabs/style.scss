@@ -1,0 +1,280 @@
+@use "../../style" as theme;
+
+.Tabs
+{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+
+	>.navigation
+	{
+		width: 100%;
+		overflow-x: auto;
+
+		>.container
+		{
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			min-width: 100%;
+			height: 100%;
+			width: max-content;
+
+			>.button
+			{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex: 1 0 max-content;
+				background-color: transparent;
+				margin: 0;
+				padding: 0;
+				padding-inline: 8px;
+				border: none;
+				outline: none;
+				border-radius: 0;
+				cursor: pointer;
+
+				>.content
+				{
+					display: flex;
+
+					>.icon
+					{transition: theme.motion-spring-expressive-fast-effects((color))}
+					>.label
+					{transition: theme.motion-spring-expressive-fast-effects((color))}
+				}
+
+				&:focus-visible >.StateLayer
+				{border-radius: theme.applySystemToken(shape-corner-large)}
+				>.StateLayer
+				{outline-offset: calc(-1 * theme.applyComponentToken(state-focus-indicator-thickness))}
+			}
+
+			>.indicator
+			{
+				position: absolute;
+				bottom: 0;
+
+				&:not(.immediate)
+				{
+					transition:
+						theme.motion-spring-expressive-default-spatial((inset)),
+						theme.motion-spring-expressive-fast-effects((background-color));
+				}
+			}
+		}
+	}
+
+	>.activities
+	{
+		// width: 100%;
+		// height: 100%;
+		flex: 1;
+		box-sizing: border-box;
+			overflow: auto;
+			scrollbar-color: var(--md-sys-color-surface-variant) var(--md-sys-color-surface);
+
+		>.content
+		{
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+
+			&.inline-padding
+			{padding-inline: theme.applySystemToken(measurement-space200)}
+			&.block-padding
+			{padding-block: theme.applySystemToken(measurement-space200)}
+		}
+	}
+
+	&.primary
+	{
+		>.navigation
+		{
+			height: theme.applyComponentToken(primary-navigation-tab-container-height);
+			min-height: theme.applyComponentToken(primary-navigation-tab-container-height);
+			background-color: theme.applyComponentToken(primary-navigation-tab-container-color);
+
+			&:is(.labels, .icons)
+			{height: theme.applyComponentToken(primary-navigation-tab-with-icon-and-label-text-container-height)}
+
+			>.container
+			{
+				>.button
+				{
+					@include theme.forwardComponentToken(state-focus-indicator-color, primary-navigation-tab-focus-indicator-color);
+					@include theme.forwardComponentToken(state-focus-indicator-thickness, primary-navigation-tab-focus-indicator-thickness);
+					@include theme.forwardComponentToken(state-focus-indicator-outer-offset, primary-navigation-tab-focus-indicator-outline-offset);
+
+					&.active
+					{
+						@include theme.forwardComponentToken(state-hover-state-layer-opacity, primary-navigation-tab-active-hover-state-layer-opacity);
+						@include theme.forwardComponentToken(state-focused-state-layer-opacity, primary-navigation-tab-active-focus-state-layer-opacity);
+						@include theme.forwardComponentToken(state-pressed-state-layer-opacity, primary-navigation-tab-active-pressed-state-layer-opacity);
+						@include theme.forwardComponentToken(state-hover-state-layer-color, primary-navigation-tab-active-hover-state-layer-color);
+						@include theme.forwardComponentToken(state-focused-state-layer-color, primary-navigation-tab-active-focus-state-layer-color);
+						@include theme.forwardComponentToken(state-pressed-state-layer-color, primary-navigation-tab-active-pressed-state-layer-color);
+
+						>.content
+						{
+							>.label
+							{color: theme.applyComponentToken(primary-navigation-tab-with-label-text-active-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(primary-navigation-tab-with-icon-active-icon-color)}
+						}
+
+						&:hover >.content
+						{
+							>.label
+							{color: theme.applyComponentToken(primary-navigation-tab-with-label-text-active-hover-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(primary-navigation-tab-with-icon-active-hover-icon-color)}
+						}
+					}
+					&:not(.active)
+					{
+						@include theme.forwardComponentToken(state-hover-state-layer-opacity, primary-navigation-tab-inactive-hover-state-layer-opacity);
+						@include theme.forwardComponentToken(state-focused-state-layer-opacity, primary-navigation-tab-inactive-focus-state-layer-opacity);
+						@include theme.forwardComponentToken(state-pressed-state-layer-opacity, primary-navigation-tab-inactive-pressed-state-layer-opacity);
+						@include theme.forwardComponentToken(state-hover-state-layer-color, primary-navigation-tab-inactive-hover-state-layer-color);
+						@include theme.forwardComponentToken(state-focused-state-layer-color, primary-navigation-tab-inactive-focus-state-layer-color);
+						@include theme.forwardComponentToken(state-pressed-state-layer-color, primary-navigation-tab-inactive-pressed-state-layer-color);
+
+						>.content
+						{
+							>.label
+							{color: theme.applyComponentToken(primary-navigation-tab-with-label-text-inactive-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(primary-navigation-tab-with-icon-inactive-icon-color)}
+						}
+
+						&:hover >.content
+						{
+							>.label
+							{color: theme.applyComponentToken(primary-navigation-tab-with-label-text-inactive-hover-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(primary-navigation-tab-with-icon-inactive-hover-icon-color)}
+						}
+						&:active:not(.disabled, .dragged) >.content
+						{
+							>.label
+							{color: theme.applyComponentToken(primary-navigation-tab-with-label-text-inactive-pressed-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(primary-navigation-tab-with-icon-inactive-pressed-icon-color)}
+						}
+					}
+					>.content
+					{
+						flex-direction: column;
+						align-items: center;
+
+						>.label
+						{@include theme.applyComponentTypescaleTokens(primary-navigation-tab-with-label-text-label-text)}
+					}
+				}
+
+				>.indicator
+				{
+					height: theme.applyComponentToken(primary-navigation-tab-active-indicator-height);
+					background-color: theme.applyComponentToken(primary-navigation-tab-active-indicator-color);
+					border-radius: theme.applyComponentToken(primary-navigation-tab-active-indicator-height);
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+					left: calc(var(--position-left) + 2px);
+					right: calc(var(--position-right) + 2px);
+				}
+			}
+		}
+	}
+
+	&.secondary
+	{
+		>.navigation
+		{
+			height: theme.applyComponentToken(secondary-navigation-tab-container-height);
+			min-height: theme.applyComponentToken(secondary-navigation-tab-container-height);
+			background-color: theme.applyComponentToken(secondary-navigation-tab-container-color);
+
+			>.container
+			{
+				>.button
+				{
+					@include theme.forwardComponentToken(state-hover-state-layer-opacity, secondary-navigation-tab-hover-state-layer-opacity);
+					@include theme.forwardComponentToken(state-focused-state-layer-opacity, secondary-navigation-tab-focus-state-layer-opacity);
+					@include theme.forwardComponentToken(state-pressed-state-layer-opacity, secondary-navigation-tab-pressed-state-layer-opacity);
+					@include theme.forwardComponentToken(state-hover-state-layer-color, secondary-navigation-tab-hover-state-layer-color);
+					@include theme.forwardComponentToken(state-focused-state-layer-color, secondary-navigation-tab-focus-state-layer-color);
+					@include theme.forwardComponentToken(state-pressed-state-layer-color, secondary-navigation-tab-pressed-state-layer-color);
+					@include theme.forwardComponentToken(state-focus-indicator-color, secondary-navigation-tab-focus-indicator-color);
+					@include theme.forwardComponentToken(state-focus-indicator-thickness, secondary-navigation-tab-focus-indicator-thickness);
+					@include theme.forwardComponentToken(state-focus-indicator-outer-offset, secondary-navigation-tab-focus-indicator-outline-offset);
+
+					&.active
+					{
+						>.content
+						{
+							>.label
+							{color: theme.applyComponentToken(secondary-navigation-tab-active-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(secondary-navigation-tab-with-icon-active-icon-color)}
+						}
+
+						&:hover >.content
+						{
+							>.label
+							{color: theme.applyComponentToken(secondary-navigation-tab-hover-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(secondary-navigation-tab-with-icon-hover-icon-color)}
+						}
+					}
+					&:not(.active)
+					{
+						>.content
+						{
+							>.label
+							{color: theme.applyComponentToken(secondary-navigation-tab-inactive-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(secondary-navigation-tab-with-icon-inactive-icon-color)}
+						}
+
+						&:hover >.content
+						{
+							>.label
+							{color: theme.applyComponentToken(secondary-navigation-tab-hover-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(secondary-navigation-tab-with-icon-hover-icon-color)}
+						}
+						&:active:not(.disabled, .dragged) >.content
+						{
+							>.label
+							{color: theme.applyComponentToken(secondary-navigation-tab-pressed-label-text-color)}
+							>.icon
+							{color: theme.applyComponentToken(secondary-navigation-tab-with-icon-pressed-icon-color)}
+						}
+					}
+
+					>.content
+					{
+						flex-direction: row;
+						align-items: center;
+						gap: 8px;
+
+						>.label
+						{@include theme.applyComponentTypescaleTokens(secondary-navigation-tab-label-text)}
+					}
+				}
+
+				>.indicator
+				{
+					height: theme.applyComponentToken(secondary-navigation-tab-active-indicator-height);
+					background-color: theme.applyComponentToken(secondary-navigation-tab-active-indicator-color);
+					left: var(--position-left);
+					right: var(--position-right);
+				}
+			}
+		}
+	}
+}

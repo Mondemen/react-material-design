@@ -1,0 +1,203 @@
+@use "../../style" as theme;
+@use "../../style/utils.scss";
+
+.Toolbar
+{
+	&.standard
+	{
+		background-color: theme.applyComponentToken(toolbar-standard-container-color);
+
+		.IconButton.standard
+		{
+			@include theme.forwardComponentToken(icon-button-container-color, toolbar-standard-button-container-color);
+			@include theme.forwardComponentToken(icon-button-icon-color, toolbar-standard-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-container-shape-round, button-small-container-shape-round);
+			@include theme.forwardComponentToken(icon-button-unselected-icon-color, toolbar-standard-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-icon-color, toolbar-standard-selected-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-icon-color, toolbar-standard-selected-icon-color);
+
+			@include theme.forwardComponentToken(icon-button-hovered-icon-color, toolbar-standard-hovered-icon-color);
+			@include theme.forwardComponentToken(icon-button-focused-icon-color, toolbar-standard-focused-icon-color);
+			@include theme.forwardComponentToken(icon-button-pressed-icon-color, toolbar-standard-pressed-icon-color);
+
+			@include theme.forwardComponentToken(icon-button-unselected-hovered-icon-color, toolbar-standard-hovered-icon-color);
+			@include theme.forwardComponentToken(icon-button-unselected-focused-icon-color, toolbar-standard-focused-icon-color);
+			@include theme.forwardComponentToken(icon-button-unselected-pressed-icon-color, toolbar-standard-pressed-icon-color);
+
+			@include theme.forwardComponentToken(icon-button-selected-hovered-icon-color, toolbar-standard-selected-hovered-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-focused-icon-color, toolbar-standard-selected-focused-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-pressed-icon-color, toolbar-standard-selected-pressed-icon-color);
+
+			&.selectable
+			{
+				@include theme.forwardComponentToken(icon-button-container-color, toolbar-standard-button-container-color);
+				&.selected
+				{@include theme.forwardComponentToken(icon-button-container-color, toolbar-standard-selected-button-container-color)}
+			}
+		}
+		.Button.text
+		{
+			@include theme.forwardComponentToken(button-container-color, toolbar-standard-button-container-color);
+			@include theme.forwardComponentToken(button-selected-container-shape-round, button-small-container-shape-round);
+			@include theme.forwardComponentToken(button-icon-color, toolbar-standard-icon-color);
+			@include theme.forwardComponentToken(button-unselected-icon-color, toolbar-standard-icon-color);
+			@include theme.forwardComponentToken(button-selected-icon-color, toolbar-standard-selected-icon-color);
+			@include theme.forwardComponentToken(button-selected-icon-color, toolbar-standard-selected-icon-color);
+
+			@include theme.forwardComponentToken(button-hovered-icon-color, toolbar-standard-hovered-icon-color);
+			@include theme.forwardComponentToken(button-focused-icon-color, toolbar-standard-focused-icon-color);
+			@include theme.forwardComponentToken(button-pressed-icon-color, toolbar-standard-pressed-icon-color);
+			@include theme.forwardComponentToken(button-unselected-hovered-icon-color, toolbar-standard-hovered-icon-color);
+			@include theme.forwardComponentToken(button-unselected-focused-icon-color, toolbar-standard-focused-icon-color);
+			@include theme.forwardComponentToken(button-unselected-pressed-icon-color, toolbar-standard-pressed-icon-color);
+			@include theme.forwardComponentToken(button-selected-hovered-icon-color, toolbar-standard-selected-hovered-icon-color);
+			@include theme.forwardComponentToken(button-selected-focused-icon-color, toolbar-standard-selected-focused-icon-color);
+			@include theme.forwardComponentToken(button-selected-pressed-icon-color, toolbar-standard-selected-pressed-icon-color);
+
+			@include theme.forwardComponentToken(button-label-text-color, toolbar-standard-label-text-color);
+			@include theme.forwardComponentToken(button-unselected-label-text-color, toolbar-standard-label-text-color);
+			@include theme.forwardComponentToken(button-selected-label-text-color, toolbar-standard-selected-label-text-color);
+			@include theme.forwardComponentToken(button-selected-label-text-color, toolbar-standard-selected-label-text-color);
+			@include theme.forwardComponentToken(button-hovered-label-text-color, toolbar-standard-hovered-label-text-color);
+			@include theme.forwardComponentToken(button-focused-label-text-color, toolbar-standard-focused-label-text-color);
+			@include theme.forwardComponentToken(button-pressed-label-text-color, toolbar-standard-pressed-label-text-color);
+			@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, toolbar-standard-hovered-label-text-color);
+			@include theme.forwardComponentToken(button-unselected-focused-label-text-color, toolbar-standard-focused-label-text-color);
+			@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, toolbar-standard-pressed-label-text-color);
+			@include theme.forwardComponentToken(button-selected-hovered-label-text-color, toolbar-standard-selected-hovered-label-text-color);
+			@include theme.forwardComponentToken(button-selected-focused-label-text-color, toolbar-standard-selected-focused-label-text-color);
+			@include theme.forwardComponentToken(button-selected-pressed-label-text-color, toolbar-standard-selected-pressed-label-text-color);
+
+			&.selectable
+			{
+				@include theme.forwardComponentToken(button-container-color, toolbar-standard-button-container-color);
+				&.selected
+				{@include theme.forwardComponentToken(button-container-color, toolbar-standard-selected-button-container-color)}
+			}
+		}
+	}
+	&.vibrant
+	{
+		background-color: theme.applyComponentToken(toolbar-vibrant-container-color);
+
+		.IconButton.standard
+		{
+			@include theme.forwardComponentToken(icon-button-container-color, toolbar-vibrant-button-container-color);
+			@include theme.forwardComponentToken(icon-button-icon-color, toolbar-vibrant-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-container-shape-round, button-small-container-shape-round);
+			@include theme.forwardComponentToken(icon-button-unselected-icon-color, toolbar-vibrant-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-icon-color, toolbar-vibrant-selected-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-icon-color, toolbar-vibrant-selected-icon-color);
+
+			@include theme.forwardComponentToken(icon-button-hovered-icon-color, toolbar-vibrant-hovered-icon-color);
+			@include theme.forwardComponentToken(icon-button-focused-icon-color, toolbar-vibrant-focused-icon-color);
+			@include theme.forwardComponentToken(icon-button-pressed-icon-color, toolbar-vibrant-pressed-icon-color);
+
+			@include theme.forwardComponentToken(icon-button-unselected-hovered-icon-color, toolbar-vibrant-hovered-icon-color);
+			@include theme.forwardComponentToken(icon-button-unselected-focused-icon-color, toolbar-vibrant-focused-icon-color);
+			@include theme.forwardComponentToken(icon-button-unselected-pressed-icon-color, toolbar-vibrant-pressed-icon-color);
+
+			@include theme.forwardComponentToken(icon-button-selected-hovered-icon-color, toolbar-vibrant-selected-hovered-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-focused-icon-color, toolbar-vibrant-selected-focused-icon-color);
+			@include theme.forwardComponentToken(icon-button-selected-pressed-icon-color, toolbar-vibrant-selected-pressed-icon-color);
+
+			&.selectable
+			{
+				@include theme.forwardComponentToken(icon-button-container-color, toolbar-vibrant-button-container-color);
+				&.selected
+				{@include theme.forwardComponentToken(icon-button-container-color, toolbar-vibrant-selected-button-container-color)}
+			}
+		}
+		.Button.text
+		{
+			@include theme.forwardComponentToken(button-container-color, toolbar-vibrant-button-container-color);
+			@include theme.forwardComponentToken(button-selected-container-shape-round, button-small-container-shape-round);
+			@include theme.forwardComponentToken(button-icon-color, toolbar-vibrant-icon-color);
+			@include theme.forwardComponentToken(button-unselected-icon-color, toolbar-vibrant-icon-color);
+			@include theme.forwardComponentToken(button-selected-icon-color, toolbar-vibrant-selected-icon-color);
+			@include theme.forwardComponentToken(button-selected-icon-color, toolbar-vibrant-selected-icon-color);
+
+			@include theme.forwardComponentToken(button-hovered-icon-color, toolbar-vibrant-hovered-icon-color);
+			@include theme.forwardComponentToken(button-focused-icon-color, toolbar-vibrant-focused-icon-color);
+			@include theme.forwardComponentToken(button-pressed-icon-color, toolbar-vibrant-pressed-icon-color);
+			@include theme.forwardComponentToken(button-unselected-hovered-icon-color, toolbar-vibrant-hovered-icon-color);
+			@include theme.forwardComponentToken(button-unselected-focused-icon-color, toolbar-vibrant-focused-icon-color);
+			@include theme.forwardComponentToken(button-unselected-pressed-icon-color, toolbar-vibrant-pressed-icon-color);
+			@include theme.forwardComponentToken(button-selected-hovered-icon-color, toolbar-vibrant-selected-hovered-icon-color);
+			@include theme.forwardComponentToken(button-selected-focused-icon-color, toolbar-vibrant-selected-focused-icon-color);
+			@include theme.forwardComponentToken(button-selected-pressed-icon-color, toolbar-vibrant-selected-pressed-icon-color);
+
+			@include theme.forwardComponentToken(button-label-text-color, toolbar-vibrant-label-text-color);
+			@include theme.forwardComponentToken(button-unselected-label-text-color, toolbar-vibrant-label-text-color);
+			@include theme.forwardComponentToken(button-selected-label-text-color, toolbar-vibrant-selected-label-text-color);
+			@include theme.forwardComponentToken(button-selected-label-text-color, toolbar-vibrant-selected-label-text-color);
+			@include theme.forwardComponentToken(button-hovered-label-text-color, toolbar-vibrant-hovered-label-text-color);
+			@include theme.forwardComponentToken(button-focused-label-text-color, toolbar-vibrant-focused-label-text-color);
+			@include theme.forwardComponentToken(button-pressed-label-text-color, toolbar-vibrant-pressed-label-text-color);
+			@include theme.forwardComponentToken(button-unselected-hovered-label-text-color, toolbar-vibrant-hovered-label-text-color);
+			@include theme.forwardComponentToken(button-unselected-focused-label-text-color, toolbar-vibrant-focused-label-text-color);
+			@include theme.forwardComponentToken(button-unselected-pressed-label-text-color, toolbar-vibrant-pressed-label-text-color);
+			@include theme.forwardComponentToken(button-selected-hovered-label-text-color, toolbar-vibrant-selected-hovered-label-text-color);
+			@include theme.forwardComponentToken(button-selected-focused-label-text-color, toolbar-vibrant-selected-focused-label-text-color);
+			@include theme.forwardComponentToken(button-selected-pressed-label-text-color, toolbar-vibrant-selected-pressed-label-text-color);
+
+			&.selectable
+			{
+				@include theme.forwardComponentToken(button-container-color, toolbar-vibrant-button-container-color);
+				&.selected
+				{@include theme.forwardComponentToken(button-container-color, toolbar-vibrant-selected-button-container-color)}
+			}
+		}
+	}
+
+	&.docked
+	{
+		height: theme.applyComponentToken(toolbar-docked-container-height);
+
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-left: theme.applyComponentToken(toolbar-docked-container-leading-space);
+		padding-right: theme.applyComponentToken(toolbar-docked-container-trailing-space);
+		gap: theme.applyComponentToken(toolbar-docked-container-between-space);
+		border-radius: theme.applyComponentToken(toolbar-docked-container-shape);
+		box-shadow: theme.applyComponentToken(toolbar-docked-container-elevation);
+
+	}
+
+	&.floating
+	{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: theme.applyComponentToken(toolbar-floating-container-between-space);
+		border-radius: theme.applyComponentToken(toolbar-floating-container-shape);
+		box-shadow: theme.applyComponentToken(toolbar-floating-container-elevation);
+
+		&.horizontal
+		{
+			width: fit-content;
+			height: theme.applyComponentToken(toolbar-floating-horizontal-container-height);
+			padding-left: theme.applyComponentToken(toolbar-floating-container-leading-space);
+			padding-right: theme.applyComponentToken(toolbar-floating-container-trailing-space);
+
+			>.ButtonContainer:first-child >.Button
+			{margin-left: theme.applySystemToken(measurement-space50)}
+			>.ButtonContainer:nth-last-child(2) >.Button
+			{margin-right: theme.applySystemToken(measurement-space50)}
+		}
+		&.vertical
+		{
+			width: theme.applyComponentToken(toolbar-floating-vertical-container-width);
+			height: fit-content;
+			flex-direction: column;
+			padding-top: theme.applyComponentToken(toolbar-floating-container-leading-space);
+			padding-bottom: theme.applyComponentToken(toolbar-floating-container-trailing-space);
+
+			>.ButtonContainer:first-child >.Button
+			{margin-top: theme.applySystemToken(measurement-space50)}
+			>.ButtonContainer:nth-last-child(2) >.Button
+			{margin-bottom: theme.applySystemToken(measurement-space50)}
+		}
+	}
+}

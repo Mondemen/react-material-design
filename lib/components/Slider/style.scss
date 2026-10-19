@@ -1,0 +1,518 @@
+@use "../../style" as theme;
+@use "../../style/tokens.scss";
+
+.FloatingElement >.SliderValueIndicator
+{
+	@include theme.applyComponentTypescaleTokens(slider-value-indicator-label-label-text);
+	visibility: hidden;
+	padding: theme.applySystemToken(measurement-space150) theme.applySystemToken(measurement-space200);
+	margin: 4px;
+	pointer-events: none;
+	user-select: none;
+}
+
+.Slider
+{
+	position: relative;
+	display: flex;
+	cursor: pointer;
+	box-sizing: border-box;
+
+	--slider-gap-space: #{theme.applySystemToken(measurement-space100)};
+
+	>.handleContainer >.handle >.value-indicator.visible
+	{
+		opacity: 1;
+		transform: scale(1);
+	}
+	&:not(.drag)
+	{
+		>.track, >.side >.track, >.handleContainer >.handle, >.triggerResize
+		{transition: theme.motion-spring-expressive-fast-spatial((inset, width, height, margin))}
+	}
+	&.drag
+	{
+		>.track, >.side >.track, >.handleContainer >.handle, >.triggerResize
+		{
+			transition: theme.motion-spring-expressive-fast-effects((inset, width, height, margin));
+			transition-duration: 100ms;
+		}
+	}
+
+	>.track >.path, >.side >.track >.path, >.handleContainer >.handle::before
+	{transition: theme.motion-spring-expressive-fast-effects((inset, width, height, margin, outline, outline-offset))}
+
+	&.extra-small
+	{
+		@include theme.forwardComponentToken(slider-active-track-height, slider-xsmall-active-track-height);
+		@include theme.forwardComponentToken(slider-inactive-track-height, slider-xsmall-inactive-track-height);
+		@include theme.forwardComponentToken(slider-handle-height, slider-xsmall-active-handle-height);
+		@include theme.forwardComponentToken(slider-active-track-shape-leading, slider-xsmall-active-track-shape-leading);
+		@include theme.forwardComponentToken(slider-inactive-track-shape-trailing, slider-xsmall-inactive-track-shape-trailing);
+	}
+	&.small
+	{
+		@include theme.forwardComponentToken(slider-active-track-height, slider-small-active-track-height);
+		@include theme.forwardComponentToken(slider-inactive-track-height, slider-small-inactive-track-height);
+		@include theme.forwardComponentToken(slider-handle-height, slider-small-active-handle-height);
+		@include theme.forwardComponentToken(slider-active-track-shape-leading, slider-small-active-track-shape-leading);
+		@include theme.forwardComponentToken(slider-inactive-track-shape-trailing, slider-small-inactive-track-shape-trailing);
+	}
+	&.medium
+	{
+		@include theme.forwardComponentToken(slider-active-track-height, slider-medium-active-track-height);
+		@include theme.forwardComponentToken(slider-inactive-track-height, slider-medium-inactive-track-height);
+		@include theme.forwardComponentToken(slider-handle-height, slider-medium-active-handle-height);
+		@include theme.forwardComponentToken(slider-active-track-shape-leading, slider-medium-active-track-shape-leading);
+		@include theme.forwardComponentToken(slider-inactive-track-shape-trailing, slider-medium-inactive-track-shape-trailing);
+		@include theme.forwardComponentToken(slider-icon-size, slider-medium-icon-size);
+	}
+	&.large
+	{
+		@include theme.forwardComponentToken(slider-active-track-height, slider-large-active-track-height);
+		@include theme.forwardComponentToken(slider-inactive-track-height, slider-large-inactive-track-height);
+		@include theme.forwardComponentToken(slider-handle-height, slider-large-active-handle-height);
+		@include theme.forwardComponentToken(slider-active-track-shape-leading, slider-large-active-track-shape-leading);
+		@include theme.forwardComponentToken(slider-inactive-track-shape-trailing, slider-large-inactive-track-shape-trailing);
+		@include theme.forwardComponentToken(slider-icon-size, slider-large-icon-size);
+	}
+	&.extra-large
+	{
+		@include theme.forwardComponentToken(slider-active-track-height, slider-xlarge-active-track-height);
+		@include theme.forwardComponentToken(slider-inactive-track-height, slider-xlarge-inactive-track-height);
+		@include theme.forwardComponentToken(slider-handle-height, slider-xlarge-active-handle-height);
+		@include theme.forwardComponentToken(slider-active-track-shape-leading, slider-xlarge-active-track-shape-leading);
+		@include theme.forwardComponentToken(slider-inactive-track-shape-trailing, slider-xlarge-inactive-track-shape-trailing);
+		@include theme.forwardComponentToken(slider-icon-size, slider-xlarge-icon-size);
+	}
+
+	>.triggerResize
+	{
+		position: absolute;
+		pointer-events: none;
+	}
+
+	&.horizontal
+	{
+		margin-inline: var(--slider-gap-space);
+
+		&::before
+		{
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 100%;
+			top: calc((theme.applyComponentToken(slider-handle-height) - theme.applyComponentToken(slider-track-height)) / 2 * -1);
+			bottom: calc((theme.applyComponentToken(slider-handle-height) - theme.applyComponentToken(slider-track-height)) / 2 * -1);
+		}
+
+		>.triggerResize
+		{width: var(--slider-trigger-resize);}
+	}
+	&.vertical
+	{
+		flex-direction: column-reverse;
+
+		&::before
+		{
+			content: "";
+			position: absolute;
+			top: 0;
+			height: 100%;
+			left: calc((theme.applyComponentToken(slider-handle-height) - theme.applyComponentToken(slider-track-height)) / 2 * -1);
+			right: calc((theme.applyComponentToken(slider-handle-height) - theme.applyComponentToken(slider-track-height)) / 2 * -1);
+		}
+
+		>.triggerResize
+		{height: var(--slider-trigger-resize);}
+	}
+
+	>.track, >.side >.track
+	{
+		box-sizing: border-box;
+
+		&.horizontal
+		{
+			width: var(--slider-track-size);
+			height: theme.applyComponentToken(slider-track-height);
+			margin-block: calc((theme.applyComponentToken(slider-handle-height) - theme.applyComponentToken(slider-track-height)) / 2);
+
+			>.path
+			{
+				height: 100%;
+
+				>.step
+				{
+					top: 50%;
+					left: var(--slider-step-position);
+				}
+			}
+		}
+		&.vertical
+		{
+			width: theme.applyComponentToken(slider-track-height);
+			height: var(--slider-track-size);
+			margin-inline: calc((theme.applyComponentToken(slider-handle-height) - theme.applyComponentToken(slider-track-height)) / 2);
+
+			>.path
+			{
+				width: 100%;
+
+				>.step
+				{
+					left: 50%;
+					bottom: var(--slider-step-position);
+				}
+			}
+		}
+
+		&.active
+		{
+			@include theme.forwardComponentToken(slider-track-height, slider-active-track-height);
+
+			>.path
+			{
+				background-color: theme.applyComponentToken(slider-active-track-color);
+				color: theme.applyComponentToken(slider-active-stop-indicator-container-color);
+			}
+		}
+
+		&.inactive
+		{
+			@include theme.forwardComponentToken(slider-track-height, slider-active-track-height);
+
+			>.path
+			{
+				background-color: theme.applyComponentToken(slider-inactive-track-color);
+				color: theme.applyComponentToken(slider-inactive-stop-indicator-container-color);
+			}
+		}
+
+		>.path
+		{
+			clip-path: inset(-1px -1px -1px -1px);
+			box-sizing: border-box;
+
+			>.step
+			{
+				position: absolute;
+				transition: theme.motion-spring-expressive-fast-effects((inset));
+
+				&::before
+				{
+					@include theme.shape-corner-full;
+					content: "";
+					position: absolute;
+					width: theme.applyComponentToken(slider-stop-indicator-size);
+					height: theme.applyComponentToken(slider-stop-indicator-size);
+					inset: -2px;
+					background-color: currentColor;
+				}
+			}
+		}
+	}
+
+	>.handleContainer
+	{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+
+		&.focus
+		{@include theme.forwardComponentToken(slider-handle-width, slider-focus-handle-width);}
+
+		&.horizontal >.handle
+		{
+			left: var(--slider-handle-position);
+			height: theme.applyComponentToken(slider-handle-height);
+
+			&::before
+			{
+				width: theme.applyComponentToken(slider-handle-width);
+				height: theme.applyComponentToken(slider-handle-height);
+			}
+
+			>.value-indicator.top
+			{
+				bottom: calc(100% + theme.applySystemToken(measurement-space50));
+				transform-origin: bottom center;
+			}
+			>.value-indicator.bottom
+			{
+				top: calc(100% + theme.applySystemToken(measurement-space50));
+				transform-origin: top center;
+			}
+		}
+
+		&.vertical >.handle
+		{
+			bottom: var(--slider-handle-position);
+
+			&::before
+			{
+				height: theme.applyComponentToken(slider-handle-width);
+				width: theme.applyComponentToken(slider-handle-height);
+			}
+
+			>.value-indicator.left
+			{
+				right: calc(100% + theme.applySystemToken(measurement-space50));
+				transform-origin: right center;
+			}
+			>.value-indicator.right
+			{
+				left: calc(100% + theme.applySystemToken(measurement-space50));
+				transform-origin: left center;
+			}
+		}
+
+		>.handle
+		{
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 1;
+			pointer-events: all;
+
+			&::before
+			{
+				content: "";
+				display: block;
+				position: absolute;
+				background-color: theme.applyComponentToken(slider-handle-color);
+				border-radius: theme.applyComponentToken(slider-handle-shape);
+				outline: 0px solid var(--md-sys-color-secondary);
+				outline-offset: 4px;
+				z-index: 1;
+			}
+
+			&:focus
+			{
+				&::before
+				{
+					@include theme.forwardComponentToken(slider-handle-width, slider-focus-handle-width);
+					outline-width: 4px;
+				}
+			}
+
+			>.value-indicator
+			{
+				@include theme.applyComponentTypescaleTokens(slider-value-indicator-label-label-text);
+				background-color: theme.applyComponentToken(slider-value-indicator-container-color);
+				color: theme.applyComponentToken(slider-value-indicator-label-label-text-color);
+				@include theme.shape-corner-full;
+				position: absolute;
+				padding: theme.applySystemToken(measurement-space150) theme.applySystemToken(measurement-space200);
+				opacity: 0;
+				transform: scale(0);
+				pointer-events: none;
+				user-select: none;
+				transition: theme.motion-spring-expressive-fast-effects((transform, opacity));
+			}
+		}
+	}
+
+	&.standard
+	{
+		>.track
+		{
+			&.active
+			{
+				&.horizontal >.path
+				{
+					@include theme.shape-corner-side-custom("left", theme.applyComponentToken(slider-active-track-shape-leading));
+					@include theme.shape-corner-side-custom("right", 2px);
+					width: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+					margin-left: calc(theme.applyComponentToken(slider-active-handle-leading-space) * -1);
+				}
+				&.vertical >.path
+				{
+					@include theme.shape-corner-side-custom("bottom", theme.applyComponentToken(slider-active-track-shape-leading));
+					@include theme.shape-corner-side-custom("top", 2px);
+					margin-top: calc((theme.applyComponentToken(slider-handle-width) / 2) + theme.applyComponentToken(slider-active-handle-leading-space));
+					height: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+				}
+			}
+
+			&.inactive
+			{
+				&.horizontal >.path
+				{
+					@include theme.shape-corner-side-custom("right", theme.applyComponentToken(slider-inactive-track-shape-trailing));
+					@include theme.shape-corner-side-custom("left", 2px);
+					margin-left: calc((theme.applyComponentToken(slider-handle-width) / 2) + theme.applyComponentToken(slider-active-handle-trailing-space));
+					width: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+				}
+				&.vertical >.path
+				{
+					@include theme.shape-corner-side-custom("top", theme.applyComponentToken(slider-inactive-track-shape-trailing));
+					@include theme.shape-corner-side-custom("bottom", 2px);
+					margin-top: calc(((theme.applyComponentToken(slider-handle-width) / 2) + theme.applyComponentToken(slider-active-handle-trailing-space) / 2) * -1);
+					height: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+				}
+			}
+		}
+	}
+	&.centered
+	{
+		&.horizontal >.side
+		{width: 50%}
+		&.vertical >.side
+		{
+			flex-direction: column-reverse;
+			height: 50%;
+		}
+
+		>.side
+		{
+			display: flex;
+
+			>.track
+			{
+				&.negative.inactive
+				{
+					&:not(.negativeValue)
+					{
+						&.horizontal >.path
+						{
+							width: calc(100% + var(--slider-gap-space) / 2);
+							margin-right: calc(var(--slider-gap-space) / 2);
+						}
+
+						&.vertical >.path
+						{
+							height: calc(100% + var(--slider-gap-space) / 2);
+							margin-top: calc(var(--slider-gap-space) / 2);
+						}
+					}
+
+					&.horizontal >.path
+					{
+						@include theme.shape-corner-side-custom("left", theme.applyComponentToken(slider-inactive-track-shape-trailing));
+						@include theme.shape-corner-side-custom("right", 2px);
+						width: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+						margin-left: calc(var(--slider-gap-space) * -1);
+					}
+					&.vertical >.path
+					{
+						@include theme.shape-corner-side-custom("bottom", theme.applyComponentToken(slider-inactive-track-shape-trailing));
+						@include theme.shape-corner-side-custom("top", 2px);
+						margin-top: calc((theme.applyComponentToken(slider-handle-width) / 2) + var(--slider-gap-space));
+						height: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+					}
+				}
+
+				&.negative.active
+				{
+					>.path
+					{@include theme.shape-corner-side-custom("all", 2px)}
+
+					&.horizontal >.path
+					{
+						margin-left: calc((theme.applyComponentToken(slider-handle-width) / 2) + var(--slider-gap-space));
+						margin-right: calc(var(--slider-gap-space) / 2);
+					}
+					&.vertical >.path
+					{
+						height: calc(100% - (theme.applyComponentToken(slider-handle-width) / 2) - var(--slider-gap-space) - (var(--slider-gap-space) / 2));
+						margin-bottom: calc((theme.applyComponentToken(slider-handle-width) / 2) + var(--slider-gap-space));
+						margin-top: calc(var(--slider-gap-space) / 2);
+					}
+				}
+
+				&.positive.active
+				{
+					>.path
+					{@include theme.shape-corner-side-custom("all", 2px)}
+
+					&.horizontal >.path
+					{
+						margin-right: calc((theme.applyComponentToken(slider-handle-width) / 2) + var(--slider-gap-space));
+						margin-left: calc(var(--slider-gap-space) / 2);
+					}
+					&.vertical >.path
+					{
+						height: calc(100% - (theme.applyComponentToken(slider-handle-width) / 2) - var(--slider-gap-space) - (var(--slider-gap-space) / 2));
+						margin-top: calc((theme.applyComponentToken(slider-handle-width) / 2) + var(--slider-gap-space));
+					}
+				}
+
+				&.positive.inactive
+				{
+					&:not(.positiveValue)
+					{
+						&.horizontal >.path
+						{
+							width: calc(100% + var(--slider-gap-space) / 2);
+							margin-left: calc(var(--slider-gap-space) / 2);
+						}
+
+						&.vertical >.path
+						{
+							height: calc(100% - theme.applyComponentToken(slider-handle-width) / 2 + var(--slider-gap-space));
+							margin-top: calc(var(--slider-gap-space) * -1);
+						}
+					}
+
+					&.horizontal >.path
+					{
+						@include theme.shape-corner-side-custom("right", theme.applyComponentToken(slider-inactive-track-shape-trailing));
+						@include theme.shape-corner-side-custom("left", 2px);
+						width: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+						margin-left: calc((theme.applyComponentToken(slider-handle-width) / 2) + var(--slider-gap-space));
+					}
+
+					&.vertical >.path
+					{
+						@include theme.shape-corner-side-custom("top", theme.applyComponentToken(slider-inactive-track-shape-trailing));
+						@include theme.shape-corner-side-custom("bottom", 2px);
+						height: calc(100% - theme.applyComponentToken(slider-handle-width) / 2 - 0px);
+						margin-top: calc(var(--slider-gap-space) * -1);
+					}
+				}
+			}
+		}
+	}
+	&.range
+	{
+		>.track
+		{
+			&.active
+			{
+				&.horizontal >.path
+				{
+					@include theme.shape-corner-side-custom("all", 2px);
+
+					width: calc(100% - theme.applyComponentToken(slider-handle-width) / 2 - 12px - (theme.applyComponentToken(slider-handle-width) / 2));
+					margin-left: calc((theme.applyComponentToken(slider-handle-width) / 2) + var(--slider-gap-space));
+				}
+			}
+
+			&.start.inactive
+			{
+				&.horizontal >.path
+				{
+					@include theme.shape-corner-side-custom("left", theme.applyComponentToken(slider-inactive-track-shape-trailing));
+					@include theme.shape-corner-side-custom("right", 2px);
+					width: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+					margin-left: calc(var(--slider-gap-space) * -1);
+				}
+			}
+			&.end.inactive
+			{
+				&.horizontal >.path
+				{
+					@include theme.shape-corner-side-custom("right", theme.applyComponentToken(slider-inactive-track-shape-trailing));
+					@include theme.shape-corner-side-custom("left", 2px);
+					width: calc(100% - theme.applyComponentToken(slider-handle-width) / 2);
+					margin-left: calc((theme.applyComponentToken(slider-handle-width) / 2) + var(--slider-gap-space));
+				}
+			}
+		}
+	}
+}

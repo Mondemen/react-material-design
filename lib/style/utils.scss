@@ -1,0 +1,246 @@
+@use "./motions.scss" as motions;
+@use "./shapes.scss" as shapes;
+
+@mixin scrollbar($size: thin, $foreground-color: var(--md-sys-color-surface-variant), $background-color: var(--md-sys-color-surface), $gutter: true)
+{
+	$pxSize: 18px;
+
+	@if $size == auto
+	{$pxSize: 18px}
+	@else if $size == thin
+	{$pxSize: 10px}
+	@else
+	{$pxSize: 0px}
+
+	&::-webkit-scrollbar
+	{
+		// width:  $pxSize;
+		// @if $pxSize == 0px
+		display: none
+	}
+	&
+	{scrollbar-width: $size}
+
+	&::-webkit-scrollbar-thumb
+	{
+		background-color: $foreground-color;
+		transition: motions.duration-medium1((background-color));
+
+		&:hover
+		{background-color: dark($foreground-color, 10%)}
+	}
+	&::-webkit-scrollbar-track
+	{
+		background-color: $background-color;
+		transition: motions.duration-medium1((background-color));
+	}
+
+	&
+	{
+		overflow: auto;
+		scrollbar-color: $foreground-color $background-color;
+		transition: motions.duration-medium1((scrollbar-color));
+		@if ($gutter)
+		{
+			scrollbar-gutter: stable;
+			padding-right: $pxSize;
+
+			// & > *
+			// {margin-right: -$pxSize;}
+		}
+	}
+}
+
+@mixin state_layer($extend: true, $ripple: true)
+{
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+
+	&:before
+	{
+		content: "";
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		box-sizing: border-box;
+		opacity: 8%;
+		@if ($extend)
+		{transform: scale(0);}
+		transition: motions.duration-medium1((all));
+		user-select: none;
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	@media (hover: none)
+	{
+		&:before
+		{
+			content: initial;
+			position: initial;
+			display: none;
+		}
+	}
+
+	@if ($ripple)
+	{
+		&:after
+		{
+			@include shapes.corner-full;
+			content: "";
+			position: absolute;
+			display: block;
+			width: 100%;
+			aspect-ratio: 1;
+			// top: 50%;
+			left: 0;
+			// transform: translateY(-50%);
+			box-sizing: border-box;
+			transition: motions.duration-long4((all));
+			user-select: none;
+			pointer-events: none;
+			z-index: 1;
+		}
+
+		&:not(:disabled):not(.disabled):hover:after
+		{
+			transform: scale(3);
+			opacity: 0%;
+		}
+
+		&:not(:disabled):not(.disabled):active:after
+		{
+			@content;
+			transform: scale(0);
+			opacity: 12%;
+			transition: all 0ms;
+		}
+	}
+
+	&:not(:disabled):not(.disabled):focus:before, &:not(:disabled):not(.disabled).focus:before
+	{opacity: 12%;}
+
+	&:not(:disabled):not(.disabled):hover:before, &:not(:disabled):not(.disabled):focus:before, &:not(:disabled):not(.disabled).focus:before
+	{
+		@content;
+		@if ($extend)
+		{transform: scale(1);}
+		transition: motions.duration-medium1((all));
+	}
+
+	& > *
+	{z-index: 2}
+}
+
+/* Save token */
+@mixin saveComponentToken($component-token, $system-token)
+{--md-comp-#{$component-token}: var(--md-sys-#{$system-token});}
+@mixin saveComponentValue($component-token, $value)
+{--md-comp-#{$component-token}: #{$value};}
+@mixin saveComponentSpringTokens($component-token, $spring)
+{
+	--md-comp-#{$component-token}-duration: var(--md-sys-#{$spring}-duration);
+	--md-comp-#{$component-token}-easing: var(--md-sys-#{$spring}-easing);
+}
+@mixin saveComponentTypescaleTokens($component-token, $typescale)
+{
+	--md-comp-#{$component-token}-font: var(--md-sys-typescale-#{$typescale}-font);
+	--md-comp-#{$component-token}-weight: var(--md-sys-typescale-#{$typescale}-weight);
+	--md-comp-#{$component-token}-size: var(--md-sys-typescale-#{$typescale}-size);
+	--md-comp-#{$component-token}-tracking: var(--md-sys-typescale-#{$typescale}-tracking);
+	--md-comp-#{$component-token}-line-height: var(--md-sys-typescale-#{$typescale}-line-height);
+	--md-comp-#{$component-token}-wght: var(--md-sys-typescale-#{$typescale}-wght);
+	--md-comp-#{$component-token}-grad: var(--md-sys-typescale-#{$typescale}-grad);
+	--md-comp-#{$component-token}-wdth: var(--md-sys-typescale-#{$typescale}-wdth);
+	--md-comp-#{$component-token}-rond: var(--md-sys-typescale-#{$typescale}-rond);
+	--md-comp-#{$component-token}-opsz: var(--md-sys-typescale-#{$typescale}-opsz);
+	--md-comp-#{$component-token}-crsv: var(--md-sys-typescale-#{$typescale}-crsv);
+	--md-comp-#{$component-token}-slnt: var(--md-sys-typescale-#{$typescale}-slnt);
+	--md-comp-#{$component-token}-fill: var(--md-sys-typescale-#{$typescale}-fill);
+	--md-comp-#{$component-token}-hexp: var(--md-sys-typescale-#{$typescale}-hexp);
+}
+
+@mixin forwardComponentToken($forward-token, $component-token, $default: null)
+{
+	@if ($default != null)
+	{--md-comp-#{$forward-token}: var(--md-comp-#{$component-token}, #{$default});}
+	@else
+	{--md-comp-#{$forward-token}: var(--md-comp-#{$component-token});}
+}
+@mixin forwardComponentColorOpacityTokens($forward-token, $component-token, $default-color: null, $default-opacity: null)
+{
+	@if ($default-color != null)
+	{--md-comp-#{$forward-token}-color: var(--md-comp-#{$component-token}-color, #{$default-color});}
+	@else
+	{--md-comp-#{$forward-token}-color: var(--md-comp-#{$component-token}-color);}
+	@if ($default-opacity != null)
+	{--md-comp-#{$forward-token}-opacity: var(--md-comp-#{$component-token}-opacity, #{$default-opacity});}
+	@else
+	{--md-comp-#{$forward-token}-opacity: var(--md-comp-#{$component-token}-opacity);}
+}
+@mixin forwardComponentSpringTokens($forward-token, $component-token)
+{
+	--md-comp-#{$forward-token}-duration: var(--md-comp-#{$component-token}-duration);
+	--md-comp-#{$forward-token}-easing: var(--md-comp-#{$component-token}-easing);
+}
+@mixin forwardComponentTypescaleTokens($forward-token, $component-token)
+{
+	--md-comp-#{$forward-token}-font: var(--md-comp-#{$component-token}-font);
+	--md-comp-#{$forward-token}-weight: var(--md-comp-#{$component-token}-weight);
+	--md-comp-#{$forward-token}-size: var(--md-comp-#{$component-token}-size);
+	--md-comp-#{$forward-token}-tracking: var(--md-comp-#{$component-token}-tracking);
+	--md-comp-#{$forward-token}-line-height: var(--md-comp-#{$component-token}-line-height);
+	--md-comp-#{$forward-token}-wght: var(--md-comp-#{$component-token}-wght);
+	--md-comp-#{$forward-token}-grad: var(--md-comp-#{$component-token}-grad);
+	--md-comp-#{$forward-token}-wdth: var(--md-comp-#{$component-token}-wdth);
+	--md-comp-#{$forward-token}-rond: var(--md-comp-#{$component-token}-rond);
+	--md-comp-#{$forward-token}-opsz: var(--md-comp-#{$component-token}-opsz);
+	--md-comp-#{$forward-token}-crsv: var(--md-comp-#{$component-token}-crsv);
+	--md-comp-#{$forward-token}-slnt: var(--md-comp-#{$component-token}-slnt);
+	--md-comp-#{$forward-token}-fill: var(--md-comp-#{$component-token}-fill);
+	--md-comp-#{$forward-token}-hexp: var(--md-comp-#{$component-token}-hexp);
+}
+
+/* Apply token */
+@function applySystemToken($system-token, $default: null)
+{
+	@if ($default != null)
+	{@return var(--md-sys-#{$system-token}, #{$default});}
+	@else
+	{@return var(--md-sys-#{$system-token});}
+}
+
+@function applyComponentToken($component-token, $default: null)
+{
+	@if ($default != null)
+	{@return var(--md-comp-#{$component-token}, #{$default});}
+	@else
+	{@return var(--md-comp-#{$component-token});}
+}
+@function applyComponentColorOpacityToken($component-token, $default-color: transparent, $default-opacity: 0)
+{@return rgba(from applyComponentToken(#{$component-token}-color, #{$default-color}) r g b / applyComponentToken(#{$component-token}-opacity, #{$default-opacity}));}
+
+@mixin applyComponentTypescaleTokens($component-token)
+{
+	font-family: var(--md-comp-#{$component-token}-font);
+	font-weight: var(--md-comp-#{$component-token}-weight);
+	font-size: var(--md-comp-#{$component-token}-size);
+	letter-spacing: var(--md-comp-#{$component-token}-tracking);
+	line-height: var(--md-comp-#{$component-token}-line-height);
+	font-variation-settings:
+		"wght" var(--md-comp-#{$component-token}-wght),
+		"GRAD" var(--md-comp-#{$component-token}-grad),
+		"wdth" var(--md-comp-#{$component-token}-wdth),
+		"ROND" var(--md-comp-#{$component-token}-rond),
+		"opsz" var(--md-comp-#{$component-token}-opsz),
+		"CRSV" var(--md-comp-#{$component-token}-crsv),
+		"slnt" var(--md-comp-#{$component-token}-slnt),
+		"FILL" var(--md-comp-#{$component-token}-fill),
+		"HEXP" var(--md-comp-#{$component-token}-hexp);
+}
+@function applyMotionSpringTokens($component-token, $properties, $delay: "", $fill-mode: "")
+{@return motions.combine-transitions($properties, var(--md-comp-#{$component-token}-duration), var(--md-comp-#{$component-token}-easing), $delay, $fill-mode);}
