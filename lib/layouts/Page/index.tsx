@@ -7,8 +7,8 @@ import type { ToolbarProps } from "@components/Toolbar";
 import ToolbarRender from "@components/Toolbar/Toolbar.render";
 import { shallowEqual } from "@utils";
 import classNames from "classnames";
-import { Fragment, useCallback, useMemo, useState, type PropsWithChildren } from "react";
-import type { ContentProps } from "../Content";
+import { useCallback, useMemo, useState, type PropsWithChildren } from "react";
+import type { ContentData } from "../Content";
 
 import "./style.scss";
 
@@ -19,13 +19,13 @@ export interface PageProps extends PropsWithChildren
 	blockContentPadding?: boolean
 }
 
-type PageAcceptedComponent = ContentProps | MenubarProps | ToolbarProps | ContextMenuProps;
+type PageAcceptedComponent = ContentData | MenubarProps | ToolbarProps | ContextMenuProps;
 
 export default function Page(props: PageProps)
 {
 	const [contentProps, setContentProps] = useState<OrderedCollectionChildData<PageAcceptedComponent>[]>([]);
 	const acceptedChildren = useMemo(() => ["Content", "Menubar", "Toolbar", "ContextMenu"], []);
-	const content = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ContentProps> => props.orderedCollectionName === "Content"), [contentProps]);
+	const content = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ContentData> => props.orderedCollectionName === "Content").at(0), [contentProps]);
 	const menubars = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<MenubarProps> => props.orderedCollectionName === "Menubar"), [contentProps]);
 	const toolbars = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ToolbarProps> => props.orderedCollectionName === "Toolbar"), [contentProps]);
 	const contextMenus = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ContextMenuProps> => props.orderedCollectionName === "ContextMenu"), [contentProps]);
@@ -58,9 +58,9 @@ export default function Page(props: PageProps)
 			{!!bottomTools.length && <div className="tools bottom">{bottomTools.map(renderTool)}</div>}
 			{!!leftTools.length && <div className="tools left">{leftTools.map(renderTool)}</div>}
 			{!!rightTools.length && <div className="tools right">{rightTools.map(renderTool)}</div>}
-			<div className="content">
+			<div className={classNames("content", content?.className)} style={content?.style} {...content?.dataset}>
 				{contextMenus.map(props => <ContextMenuRender key={props.id} {...props}/>)}
-				{content.map(content => <Fragment key={content.id}>{content.children}</Fragment>)}
+				{content?.children}
 			</div>
 			<OrderedCollection<PageAcceptedComponent> name="Page" childName={acceptedChildren} onChildrenChange={setContentProps} compareChild={shallowEqual}>{props.children}</OrderedCollection>
 		</div>

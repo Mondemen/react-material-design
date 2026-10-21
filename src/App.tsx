@@ -25,6 +25,7 @@ import Toolbar from "@components/Toolbar";
 import Menubar from "@components/Menubar";
 import MenuSection from "@components/Menubar/MenuSection";
 import Toolbox from "../lib/layouts/Toolbox";
+import reactLogo from './assets/react.svg';
 
 export default function App()
 {
@@ -43,7 +44,8 @@ export default function App()
 	return (
 
 		<Page>
-			<Menubar>
+			<Menubar data-test icon={<img src={reactLogo}/>}>
+			{/* <Menubar data-test icon="google_home_devices"> */}
 				<MenuSection label="Fichier">
 					<MenuItem text={selected => selected ? "Selected" : "Unselected"} selectable/>
 					<MenuItem text={"Toto 1"}/>
@@ -60,6 +62,14 @@ export default function App()
 						<MenuItem icon="content_paste" text={"Coller"}/>
 					</MenuGroup>
 				</MenuSection>
+				<Content>
+					<ButtonGroup type="connected" selectable="single">
+						<Button color="elevated" size="small" icon="add_chart" label="Test"/>
+						<Button color="filled" size="small" icon="add_chart" label="Test"/>
+						<Button color="tonal" size="small" icon="add_chart" label="Test"/>
+						<Button color="tertiary" size="small" icon="add_chart" label="Test"/>
+					</ButtonGroup>
+				</Content>
 			</Menubar>
 			<ContextMenu layout="grouped" density={-2}>
 				<MenuItem text={"Test 1"} selectable/>

@@ -6,16 +6,16 @@ import Divider from "@components/Divider";
 import { convertIconDefinition, IconProvider, type IconDefinition } from "@components/Icon/Icon";
 import type { OrderedCollectionChildData } from "@components/misc/OrderedCollection";
 import OrderedCollection from "@components/misc/OrderedCollection";
+import { useTheme } from "@components/Theme/Theme";
 import { getComponentSizeName } from "@components/types";
 import { shallowEqual, waitAnimationNameEndEvent } from "@utils";
 import classNames from "classnames";
 import React, { useCallback, useEffect, useEffectEvent, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useElementEventListener, useResizeObserver } from "react-dom-event-hooks";
-import type { ContentProps } from "../../layouts/Content";
+import type { ContentData } from "../../layouts/Content";
 
 import "./style.scss";
-import { useTheme } from "@components/Theme/Theme";
 
 export interface BaseDialogProps extends React.HTMLAttributes<HTMLDialogElement>
 {
@@ -49,8 +49,8 @@ export default function Dialog(props: DialogProps)
 	const {setDialogState, dialogsContainer} = useTheme("Dialog");
 	const ref = useRef<HTMLDialogElement>(null);
 	const modalRef = useRef<HTMLDivElement>(null);
-	const [contentProps, setContentProps] = useState<OrderedCollectionChildData<ContentProps | DialogActionsProps>[]>([]);
-	const content = useMemo(() => contentProps.filter(content => content.orderedCollectionName === "Content"), [contentProps]);
+	const [contentProps, setContentProps] = useState<OrderedCollectionChildData<ContentData | DialogActionsProps>[]>([]);
+	const content = useMemo(() => contentProps.filter((content): content is OrderedCollectionChildData<ContentData> => content.orderedCollectionName === "Content").at(0), [contentProps]);
 	const actions = useMemo(() => contentProps.filter(content => content.orderedCollectionName === "DialogAction"), [contentProps]);
 	const acceptedChildren = useMemo(() => ["Content", "DialogAction"], []);
 	const defaultButtonVariant = useMemo<ButtonProviderProps["color"] & {}>(() => ({default: "text", icon: "standard"}), []);
@@ -154,7 +154,7 @@ export default function Dialog(props: DialogProps)
 						</div>
 					)}
 					{!props.fullscreen && content && <Divider/>}
-					{!!content && <div ref={saveContentRef} className="content">{content.map(content => content.children)}</div>}
+					{!!content && <div ref={saveContentRef} className={classNames("content", content.className)} style={content.style} {...content.dataset}>{content.children}</div>}
 					{!props.fullscreen && content && <Divider/>}
 					{!props.fullscreen && actions && <div className="actions">
 						<ButtonProvider color={defaultButtonVariant}>
@@ -163,7 +163,7 @@ export default function Dialog(props: DialogProps)
 					</div>}
 				</div>
 			</div>
-			<OrderedCollection<ContentProps | DialogActionsProps> name="Dialog" childName={acceptedChildren} onChildrenChange={setContentProps} compareChild={shallowEqual}>{props.children}</OrderedCollection>
+			<OrderedCollection<ContentData | DialogActionsProps> name="Dialog" childName={acceptedChildren} onChildrenChange={setContentProps} compareChild={shallowEqual}>{props.children}</OrderedCollection>
 		</dialog>
 	), dialogsContainer));
 }

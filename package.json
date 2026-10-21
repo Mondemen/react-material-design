@@ -1,6 +1,6 @@
 {
 	"name": "react-material-design",
-	"version": "0.5.2",
+	"version": "0.5.3",
 	"type": "module",
 	"license": "MIT",
 	"author": {
@@ -10,7 +10,7 @@
 		"url": "git+https://github.com/Mondemen/react-material-design.git"
 	},
 	"scripts": {
-		"dev": "vite --clearScreen",
+		"dev": "vite --clearScreen=false",
 		"build": "vite build --mode lib",
 		"prepublishOnly": "npm run build",
 		"lint": "oxlint",

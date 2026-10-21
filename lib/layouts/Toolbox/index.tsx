@@ -7,21 +7,21 @@ import type { ToolbarProps } from "@components/Toolbar";
 import ToolbarRender from "@components/Toolbar/Toolbar.render";
 import { shallowEqual } from "@utils";
 import classNames from "classnames";
-import { Fragment, useCallback, useMemo, useState, type PropsWithChildren } from "react";
-import type { ContentProps } from "../Content";
+import { useCallback, useMemo, useState, type PropsWithChildren } from "react";
+import type { ContentData } from "../Content";
 import type { LayoutPadding } from "../types";
 
 import "./style.scss";
 
 export interface ToolboxProps extends PropsWithChildren, LayoutPadding {}
 
-type ToolboxAcceptedComponent = ContentProps | ToolbarProps | ButtonGroupProps | ContextMenuProps;
+type ToolboxAcceptedComponent = ContentData | ToolbarProps | ButtonGroupProps | ContextMenuProps;
 
 export default function Toolbox(props: ToolboxProps)
 {
 	const [contentProps, setContentProps] = useState<OrderedCollectionChildData<ToolboxAcceptedComponent>[]>([]);
 	const acceptedChildren = useMemo(() => ["Content", "Toolbar", "ButtonGroup", "ContextMenu"], []);
-	const content = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ContentProps> => props.orderedCollectionName === "Content"), [contentProps]);
+	const content = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ContentData> => props.orderedCollectionName === "Content").at(0), [contentProps]);
 	const toolbars = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ToolbarProps> => props.orderedCollectionName === "Toolbar"), [contentProps]);
 	const buttonGroups = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ButtonGroupProps> => props.orderedCollectionName === "ButtonGroup"), [contentProps]);
 	const contextMenus = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ContextMenuProps> => props.orderedCollectionName === "ContextMenu"), [contentProps]);
@@ -56,9 +56,9 @@ export default function Toolbox(props: ToolboxProps)
 			{!!bottomTools.length && <div className="tools bottom">{bottomTools.map(renderTool)}</div>}
 			{!!leftTools.length && <div className="tools left">{leftTools.map(renderTool)}</div>}
 			{!!rightTools.length && <div className="tools right">{rightTools.map(renderTool)}</div>}
-			<div className="content">
+			<div className={classNames("content", content?.className)} style={content?.style} {...content?.dataset}>
 				{contextMenus.map(props => <ContextMenuRender key={props.id} {...props}/>)}
-				{content.map(content => <Fragment key={content.id}>{content.children}</Fragment>)}
+				{content?.children}
 			</div>
 			<OrderedCollection<ToolboxAcceptedComponent> name="Toolbox" childName={acceptedChildren} onChildrenChange={setContentProps} compareChild={shallowEqual}>{props.children}</OrderedCollection>
 		</div>

@@ -2,6 +2,25 @@
 
 .Menubar
 {
+	display: flex;
+	align-items: center;
 	background-color: theme.applySystemToken(color-surface-container-high);
-	padding-inline: theme.applySystemToken(measurement-space100);
+	padding-left: theme.applySystemToken(measurement-space100);
+	gap: theme.applySystemToken(measurement-space100);
+
+	>.icon
+	{
+		width: 24px;
+		height: 24px;
+		margin-left: theme.applySystemToken(measurement-space100);
+
+		>img
+		{
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+
+	>.content
+	{flex: 1}
 }

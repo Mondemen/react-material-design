@@ -1,10 +1,10 @@
-import MenubarRender from "@components/Menubar/render";
+import MenubarRender, { type MenubarProps } from "@components/Menubar/render";
 import { OrderedCollectionChild, useOrderedCollection } from "@components/misc/OrderedCollection";
-import type { PropsWithChildren } from "react";
 
-export {default as MenuSection, type MenuSectionProps} from "./MenuSection";
+export { default as MenuSection, type MenuSectionProps } from "./MenuSection";
+export type { MenubarProps } from "./render";
 
-export default function Menubar(props: PropsWithChildren)
+export default function Menubar(props: MenubarProps)
 {
 	const orderedCollection = useOrderedCollection();
 
