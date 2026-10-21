@@ -1,3 +1,5 @@
+import type { ButtonGroupProps } from "@components/Button/group";
+import ButtonGroupRender from "@components/Button/group/render";
 import type { ContextMenuProps } from "@components/ContextMenu/render";
 import ContextMenuRender from "@components/ContextMenu/render";
 import OrderedCollection, { type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
@@ -13,21 +15,24 @@ import "./style.scss";
 
 export interface ToolboxProps extends PropsWithChildren, LayoutPadding {}
 
-type ToolboxAcceptedComponent = ContentProps | ToolbarProps | ContextMenuProps;
+type ToolboxAcceptedComponent = ContentProps | ToolbarProps | ButtonGroupProps | ContextMenuProps;
 
 export default function Toolbox(props: ToolboxProps)
 {
 	const [contentProps, setContentProps] = useState<OrderedCollectionChildData<ToolboxAcceptedComponent>[]>([]);
-	const acceptedChildren = useMemo(() => ["Content", "Toolbar", "ContextMenu"], []);
+	const acceptedChildren = useMemo(() => ["Content", "Toolbar", "ButtonGroup", "ContextMenu"], []);
 	const content = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ContentProps> => props.orderedCollectionName === "Content"), [contentProps]);
 	const toolbars = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ToolbarProps> => props.orderedCollectionName === "Toolbar"), [contentProps]);
+	const buttonGroups = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ButtonGroupProps> => props.orderedCollectionName === "ButtonGroup"), [contentProps]);
 	const contextMenus = useMemo(() => contentProps.filter((props): props is OrderedCollectionChildData<ContextMenuProps> => props.orderedCollectionName === "ContextMenu"), [contentProps]);
 	const dockedToolbars = useMemo(() => toolbars.filter(toolbar => toolbar.variant === "docked"), [toolbars]);
 	const floatingToolbars = useMemo(() => toolbars.filter(toolbar => toolbar.variant === "floating"), [toolbars]);
 	const verticalFloatingToolbars = useMemo(() => floatingToolbars.filter(toolbar => toolbar.orientation === "vertical"), [floatingToolbars]);
 	const horizontalFloatingToolbars = useMemo(() => floatingToolbars.filter(toolbar => !toolbar.orientation || toolbar.orientation === "horizontal"), [floatingToolbars]);
-	const topTools = useMemo(() => [], []);
-	const bottomTools = useMemo(() => [...dockedToolbars, ...horizontalFloatingToolbars], [dockedToolbars, horizontalFloatingToolbars]);
+	const topButtonGroups = useMemo(() => buttonGroups.filter(props => props.position === "top"), [buttonGroups]);
+	const bottomButtonGroups = useMemo(() => buttonGroups.filter(props => props.position === "bottom"), [buttonGroups]);
+	const topTools = useMemo(() => topButtonGroups, [topButtonGroups]);
+	const bottomTools = useMemo(() => [...dockedToolbars, ...horizontalFloatingToolbars, ...bottomButtonGroups], [dockedToolbars, horizontalFloatingToolbars, bottomButtonGroups]);
 	const leftTools = useMemo(() => verticalFloatingToolbars, [verticalFloatingToolbars]);
 	const rightTools = useMemo(() => [], []);
 	const inlineContentPadding = props.inlineContentPadding ?? props.contentPadding ?? false;
@@ -38,6 +43,8 @@ export default function Toolbox(props: ToolboxProps)
 		{
 			case "Toolbar":
 				return (<ToolbarRender key={props.id} {...props as ToolbarProps}/>);
+			case "ButtonGroup":
+				return (<ButtonGroupRender key={props.id} {...props as ButtonGroupProps}/>);
 			default:
 				return (null);
 		}

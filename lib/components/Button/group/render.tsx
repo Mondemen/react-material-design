@@ -15,12 +15,14 @@ import "./style.scss";
 
 interface BaseButtonGroupProps extends Pick<CommonButtonProps, "size" | "shape">, Omit<React.ButtonHTMLAttributes<HTMLElement>, "type">
 {
+	position?: "top" | "bottom",
 	selectable?: false,
 	children?: React.ReactNode
 }
 
 export interface BaseButtonGroupSelectable
 {
+	position?: "top" | "bottom",
 	required?: boolean,
 	requiredMessage?: string
 }
@@ -62,7 +64,7 @@ type ButtonGroupSelectionProps =
 	| ConnectedButtonGroupSingleSelectionProps
 	| ConnectedButtonGroupMultipleSelectionProps;
 
-	export type ButtonGroupProps =
+export type ButtonGroupProps =
 	| StandardButtonGroupProps
 	| ConnectedButtonGroupProps
 	| ButtonGroupSelectionProps;
@@ -99,13 +101,10 @@ function getNativeButtonGroupProps(props: ButtonGroupProps)
 	return (result);
 }
 
-function isSelectable(arg: any): arg is BaseButtonGroupSingleSelection | BaseButtonGroupMultipleSelection
-{return (typeof arg === "object" && arg?.selectable)}
-
 export const ButtonGroupContext = createContext<ButtonGroupContext | null>(null);
 export const useButtonGroupContext = () => useContext(ButtonGroupContext);
 
-export default function ButtonGroup(props: ButtonGroupProps)
+export default function ButtonGroupRender(props: ButtonGroupProps)
 {
 	const {onSelected} = props as ButtonGroupSelectionProps;
 	const id = useId();
@@ -204,7 +203,7 @@ export default function ButtonGroup(props: ButtonGroupProps)
 		classList["align-" + (props.align ?? "left")] = true;
 	classList[props.shape ?? "round"] = true;
 	classList[getComponentSizeName(props.size)] = true;
-	if (isSelectable(props))
+	if (props.selectable)
 	{
 		classList["selectable"] = true;
 		classList[props.selectable] = true;
@@ -238,7 +237,7 @@ export default function ButtonGroup(props: ButtonGroupProps)
 						defaultChecked={selectedList.includes(button.id)}
 						onInvalid={event =>
 						{
-							setError((isSelectable(props) ? props.requiredMessage : undefined) ?? event.currentTarget.validationMessage);
+							setError((props.selectable ? props.requiredMessage : undefined) ?? event.currentTarget.validationMessage);
 							event.preventDefault();
 						}}
 					/>

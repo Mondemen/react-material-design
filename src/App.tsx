@@ -132,6 +132,12 @@ export default function App()
 										<Button icon="add_chart" label="Test"/>
 										<Button icon="edit" label="Test 2" selectable/>
 									</Toolbar>
+									<ButtonGroup position="top" type="connected" selectable="single">
+										<Button color="elevated" size="small" icon="add_chart" label="Test"/>
+										<Button color="filled" size="small" icon="add_chart" label="Test"/>
+										<Button color="tonal" size="small" icon="add_chart" label="Test"/>
+										<Button color="tertiary" size="small" icon="add_chart" label="Test"/>
+									</ButtonGroup>
 									<Content>
 										Tab 3 content<br/>
 										Test 4
