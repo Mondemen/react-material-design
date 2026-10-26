@@ -1,6 +1,6 @@
 {
 	"name": "react-material-design",
-	"version": "0.5.3",
+	"version": "0.5.4",
 	"type": "module",
 	"license": "MIT",
 	"author": {
@@ -41,13 +41,13 @@
 		"babel-plugin-react-compiler": "^1.0.0",
 		"commander": "^15.0.0",
 		"globals": "^17.13.0",
-		"oxlint": "^1.88.0",
-		"sass": "^1.105.2",
+		"oxlint": "^1.89.0",
+		"sass": "^1.106.1",
 		"sass-alias": "^2.0.1",
 		"tsx": "^4.23.15",
 		"typescript": "^6.0.3",
 		"unplugin-dts": "^1.1.2",
-		"vite": "^8.3.4",
+		"vite": "^8.3.5",
 		"vite-plugin-lib-inject-css": "^2.2.2",
 		"vite-tsconfig-paths": "^6.1.1"
 	},

@@ -8,7 +8,7 @@ import { getComponentSizeName } from "@components/types";
 import { shallowEqual } from "@utils";
 import classNames from "classnames";
 import type React from "react";
-import { createContext, useContext, useEffect, useId, useMemo, useState } from "react";
+import { createContext, useContext, useId, useMemo, useState } from "react";
 import { type CommonButtonProps } from "../types";
 
 import "./style.scss";
@@ -98,6 +98,7 @@ function getNativeButtonGroupProps(props: ButtonGroupProps)
 	const result: React.ComponentProps<any> = {...props};
 
 	NativeProps.forEach(prop => delete result[prop as keyof typeof result])
+	delete result["orderedCollectionName"];
 	return (result);
 }
 
@@ -106,37 +107,41 @@ export const useButtonGroupContext = () => useContext(ButtonGroupContext);
 
 export default function ButtonGroupRender(props: ButtonGroupProps)
 {
-	const {onSelected} = props as ButtonGroupSelectionProps;
+	const {onSelected, selectable, selected: selectedExternal, required, requiredMessage} = props as ButtonGroupSelectionProps;
 	const id = useId();
 	const [buttonProps, setButtonProps] = useState<OrderedCollectionChildData<ButtonProps | IconButtonProps>[]>([]);
 	const [error, setError] = useState<string>();
-	const [selectedList, setSelectedList] = useState<string[]>([]);
+	const [selectedInternal, setSelectedList] = useState<string[]>([]);
+	const selected = useMemo(() => (selectable === "single" && selectedExternal ? [selectedExternal] : selectedInternal) ?? selectedInternal, [selectable, selectedExternal, selectedInternal]);
 	const acceptedChildren = useMemo(() => ["Button", "IconButton"], []);
 	const classList: Record<string, any> = {};
 	const context = useMemo<ButtonGroupContext>(() =>
 	({
 		size: props.size,
-		selectable: !!props.selectable,
-		required: !!(props.selectable && props.required),
-		get selected() {return (buttonProps.reduce((list, props) => list.set(props.id, selectedList.includes(props.id)), new Map<string, boolean>()))},
-		onSelected: (id, selected) =>
+		selectable: !!selectable,
+		required: !!(selectable && required),
+		get selected() {return (buttonProps.reduce((list, props) => list.set(props.id, selected.includes(props.id)), new Map<string, boolean>()))},
+		onSelected: (id, isSelected) =>
 		{
 			let newSelectedList: string[];
 
-			if (props.selectable)
+			if (selectable)
 			{
 				setError(undefined);
-				if (props.selectable === "single")
+				if (selectable === "single")
 				{
-					newSelectedList = selected ? [id] : [];
-					(onSelected as BaseButtonGroupSingleSelection["onSelected"])?.(selected ? id : undefined);
+					if (!required)
+						newSelectedList = isSelected ? [id] : [];
+					else
+						newSelectedList = [id];
+					(onSelected as BaseButtonGroupSingleSelection["onSelected"])?.(isSelected ? id : undefined);
 				}
 				else
 				{
-					newSelectedList = [...selectedList];
-					if (selected)
+					newSelectedList = [...selected];
+					if (isSelected)
 						newSelectedList.push(id);
-					else
+					else if (!required || (required && newSelectedList.length > 1))
 						newSelectedList = newSelectedList.filter(newId => newId !== id);
 					(onSelected as BaseButtonGroupMultipleSelection["onSelected"])?.(newSelectedList);
 				}
@@ -182,20 +187,7 @@ export default function ButtonGroupRender(props: ButtonGroupProps)
 				nextRef?.style.removeProperty("--button-width-extra");
 			}
 		}
-		// @ts-expect-error
-	}), [buttonProps, onSelected, props.required, props.selectable, props.size, props.type, selectedList]);
-
-	useEffect(() =>
-	{
-		if (props.selectable)
-		{
-			if (props.selectable === "single")
-				setSelectedList(props.selected ? [props.selected] : []); // eslint-disable-line react-hooks/set-state-in-effect -- TO FIX
-			else
-				setSelectedList(props.selected ?? []);
-		}
-		// @ts-expect-error
-	}, [props.selectable, props.selected]);
+	}), [buttonProps, onSelected, required, selectable, props.size, props.type, selected]);
 
 	classList["ButtonGroup"] = true;
 	classList[props.type ?? "standard"] = true;
@@ -203,10 +195,10 @@ export default function ButtonGroupRender(props: ButtonGroupProps)
 		classList["align-" + (props.align ?? "left")] = true;
 	classList[props.shape ?? "round"] = true;
 	classList[getComponentSizeName(props.size)] = true;
-	if (props.selectable)
+	if (selectable)
 	{
 		classList["selectable"] = true;
-		classList[props.selectable] = true;
+		classList[selectable] = true;
 	}
 	return (
 		<div {...getNativeButtonGroupProps(props)} className={classNames(classList, props.className)}>
@@ -225,19 +217,19 @@ export default function ButtonGroupRender(props: ButtonGroupProps)
 					<OrderedCollection<ButtonProps | IconButtonProps> childName={acceptedChildren} onChildrenChange={setButtonProps} compareChild={shallowEqual}>{props.children}</OrderedCollection>
 				</ButtonGroupContext>
 			</div>
-			{props.selectable && props.required && <Transitionable value={error} className="error"/>}
+			{selectable && required && <Transitionable value={error} className="error"/>}
 			<div style={useMemo(() => ({display: "none"}), [])}>
-				{props.selectable && props.required && buttonProps.map((button, index) =>
+				{selectable && required && buttonProps.map((button, index) =>
 				(
 					<input
 						key={button.id}
 						type="radio"
 						name={`group_${id}`}
-						required={!index && !selectedList.length}
-						defaultChecked={selectedList.includes(button.id)}
+						required={!index && !selected.length}
+						defaultChecked={selected.includes(button.id)}
 						onInvalid={event =>
 						{
-							setError((props.selectable ? props.requiredMessage : undefined) ?? event.currentTarget.validationMessage);
+							setError((selectable ? requiredMessage : undefined) ?? event.currentTarget.validationMessage);
 							event.preventDefault();
 						}}
 					/>

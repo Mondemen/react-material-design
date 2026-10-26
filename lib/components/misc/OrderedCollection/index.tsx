@@ -95,7 +95,7 @@ export default function OrderedCollection<D = any>(props: PropsWithChildren<Orde
 		{
 			if (!registry[id])
 				return (null);
-			return ({...registry[id], id});
+			return ({...registry[id], id: registry[id].id ?? id});
 		}).filter((id): id is (OrderedCollectionChildData<D>) => !!id);
 		if (children.current.length !== newChildren.length || children.current.some(compareChild))
 		{

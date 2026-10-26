@@ -39,6 +39,7 @@ export default function App()
 		// console.log("RESIZE DIV");
 	}, []));
 	const [value, setValue] = useState<(string | number)[]>([]);
+	const [selected, setSelected] = useState<string>();
 	const {saveRef} = useConcatElementRef(elem);
 
 	return (
@@ -135,6 +136,10 @@ export default function App()
 			 				<Tab id="test2" label="Tab 2" icon="tab_close" contentPadding>Tab 2 content</Tab>
 			 				<Tab id="test3" label="Console" icon="code">
 								<Toolbox contentPadding>
+									<ButtonGroup position="top" required type="connected" selectable="single" selected={selected} onSelected={setSelected}>
+										<Button id="2d" label="2D View" icon="2d_2"/>
+										<Button id="3d" label="3D View" icon="3d_2" selected/>
+									</ButtonGroup>
 									<Toolbar variant="floating" orientation="vertical" color="vibrant">
 										<Button icon="edit" label="Test 2" selectable/>
 										<IconButton icon="share" selectable/>
