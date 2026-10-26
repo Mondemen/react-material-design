@@ -5,7 +5,18 @@ import { useCallback, useMemo, useState, type MouseEventHandler, type TouchEvent
 
 export function useCommonButtonProps(id: string, props: any, onPressed: (pressed: boolean) => void)
 {
-	const {selectable, selected: selectedExternal, defaultSelected, onSelected, onClick: onClickProp} = props as PolymorphicComponent<"Button", "button", "button", CommonSelectableButtonProps>;
+	const {
+		selectable,
+		selected: selectedExternal,
+		defaultSelected,
+		onSelected,
+		onClick: onClickProp,
+		onMouseDown: onMouseDownProp,
+		onMouseUp: onMouseUpProp,
+		onMouseLeave: onMouseLeaveProp,
+		onTouchStart: onTouchStartProp,
+		onTouchEnd: onTouchEndProp,
+	} = props as PolymorphicComponent<"Button", "button", "button", CommonSelectableButtonProps>;
 	const groupContext = useButtonGroupContext();
 	const [selectedInternal, setSelectedInternal] = useState((selectable ? (defaultSelected ?? selectedExternal) : false) ?? false);
 	const selected = selectedExternal ?? selectedInternal;
@@ -36,28 +47,28 @@ export function useCommonButtonProps(id: string, props: any, onPressed: (pressed
 	const onMouseDown = useCallback<MouseEventHandler<HTMLButtonElement>>(event =>
 	{
 		onPress();
-		props.onMouseDown?.(event);
-	}, [onPress, props]);
+		onMouseDownProp?.(event);
+	}, [onPress, onMouseDownProp]);
 	const onMouseUp = useCallback<MouseEventHandler<HTMLButtonElement>>(event =>
 	{
 		onRelease();
-		props.onMouseUp?.(event);
-	}, [onRelease, props]);
+		onMouseUpProp?.(event);
+	}, [onRelease, onMouseUpProp]);
 	const onMouseLeave = useCallback<MouseEventHandler<HTMLButtonElement>>(event =>
 	{
 		onRelease();
-		props.onMouseLeave?.(event);
-	}, [onRelease, props]);
+		onMouseLeaveProp?.(event);
+	}, [onRelease, onMouseLeaveProp]);
 	const onTouchStart = useCallback<TouchEventHandler<HTMLButtonElement>>(event =>
 	{
 		onPress();
-		props.onTouchStart?.(event);
-	}, [onPress, props]);
+		onTouchStartProp?.(event);
+	}, [onPress, onTouchStartProp]);
 	const onTouchEnd = useCallback((event: React.TouchEvent<HTMLButtonElement>) =>
 	{
 		onRelease();
-		props.onTouchEnd?.(event);
-	}, [onRelease, props]);
+		onTouchEndProp?.(event);
+	}, [onRelease, onTouchEndProp]);
 	const newProps = useMemo<React.HTMLAttributes<HTMLButtonElement>>(() =>
 	({
 		// id,
