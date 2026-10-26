@@ -52,10 +52,10 @@ export default function Toolbox(props: ToolboxProps)
 
 	return (
 		<div className={classNames("Toolbox", {"inline-padding": inlineContentPadding, "block-padding": blockContentPadding})}>
-			{!!topTools.length && <div className="tools top">{topTools.map(renderTool)}</div>}
-			{!!bottomTools.length && <div className="tools bottom">{bottomTools.map(renderTool)}</div>}
-			{!!leftTools.length && <div className="tools left">{leftTools.map(renderTool)}</div>}
-			{!!rightTools.length && <div className="tools right">{rightTools.map(renderTool)}</div>}
+			{!!topTools.length && <div className={classNames("tools top", {multiple: topTools.length > 1})}>{topTools.map(renderTool)}</div>}
+			{!!bottomTools.length && <div className={classNames("tools bottom", {multiple: bottomTools.length > 1})}>{bottomTools.map(renderTool)}</div>}
+			{!!leftTools.length && <div className={classNames("tools left", {multiple: leftTools.length > 1})}>{leftTools.map(renderTool)}</div>}
+			{!!rightTools.length && <div className={classNames("tools right", {multiple: rightTools.length > 1})}>{rightTools.map(renderTool)}</div>}
 			<div className={classNames("content", content?.className)} style={content?.style} {...content?.dataset}>
 				{contextMenus.map(props => <ContextMenuRender key={props.id} {...props}/>)}
 				{content?.children}

@@ -64,6 +64,9 @@
 		z-index: 4;
 		pointer-events: none;
 
+		&.multiple
+		{justify-content: space-between}
+
 		& >*
 		{pointer-events: initial}
 
@@ -72,6 +75,7 @@
 			top: 0;
 			left: 0;
 			right: 0;
+			padding-inline: theme.applySystemToken(measurement-space200);
 
 			>.Toolbar.floating
 			{margin-top: theme.applyComponentToken(toolbar-floating-horizontal-container-external-space)}
@@ -88,6 +92,7 @@
 			bottom: 0;
 			left: 0;
 			right: 0;
+			padding-inline: theme.applySystemToken(measurement-space200);
 
 			&:not(:has(>.Toolbar.docked), :has(>.ButtonGroup))
 			{padding-inline: var(--default-spacing)}
