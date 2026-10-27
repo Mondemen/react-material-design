@@ -141,7 +141,7 @@
 		}
 	}
 
-	&:hover:not(.focus, .disabled, .error)
+	&:is(:hover, .hovered, .is-hovered):not(.focus, .disabled, .error)
 	{
 		--outlined-field-border-color: var(--md-sys-color-on-surface);
 		>.label
@@ -174,7 +174,7 @@
 		>.label
 		{@include theme.error-text}
 	}
-	&:hover.error
+	&:is(:hover, .hovered, .is-hovered).error
 	{
 		--outlined-field-border-color: var(--md-sys-color-on-error-container);
 		>.label

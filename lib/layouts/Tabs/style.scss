@@ -124,7 +124,7 @@
 							{color: theme.applyComponentToken(primary-navigation-tab-with-icon-active-icon-color)}
 						}
 
-						&:hover >.content
+						&:is(:hover, .hovered, .is-hovered) >.content
 						{
 							>.label
 							{color: theme.applyComponentToken(primary-navigation-tab-with-label-text-active-hover-label-text-color)}
@@ -149,7 +149,7 @@
 							{color: theme.applyComponentToken(primary-navigation-tab-with-icon-inactive-icon-color)}
 						}
 
-						&:hover >.content
+						&:is(:hover, .hovered, .is-hovered) >.content
 						{
 							>.label
 							{color: theme.applyComponentToken(primary-navigation-tab-with-label-text-inactive-hover-label-text-color)}
@@ -220,7 +220,7 @@
 							{color: theme.applyComponentToken(secondary-navigation-tab-with-icon-active-icon-color)}
 						}
 
-						&:hover >.content
+						&:is(:hover, .hovered, .is-hovered) >.content
 						{
 							>.label
 							{color: theme.applyComponentToken(secondary-navigation-tab-hover-label-text-color)}
@@ -238,7 +238,7 @@
 							{color: theme.applyComponentToken(secondary-navigation-tab-with-icon-inactive-icon-color)}
 						}
 
-						&:hover >.content
+						&:is(:hover, .hovered, .is-hovered) >.content
 						{
 							>.label
 							{color: theme.applyComponentToken(secondary-navigation-tab-hover-label-text-color)}

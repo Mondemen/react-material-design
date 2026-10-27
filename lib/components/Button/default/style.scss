@@ -73,7 +73,7 @@
 		outline-offset: calc(-1 * theme.applyComponentToken(button-disabled-outline-width, theme.applyComponentToken(button-outline-width, 0px)));
 		cursor: default;
 	}
-	&:hover:not(.disabled, :focus-visible, :active, .dragged)
+	&:is(:hover, .hovered, .is-hovered):not(.disabled, :focus-visible, :active, .dragged)
 	{
 		@include theme.forwardComponentColorOpacityTokens(icon, button-hovered-icon, theme.applyComponentToken(button-icon-color), theme.applyComponentToken(button-icon-opacity, 1));
 		background-color: theme.applyComponentColorOpacityToken(button-hovered-container, theme.applyComponentToken(button-container-color), theme.applyComponentToken(button-container-opacity, 1));

@@ -25,7 +25,7 @@
 					border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 					border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 
-					&:hover:not(:active)
+					&:is(:hover, .hovered, .is-hovered):not(:active)
 					{
 						border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
 						border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
@@ -45,7 +45,7 @@
 						border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 						border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 
-						&:hover:not(:active)
+						&:is(:hover, .hovered, .is-hovered):not(:active)
 						{
 							border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
 							border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
@@ -63,7 +63,7 @@
 						border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 						border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 
-						&:hover:not(:active)
+						&:is(:hover, .hovered, .is-hovered):not(:active)
 						{
 							border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
 							border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
@@ -96,7 +96,7 @@
 					border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 					border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 
-					&:hover:not(:active, .selected)
+					&:is(:hover, .hovered, .is-hovered):not(:active, .selected)
 					{
 						border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
 						border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
@@ -116,7 +116,7 @@
 						border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 						border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 
-						&:hover:not(:active, .selected)
+						&:is(:hover, .hovered, .is-hovered):not(:active, .selected)
 						{
 							border-top-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
 							border-bottom-left-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
@@ -134,7 +134,7 @@
 						border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 						border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-corner-size);
 
-						&:hover:not(:active, .selected)
+						&:is(:hover, .hovered, .is-hovered):not(:active, .selected)
 						{
 							border-top-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);
 							border-bottom-right-radius: theme.applyComponentToken(split-button-inner-corner-hovered-corner-size);

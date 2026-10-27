@@ -36,7 +36,7 @@
 		@include theme.forwardComponentToken(state-layer-color, state-disabled-state-layer-color, transparent);
 		@include theme.forwardComponentToken(state-layer-opacity, state-disabled-state-layer-opacity);
 	}
-	&:is(:hover, .hovered):not(.disabled, :focus-visible, :active, .dragged) >.StateLayer
+	&:is(:hover, .hovered, .is-hovered):not(.disabled, :focus-visible, :active, .dragged) >.StateLayer
 	{
 		@include theme.forwardComponentToken(state-layer-color, state-hover-state-layer-color, transparent);
 		@include theme.forwardComponentToken(state-layer-opacity, state-hover-state-layer-opacity);

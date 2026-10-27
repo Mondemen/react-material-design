@@ -57,7 +57,7 @@
 		>.icon.trailing
 		{@include theme.forwardComponentColorOpacityTokens(icon, chip-disabled-trailing-icon, theme.applyComponentToken(chip-trailing-icon-color), theme.applyComponentToken(chip-trailing-icon-opacity))}
 	}
-	&:hover:not(.disabled, :focus-visible, :active, .dragged)
+	&:is(:hover, .hovered, .is-hovered):not(.disabled, :focus-visible, :active, .dragged)
 	{
 		@include theme.forwardComponentToken(icon-color, chip-hovered-icon-color);
 		background-color: theme.applyComponentColorOpacityToken(chip-hovered-container, theme.applyComponentToken(chip-container-color), theme.applyComponentToken(chip-container-opacity, 1));
