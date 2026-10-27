@@ -54,7 +54,7 @@ export default function NumberFieldRender(props: NumberFieldProps)
 	const repeatFn = useRef<NodeJS.Timeout>(null);
 	const repeatTimeout = useRef<NodeJS.Timeout>(null);
 	const setShiftKey = useCallback((event: KeyboardEvent) => shiftKey.current = event.shiftKey, []);
-	const filled = typeof props.value === "number" || !!value.length || badFormat;
+	const filled = typeof props.value === "number" || !!value.length || badFormat || !!props.placeholder;
 	const supportMessage = error ?? supportingText;
 	const lang = props.lang ?? (isBrowser() ? window.navigator.language : undefined);
 	const min = props.min !== undefined ? parseFloat(props.min.toString()) : undefined;

@@ -35,7 +35,7 @@ export default function TextFieldRender(props: TextFieldProps)
 	const ref = useRef<HTMLInputElement>(null);
 	const [internalValue, setInternalValue] = useState(externalValue ?? props.defaultValue ?? "");
 	const value = externalValue ?? internalValue;
-	const filled = !!value.length;
+	const filled = !!value.length || !!props.placeholder;
 	const [focus, setFocus] = useState(false);
 	const [passwordVisibility, setPasswordVisibility] = useState(false);
 	const fullLabel = label ? (label + (props.required ? "*" : "")) : undefined;
