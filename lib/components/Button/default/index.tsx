@@ -14,7 +14,7 @@ export type ButtonWidth = CommonButtonWidth | "stretch";
 export interface DefaultButtonProps extends Omit<CommonButtonProps, "color">
 {
 	color?: ButtonColor,
-	label: string | (() => string),
+	label?: string | (() => string),
 	icon?: IconDefinition | (() => IconDefinition),
 	width?: ButtonWidth,
 	title?: string | ReactElement<TooltipProps>,

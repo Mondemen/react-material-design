@@ -542,6 +542,18 @@
 	}
 }
 
+#{common.buttonContainerSelector(".Button.label", ".extra-small")}
+{
+	@include theme.forwardComponentToken(button-icon-size, button-xsmall-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-xsmall-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-xsmall-trailing-space);
+}
+#{common.buttonContainerSelector(".Button.icon:not(.label)", ".extra-small")}
+{
+	@include theme.forwardComponentToken(button-icon-size, icon-button-xsmall-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, icon-button-xsmall-default-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, icon-button-xsmall-default-trailing-space);
+}
 #{common.buttonContainerSelector(".Button", ".extra-small")}
 {
 	@include theme.forwardComponentToken(button-container-height, button-xsmall-container-height);
@@ -559,21 +571,43 @@
 	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-xsmall-pressed-container-corner-size-motion-spring);
 }
 
+#{common.buttonContainerSelector(".Button.label", ".small")}
+{
+	@include theme.forwardComponentToken(button-icon-size, button-small-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-small-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-small-trailing-space);
+}
+#{common.buttonContainerSelector(".Button.icon:not(.label)", ".small")}
+{
+	@include theme.forwardComponentToken(button-icon-size, icon-button-small-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, icon-button-small-default-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, icon-button-small-default-trailing-space);
+}
 #{common.buttonContainerSelector(".Button", ".small")}
 {
 	@include theme.forwardComponentToken(button-container-height, button-small-container-height);
 	@include theme.forwardComponentToken(button-outline-width, button-small-outlined-outline-width);
 	@include theme.forwardComponentTypescaleTokens(button-label-text, button-small-label-text);
-	@include theme.forwardComponentToken(button-icon-size, button-small-icon-size);
-	@include theme.forwardComponentToken(button-leading-space, button-small-leading-space);
 	@include theme.forwardComponentToken(button-icon-label-space, button-small-icon-label-space);
-	@include theme.forwardComponentToken(button-trailing-space, button-small-trailing-space);
 	@include theme.forwardComponentToken(button-container-shape-round, button-small-container-shape-round);
 	@include theme.forwardComponentToken(button-container-shape-square, button-small-container-shape-square);
 	@include theme.forwardComponentToken(button-pressed-container-shape, button-small-pressed-container-shape);
 	@include theme.forwardComponentToken(button-selected-container-shape-round, button-small-selected-container-shape-round);
 	@include theme.forwardComponentToken(button-selected-container-shape-square, button-small-selected-container-shape-square);
 	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-small-pressed-container-corner-size-motion-spring);
+}
+
+#{common.buttonContainerSelector(".Button.label", ".medium")}
+{
+	@include theme.forwardComponentToken(button-icon-size, button-medium-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-medium-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-medium-trailing-space);
+}
+#{common.buttonContainerSelector(".Button.icon:not(.label)", ".medium")}
+{
+	@include theme.forwardComponentToken(button-icon-size, icon-button-medium-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, icon-button-medium-default-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, icon-button-medium-default-trailing-space);
 }
 #{common.buttonContainerSelector(".Button", ".medium")}
 {
@@ -591,6 +625,19 @@
 	@include theme.forwardComponentToken(button-selected-container-shape-square, button-medium-selected-container-shape-square);
 	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-medium-pressed-container-corner-size-motion-spring);
 }
+
+#{common.buttonContainerSelector(".Button.label", ".large")}
+{
+	@include theme.forwardComponentToken(button-icon-size, button-large-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-large-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-large-trailing-space);
+}
+#{common.buttonContainerSelector(".Button.icon:not(.label)", ".large")}
+{
+	@include theme.forwardComponentToken(button-icon-size, icon-button-large-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, icon-button-large-default-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, icon-button-large-default-trailing-space);
+}
 #{common.buttonContainerSelector(".Button", ".large")}
 {
 	@include theme.forwardComponentToken(button-container-height, button-large-container-height);
@@ -606,6 +653,19 @@
 	@include theme.forwardComponentToken(button-selected-container-shape-round, button-large-selected-container-shape-round);
 	@include theme.forwardComponentToken(button-selected-container-shape-square, button-large-selected-container-shape-square);
 	@include theme.forwardComponentSpringTokens(button-pressed-container-corner-size-motion-spring, button-large-pressed-container-corner-size-motion-spring);
+}
+
+#{common.buttonContainerSelector(".Button.label", ".extra-large")}
+{
+	@include theme.forwardComponentToken(button-icon-size, button-xlarge-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, button-xlarge-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, button-xlarge-trailing-space);
+}
+#{common.buttonContainerSelector(".Button.icon:not(.label)", ".extra-large")}
+{
+	@include theme.forwardComponentToken(button-icon-size, icon-button-xlarge-icon-size);
+	@include theme.forwardComponentToken(button-leading-space, icon-button-xlarge-default-leading-space);
+	@include theme.forwardComponentToken(button-trailing-space, icon-button-xlarge-default-trailing-space);
 }
 #{common.buttonContainerSelector(".Button", ".extra-large")}
 {

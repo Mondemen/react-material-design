@@ -143,9 +143,11 @@ export default function ButtonRender<As extends React.ElementType = "button">(pr
 		propsExtra.className = classNames(classList, {icon, label}, props.className);
 		propsExtra["aria-label"] = label;
 		propsExtra.role = "button";
+		if (groupContext)
+			propsExtra.type = "button";
 		delete propsExtra.title;
 		return (propsExtra);
-	}, [classList, icon, label, otherProps, props]);
+	}, [classList, groupContext, icon, label, otherProps, props]);
 	const {saveRef: saveContainerRef} = useResizeObserver(useCallback(entries => entries.forEach(entry => ref.current?.style.setProperty("--md-comp-button-container-width", `${entry.contentRect.width}px`)), [ref]));
 
 	useWindowEventListener("click", event =>
