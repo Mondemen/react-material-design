@@ -130,9 +130,11 @@ export default function IconButtonRender<As extends ElementType = "button">(prop
 
 		propsExtra.className = classNames(classList, props.className);
 		propsExtra.role = "button";
+		if (groupContext)
+			propsExtra.type = "button";
 		delete propsExtra.title;
 		return (propsExtra);
-	}, [classList, otherProps, props]);
+	}, [classList, groupContext, otherProps, props]);
 	const {saveRef: saveContainerRef} = useResizeObserver(useCallback(entries => entries.forEach(entry => ref.current?.style.setProperty("--md-comp-icon-button-container-width", `${entry.contentRect.width}px`)), [ref]));
 
 	useWindowEventListener("pointerdown", event =>
