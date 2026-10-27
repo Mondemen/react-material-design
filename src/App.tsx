@@ -64,12 +64,15 @@ export default function App()
 					</MenuGroup>
 				</MenuSection>
 				<Content>
-					<ButtonGroup type="connected" selectable="single">
-						<Button color="elevated" size="small" icon="add_chart" label="Test"/>
-						<Button color="filled" size="small" icon="add_chart" label="Test"/>
-						<Button color="tonal" size="small" icon="add_chart" label="Test"/>
-						<Button color="tertiary" size="small" icon="add_chart" label="Test"/>
-					</ButtonGroup>
+					<form>
+						<ButtonGroup type="connected" selectable="single" required>
+							<Button color="elevated" size="small" icon="add_chart" label="Test"/>
+							<Button color="filled" size="small" icon="add_chart" label="Test"/>
+							<Button color="tonal" size="small" icon="add_chart" label="Test"/>
+							<Button color="tertiary" size="small" icon="add_chart" label="Test"/>
+						</ButtonGroup>
+						<button>Valider</button>
+					</form>
 				</Content>
 			</Menubar>
 			<ContextMenu layout="grouped" density={-2}>
@@ -190,8 +193,27 @@ export default function App()
 					<Tooltip variant="plain" text="Le placement actuel"/>
 				</button>
 				<br/>
-				<Button title="Test" color="filled" size="small" icon="add_chart" label="Test" menuOpenBehavior="click">
-					<MenuGroup>
+				<IconButton size="extra-small" icon="add_chart"/>
+				<Button size="extra-small" icon="add_chart"/>
+				<Button size="extra-small" icon="add_chart" label="Test"/>
+				<Button size="extra-small" label="Test"/><br/>
+				<IconButton size="small" icon="add_chart"/>
+				<Button size="small" icon="add_chart"/>
+				<Button size="small" icon="add_chart" label="Test"/>
+				<Button size="small" label="Test"/><br/>
+				<IconButton size="medium" icon="add_chart"/>
+				<Button size="medium" icon="add_chart"/>
+				<Button size="medium" icon="add_chart" label="Test"/>
+				<Button size="medium" label="Test"/><br/>
+				<IconButton size="large" icon="add_chart"/>
+				<Button size="large" icon="add_chart"/>
+				<Button size="large" icon="add_chart" label="Test"/>
+				<Button size="large" label="Test"/><br/>
+				<IconButton size="extra-large" icon="add_chart"/>
+				<Button size="extra-large" icon="add_chart"/>
+				<Button size="extra-large" icon="add_chart" label="Test"/>
+				<Button size="extra-large" label="Test"/><br/>
+					{/* <MenuGroup>
 						<MenuItem icon="undo" text={"Annuler"}/>
 						<MenuItem icon="redo" text={"Rétabir"}/>
 						<MenuItem icon="content_paste" text={"Coller"}/>
@@ -200,11 +222,11 @@ export default function App()
 						<MenuItem icon="content_copy" text={"Copier"}/>
 						<MenuItem icon="content_cut" text={"Couper"}/>
 						<MenuItem icon="content_paste" text={"Coller"}/>
-					</MenuGroup>
+					</MenuGroup> */}
 					{/* <MenuItem text={"Test 1"} selectable onClick={() => console.log("CLICK TEST1")}/>
 					<MenuItem text={"Test 2"} onClick={() => console.log("CLICK TEST2")}/>
 					<MenuItem text={"Test 3"} onClick={() => console.log("CLICK TEST3")}/> */}
-				</Button>
+				{/* </Button> */}
 				<ButtonGroup type="standard" shape="round" size="large" selectable="multiple">
 					<Button color="elevated" size="small" icon="add_chart" label="Test"/>
 					<Button color="filled" size="small" icon="add_chart" label="Test"/>
@@ -403,6 +425,7 @@ export default function App()
 				<br/>
 				<br/>
 				<form>
+					<TextField label="Label" minLength={10} placeholder="Placeholder test" required leadingIcon="search"/>
 					<TextField label="Label" minLength={10} required suffix="@gmail.com" leadingIcon="search"/>
 					<TextField prefix="test" label="Label" minLength={3} maxLength={30} counter={false} required clearable/><br/><br/>
 					<NumberField label="Number" hugeStep={10} max={100} required /* trailingIcon={<Icon name="search"/>} *//><br/><br/>
