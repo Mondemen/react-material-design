@@ -84,6 +84,7 @@ export default function Theme(props: ThemeProps)
 	const realId = props.id ?? id;
 	const styleRef = useRef<HTMLStyleElement>(null);
 	const dialogStates = useRef<Record<string, boolean>>({});
+	const tooltipOpening = useRef<number>(null);
 	const tooltipClosing = useRef<number>(null);
 	const [tooltip, setTooltip] = useState<string>();
 	const parentContext = useTheme();
@@ -107,12 +108,25 @@ export default function Theme(props: ThemeProps)
 		tooltip: getRootContext()?.tooltip ?? tooltip,
 		setTooltip(id)
 		{
+			const currentTooltip = getRootContext()?.tooltip ?? tooltip;
+
 			if (typeof tooltipClosing.current === "number")
 				tooltipClosing.current = window.clearTimeout(tooltipClosing.current) ?? null;
 			if (id)
-				setTooltip(id);
+			{
+				if (tooltipOpening.current !== null)
+					tooltipOpening.current = window.clearTimeout(tooltipOpening.current) ?? null;
+				if (!currentTooltip)
+					tooltipOpening.current = window.setTimeout(() => setTooltip(id), 300);
+				else
+					setTooltip(id);
+			}
 			else
+			{
+				if (tooltipOpening.current !== null)
+					tooltipOpening.current = window.clearTimeout(tooltipOpening.current) ?? null;
 				tooltipClosing.current = window.setTimeout(() => setTooltip(undefined), 1500);
+			}
 			parentContext?.setTooltip(id);
 		},
 		setDialogState(id, open)
