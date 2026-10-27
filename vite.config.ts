@@ -5,6 +5,7 @@ import { relative, resolve } from "path";
 import dts from "unplugin-dts/vite";
 import { defineConfig } from "vite";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
+import copy from "rollup-plugin-copy"
 
 export default defineConfig((config) =>
 {
@@ -82,6 +83,7 @@ export default defineConfig((config) =>
 			babel({ presets: [reactCompilerPreset({})] }),
 			dts({exclude: ["./src/**"], entryRoot: "./lib"}),
 			libInjectCss(),
+			copy({targets: [{src: "lib/style/**/*.scss", dest: "dist/style"}]})
 		],
 		build:
 		{
