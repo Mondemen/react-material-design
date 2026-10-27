@@ -2,7 +2,8 @@ import IconButtonRender from "@components/Button/icon/render";
 import { type IconDefinition } from "@components/Icon/Icon";
 import { OrderedCollectionChild, useOrderedCollection } from "@components/misc/OrderedCollection";
 import { type PolymorphicComponent } from "@components/misc/Polymorphic";
-import { type ElementType, type ReactNode, type Ref } from "react";
+import type { TooltipProps } from "@components/Tooltip";
+import { type ElementType, type ReactElement, type Ref } from "react";
 import { type CommonButtonColor, type CommonButtonProps, type CommonButtonWidth, type CommonSelectableButtonProps } from "../types";
 
 import "./style.scss";
@@ -15,7 +16,7 @@ export interface DefaultIconButtonProps extends Omit<CommonButtonProps, "color">
 	color?: IconButtonColor,
 	icon: IconDefinition | (() => IconDefinition),
 	width?: IconButtonWidth,
-	tooltip?: ReactNode,
+	title?: string | ReactElement<TooltipProps>,
 	menuRef?: Ref<HTMLDivElement>,
 	menuOpenBehavior?: "manual" | "hover" | "click",
 	menuOpen?: boolean,
