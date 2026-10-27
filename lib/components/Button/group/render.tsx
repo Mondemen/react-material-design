@@ -217,7 +217,7 @@ export default function ButtonGroupRender(props: ButtonGroupProps)
 					<OrderedCollection<ButtonProps | IconButtonProps> childName={acceptedChildren} onChildrenChange={setButtonProps} compareChild={shallowEqual}>{props.children}</OrderedCollection>
 				</ButtonGroupContext>
 			</div>
-			{selectable && required && <Transitionable value={error} className="error"/>}
+			{selectable && required && <Transitionable value={error} className={classNames("error", {valid: error?.length})}/>}
 			<div style={useMemo(() => ({display: "none"}), [])}>
 				{selectable && required && buttonProps.map((button, index) =>
 				(

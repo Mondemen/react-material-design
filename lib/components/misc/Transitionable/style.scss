@@ -25,7 +25,7 @@
 
 	&:not(.static)
 	{
-		transition: theme.motion-spring-expressive-fast-spatial((width, height));
+		transition: theme.motion-spring-expressive-fast-spatial((width, height, margin, padding));
 
 		>.value.transition
 		{animation: theme.motion-spring-expressive-fast-effects(transitionable-fade-in, forwards)}

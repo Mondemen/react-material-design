@@ -325,7 +325,11 @@
 	{
 		@include theme.typescale-body-small;
 		@include theme.color-error-text;
-		margin-top: 4px;
-		margin-left: 16px;
+
+		&.valid
+		{
+			margin-top: 4px;
+			margin-left: 16px;
+		}
 	}
 }
