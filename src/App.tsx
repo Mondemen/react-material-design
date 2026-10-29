@@ -97,7 +97,7 @@ export default function App()
 				<Button icon="add_chart" label="Test"/>
 				<Button icon="edit" label="Test 2" selectable/>
 			</Toolbar>
-			<Toolbar variant="docked">
+			<Toolbar variant="docked" align="center">
 				<Button icon="edit" label="Test 2" selectable/>
 				<IconButton title="Test" icon="share" selectable width="wide"/>
 				<IconButton icon="comment"/>

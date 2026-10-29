@@ -7,7 +7,7 @@
 	{
 		background-color: theme.applyComponentToken(toolbar-standard-container-color);
 
-		.IconButton.standard
+		>.ButtonContainer >.IconButton.standard
 		{
 			@include theme.forwardComponentToken(icon-button-container-color, toolbar-standard-button-container-color);
 			@include theme.forwardComponentToken(icon-button-icon-color, toolbar-standard-icon-color);
@@ -35,7 +35,7 @@
 				{@include theme.forwardComponentToken(icon-button-container-color, toolbar-standard-selected-button-container-color)}
 			}
 		}
-		.Button.text
+		>.ButtonContainer >.Button.text
 		{
 			@include theme.forwardComponentToken(button-container-color, toolbar-standard-button-container-color);
 			@include theme.forwardComponentToken(button-selected-container-shape-round, button-small-container-shape-round);
@@ -80,7 +80,7 @@
 	{
 		background-color: theme.applyComponentToken(toolbar-vibrant-container-color);
 
-		.IconButton.standard
+		>.ButtonContainer >.IconButton.standard
 		{
 			@include theme.forwardComponentToken(icon-button-container-color, toolbar-vibrant-button-container-color);
 			@include theme.forwardComponentToken(icon-button-icon-color, toolbar-vibrant-icon-color);
@@ -108,7 +108,7 @@
 				{@include theme.forwardComponentToken(icon-button-container-color, toolbar-vibrant-selected-button-container-color)}
 			}
 		}
-		.Button.text
+		>.ButtonContainer >.Button.text
 		{
 			@include theme.forwardComponentToken(button-container-color, toolbar-vibrant-button-container-color);
 			@include theme.forwardComponentToken(button-selected-container-shape-round, button-small-container-shape-round);
@@ -152,17 +152,20 @@
 
 	&.docked
 	{
-		height: theme.applyComponentToken(toolbar-docked-container-height);
-
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		// justify-content: space-between;
+		height: theme.applyComponentToken(toolbar-docked-container-height);
 		padding-left: theme.applyComponentToken(toolbar-docked-container-leading-space);
 		padding-right: theme.applyComponentToken(toolbar-docked-container-trailing-space);
-		gap: theme.applyComponentToken(toolbar-docked-container-between-space);
+		gap: theme.applySystemToken(measurement-space100);
 		border-radius: theme.applyComponentToken(toolbar-docked-container-shape);
 		box-shadow: theme.applyComponentToken(toolbar-docked-container-elevation);
 
+		&.space-evenly
+		{justify-content: space-between}
+		&.center
+		{justify-content: center}
 	}
 
 	&.floating

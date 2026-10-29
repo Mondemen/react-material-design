@@ -4,7 +4,7 @@ import type { MenubarProps } from "@components/Menubar/render";
 import MenubarRender from "@components/Menubar/render";
 import OrderedCollection, { type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
 import type { ToolbarProps } from "@components/Toolbar";
-import ToolbarRender from "@components/Toolbar/Toolbar.render";
+import ToolbarRender from "@components/Toolbar/render";
 import { shallowEqual } from "@utils";
 import classNames from "classnames";
 import { useCallback, useMemo, useState, type PropsWithChildren } from "react";

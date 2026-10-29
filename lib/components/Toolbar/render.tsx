@@ -19,14 +19,15 @@ export interface BaseToolbarProps
 
 export interface DockedToolbarProps extends BaseToolbarProps
 {
-	variant: "docked"
+	variant: "docked",
+	align?: "space-evenly" | "center"
 }
 
 export interface FloatingToolbarProps extends BaseToolbarProps
 {
 	variant: "floating",
 	orientation?: "horizontal" | "vertical",
-	placement?: "left" | "center" | "right"
+	// placement?: "left" | "center" | "right"
 }
 
 export type ToolbarProps = DockedToolbarProps | FloatingToolbarProps
@@ -39,7 +40,7 @@ export default function ToolbarRender(props: PropsWithChildren<ToolbarProps>)
 	const acceptedChildren = useMemo(() => props.variant === "floating" && props.orientation === "vertical" ? "IconButton" : ["Button", "IconButton", "TextField", "NumberField"], [props.orientation, props.variant]);
 
 	return (
-		<div className={classNames("Toolbar", props.variant, color, props.variant === "floating" ? [props.orientation ?? "horizontal", props.placement ?? "center"] : "")}>
+		<div className={classNames("Toolbar", props.variant, color, props.variant === "floating" ? [props.orientation ?? "horizontal"] : [props.align ?? "space-evenly"])}>
 			<ButtonProvider color={{default: "text", icon: "standard"}} shape="round" width="default">
 				{contentProps.map(props =>
 				{
