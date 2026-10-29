@@ -28,7 +28,7 @@ export interface DefaultButtonProps extends Omit<CommonButtonProps, "color">
 export interface SelectableButtonProps extends Omit<DefaultButtonProps, "color" | "selectable" | "label" | "icon">, CommonSelectableButtonProps
 {
 	color?: Exclude<DefaultButtonProps["color"], "text">,
-	label: string | ((selected: boolean) => string),
+	label?: string | ((selected: boolean) => string),
 	icon?: IconDefinition | ((selected: boolean) => IconDefinition)
 }
 
