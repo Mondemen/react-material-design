@@ -38,12 +38,13 @@ export interface NumberFieldProps extends Omit<TextFieldBaseProps, "type" | "min
 	value?: number,
 	hugeStep?: number | undefined,
 	decimal?: number,
-	hideArrow?: boolean
+	hideArrow?: boolean,
+	density?: 0 | -1 | -2
 }
 
 export default function NumberFieldRender(props: NumberFieldProps)
 {
-	const {shape, label, onValueChange, onChange: onChangeExternal, onInvalid: onInvalidExternal, value: externalValue, supportingText, clearable, decimal, hugeStep: hugeStepValue, hideArrow, leadingIcon: leadingIconProp, trailingIcon: trailingIconProp, prefix, suffix, ...inputProps} = props;
+	const {shape, label, onValueChange, onChange: onChangeExternal, onInvalid: onInvalidExternal, value: externalValue, supportingText, density = -2, clearable, decimal, hugeStep: hugeStepValue, hideArrow, leadingIcon: leadingIconProp, trailingIcon: trailingIconProp, prefix, suffix, ...inputProps} = props;
 	const ref = useRef<HTMLInputElement>(null);
 	const [internalValue, setInternalValue] = useState(externalValue?.toString() ?? props.defaultValue?.toString() ?? "");
 	const value = externalValue?.toString() ?? internalValue;
@@ -185,7 +186,7 @@ export default function NumberFieldRender(props: NumberFieldProps)
 					{trailingIcon}
 					{!hideArrow &&
 					(
-						<div className="arrow">
+						<div className={classNames("arrow", `density-${density}`.replace(/-+/g, "-"))}>
 							<div className="button" onMouseDown={onMouseInc}>
 								<StateLayer/>
 								<Icon name="keyboard_arrow_up"/>
@@ -210,7 +211,7 @@ export default function NumberFieldRender(props: NumberFieldProps)
 				{trailingIcon}
 				{!hideArrow &&
 				(
-					<div className="arrow">
+					<div className={classNames("arrow", `density-${density}`.replace(/-+/g, "-"))}>
 						<div className="button" onMouseDown={onMouseInc}>
 							<StateLayer/>
 							<Icon name="keyboard_arrow_up"/>
@@ -223,7 +224,7 @@ export default function NumberFieldRender(props: NumberFieldProps)
 				)}
 			</>
 		);
-	}, [shape, leadingIcon, prefix, suffix, input, trailingIcon, hideArrow, onMouseInc, onMouseDec, label, fullLabel]);
+	}, [shape, leadingIcon, prefix, suffix, input, trailingIcon, hideArrow, density, onMouseInc, onMouseDec, label, fullLabel]);
 
 	useWindowEventListener("keydown", setShiftKey);
 	useWindowEventListener("keyup", setShiftKey);
@@ -233,12 +234,12 @@ export default function NumberFieldRender(props: NumberFieldProps)
 		<div className={classNames("TextField", "NumberField", {error})}>
 			{shape === "filled" ?
 			(
-				<FilledField label={fullLabel} filled={filled || !!props.prefix} focus={focus} error={!!error} className={classNames({leadingIcon, trailingIcon})}>
+				<FilledField label={fullLabel} filled={filled || !!props.prefix} focus={focus} error={!!error} density={density} className={classNames({leadingIcon, trailingIcon})}>
 					{content}
 				</FilledField>
 			) :
 			(
-				<OutlinedField label={fullLabel} filled={filled || !!props.prefix} focus={focus} error={!!error} className={classNames({leadingIcon, trailingIcon})}>
+				<OutlinedField label={fullLabel} filled={filled || !!props.prefix} focus={focus} error={!!error} density={density} className={classNames({leadingIcon, trailingIcon})}>
 					{content}
 				</OutlinedField>
 			)}

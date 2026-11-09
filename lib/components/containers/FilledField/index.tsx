@@ -10,15 +10,16 @@ export interface FilledFieldProps extends React.HTMLAttributes<HTMLDivElement>, 
 	filled?: boolean,
 	focus?: boolean,
 	disabled?: boolean,
-	error?: boolean
+	error?: boolean,
+	density?: 0 | -1 | -2
 }
 
 export default function FilledField(props: React.PropsWithChildren<FilledFieldProps>)
 {
-	const {label, filled, focus, disabled, error, ...divProps} = props;
+	const {label, filled, focus, disabled, error, density = 0, ...divProps} = props;
 
 	return (
-		<div {...divProps} className={classNames("FilledField Field", {label, filled, focus, disabled, error}, props.className)}>
+		<div {...divProps} className={classNames("FilledField Field", {label, filled, focus, disabled, error}, `density-${density}`.replace(/-+/g, "-"), props.className)}>
 			<StateLayer ripple={false}/>
 			{label && <span className="label">{label}</span>}
 			{props.children}

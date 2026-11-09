@@ -42,7 +42,14 @@
 		transition: theme.motion-spring-expressive-fast-effects((height, color));
 	}
 
-	&.filled, &.focus
+	&.density-0:is(.filled, .focus) >.label
+	{top: theme.applyComponentToken(filled-text-field-container-top-space);}
+	&.density-1:is(.filled, .focus) >.label
+	{top: theme.applyComponentToken(filled-text-field-container-top-space-1);}
+	&.density-2:is(.filled, .focus) >.label
+	{top: theme.applyComponentToken(filled-text-field-container-top-space-2);}
+
+	&:is(.filled, .focus)
 	{
 		>.label
 		{

@@ -34,17 +34,23 @@
 			{@include theme.color-error-text}
 		}
 
+		&.density-0 >.container
+		{padding-block: theme.applyComponentToken(filled-text-field-container-top-space) theme.applyComponentToken(filled-text-field-container-bottom-space);}
+		&.density-1 >.container
+		{padding-block: theme.applyComponentToken(filled-text-field-container-top-space-1) theme.applyComponentToken(filled-text-field-container-bottom-space-1);}
+		&.density-2 >.container
+		{padding-block: theme.applyComponentToken(filled-text-field-container-top-space-2) theme.applyComponentToken(filled-text-field-container-bottom-space-2);}
+
 		>.container
 		{
 			display: flex;
 			flex-direction: column;
 			flex: 1 1 fit-content;
-			min-height: 56px;
 			padding-inline: 4px;
-			padding-block: 8px;
 			width: 0;
 			box-sizing: border-box;
 			cursor: text;
+			transition: theme.motion-spring-expressive-fast-spatial((padding));
 
 			>.label
 			{
@@ -113,6 +119,13 @@
 		>.IconButton
 		{margin-inline: -4px;}
 
+		&.density-0 >.content
+		{padding-block: theme.applyComponentToken(outlined-text-field-container-top-space) theme.applyComponentToken(outlined-text-field-container-bottom-space);}
+		&.density-1 >.content
+		{padding-block: theme.applyComponentToken(outlined-text-field-container-top-space-1) theme.applyComponentToken(outlined-text-field-container-bottom-space-1);}
+		&.density-2 >.content
+		{padding-block: theme.applyComponentToken(outlined-text-field-container-top-space-2) theme.applyComponentToken(outlined-text-field-container-bottom-space-2);}
+
 		>.content
 		{
 			display: flex;
@@ -121,6 +134,7 @@
 			flex: 1 1 fit-content;
 			gap: 2px;
 			width: 0;
+			transition: theme.motion-spring-expressive-fast-spatial((padding));
 
 			&.suffix >input
 			{text-align: right}
@@ -137,7 +151,6 @@
 				@include theme.color-on-surface-text;
 				flex: 1;
 				width: 0;
-				min-height: 56px;
 				border: none;
 				outline: none;
 				box-sizing: border-box;

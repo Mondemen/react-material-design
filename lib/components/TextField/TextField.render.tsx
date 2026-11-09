@@ -19,6 +19,7 @@ export interface TextFieldBaseProps extends Omit<InputHTMLAttributes<HTMLInputEl
 	prefix?: string,
 	suffix?: string,
 	clearable?: boolean
+	density?: 0 | -1 | -2
 }
 
 export interface TextFieldProps extends Omit<TextFieldBaseProps, "min" | "max" | "step">
@@ -31,7 +32,7 @@ export interface TextFieldProps extends Omit<TextFieldBaseProps, "min" | "max" |
 
 export default function TextFieldRender(props: TextFieldProps)
 {
-	const {shape, label, onValueChange, onChange: onChangeExternal, onInvalid: onInvalidExternal, value: externalValue, supportingText, counter: isCounter = true, clearable, leadingIcon, trailingIcon: trailingIconValue, prefix, suffix, ...inputProps} = props;
+	const {shape, label, onValueChange, onChange: onChangeExternal, onInvalid: onInvalidExternal, value: externalValue, density, supportingText, counter: isCounter = true, clearable, leadingIcon, trailingIcon: trailingIconValue, prefix, suffix, ...inputProps} = props;
 	const ref = useRef<HTMLInputElement>(null);
 	const [internalValue, setInternalValue] = useState(externalValue ?? props.defaultValue ?? "");
 	const value = externalValue ?? internalValue;
@@ -140,12 +141,12 @@ export default function TextFieldRender(props: TextFieldProps)
 		<div className={classNames("TextField", props.type, {error})}>
 			{shape === "filled" ?
 			(
-				<FilledField label={fullLabel} filled={filled || !!props.prefix} focus={focus} error={!!error} className={classNames({leadingIcon, trailingIcon})}>
+				<FilledField label={fullLabel} filled={filled || !!props.prefix} focus={focus} error={!!error} density={density} className={classNames({leadingIcon, trailingIcon})}>
 					{content}
 				</FilledField>
 			) :
 			(
-				<OutlinedField label={fullLabel} filled={filled || !!props.prefix} focus={focus} error={!!error} className={classNames({leadingIcon, trailingIcon})}>
+				<OutlinedField label={fullLabel} filled={filled || !!props.prefix} focus={focus} error={!!error} density={density} className={classNames({leadingIcon, trailingIcon})}>
 					{content}
 				</OutlinedField>
 			)}

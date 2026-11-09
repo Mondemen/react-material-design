@@ -2,13 +2,29 @@
 
 .TextField.NumberField
 {
-	>.FilledField >.arrow, >.OutlinedField >.arrow
+	>:is(.FilledField, .OutlinedField) >.arrow
 	{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-self: stretch;
 		gap: 2px;
+
+		&.density-0 >.button
+		{
+			width: calc(36px - #{theme.applySystemToken(measurement-space0)});
+			height: calc(22px - #{theme.applySystemToken(measurement-space0)});
+		}
+		&.density-1 >.button
+		{
+			width: calc(36px - #{theme.applySystemToken(measurement-space25)});
+			height: calc(22px - #{theme.applySystemToken(measurement-space25)});
+		}
+		&.density-2 >.button
+		{
+			width: calc(36px - #{theme.applySystemToken(measurement-space50)});
+			height: calc(22px - #{theme.applySystemToken(measurement-space50)});
+		}
 
 		>.button
 		{
@@ -20,6 +36,10 @@
 			align-items: center;
 			justify-content: center;
 			cursor: pointer;
+			transition: theme.motion-spring-expressive-fast-spatial((width, height));
+
+			>.StateLayer >.target
+			{min-height: initial;}
 		}
 	}
 

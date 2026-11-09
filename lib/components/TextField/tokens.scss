@@ -223,6 +223,12 @@
 			/* Container */
 				@include theme.saveComponentToken(filled-text-field-container-color, color-surface-container-highest);
 				@include theme.saveComponentToken(filled-text-field-container-shape, shape-corner-extra-small-top);
+				@include theme.saveComponentToken(filled-text-field-container-top-space, measurement-space100);
+				@include theme.saveComponentToken(filled-text-field-container-top-space-1, measurement-space75);
+				@include theme.saveComponentToken(filled-text-field-container-top-space-2, measurement-space50);
+				@include theme.saveComponentToken(filled-text-field-container-bottom-space, measurement-space100);
+				@include theme.saveComponentToken(filled-text-field-container-bottom-space-1, measurement-space75);
+				@include theme.saveComponentToken(filled-text-field-container-bottom-space-2, measurement-space50);
 			/* Label text */
 				@include theme.saveComponentToken(filled-text-field-label-text-color, color-on-surface-variant);
 				@include theme.saveComponentTypescaleTokens(filled-text-field-label-text, body-large);
@@ -329,6 +335,12 @@
 		/* Enabled */
 			/* Container */
 				@include theme.saveComponentToken(outlined-text-field-container-shape, shape-corner-extra-small);
+				@include theme.saveComponentToken(outlined-text-field-container-top-space, measurement-space200);
+				@include theme.saveComponentToken(outlined-text-field-container-top-space-1, measurement-space175);
+				@include theme.saveComponentToken(outlined-text-field-container-top-space-2, measurement-space150);
+				@include theme.saveComponentToken(outlined-text-field-container-bottom-space, measurement-space200);
+				@include theme.saveComponentToken(outlined-text-field-container-bottom-space-1, measurement-space175);
+				@include theme.saveComponentToken(outlined-text-field-container-bottom-space-2, measurement-space150);
 			/* Outline */
 				@include theme.saveComponentValue(outlined-text-field-outline-width, 1px);
 				@include theme.saveComponentToken(outlined-text-field-outline-color, color-outline);
