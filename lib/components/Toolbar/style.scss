@@ -154,7 +154,6 @@
 	{
 		display: flex;
 		align-items: center;
-		// justify-content: space-between;
 		height: theme.applyComponentToken(toolbar-docked-container-height);
 		padding-left: theme.applyComponentToken(toolbar-docked-container-leading-space);
 		padding-right: theme.applyComponentToken(toolbar-docked-container-trailing-space);
@@ -166,6 +165,8 @@
 		{justify-content: space-between}
 		&.center
 		{justify-content: center}
+		&.start
+		{justify-content: flex-start}
 	}
 
 	&.floating

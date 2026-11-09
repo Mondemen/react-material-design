@@ -20,7 +20,7 @@ export interface BaseToolbarProps
 export interface DockedToolbarProps extends BaseToolbarProps
 {
 	variant: "docked",
-	align?: "space-evenly" | "center"
+	align?: "space-evenly" | "center" | "start"
 }
 
 export interface FloatingToolbarProps extends BaseToolbarProps
