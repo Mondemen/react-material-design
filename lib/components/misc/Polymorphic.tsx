@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, type ComponentPropsWithoutRef, type ElementType } from "react";
 import type { DefaultThemeComponentType } from "../Theme/types";
-import { useTheme } from "@components/Theme/Theme";
+import { useThemeInternal } from "@components/Theme/Theme";
 
 export type PolymorphicComponent<Name extends string, As extends ElementType | undefined, Default extends ElementType, Props = {}> =
 (
@@ -33,7 +33,7 @@ export default function Polymorphic(props: React.PropsWithChildren<PolymorphicPr
 {
 	const {base: Base = "div"} = props;
 	const excludePropsName = useMemo(() => ["as", "children", "orderedCollectionName", ...props.excludePropsName], [props.excludePropsName]);
-	const ContextType = useTheme()?.config.componentTypes?.[props.name];
+	const ContextType = useThemeInternal()?.config.componentTypes?.[props.name];
 	const ref = useCallback<React.RefCallback<HTMLElement>>(ref =>
 	{
 		const refObject = props.ref;

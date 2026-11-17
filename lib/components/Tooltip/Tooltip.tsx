@@ -1,5 +1,5 @@
 import FloatingElement from "@components/misc/FloatingElement";
-import { useTheme } from "@components/Theme/Theme";
+import { useThemeInternal } from "@components/Theme/Theme";
 import type { FlipOptions, ShiftOptions } from "@hooks/useFloating/types";
 import classNames from "classnames";
 import { useId, useMemo, type PropsWithChildren } from "react";
@@ -25,7 +25,7 @@ export type TooltipProps = PlainTooltipProps | RichTooltipProps;
 export default function Tooltip(props: PropsWithChildren<TooltipProps>)
 {
 	const id = useId();
-	const {tooltip, setTooltip, tooltipsContainer} = useTheme("Tooltip");
+	const {tooltip, setTooltip, tooltipsContainer} = useThemeInternal("Tooltip");
 	const flipOptions = useMemo<FlipOptions>(() => ({padding: 12, allowedPlacements: ["top", "bottom"]}), []);
 	const shiftOptions = useMemo<ShiftOptions>(() => ({padding: 8, limitShift: 8}), []);
 	const open = tooltip === id;

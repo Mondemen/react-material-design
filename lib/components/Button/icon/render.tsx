@@ -8,7 +8,7 @@ import FloatingElement from "@components/misc/FloatingElement";
 import Polymorphic from "@components/misc/Polymorphic";
 import StateLayer from "@components/misc/StateLayer";
 import Transitionable from "@components/misc/Transitionable";
-import { useTheme } from "@components/Theme/Theme";
+import { useThemeInternal } from "@components/Theme/Theme";
 import Tooltip from "@components/Tooltip";
 import { getComponentSizeName } from "@components/types";
 import type { FlipOptions } from "@hooks/useFloating/types";
@@ -44,7 +44,7 @@ const NativeProps: string[] =
 export default function IconButtonRender<As extends ElementType = "button">(props: IconButtonProps<As>)
 {
 	const {icon: iconProp, menuOpenBehavior = "hover", menuRef: menuRefExternal, menuOpen: menuOpenExternal, onMenuOpen, onMenuClose} = props;
-	const {popoversContainer} = useTheme("IconButton");
+	const {popoversContainer} = useThemeInternal("IconButton");
 	const flipOptions = useMemo<FlipOptions>(() => ({allowedPlacements: ["top-start", "top-end", "bottom-start", "bottom-end"]}), []);
 	const idBase = useId();
 	const id = props.id ?? idBase;

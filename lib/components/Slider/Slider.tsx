@@ -1,4 +1,5 @@
 import FloatingElement, { type FloatingElementProps } from "@components/misc/FloatingElement";
+import { useThemeInternal } from "@components/Theme/Theme";
 import type { FlipOptions, Side } from "@hooks/useFloating/types";
 import { clamp, mapRange } from "@utils";
 import classNames from "classnames";
@@ -7,7 +8,6 @@ import { useConcatElementRef, useDocumentEventListener, useElementEventListener 
 import { getComponentSizeName } from "../types";
 
 import "./style.scss";
-import { useTheme } from "@components/Theme/Theme";
 
 export interface DefaultSliderProps extends React.HTMLAttributes<HTMLDivElement>
 {
@@ -86,7 +86,7 @@ function isRange(arg: any): arg is RangeSliderProps
 
 function ValueIndicator({orientation, value, hover}: {orientation: "horizontal" | "vertical", value: number, hover: boolean})
 {
-	const {popoversContainer} = useTheme("Slider");
+	const {popoversContainer} = useThemeInternal("Slider");
 	const [placement, setPlacement] = useState<Side | undefined>();
 	const flipOptions = useMemo<FlipOptions>(() =>
 	{

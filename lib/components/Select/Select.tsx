@@ -11,7 +11,7 @@ import type { PropsWithChildren, SelectHTMLAttributes } from "react";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useWindowEventListener } from "react-dom-event-hooks";
 import FloatingElement, { type FloatingElementProps } from "@components/misc/FloatingElement";
-import { useTheme } from "@components/Theme/Theme";
+import { useThemeInternal } from "@components/Theme/Theme";
 import type { Side } from "@hooks/useFloating/types";
 
 import "./style.scss";
@@ -61,7 +61,7 @@ export interface MultiSelectProps<T extends string | number = string> extends Se
 export default function Select<T extends string | number = string>(props: PropsWithChildren<SingleSelectProps<T> | MultiSelectProps<T>>)
 {
 	const {shape, value: externalValue, multiple, searchable, supportingText, onValueChange, onChange, onInvalid} = props;
-	const {popoversContainer} = useTheme("Select");
+	const {popoversContainer} = useThemeInternal("Select");
 	const ref = useRef<HTMLDivElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);

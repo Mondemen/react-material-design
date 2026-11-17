@@ -12,6 +12,8 @@ export function randomUUID(): ReturnType<typeof crypto["randomUUID"]>
 	return ("10000000-1000-4000-8000-100000000000".replace(/[018]/g, c => (+c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))).toString(16)) as any);
 }
 
+export const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
 let timeout: number | undefined;
 export function onPageLoading(loading: boolean)
 {
@@ -48,7 +50,7 @@ export function compareDeps<T>(target: T, previous: T)
 		return (target === previous);
 }
 
-export function hex2rgb(hex: string)
+export function hexToRgb(hex: string)
 {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -62,7 +64,7 @@ export function isLight(color?: string | {r: number, g: number, b: number})
 	if (!color)
 		return (true);
 	if (typeof color === "string")
-		color = hex2rgb(color);
+		color = hexToRgb(color);
 	return ((((color.r * 299) + (color.g * 587) + (color.b * 114)) / 1000) >= 128);
 }
 

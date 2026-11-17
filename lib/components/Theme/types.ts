@@ -33,13 +33,87 @@ export interface CustomColor
 
 export interface ThemeContext
 {
+    colorScheme: "light" | "dark" | "auto",
+    setColorScheme: (scheme: this["colorScheme"]) => void,
+    palette:
+    {
+        current: ThemeColorScheme,
+        light: ThemeColorScheme,
+        dark: ThemeColorScheme
+    },
+	config: ThemeConfig
+}
+
+export interface ThemeContextInternal extends ThemeContext
+{
 	ref: RefObject<HTMLDivElement | null>,
 	tooltipsContainer: HTMLDivElement | null,
 	dialogsContainer: HTMLDivElement | null,
 	popoversContainer: HTMLDivElement | null,
-	config: ThemeConfig,
 	tooltip?: string,
 	setTooltip: (id?: string) => void,
 	setDialogState: (id: string, open: boolean) => void,
-	context: ThemeContext | null
+	context: ThemeContextInternal | null
+}
+
+export interface ThemeColorScheme
+{
+	[name: string]: string;
+    background: string;
+    onBackground: string;
+    surface: string;
+    surfaceDim: string;
+    surfaceBright: string;
+    surfaceContainerLowest: string;
+    surfaceContainerLow: string;
+    surfaceContainer: string;
+    surfaceContainerHigh: string;
+    surfaceContainerHighest: string;
+    onSurface: string;
+    surfaceVariant: string;
+    onSurfaceVariant: string;
+    inverseSurface: string;
+    inverseOnSurface: string;
+    outline: string;
+    outlineVariant: string;
+    shadow: string;
+    scrim: string;
+    surfaceTint: string;
+    primary: string;
+    primaryDim: string;
+    onPrimary: string;
+    primaryContainer: string;
+    onPrimaryContainer: string;
+    primaryFixed: string;
+    primaryFixedDim: string;
+    onPrimaryFixed: string;
+    onPrimaryFixedVariant: string;
+    inversePrimary: string;
+    secondary: string;
+    secondaryDim: string;
+    onSecondary: string;
+    secondaryContainer: string;
+    onSecondaryContainer: string;
+    secondaryFixed: string;
+    secondaryFixedDim: string;
+    onSecondaryFixed: string;
+    onSecondaryFixedVariant: string;
+    tertiary: string;
+    tertiaryDim: string;
+    onTertiary: string;
+    tertiaryContainer: string;
+    onTertiaryContainer: string;
+    tertiaryFixed: string;
+    tertiaryFixedDim: string;
+    onTertiaryFixed: string;
+    onTertiaryFixedVariant: string;
+    error: string;
+    errorDim: string;
+    onError: string;
+    errorContainer: string;
+    onErrorContainer: string;
+    success: string;
+    onSuccess: string;
+    successContainer: string;
+    onSuccessContainer: string;
 }

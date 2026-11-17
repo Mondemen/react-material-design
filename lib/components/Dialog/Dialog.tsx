@@ -6,7 +6,7 @@ import Divider from "@components/Divider";
 import { convertIconDefinition, IconProvider, type IconDefinition } from "@components/Icon/Icon";
 import type { OrderedCollectionChildData } from "@components/misc/OrderedCollection";
 import OrderedCollection from "@components/misc/OrderedCollection";
-import { useTheme } from "@components/Theme/Theme";
+import { useThemeInternal } from "@components/Theme/Theme";
 import { getComponentSizeName } from "@components/types";
 import { shallowEqual, waitAnimationNameEndEvent } from "@utils";
 import classNames from "classnames";
@@ -46,7 +46,7 @@ export type DialogProps = BasicDialogProps | FullscreenDialogProps;
 export default function Dialog(props: DialogProps)
 {
 	const id = useId();
-	const {setDialogState, dialogsContainer} = useTheme("Dialog");
+	const {setDialogState, dialogsContainer} = useThemeInternal("Dialog");
 	const ref = useRef<HTMLDialogElement>(null);
 	const modalRef = useRef<HTMLDivElement>(null);
 	const [contentProps, setContentProps] = useState<OrderedCollectionChildData<ContentData | DialogActionsProps>[]>([]);
