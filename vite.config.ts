@@ -39,6 +39,7 @@ export default defineConfig((config) =>
 		Tabs: resolve(import.meta.dirname, "lib/layouts/Tabs/index"),
 		Toolbox: resolve(import.meta.dirname, "lib/layouts/Toolbox/index"),
 		Content: resolve(import.meta.dirname, "lib/layouts/Content"),
+		Container: resolve(import.meta.dirname, "lib/layouts/Container"),
 	}
 	const packageExports: Record<string, {types: string, import: string, require: string}> = {};
 	const autoEntries = Object.entries(entryFiles).reduce<Record<string, string>>((acc, [name, filePath]) =>
@@ -81,7 +82,7 @@ export default defineConfig((config) =>
 		[
 			react({}),
 			babel({ presets: [reactCompilerPreset({})] }),
-			dts({exclude: ["./src/**"], entryRoot: "./lib"}),
+			dts({exclude: ["./src/**"], entryRoot: "./lib", copyDtsFiles: true}),
 			libInjectCss(),
 			copy({targets: [{src: "lib/style/**/*.scss", dest: "dist/style"}]})
 		],

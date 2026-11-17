@@ -1,0 +1,23 @@
+@use "../../style" as theme;
+
+.Container
+{
+	display: flex;
+	gap: calc(#{theme.applySystemToken(measurement-space100)} * var(--container-spacing, 0));
+
+	&.horizontal
+	{
+		&:not(.reverse)
+		{flex-direction: row;}
+		&.reverse
+		{flex-direction: row-reverse;}
+	}
+
+	&.vertical
+	{
+		&:not(.reverse)
+		{flex-direction: column;}
+		&.reverse
+		{flex-direction: column-reverse;}
+	}
+}
