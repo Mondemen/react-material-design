@@ -1,0 +1,107 @@
+@use "../../style" as theme;
+
+.Accordion
+{
+	height: var(--accordion-header-size, 0px);
+	background-color: theme.applyComponentToken(accordion-container-color);
+	box-sizing: border-box;
+	overflow: hidden;
+	border-bottom: solid 1px theme.applyComponentToken(accordion-header-container-color);
+	transition: theme.motion-spring-expressive-fast-effects((background-color, border, box-shadow)),
+				theme.motion-spring-expressive-fast-spatial((height, margin, border-radius));
+
+	>.header
+	{
+		display: flex;
+		align-items: center;
+		background-color: theme.applyComponentToken(accordion-header-container-color);
+		padding-inline: theme.applyComponentToken(accordion-header-leading-space) theme.applyComponentToken(accordion-header-trailing-space);
+		padding-block: theme.applyComponentToken(accordion-header-top-space) theme.applyComponentToken(accordion-header-bottom-space);
+		cursor: pointer;
+		box-sizing: border-box;
+		transition: theme.motion-spring-expressive-fast-effects((background-color)),
+					theme.motion-spring-expressive-fast-spatial((padding));
+
+		>.summary
+		{
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			justify-content: center;
+
+			>.title
+			{
+				@include theme.applyComponentTypescaleTokens(accordion-header-label-text);
+				color: theme.applyComponentToken(accordion-header-label-text-color);
+				transition: theme.motion-spring-expressive-fast-effects((color));
+			}
+			>.subtitle
+			{
+				@include theme.applyComponentTypescaleTokens(accordion-header-supporting-text);
+				color: theme.applyComponentToken(accordion-header-supporting-text-color);
+				transition: theme.motion-spring-expressive-fast-effects((color));
+			}
+		}
+		>.ButtonContainer
+		{
+			min-width: initial;
+			min-height: initial;
+
+			>.expand-icon >.container >.icon >* >.Icon
+			{transition: theme.motion-spring-expressive-fast-spatial((rotate))}
+		}
+	}
+
+	>.container >.content
+	{
+		&.inline-padding
+		{padding-inline: theme.applySystemToken(measurement-space200)}
+		&.block-padding
+		{padding-block: theme.applySystemToken(measurement-space200)}
+	}
+
+	&.expanded
+	{
+		height: calc(var(--accordion-header-size, 0px) + var(--accordion-container-size, 0px));
+
+		>.header
+		{
+			background-color: theme.applyComponentToken(accordion-header-expanded-container-color);
+			box-shadow: theme.applyComponentToken(accordion-header-container-elevation);
+
+			>.summary
+			{
+				>.title
+				{color: theme.applyComponentToken(accordion-header-expanded-label-text-color)}
+				>.subtitle
+				{color: theme.applyComponentToken(accordion-header-expanded-supporting-text-color)}
+			}
+
+			>.ButtonContainer >.expand-icon >.container >.icon >* >.Icon
+			{rotate: 180deg}
+		}
+	}
+
+	&.standard
+	{
+		border-radius: theme.applyComponentToken(accordion-container-shape);
+		box-shadow: theme.applyComponentToken(accordion-container-elevation);
+
+		&:not(.expanded):has(+ .Accordion:not(.expanded))
+		{
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		&:not(.expanded) +.Accordion:not(.expanded)
+		{
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+
+		&:is(.expanded:has(+ .Accordion), :has(+ .Accordion.expanded))
+		{margin-bottom: theme.applySystemToken(measurement-space200)}
+
+		&.expanded
+		{box-shadow: theme.applyComponentToken(accordion-expanded-container-elevation)}
+	}
+}

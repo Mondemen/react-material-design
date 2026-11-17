@@ -1,0 +1,40 @@
+@use "../../style" as theme;
+
+:root
+{
+	/* Accordion - Common */
+		/* Color */
+			/* Enabled */
+				@include theme.saveComponentToken(accordion-header-container-color, color-surface);
+				@include theme.saveComponentToken(accordion-header-container-elevation, elevation-level1);
+				@include theme.saveComponentToken(accordion-header-label-text-color, color-on-surface);
+				@include theme.saveComponentToken(accordion-header-supporting-text-color, color-on-surface-variant);
+				@include theme.saveComponentToken(accordion-header-leading-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(accordion-header-trailing-icon-color, color-on-surface-variant);
+				@include theme.saveComponentToken(accordion-container-color, color-surface-container);
+				@include theme.saveComponentToken(accordion-container-elevation, elevation-level1);
+
+			/* Enabled - Expanded */
+				@include theme.saveComponentToken(accordion-header-expanded-container-color, color-secondary-container);
+				@include theme.saveComponentToken(accordion-header-expanded-label-text-color, color-on-secondary-container);
+				@include theme.saveComponentToken(accordion-header-expanded-supporting-text-color, color-on-secondary-container);
+				@include theme.saveComponentToken(accordion-header-expanded-trailing-supporting-text-color, color-on-secondary-container);
+				@include theme.saveComponentToken(accordion-header-expanded-leading-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(accordion-header-expanded-trailing-icon-color, color-on-secondary-container);
+				@include theme.saveComponentToken(accordion-header-expanded-overline-color, color-on-secondary-container);
+				@include theme.saveComponentToken(accordion-expanded-container-elevation, elevation-level2);
+
+		/* Spacing */
+			@include theme.saveComponentToken(accordion-header-leading-space, measurement-space200);
+			@include theme.saveComponentToken(accordion-header-trailing-space, measurement-space200);
+			@include theme.saveComponentToken(accordion-header-top-space, measurement-space125);
+			@include theme.saveComponentToken(accordion-header-bottom-space, measurement-space125);
+			@include theme.saveComponentToken(accordion-header-between-space, measurement-space150);
+
+		/* Shape */
+			@include theme.saveComponentToken(accordion-container-shape, shape-corner-large);
+
+		/* Typography */
+			@include theme.saveComponentTypescaleTokens(accordion-header-label-text, body-large);
+			@include theme.saveComponentTypescaleTokens(accordion-header-supporting-text, body-medium);
+}

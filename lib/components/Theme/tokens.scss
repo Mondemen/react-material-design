@@ -12,6 +12,7 @@
 @use "../Tooltip/tokens.scss" as Tooltip;
 @use "../TextField/tokens.scss" as TextField;
 
+@use "../../layouts/Accordion/tokens.scss" as Accordion;
 @use "../../layouts/Panes/tokens.scss" as Panes;
 @use "../../layouts/Tabs/tokens.scss" as Tabs;
 @use "../../style/tokens.scss";
