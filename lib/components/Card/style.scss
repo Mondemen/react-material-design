@@ -8,7 +8,7 @@
 	display: block;
 	margin: 4px;
 	padding: 0 16px;
-	transition: theme.motion-duration-medium1((background-color, border));
+	transition: theme.motion-spring-expressive-fast-effects((background-color, border));
 	text-decoration: none;
 
 	&.box
@@ -60,7 +60,7 @@
 		left: 0;
 		width: 8px;
 		opacity: 0;
-		transition: theme.motion-duration-medium1((opacity));
+		transition: theme.motion-spring-expressive-fast-effects((opacity));
 
 		&.selected
 		{opacity: 1}

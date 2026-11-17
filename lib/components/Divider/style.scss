@@ -9,14 +9,14 @@
 	.line
 	{
 		background-color: theme.applyComponentToken(divider-color);
-		transition: theme.motion-duration-medium1((background-color));
+		transition: theme.motion-spring-expressive-fast-effects((background-color));
 	}
 
 	.text
 	{
 		@include theme.on-surface-variant-text;
 		@include theme.label-large;
-		transition: theme.motion-duration-medium1((color));
+		transition: theme.motion-spring-expressive-fast-effects((color));
 	}
 
 	&:not(.vertical)
