@@ -35,6 +35,7 @@ export default defineConfig((config) =>
 		Typography: resolve(import.meta.dirname, "lib/components/Typography/index"),
 
 		// Layout
+		Accordion: resolve(import.meta.dirname, "lib/layouts/Accordion/index"),
 		Page: resolve(import.meta.dirname, "lib/layouts/Page/index"),
 		Panes: resolve(import.meta.dirname, "lib/layouts/Panes/index"),
 		Tabs: resolve(import.meta.dirname, "lib/layouts/Tabs/index"),

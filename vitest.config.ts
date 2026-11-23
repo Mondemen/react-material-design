@@ -1,0 +1,17 @@
+import react from "@vitejs/plugin-react";
+import {defineConfig} from "vitest/config";
+
+export default defineConfig({
+	plugins: [react()],
+	resolve: {
+		tsconfigPaths: true
+	},
+	test: {
+		environment: "jsdom",
+		server: {
+			deps: {
+				inline: ["@material/material-color-utilities"]
+			}
+		}
+	}
+});

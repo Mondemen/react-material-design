@@ -94,7 +94,8 @@ export interface ThemeProps extends React.PropsWithChildren<ThemeConfig>
 
 export default function Theme(props: ThemeProps)
 {
-	const {colorScheme: defaulColorScheme = "auto", scrollable, children, noDefaultStyle, className, style, ...config} = props;
+	const {colorScheme: defaulColorScheme = "auto", primaryColor, contrast, customColors: configCustomColors, componentTypes, scrollable, children, noDefaultStyle, className, style} = props;
+	const config = useMemo<ThemeConfig>(() => ({primaryColor, contrast, customColors: configCustomColors, componentTypes}), [primaryColor, contrast, configCustomColors, componentTypes]);
 	const [colorScheme, setColorScheme] = useState(defaulColorScheme);
 	const ref = useRef<HTMLDivElement>(null);
 	const [tooltipsContainer, setTooltipsContainer] = useState<HTMLDivElement | null>(null);
@@ -119,12 +120,12 @@ export default function Theme(props: ThemeProps)
 			context = context.context;
 		return (context);
 	}, [parentContext]);
-	const customColors = useMemo(() => ({success: {color: "#257f00", blend: true}, ...props.customColors}), [props.customColors]);
+	const customColors = useMemo(() => ({success: {color: "#257f00", blend: true}, ...configCustomColors}), [configCustomColors]);
 	const palette = useMemo(() =>
 	({
-		light: themeToObject(props.primaryColor, false, props.contrast, customColors),
-		dark: themeToObject(props.primaryColor, true, props.contrast, customColors)
-	}), [customColors, props.primaryColor, props.contrast]);
+		light: themeToObject(primaryColor, false, contrast, customColors),
+		dark: themeToObject(primaryColor, true, contrast, customColors)
+	}), [customColors, primaryColor, contrast]);
 	const context = useMemo<ThemeContextInternal>(() =>
 	({
 		colorScheme,
