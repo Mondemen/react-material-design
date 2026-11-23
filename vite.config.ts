@@ -32,6 +32,7 @@ export default defineConfig((config) =>
 		TextField: resolve(import.meta.dirname, "lib/components/TextField/index"),
 		Toolbar: resolve(import.meta.dirname, "lib/components/Toolbar/index"),
 		Tooltip: resolve(import.meta.dirname, "lib/components/Tooltip/index"),
+		Typography: resolve(import.meta.dirname, "lib/components/Typography/index"),
 
 		// Layout
 		Page: resolve(import.meta.dirname, "lib/layouts/Page/index"),

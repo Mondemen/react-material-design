@@ -1,0 +1,146 @@
+@use "../../style" as theme;
+
+@mixin typescale($type)
+{
+	font-family: var(--typescale-font, var(--md-sys-typescale-#{$type}-font));
+	font-weight: var(--typescale-weight, var(--md-sys-typescale-#{$type}-weight));
+	font-size: var(--typescale-size, var(--md-sys-typescale-#{$type}-size));
+	letter-spacing: var(--typescale-tracking, var(--md-sys-typescale-#{$type}-tracking));
+	line-height: var(--typescale-line-height, var(--md-sys-typescale-#{$type}-line-height));
+	font-variation-settings:
+		"wght" var(--typescale-wght, var(--md-sys-typescale-#{$type}-wght)),
+		"GRAD" var(--typescale-grad, var(--md-sys-typescale-#{$type}-grad)),
+		"wdth" var(--typescale-wdth, var(--md-sys-typescale-#{$type}-wdth)),
+		"ROND" var(--typescale-rond, var(--md-sys-typescale-#{$type}-rond)),
+		"opsz" var(--typescale-opsz, var(--md-sys-typescale-#{$type}-opsz)),
+		"CRSV" var(--typescale-crsv, var(--md-sys-typescale-#{$type}-crsv)),
+		"slnt" var(--typescale-slnt, var(--md-sys-typescale-#{$type}-slnt)),
+		"FILL" var(--typescale-fill, var(--md-sys-typescale-#{$type}-fill)),
+		"HEXP" var(--typescale-hexp, var(--md-sys-typescale-#{$type}-hexp));
+}
+
+.Typography
+{
+	&.display-large
+	{
+		&:not(.emphasized)
+		{@include typescale("display-large")}
+		&.emphasized
+		{@include typescale("emphasized-display-large")}
+	}
+	&.display-medium
+	{
+		&:not(.emphasized)
+		{@include typescale("display-medium")}
+		&.emphasized
+		{@include typescale("emphasized-display-medium")}
+	}
+	&.display-small
+	{
+		&:not(.emphasized)
+		{@include typescale("display-small")}
+		&.emphasized
+		{@include typescale("emphasized-display-small")}
+	}
+	&.headline-large
+	{
+		&:not(.emphasized)
+		{@include typescale("headline-large")}
+		&.emphasized
+		{@include typescale("emphasized-headline-large")}
+	}
+	&.headline-medium
+	{
+		&:not(.emphasized)
+		{@include typescale("headline-medium")}
+		&.emphasized
+		{@include typescale("emphasized-headline-medium")}
+	}
+	&.headline-small
+	{
+		&:not(.emphasized)
+		{@include typescale("headline-small")}
+		&.emphasized
+		{@include typescale("emphasized-headline-small")}
+	}
+	&.title-large
+	{
+		&:not(.emphasized)
+		{@include typescale("title-large")}
+		&.emphasized
+		{@include typescale("emphasized-title-large")}
+	}
+	&.title-medium
+	{
+		&:not(.emphasized)
+		{@include typescale("title-medium")}
+		&.emphasized
+		{@include typescale("emphasized-title-medium")}
+	}
+	&.title-small
+	{
+		&:not(.emphasized)
+		{@include typescale("title-small")}
+		&.emphasized
+		{@include typescale("emphasized-title-small")}
+	}
+	&.body-large
+	{
+		&:not(.emphasized)
+		{@include typescale("body-large")}
+		&.emphasized
+		{@include typescale("emphasized-body-large")}
+	}
+	&.body-medium
+	{
+		&:not(.emphasized)
+		{@include typescale("body-medium")}
+		&.emphasized
+		{@include typescale("emphasized-body-medium")}
+	}
+	&.body-small
+	{
+		&:not(.emphasized)
+		{@include typescale("body-small")}
+		&.emphasized
+		{@include typescale("emphasized-body-small")}
+	}
+	&.label-large
+	{
+		&:not(.emphasized)
+		{@include typescale("label-large")}
+		&.emphasized
+		{@include typescale("emphasized-label-large")}
+	}
+	&.label-medium
+	{
+		&:not(.emphasized)
+		{@include typescale("label-medium")}
+		&.emphasized
+		{@include typescale("emphasized-label-medium")}
+	}
+	&.label-small
+	{
+		&:not(.emphasized)
+		{@include typescale("label-small")}
+		&.emphasized
+		{@include typescale("emphasized-label-small")}
+	}
+
+	font-family: var(--typescale-font, inherit);
+	font-weight: var(--typescale-weight, inherit);
+	font-size: var(--typescale-size, inherit);
+	letter-spacing: var(--typescale-tracking, inherit);
+	line-height: var(--typescale-line-height, inherit);
+	font-variation-settings:
+		"wght" var(--typescale-wght, inherit),
+		"GRAD" var(--typescale-grad, inherit),
+		"wdth" var(--typescale-wdth, inherit),
+		"ROND" var(--typescale-rond, inherit),
+		"opsz" var(--typescale-opsz, inherit),
+		"CRSV" var(--typescale-crsv, inherit),
+		"slnt" var(--typescale-slnt, inherit),
+		"FILL" var(--typescale-fill, inherit),
+		"HEXP" var(--typescale-hexp, inherit);
+
+}
