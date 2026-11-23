@@ -6,14 +6,18 @@
 	background-color: theme.applyComponentToken(accordion-container-color);
 	box-sizing: border-box;
 	overflow: hidden;
-	border-bottom: solid 1px theme.applyComponentToken(accordion-header-container-color);
 	transition: theme.motion-spring-expressive-fast-effects((background-color, border, box-shadow)),
 				theme.motion-spring-expressive-fast-spatial((height, margin, border-radius));
 
+	&:has(+ .Accordion)
+	{border-bottom: solid 1px theme.applyComponentToken(accordion-container-color)}
+	&:not(.expanded):has(+ .Accordion:not(.expanded))
+	{border-bottom: solid 1px theme.applySystemToken(color-outline-variant)}
 	>.header
 	{
 		display: flex;
 		align-items: center;
+		gap: theme.applySystemToken(measurement-space150);
 		background-color: theme.applyComponentToken(accordion-header-container-color);
 		padding-inline: theme.applyComponentToken(accordion-header-leading-space) theme.applyComponentToken(accordion-header-trailing-space);
 		padding-block: theme.applyComponentToken(accordion-header-top-space) theme.applyComponentToken(accordion-header-bottom-space);
@@ -21,6 +25,9 @@
 		box-sizing: border-box;
 		transition: theme.motion-spring-expressive-fast-effects((background-color)),
 					theme.motion-spring-expressive-fast-spatial((padding));
+
+		>.icon
+		{color: theme.applyComponentToken(accordion-header-leading-icon-color)}
 
 		>.summary
 		{
@@ -68,6 +75,9 @@
 		{
 			background-color: theme.applyComponentToken(accordion-header-expanded-container-color);
 			box-shadow: theme.applyComponentToken(accordion-header-container-elevation);
+
+			>.icon
+			{color: theme.applyComponentToken(accordion-header-expanded-leading-icon-color)}
 
 			>.summary
 			{
