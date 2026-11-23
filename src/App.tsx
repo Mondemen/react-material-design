@@ -3,29 +3,32 @@ import ButtonGroup from "@components/Button/group";
 import IconButton from "@components/Button/icon";
 import SplitButton from "@components/Button/split";
 import Chip from "@components/Chip";
+import ContextMenu from "@components/ContextMenu";
 import Dialog, { DialogActions } from "@components/Dialog";
 import Icon from "@components/Icon";
+import Menu from "@components/Menu";
+import MenuGroup from "@components/Menu/MenuGroup";
+import MenuItem from "@components/Menu/MenuItem";
+import Menubar from "@components/Menubar";
+import MenuSection from "@components/Menubar/MenuSection";
+import NumberField from "@components/NumberField";
 import Select, { Option } from "@components/Select";
 import Slider from "@components/Slider";
 import TextField from "@components/TextField";
+import Toolbar from "@components/Toolbar";
 import Tooltip from "@components/Tooltip";
 import { useCallback, useState } from "react";
 import { useConcatElementRef, useResizeObserver } from "react-dom-event-hooks";
+import Content from "../lib/layouts/Content";
+import Page from "../lib/layouts/Page";
 import Panes, { Pane } from "../lib/layouts/Panes";
 import Tab from "../lib/layouts/Tabs/Tab";
 import Tabs from "../lib/layouts/Tabs/Tabs";
-import NumberField from "@components/NumberField";
-import Content from "../lib/layouts/Content";
-import MenuItem from "@components/Menu/MenuItem";
-import MenuGroup from "@components/Menu/MenuGroup";
-import Menu from "@components/Menu";
-import ContextMenu from "@components/ContextMenu";
-import Page from "../lib/layouts/Page";
-import Toolbar from "@components/Toolbar";
-import Menubar from "@components/Menubar";
-import MenuSection from "@components/Menubar/MenuSection";
 import Toolbox from "../lib/layouts/Toolbox";
 import reactLogo from './assets/react.svg';
+import Container from "../lib/layouts/Container";
+import Accordion from "../lib/layouts/Accordion";
+import Typography from "@components/Typography";
 
 export default function App()
 {
@@ -109,13 +112,29 @@ export default function App()
 				<button onClick={() => setVisible(visible => !visible)}>Swap<Tooltip variant="plain" text="Tooltip"/></button>
 			 	<Panes autoSaveId="t2">
 			 		<Pane id="pane1">
-			 			<Panes orientation="vertical" autoSaveId="t2">
-			 				<Pane id="pane2">Test 1</Pane>
+			 			<Panes orientation="vertical" autoSaveId="t3">
+			 				<Pane id="pane2">
+								<Container spacing={1}>
+									Test 1
+									<Button icon="edit" label="Test 2" selectable/>
+									<IconButton title="Test" icon="share" selectable width="wide"/>
+									<IconButton icon="comment"/>
+								</Container>
+							</Pane>
 			 				<Pane id="pane3">Test 2</Pane>
 			 			</Panes>
 			 		</Pane>
 			 		<Pane id="pane4" snapPoints={[412, "50%"]} contentPadding>
-			 			Test 3
+			 			<Typography as="p" type="body-large">Test 3</Typography>
+						<Accordion title="Test" subtitle="Test subtitle" icon="verified_user" contentPadding>
+							Content
+						</Accordion>
+						<Accordion title="Test 2" icon="verified_user" contentPadding>
+							Content 2
+						</Accordion>
+						<Accordion title="Test 3" contentPadding>
+							Content 3
+						</Accordion>
 			 			<Menu>
 			 				<MenuItem text={"Test 1"}/>
 			 				<MenuItem text={"Test 2"}>
