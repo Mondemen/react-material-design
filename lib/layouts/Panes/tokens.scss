@@ -14,6 +14,7 @@
 				@include theme.saveComponentValue(panes-handle-indicator-block-size, 48px);
 				@include theme.saveComponentToken(panes-handle-indicator-shape, shape-corner-small);
 				@include theme.saveComponentToken(panes-handle-indicator-color, color-outline);
+				@include theme.saveComponentToken(panes-handle-indicator-back-color, color-surface-container-high);
 
 			/* Handle - Indicator - Drag */
 				@include theme.saveComponentValue(panes-handle-indicator-dragging-inline-size, 10px);

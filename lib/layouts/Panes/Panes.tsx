@@ -3,7 +3,7 @@ import { formatSizeFromPx, getComponentTokenValue, isBrowser, parseSizeToPx, typ
 import { useIsomorphicLayoutEffect } from "@utils/hooks";
 import classNames from "classnames";
 import { createContext, Fragment, useCallback, useContext, useEffectEvent, useMemo, useRef, useState, type PointerEvent, type PointerEventHandler, type PropsWithChildren } from "react";
-import { useElementRef, useWindowEventListener } from "react-dom-event-hooks";
+import { useResizeObserver, useWindowEventListener } from "react-dom-event-hooks";
 import type { PaneProps } from "./Pane";
 import PaneRender from "./Pane.render";
 
@@ -75,13 +75,11 @@ export default function Panes(props: PanesProps)
 	const {orientation = "horizontal", autoSaveId, onLayoutChange} = props;
 	const [handleSize, setHandleSize] = useState(0);
 	const [containerSizeBase, setContainerSize] = useState(0);
-	const {saveRef: saveContainerRef} = useElementRef<HTMLDivElement>(useCallback(ref =>
+	const {saveRef: saveContainerRef} = useResizeObserver<HTMLDivElement>(([entry], ref) =>
 	{
-		const containerRect = ref.getBoundingClientRect();
-
-		setContainerSize(orientation === "horizontal" ? containerRect.width : containerRect.height);
+		setContainerSize(orientation === "horizontal" ? entry.contentRect.width : entry.contentRect.height);
 		setHandleSize(getComponentTokenValue(ref, "panes-handle-size"));
-	}, [orientation]));
+	});
 	const [paneProps, setPaneProps] = useState<Required<PaneProps>[]>([]);
 	const [paneData, setPaneData] = useState<Record<string, PaneData>>({});
 	const totalHandlesSize = useMemo(() => Math.max(0, paneProps.length - 1) * handleSize, [handleSize, paneProps.length]);
@@ -186,7 +184,7 @@ export default function Panes(props: PanesProps)
 			if (!leftPanel || !rightPanel || !containerSize)
 				return;
 			event.preventDefault();
-			event.currentTarget.setPointerCapture(event.pointerId)
+			event.currentTarget.setPointerCapture(event.pointerId);
 			dragRef.current =
 			{
 				leftId,
