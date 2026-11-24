@@ -1,5 +1,5 @@
 import { convertIconDefinition, type IconDefinition } from "@components/Icon/Icon";
-import { OrderedCollectionChild } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild } from "@misc/OrderedCollection";
 import { useContext, useMemo, type PropsWithChildren } from "react";
 import { TabsContext } from "./Tabs";
 import type { LayoutPadding } from "../types";

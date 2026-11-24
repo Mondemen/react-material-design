@@ -1,5 +1,5 @@
 import MenubarRender, { type MenubarProps } from "@components/Menubar/render";
-import { OrderedCollectionChild, useOrderedCollection } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild, useOrderedCollection } from "@misc/OrderedCollection";
 
 export { default as MenuSection, type MenuSectionProps } from "./MenuSection";
 export type { MenubarProps } from "./render";

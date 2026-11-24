@@ -1,4 +1,4 @@
-import { OrderedCollectionChild, useOrderedCollection } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild, useOrderedCollection } from "@misc/OrderedCollection";
 import NumberFieldRender, { type NumberFieldProps } from "@components/NumberField/NumberField.render";
 
 export default function NumberField(props: NumberFieldProps)

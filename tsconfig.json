@@ -37,6 +37,7 @@
 		"paths":
 		{
 			"@components/*": ["./lib/components/*"],
+			"@misc/*": ["./lib/misc/*"],
 			"@utils": ["./lib/utils/index"],
 			"@utils/*": ["./lib/utils/*"],
 			"@hooks/*": ["./lib/hooks/*"],

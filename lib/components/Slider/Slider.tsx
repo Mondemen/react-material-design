@@ -1,4 +1,4 @@
-import FloatingElement, { type FloatingElementProps } from "@components/misc/FloatingElement";
+import FloatingElement, { type FloatingElementProps } from "@misc/FloatingElement";
 import { useThemeInternal } from "@components/Theme/Theme";
 import type { FlipOptions, Side } from "@hooks/useFloating/types";
 import { clamp, mapRange } from "@utils";

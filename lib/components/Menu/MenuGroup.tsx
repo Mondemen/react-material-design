@@ -1,5 +1,5 @@
 import type { MenuItemData } from "@components/Menu/MenuItem";
-import OrderedCollection, { OrderedCollectionChild, type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
+import OrderedCollection, { OrderedCollectionChild, type OrderedCollectionChildData } from "@misc/OrderedCollection";
 import { shallowEqual } from "@utils";
 import { useId, useMemo, useState, type PropsWithChildren } from "react";
 

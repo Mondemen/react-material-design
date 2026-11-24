@@ -1,4 +1,4 @@
-import StateLayer from "@components/misc/StateLayer";
+import StateLayer from "@misc/StateLayer";
 import classNames from "classnames";
 import type React from "react";
 

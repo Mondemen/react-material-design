@@ -1,4 +1,4 @@
-import { OrderedCollectionChild, useOrderedCollection } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild, useOrderedCollection } from "@misc/OrderedCollection";
 import ToolbarRender, { type ToolbarProps } from "@components/Toolbar/render";
 import type { PropsWithChildren } from "react";
 

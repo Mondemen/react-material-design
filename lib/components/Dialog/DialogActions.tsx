@@ -1,4 +1,4 @@
-import { OrderedCollectionChild } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild } from "@misc/OrderedCollection";
 import { useId, useMemo, type PropsWithChildren } from "react";
 
 export type DialogActionsProps = PropsWithChildren;

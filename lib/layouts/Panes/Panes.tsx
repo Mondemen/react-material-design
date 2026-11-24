@@ -1,4 +1,4 @@
-import OrderedCollection from "@components/misc/OrderedCollection";
+import OrderedCollection from "@misc/OrderedCollection";
 import { formatSizeFromPx, getComponentTokenValue, isBrowser, parseSizeToPx, type SizeUnit } from "@utils";
 import { useIsomorphicLayoutEffect } from "@utils/hooks";
 import classNames from "classnames";

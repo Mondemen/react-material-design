@@ -1,7 +1,7 @@
 import IconButtonRender from "@components/Button/icon/render";
 import { type IconDefinition } from "@components/Icon/Icon";
-import { OrderedCollectionChild, useOrderedCollection } from "@components/misc/OrderedCollection";
-import { type PolymorphicComponent } from "@components/misc/Polymorphic";
+import { OrderedCollectionChild, useOrderedCollection } from "@misc/OrderedCollection";
+import { type PolymorphicComponent } from "@misc/Polymorphic";
 import type { TooltipProps } from "@components/Tooltip";
 import { type ElementType, type ReactElement, type Ref } from "react";
 import { type CommonButtonColor, type CommonButtonProps, type CommonButtonWidth, type CommonSelectableButtonProps } from "../types";

@@ -1,4 +1,4 @@
-import { OrderedCollectionChild } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild } from "@misc/OrderedCollection";
 import type { SizeUnit } from "@utils";
 import { useId, useMemo, type PropsWithChildren } from "react";
 import type { LayoutPadding } from "../types";

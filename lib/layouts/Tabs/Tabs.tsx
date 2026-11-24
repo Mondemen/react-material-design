@@ -1,7 +1,7 @@
 import { IconProvider } from "@components/Icon/Icon";
-import OrderedCollection from "@components/misc/OrderedCollection";
-import StateLayer from "@components/misc/StateLayer";
-import Transitionable from "@components/misc/Transitionable";
+import OrderedCollection from "@misc/OrderedCollection";
+import StateLayer from "@misc/StateLayer";
+import Transitionable from "@misc/Transitionable";
 import { getRelativeRect, shallowEqual } from "@utils";
 import { useIsomorphicLayoutEffect } from "@utils/hooks";
 import classNames from "classnames";

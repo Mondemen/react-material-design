@@ -1,4 +1,4 @@
-import FloatingElement from "@components/misc/FloatingElement";
+import FloatingElement from "@misc/FloatingElement";
 import { useThemeInternal } from "@components/Theme/Theme";
 import type { FlipOptions, ShiftOptions } from "@hooks/useFloating/types";
 import classNames from "classnames";

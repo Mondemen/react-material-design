@@ -1,8 +1,8 @@
 import Icon, { convertIconDefinition, IconProvider, type IconDefinition } from "@components/Icon/Icon";
-import type { PolymorphicComponent } from "@components/misc/Polymorphic";
-import Polymorphic from "@components/misc/Polymorphic";
-import StateLayer from "@components/misc/StateLayer";
-import Transitionable from "@components/misc/Transitionable";
+import type { PolymorphicComponent } from "@misc/Polymorphic";
+import Polymorphic from "@misc/Polymorphic";
+import StateLayer from "@misc/StateLayer";
+import Transitionable from "@misc/Transitionable";
 import classNames from "classnames";
 import { useCallback, useMemo, useState, type ElementType, type MouseEvent, type MouseEventHandler } from "react";
 

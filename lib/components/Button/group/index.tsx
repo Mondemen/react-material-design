@@ -1,6 +1,6 @@
 import type { ButtonGroupProps } from "@components/Button/group/render";
 import ButtonGroupRender from "@components/Button/group/render";
-import { OrderedCollectionChild, useOrderedCollection } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild, useOrderedCollection } from "@misc/OrderedCollection";
 
 export type {ButtonGroupProps, ConnectedButtonGroupProps, StandardButtonGroupProps} from "./render";
 

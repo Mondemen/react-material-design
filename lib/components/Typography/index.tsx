@@ -1,5 +1,5 @@
-import type { PolymorphicComponent } from "@components/misc/Polymorphic";
-import Polymorphic from "@components/misc/Polymorphic";
+import type { PolymorphicComponent } from "@misc/Polymorphic";
+import Polymorphic from "@misc/Polymorphic";
 import classNames from "classnames";
 import { useMemo, type CSSProperties, type ElementType, type PropsWithChildren } from "react";
 

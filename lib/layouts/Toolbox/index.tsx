@@ -2,7 +2,7 @@ import type { ButtonGroupProps } from "@components/Button/group";
 import ButtonGroupRender from "@components/Button/group/render";
 import type { ContextMenuProps } from "@components/ContextMenu/render";
 import ContextMenuRender from "@components/ContextMenu/render";
-import OrderedCollection, { type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
+import OrderedCollection, { type OrderedCollectionChildData } from "@misc/OrderedCollection";
 import type { ToolbarProps } from "@components/Toolbar";
 import ToolbarRender from "@components/Toolbar/render";
 import { shallowEqual } from "@utils";

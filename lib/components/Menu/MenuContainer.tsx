@@ -1,6 +1,6 @@
 import type { MenuGroupData } from "@components/Menu/MenuGroup";
 import type { MenuItemData } from "@components/Menu/MenuItem";
-import OrderedCollection, { type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
+import OrderedCollection, { type OrderedCollectionChildData } from "@misc/OrderedCollection";
 import { shallowEqual } from "@utils";
 import { useEffect, useMemo, useState, type PropsWithChildren } from "react";
 

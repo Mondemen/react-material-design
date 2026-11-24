@@ -1,8 +1,8 @@
 import IconButton from "@components/Button/icon";
 import type { IconDefinition } from "@components/Icon";
 import { convertIconDefinition } from "@components/Icon/Icon";
-import StateLayer from "@components/misc/StateLayer";
-import Transitionable from "@components/misc/Transitionable";
+import StateLayer from "@misc/StateLayer";
+import Transitionable from "@misc/Transitionable";
 import classNames from "classnames";
 import { useMemo, useRef, useState, type PropsWithChildren } from "react";
 import { useResizeObserver } from "react-dom-event-hooks";

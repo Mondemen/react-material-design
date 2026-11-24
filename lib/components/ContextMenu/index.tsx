@@ -1,6 +1,6 @@
 import type { ContextMenuProps } from "@components/ContextMenu/render";
 import ContextMenuRender from "@components/ContextMenu/render";
-import { OrderedCollectionChild, useOrderedCollection } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild, useOrderedCollection } from "@misc/OrderedCollection";
 
 export default function ContextMenu(props: ContextMenuProps)
 {

@@ -1,8 +1,8 @@
 import type { IconDefinition } from "@components/Icon";
 import MenuContainer from "@components/Menu/MenuContainer";
 import type { MenuGroupData } from "@components/Menu/MenuGroup";
-import { OrderedCollectionChild, type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
-import type { PolymorphicComponent } from "@components/misc/Polymorphic";
+import { OrderedCollectionChild, type OrderedCollectionChildData } from "@misc/OrderedCollection";
+import type { PolymorphicComponent } from "@misc/Polymorphic";
 import { useId, useMemo, useState, type ElementType, type PropsWithChildren } from "react";
 
 export type MenuItemProps<As extends ElementType = "button"> = PolymorphicComponent<"MenuItem", As, "button",

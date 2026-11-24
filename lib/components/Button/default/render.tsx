@@ -4,10 +4,10 @@ import type { ButtonProps } from "@components/Button/default";
 import { useButtonGroupContext } from "@components/Button/group/render";
 import { type IconDefinition, IconProvider, convertIconDefinition } from "@components/Icon/Icon";
 import Menu from "@components/Menu";
-import FloatingElement from "@components/misc/FloatingElement";
-import Polymorphic from "@components/misc/Polymorphic";
-import StateLayer from "@components/misc/StateLayer";
-import Transitionable from "@components/misc/Transitionable";
+import FloatingElement from "@misc/FloatingElement";
+import Polymorphic from "@misc/Polymorphic";
+import StateLayer from "@misc/StateLayer";
+import Transitionable from "@misc/Transitionable";
 import { useThemeInternal } from "@components/Theme/Theme";
 import Tooltip from "@components/Tooltip";
 import { getComponentSizeName } from "@components/types";
@@ -111,7 +111,6 @@ export default function ButtonRender<As extends React.ElementType = "button">(pr
 		else if (!groupContext && props.selectable)
 			classList.selected = props.selected ?? selected;
 		return (classList);
-		// @ts-expect-error
 	}, [color, groupContext, id, props.disabled, props.emphasized, props.selectable, props.selected, selected, shape, size, width]);
 	const iconDefinition = useMemo(() =>
 	{
@@ -122,7 +121,6 @@ export default function ButtonRender<As extends React.ElementType = "button">(pr
 		else
 			icon = (typeof iconProp === "function") ? (iconProp as () => IconDefinition)() : iconProp;
 		return (icon);
-		// @ts-expect-error
 	}, [groupContext?.selectable, groupContext?.selected, iconProp, id, props.selectable, props.selected, selected]);
 	const icon = useMemo(() => convertIconDefinition(iconDefinition), [iconDefinition]);
 	const label = useMemo(() =>
@@ -134,11 +132,10 @@ export default function ButtonRender<As extends React.ElementType = "button">(pr
 		else
 			label = (typeof labelProp === "function") ? (labelProp as () => string)() : labelProp;
 		return (label);
-		// @ts-expect-error
 	}, [groupContext?.selectable, groupContext?.selected, id, labelProp, props.selectable, props.selected, selected]);
 	const propsObject = useMemo(() =>
 	{
-		const propsExtra = {...props, ...otherProps};
+		const propsExtra: Record<string, any> = {...props, ...otherProps};
 
 		propsExtra.className = classNames(classList, {icon, label}, props.className);
 		propsExtra["aria-label"] = label;

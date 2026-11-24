@@ -1,6 +1,6 @@
 import { useButtonGroupContext } from "@components/Button/group/render";
 import { type CommonSelectableButtonProps } from "@components/Button/types";
-import type { PolymorphicComponent } from "@components/misc/Polymorphic";
+import type { PolymorphicComponent } from "@misc/Polymorphic";
 import { useCallback, useMemo, useState, type MouseEventHandler, type TouchEventHandler } from "react";
 
 export function useCommonButtonProps(id: string, props: any, onPressed: (pressed: boolean) => void)

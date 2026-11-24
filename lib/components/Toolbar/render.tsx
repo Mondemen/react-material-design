@@ -3,7 +3,7 @@ import type { ButtonProps } from "@components/Button/default";
 import ButtonRender from "@components/Button/default/render";
 import type { IconButtonProps } from "@components/Button/icon";
 import IconButtonRender from "@components/Button/icon/render";
-import OrderedCollection, { type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
+import OrderedCollection, { type OrderedCollectionChildData } from "@misc/OrderedCollection";
 import TextFieldRender, { type TextFieldProps } from "@components/TextField/TextField.render";
 import { shallowEqual } from "@utils";
 import classNames from "classnames";

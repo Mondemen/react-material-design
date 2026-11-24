@@ -1,9 +1,9 @@
 import Icon, { convertIconDefinition } from "@components/Icon/Icon";
 import MenuRender, { type MenuPropsBase } from "@components/Menu/Menu.render";
 import type { MenuItemData } from "@components/Menu/MenuItem";
-import Polymorphic from "@components/misc/Polymorphic";
-import StateLayer from "@components/misc/StateLayer";
-import Transitionable from "@components/misc/Transitionable";
+import Polymorphic from "@misc/Polymorphic";
+import StateLayer from "@misc/StateLayer";
+import Transitionable from "@misc/Transitionable";
 import classNames from "classnames";
 import { useCallback, useState } from "react";
 

@@ -2,7 +2,7 @@ import Button from "@components/Button/default";
 import type { IconDefinition } from "@components/Icon";
 import { convertIconDefinition } from "@components/Icon/Icon";
 import type { MenuSectionData } from "@components/Menubar/MenuSection";
-import OrderedCollection, { type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
+import OrderedCollection, { type OrderedCollectionChildData } from "@misc/OrderedCollection";
 import { shallowEqual } from "@utils";
 import classNames from "classnames";
 import { useCallback, useMemo, useState, type PointerEventHandler, type PropsWithChildren } from "react";

@@ -1,7 +1,7 @@
 import MenuContainer from "@components/Menu/MenuContainer";
 import type { MenuGroupData } from "@components/Menu/MenuGroup";
 import { MenuGroupsRender } from "@components/Menu/MenuGroup.render";
-import { cleanOrderedCollectionProps, type OrderedCollectionChildData } from "@components/misc/OrderedCollection";
+import { cleanOrderedCollectionProps, type OrderedCollectionChildData } from "@misc/OrderedCollection";
 import classNames from "classnames";
 import { useId, useMemo, useState, type HTMLAttributes, type PropsWithChildren, type Ref } from "react";
 import { useResizeObserver } from "react-dom-event-hooks";

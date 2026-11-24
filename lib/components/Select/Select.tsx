@@ -3,14 +3,14 @@ import Chip from "@components/Chip";
 import FilledField from "@components/containers/FilledField";
 import OutlinedField from "@components/containers/OutlinedField";
 import Menu, {MenuItem} from "@components/Menu";
-import OrderedCollection from "@components/misc/OrderedCollection";
+import OrderedCollection from "@misc/OrderedCollection";
 import type { OptionProps } from "@components/Select/Option";
 import { isBrowser } from "@utils";
 import classNames from "classnames";
 import type { PropsWithChildren, SelectHTMLAttributes } from "react";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useWindowEventListener } from "react-dom-event-hooks";
-import FloatingElement, { type FloatingElementProps } from "@components/misc/FloatingElement";
+import FloatingElement, { type FloatingElementProps } from "@misc/FloatingElement";
 import { useThemeInternal } from "@components/Theme/Theme";
 import type { Side } from "@hooks/useFloating/types";
 

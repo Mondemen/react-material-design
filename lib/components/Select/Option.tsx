@@ -1,5 +1,5 @@
 import type { IconDefinition } from "@components/Icon/Icon";
-import { OrderedCollectionChild } from "@components/misc/OrderedCollection";
+import { OrderedCollectionChild } from "@misc/OrderedCollection";
 import { useMemo } from "react";
 
 export interface OptionProps<T extends string | number = string>

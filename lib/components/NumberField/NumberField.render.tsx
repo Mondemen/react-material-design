@@ -2,7 +2,7 @@ import IconButton from "@components/Button/icon";
 import FilledField from "@components/containers/FilledField";
 import OutlinedField from "@components/containers/OutlinedField";
 import Icon, { convertIconDefinition } from "@components/Icon/Icon";
-import StateLayer from "@components/misc/StateLayer";
+import StateLayer from "@misc/StateLayer";
 import { clamp, isBrowser } from "@utils";
 import classNames from "classnames";
 import { useCallback, useMemo, useRef, useState, type ChangeEventHandler, type FocusEventHandler, type KeyboardEventHandler, type ReactEventHandler } from "react";
