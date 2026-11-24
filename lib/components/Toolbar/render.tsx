@@ -4,11 +4,11 @@ import ButtonRender from "@components/Button/default/render";
 import type { IconButtonProps } from "@components/Button/icon";
 import IconButtonRender from "@components/Button/icon/render";
 import OrderedCollection, { type OrderedCollectionChildData } from "@misc/OrderedCollection";
-import TextFieldRender, { type TextFieldProps } from "@components/TextField/TextField.render";
+import TextFieldRender, { type TextFieldProps } from "@components/TextField/TextField";
 import { shallowEqual } from "@utils";
 import classNames from "classnames";
 import { useMemo, useState, type PropsWithChildren } from "react";
-import NumberFieldRender, { type NumberFieldProps } from "@components/NumberField/NumberField.render";
+import NumberFieldRender, { type NumberFieldProps } from "@components/NumberField/NumberField";
 
 import "./style.scss";
 

@@ -2,17 +2,17 @@ import IconButton from "@components/Button/icon";
 import Chip from "@components/Chip";
 import FilledField from "@components/containers/FilledField";
 import OutlinedField from "@components/containers/OutlinedField";
-import Menu, {MenuItem} from "@components/Menu";
-import OrderedCollection from "@misc/OrderedCollection";
+import Menu, { MenuItem } from "@components/Menu";
 import type { OptionProps } from "@components/Select/Option";
-import { isBrowser } from "@utils";
-import classNames from "classnames";
-import type { PropsWithChildren, SelectHTMLAttributes } from "react";
-import React, { useCallback, useMemo, useRef, useState } from "react";
-import { useWindowEventListener } from "react-dom-event-hooks";
-import FloatingElement, { type FloatingElementProps } from "@misc/FloatingElement";
 import { useThemeInternal } from "@components/Theme/Theme";
 import type { Side } from "@hooks/useFloating/types";
+import FloatingElement, { type FloatingElementProps } from "@misc/FloatingElement";
+import OrderedCollection from "@misc/OrderedCollection";
+import { isBrowser } from "@utils";
+import classNames from "classnames";
+import type { KeyboardEvent, PropsWithChildren, SelectHTMLAttributes } from "react";
+import { useCallback, useId, useMemo, useRef, useState } from "react";
+import { useWindowEventListener } from "react-dom-event-hooks";
 
 import "./style.scss";
 
@@ -27,6 +27,7 @@ export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement
 {
 	shape?: "filled" | "outlined",
 	label?: string,
+	labelPosition?: "inside" | "inline" | "above"
 	defaultMenuIsOpen?: boolean,
 	clearable?: boolean,
 	searchable?: boolean,
@@ -46,7 +47,6 @@ export interface SingleSelectProps<T extends string | number = string> extends S
 	value?: T,
 	onValueChange?: (value: T | undefined) => void,
 	onChange?: (newValue: OptionProps<T> | undefined) => void,
-	small?: boolean
 }
 
 export interface MultiSelectProps<T extends string | number = string> extends SelectProps
@@ -60,7 +60,9 @@ export interface MultiSelectProps<T extends string | number = string> extends Se
 
 export default function Select<T extends string | number = string>(props: PropsWithChildren<SingleSelectProps<T> | MultiSelectProps<T>>)
 {
-	const {shape, value: externalValue, multiple, searchable, supportingText, onValueChange, onChange, onInvalid} = props;
+	const {shape, value: externalValue, defaultValue, label, labelPosition = "inside", defaultMenuIsOpen, clearable, multiple, searchable, supportingText, noOptionMessage, hideErrorText, hideDropdownIndicator, onMenuOpen, onMenuClose, onValueChange, onChange, onInvalid, ...inputProps} = props;
+	const generatedId = useId();
+	const inputId = inputProps.id ?? generatedId;
 	const {popoversContainer} = useThemeInternal("Select");
 	const ref = useRef<HTMLDivElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -68,29 +70,29 @@ export default function Select<T extends string | number = string>(props: PropsW
 	const [options, setOptions] = useState<OptionProps<T>[]>([]);
 	const [mobile, setMobile] = useState(isMobile());
 	const [entry, setEntry] = useState("");
-	const [internalValue, setInternalValue] = useState(props.value ?? props.defaultValue);
+	const [internalValue, setInternalValue] = useState(props.value ?? defaultValue);
 	const value = useMemo(() =>
 	{
 		let value = externalValue ?? internalValue;
 
 		if (multiple)
-			value ??= [];
+			value = value ?? [];
 		if (Array.isArray(value))
 			return (value.map(value => options?.find(option => option.value === value)).filter(((value): value is OptionProps<T> => !!value)) );
 		return (options?.find(option => option.value === value));
 	}, [externalValue, internalValue, multiple, options]);
-	const filteredOptions = useMemo(() => options.filter(option => option && (option.label ?? option.value.toString()).includes(entry)), [entry, options]);
-	const fullLabel = props.label ? (props.label + (props.required ? "*" : "")) : undefined;
+	const filteredOptions = useMemo(() => options.filter(option => option && (option.label ?? option.value.toString()).toLowerCase().includes(entry.trim().toLowerCase())), [entry, options]);
+	const fullLabel = label ? (label + (props.required ? "*" : "")) : undefined;
 	const menuRef = useRef<HTMLDivElement>(null);
 	const lock = useRef(false);
 	const valueExists = (Array.isArray(value) && !!value.length) || (!Array.isArray(value) && value !== undefined);
 	const filled = valueExists || !!entry.length;
-	const [focus, setFocus] = useState(props.defaultMenuIsOpen ?? false);
-	const [menuOpen, setIsMenuOpen] = useState(props.defaultMenuIsOpen ?? false);
-	const isMenuOpen = useRef(props.defaultMenuIsOpen ?? false);
+	const [focus, setFocus] = useState(defaultMenuIsOpen ?? false);
+	const [menuOpen, setIsMenuOpen] = useState(defaultMenuIsOpen ?? false);
+	const isMenuOpen = useRef(defaultMenuIsOpen ?? false);
 	const [error, setError] = useState<string>();
 	const [validationError, setValidationError] = useState(false);
-	const supportMessage = error ?? supportingText;
+	const supportMessage = error && !hideErrorText ? error : supportingText;
 	const [side, setSide] = useState<Side | null>(null);
 	const setMenuPlacement = useCallback<FloatingElementProps["onPlacementChange"] & {}>(placement => setSide(placement.split("-")[0] as Side), []);
 	const currentOptions = options?.filter(option =>
@@ -129,9 +131,15 @@ export default function Select<T extends string | number = string>(props: PropsW
 
 	const setMenuOpen = useCallback((open: boolean) =>
 	{
+		if (isMenuOpen.current === open)
+			return;
 		setIsMenuOpen(open);
 		isMenuOpen.current = open;
-	}, []);
+		if (open)
+			onMenuOpen?.();
+		else
+			onMenuClose?.();
+	}, [onMenuClose, onMenuOpen]);
 	const onMouseDown = useCallback(() =>
 	{
 		setMenuOpen(true);
@@ -144,12 +152,15 @@ export default function Select<T extends string | number = string>(props: PropsW
 		if (multiple && Array.isArray(value))
 		{
 			if (newValue === undefined)
-				return (onValueChange?.([]));
-			newValues = value.map(({value}) => value);
-			if (newValues.includes(newValue))
-				newValues = newValues.filter(value => value !== newValue);
+				newValues = [];
 			else
-				newValues.push(newValue);
+			{
+				newValues = value.map(({value}) => value);
+				if (newValues.includes(newValue))
+					newValues = newValues.filter(value => value !== newValue);
+				else
+					newValues.push(newValue);
+			}
 			if (externalValue === undefined)
 				setInternalValue(newValues);
 			onValueChange?.(newValues);
@@ -160,11 +171,28 @@ export default function Select<T extends string | number = string>(props: PropsW
 			if (externalValue === undefined)
 				setInternalValue(newValue);
 			onValueChange?.(newValue);
-			onChange?.(options?.find(option => newValues.includes(option.value)));
+			onChange?.(options?.find(option => option.value === newValue));
 		}
 	}, [externalValue, multiple, onChange, onValueChange, options, value]);
+	const onFocus = useCallback(() =>
+	{
+		if (props.disabled)
+			return;
+		setFocus(true);
+		setMenuOpen(true);
+		setEntry("");
+	}, [setMenuOpen, props.disabled]);
+	const onBlur = useCallback(() =>
+	{
+		if (props.disabled)
+			return;
+		if (lock.current)
+			return;
+		setFocus(false);
+		// setMenuOpen(false);
+	}, [props.disabled]);
 
-	const onEntrySelect = useCallback((event: React.KeyboardEvent<HTMLInputElement>) =>
+	const onEntrySelect = useCallback((event: KeyboardEvent<HTMLInputElement>) =>
 	{
 		let currentOptionIndex: number | undefined;
 		let option: OptionProps<T> | undefined;
@@ -305,43 +333,27 @@ export default function Select<T extends string | number = string>(props: PropsW
 						setMenuOpen(!menuOpen);
 						setEntry("");
 					}}
-					onFocus={() =>
-					{
-						if (props.disabled)
-							return;
-						setFocus(true);
-						setMenuOpen(true);
-						setEntry("");
-					}}
-					onBlur={() =>
-					{
-						if (props.disabled)
-							return;
-						if (lock.current)
-							return;
-						setFocus(false);
-						// setMenuOpen(false);
-					}}
+					onFocus={onFocus}
+					onBlur={onBlur}
 				/>
 			</div>
-			{props.clearable &&
+			{clearable &&
 			(
 				<IconButton
 					className="clear-indicator"
 					color="standard"
 					icon="close"
-					onClick={event => {event.preventDefault(); setValue();}}
-					onTouchEnd={event => {event.preventDefault(); setValue();}}
+					onPointerUp={event => {event.preventDefault(); setValue()}}
 					tabIndex={-1}
 					disabled={props.disabled}
 				/>
 			)}
-			<IconButton
+			{!hideDropdownIndicator && <IconButton
 				className={classNames("dropdown-indicator", {open: menuOpen})}
 				color="standard"
 				icon={!menuOpen ? "arrow_drop_down" : "arrow_drop_up"}
 				tabIndex={-1}
-				onMouseUp={() =>
+				onPointerUp={() =>
 				{
 					if (props.disabled)
 						return;
@@ -350,9 +362,9 @@ export default function Select<T extends string | number = string>(props: PropsW
 				}}
 				disabled={props.disabled}
 				type="button"
-			/>
+			/>}
 		</>
-	), [chipValues, entry, focus, menuOpen, onEntrySelect, onMouseDown, props.clearable, props.disabled, searchable, setMenuOpen, setValue, value]);
+	), [chipValues, clearable, entry, focus, hideDropdownIndicator, menuOpen, onFocus, onBlur, onEntrySelect, onMouseDown, props.disabled, searchable, setMenuOpen, setValue, value]);
 
 	useWindowEventListener("resize", () => setMobile(isMobile()));
 	useWindowEventListener("mousedown", event =>
@@ -365,114 +377,125 @@ export default function Select<T extends string | number = string>(props: PropsW
 	});
 
 	return (
-		<div ref={ref} className={classNames("Select", {error: error || validationError}, props.className)}>
-			{inputValidation}
-			{shape === "filled" ?
-			(
-				<FilledField disabled={props.disabled} label={fullLabel} filled={filled} focus={focus || menuOpen} error={!!error || validationError} className={classNames({searchable})}>
-					{content}
-				</FilledField>
-			) :
-			(
-				<OutlinedField disabled={props.disabled} label={fullLabel} filled={filled} focus={focus || menuOpen} error={!!error || validationError} className={classNames({searchable})}>
-					{content}
-				</OutlinedField>
-			)}
-			{supportMessage && <span className="support">{supportMessage}</span>}
-			<select
-				multiple={multiple}
-				value={Array.isArray(value) ? value.map(value => value.value.toString()) : value?.value}
-				tabIndex={props.tabIndex}
-				onFocus={props.onFocus}
-				onInvalid={event =>
-				{
-					event.preventDefault();
-					setError(event.currentTarget.validationMessage);
-					onInvalid?.(event);
-					event.currentTarget.focus();
-				}}
-				style={{display: mobile ? "block" : "none"}}
-				onChange={event =>
-				{
-					const valueList: T[] = [];
-					let newValue: OptionProps<T>[];
+		<div ref={ref} className={classNames("Select", {error: error || validationError}, `label-position-${labelPosition}`, props.className)}>
+			{labelPosition !== "inside" && fullLabel && <label className={classNames("label", labelPosition)} htmlFor={inputId} onClick={onFocus}>{fullLabel}</label>}
+			<div className="container">
+				{inputValidation}
+				{shape === "filled" ?
+				(
+					<FilledField disabled={props.disabled} label={labelPosition === "inside" ? fullLabel : undefined} filled={filled} focus={focus || menuOpen} error={!!error || validationError} className={classNames({searchable})}>
+						{content}
+					</FilledField>
+				) :
+				(
+					<OutlinedField disabled={props.disabled} label={labelPosition === "inside" ? fullLabel : undefined} filled={filled} focus={focus || menuOpen} error={!!error || validationError} className={classNames({searchable})}>
+						{content}
+					</OutlinedField>
+				)}
+				{supportMessage && <span className="support">{supportMessage}</span>}
+				<select
+					{...inputProps}
+					id={inputId}
+					multiple={multiple}
+					value={Array.isArray(value) ? value.map(value => value.value.toString()) : value?.value}
+					tabIndex={props.tabIndex}
+					onFocus={props.onFocus}
+					onInvalid={event =>
+					{
+						event.preventDefault();
+						setError(event.currentTarget.validationMessage);
+						onInvalid?.(event);
+						event.currentTarget.focus();
+					}}
+					style={{display: mobile ? "block" : "none"}}
+					onChange={event =>
+					{
+						const valueList: T[] = [];
+						let newValue: OptionProps<T>[];
 
-					for (let i = 0; i < event.target.selectedOptions.length; i++)
-						valueList.push(event.target.selectedOptions[i].value as T);
-					newValue = options.filter(option => valueList.includes(option.value)) ?? [];
-					if (multiple)
-					{
-						onValueChange?.(valueList);
-						onChange?.(newValue);
-					}
-					else
-					{
-						onValueChange?.(valueList.at(0) ?? "" as T);
-						onChange?.(newValue.at(0));
-					}
-					if (error)
-						setError(undefined);
-					setValidationError(false);
-					containerRef.current?.classList.remove("invalid");
-				}}
-				required={props.required}
-			>
-				{filteredOptions?.map((option) => (
-					<option
-						key={option.value as string}
-						value={option.value as string}
-						label={option.label}
-					/>
-				))}
-			</select>
-			<FloatingElement
-				root={popoversContainer}
-				flip={useMemo(() => ({allowedPlacements: ["top-start", "top-end", "bottom-start", "bottom-end"]}), [])}
-				autoUpdate
-				placement="bottom-start"
-				open={menuOpen}
-				onPlacementChange={setMenuPlacement}
-			>
-				<Menu
-					ref={menuRef}
-					className={classNames("sub-component", side, {visible: menuOpen})}
-					onMouseEnter={() => {lock.current = true}}
-					onMouseLeave={() => {lock.current = false}}
+						for (let i = 0; i < event.target.selectedOptions.length; i++)
+							valueList.push(event.target.selectedOptions[i].value as T);
+						newValue = options.filter(option => valueList.includes(option.value)) ?? [];
+						if (multiple)
+						{
+							if (externalValue === undefined)
+								setInternalValue(valueList);
+							onValueChange?.(valueList);
+							onChange?.(newValue);
+						}
+						else
+						{
+							const selectedValue = valueList.at(0);
+
+							if (externalValue === undefined)
+								setInternalValue(selectedValue);
+							onValueChange?.(selectedValue);
+							onChange?.(newValue.at(0));
+						}
+						if (error)
+							setError(undefined);
+						setValidationError(false);
+						containerRef.current?.classList.remove("invalid");
+					}}
+					required={props.required}
 				>
-					{filteredOptions?.map((option, index) =>
-					(
-						<MenuItem
-							key={option.value}
-							icon={option.icon}
-							text={option.label ?? option.value.toString()}
-							type="button"
-							disabled={option.disabled}
-							tabIndex={-1}
-							selectable
-							selected={(multiple && Array.isArray(value) && value.some(value => value.value === option.value)) || !Array.isArray(value) && value?.value === option.value}
-							className={classNames(option.className, {hovered: focusedOption === index})}
-							onClick={() =>
-							{
-								setValue(option.value);
-								inputRef.current?.focus();
-								// setFocus(false);
-								// setMenuOpen(false);
-								if (error)
-									setError(undefined);
-								setValidationError(false);
-								containerRef.current?.classList.remove("invalid");
-							}}
-							onMouseEnter={() =>
-							{
-								if (isMenuOpen.current)
-									setFocusedOption(index);
-							}}
+					{filteredOptions?.map((option) => (
+						<option
+							key={option.value as string}
+							value={option.value as string}
+							label={option.label ?? option.value.toString()}
 						/>
 					))}
-					{!options.length && props.noOptionMessage ? <MenuItem text={props.noOptionMessage} style={{justifyContent: "center", cursor: "default"}}/> : null}
-				</Menu>
-			</FloatingElement>
-			<OrderedCollection<OptionProps<T>> childName="Option" onChildrenChange={setOptions} compareChild={compareOption}>{props.children}</OrderedCollection>
+				</select>
+				<FloatingElement
+					root={popoversContainer}
+					flip={useMemo(() => ({allowedPlacements: ["top-start", "top-end", "bottom-start", "bottom-end"]}), [])}
+					autoUpdate
+					placement="bottom-start"
+					open={menuOpen}
+					onPlacementChange={setMenuPlacement}
+				>
+					<Menu
+						ref={menuRef}
+						className={classNames("sub-component", side, {visible: menuOpen})}
+						onMouseEnter={() => {lock.current = true}}
+						onMouseLeave={() => {lock.current = false}}
+					>
+						{filteredOptions?.map((option, index) =>
+						(
+							<MenuItem
+								key={option.value}
+								icon={option.icon}
+								text={option.label ?? option.value.toString()}
+								type="button"
+								disabled={option.disabled}
+								tabIndex={-1}
+								selectable
+								selected={(multiple && Array.isArray(value) && value.some(value => value.value === option.value)) || !Array.isArray(value) && value?.value === option.value}
+								className={classNames(option.className, {hovered: focusedOption === index})}
+								onClick={() =>
+								{
+									setValue(option.value);
+									inputRef.current?.focus();
+									// setFocus(false);
+									// setMenuOpen(false);
+									if (error)
+										setError(undefined);
+									setValidationError(false);
+									containerRef.current?.classList.remove("invalid");
+								}}
+								onMouseEnter={() =>
+								{
+									if (isMenuOpen.current)
+										setFocusedOption(index);
+								}}
+							/>
+						))}
+						{!filteredOptions.length && noOptionMessage ? <MenuItem text={noOptionMessage} style={{justifyContent: "center", cursor: "default"}}/> : null}
+					</Menu>
+				</FloatingElement>
+				<OrderedCollection<OptionProps<T>> childName="Option" onChildrenChange={setOptions} compareChild={compareOption}>{props.children}</OrderedCollection>
+			</div>
 		</div>
 	);
 }

@@ -1,11 +1,162 @@
-import { OrderedCollectionChild, useOrderedCollection } from "@misc/OrderedCollection";
-import TextFieldRender, { type TextFieldProps } from "@components/TextField/TextField.render";
+import IconButton from "@components/Button/icon";
+import Icon, { type IconDefinition } from "@components/Icon";
+import { convertIconDefinition } from "@components/Icon/Icon";
+import FilledField from "@components/containers/FilledField";
+import OutlinedField from "@components/containers/OutlinedField";
+import { getMaxWords } from "@utils";
+import classNames from "classnames";
+import { useCallback, useId, useMemo, useRef, useState, type InputHTMLAttributes, type MouseEventHandler } from "react";
 
-export default function TextField(props: TextFieldProps)
+import "./style.scss";
+
+export interface TextFieldBaseProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "value">
 {
-	const orderedCollection = useOrderedCollection();
+	shape?: "filled" | "outlined",
+	label?: string,
+	labelPosition?: "inside" | "inline" | "above"
+	supportingText?: string,
+	leadingIcon?: IconDefinition,
+	trailingIcon?: IconDefinition,
+	prefix?: string,
+	suffix?: string,
+	clearable?: boolean
+	density?: 0 | -1 | -2
+}
 
-	if (orderedCollection)
-		return (<OrderedCollectionChild name="TextField" content={props}/>);
-	return (<TextFieldRender {...props}/>);
+export interface TextFieldProps extends Omit<TextFieldBaseProps, "min" | "max" | "step">
+{
+	onValueChange?: (value: string) => void,
+	defaultValue?: string,
+	value?: string,
+	counter?: boolean | "word"
+}
+
+export default function TextFieldRender(props: TextFieldProps)
+{
+	const {shape, label, labelPosition = "inside", onValueChange, onChange: onChangeExternal, onInvalid: onInvalidExternal, value: externalValue, defaultValue, density, supportingText, counter: isCounter = true, clearable, leadingIcon, trailingIcon: trailingIconValue, prefix, suffix, ...inputProps} = props;
+	const ref = useRef<HTMLInputElement>(null);
+	const generatedId = useId();
+	const inputId = inputProps.id ?? generatedId;
+	const [internalValue, setInternalValue] = useState(externalValue ?? defaultValue ?? "");
+	const value = externalValue ?? internalValue;
+	const filled = !!value.length || !!props.placeholder;
+	const [focus, setFocus] = useState(false);
+	const [passwordVisibility, setPasswordVisibility] = useState(false);
+	const fullLabel = label ? (label + (props.required ? "*" : "")) : undefined;
+	const [error, setError] = useState<string>();
+	const supportMessage = error ?? supportingText;
+	const counter = isCounter === "word" ? (value.match(/\b\w+\b/g)?.length ?? 0) : value.length;
+	const setInputValue = useCallback((value: string) =>
+	{
+		let wordCount: number;
+
+		if (props.maxLength && isCounter === "word")
+		{
+			wordCount = value.match(/\b\w+\b/g)?.length ?? 0;
+			if (wordCount >= props.maxLength)
+				value = getMaxWords(value, props.maxLength);
+		}
+		else if (props.maxLength)
+			value = value.slice(0, props.maxLength);
+		if (externalValue === undefined)
+			setInternalValue(value);
+		setError(undefined);
+		onValueChange?.(value);
+	}, [externalValue, isCounter, onValueChange, props.maxLength]);
+	const clearValue = useCallback<MouseEventHandler>(event =>
+	{
+		event.preventDefault();
+		setInputValue("");
+	}, [setInputValue]);
+	const trailingIcon = useMemo(() =>
+	{
+		if (props.type === "password")
+			return (<IconButton selectable selected={passwordVisibility} icon={selected => trailingIconValue ?? (selected ? "visibility_off" : "visibility")} color="standard" onClick={() => setPasswordVisibility(!passwordVisibility)} className="trailing"/>)
+		else if (clearable)
+			return (<IconButton icon={trailingIconValue ?? "close"} color="standard" onClick={clearValue} className="trailing"/>)
+		else if (error)
+			return (<Icon name="error" fill className="error"/>)
+		return (convertIconDefinition(trailingIconValue));
+	}, [props.type, passwordVisibility, clearable, trailingIconValue, clearValue, error]);
+	const input = useMemo(() =>
+	(
+		<input
+			{...inputProps}
+			id={inputId}
+			ref={ref}
+			type={props.type === "password" ? (passwordVisibility ? "text" : "password") : props.type}
+			required={props.required}
+			onFocus={() => setFocus(true)}
+			onBlur={() => setFocus(false)}
+			value={value}
+			onChange={event =>
+			{
+				setInputValue(event.target.value);
+				onChangeExternal?.(event);
+			}}
+			maxLength={props.maxLength && isCounter === "word" ? undefined : props.maxLength}
+			onInvalid={event =>
+			{
+				event.preventDefault();
+				setError(event.currentTarget.validationMessage);
+				onInvalidExternal?.(event);
+				event.currentTarget.focus();
+			}}
+			title=""
+		/>
+	), [inputProps, inputId, props.type, props.required, props.maxLength, passwordVisibility, value, isCounter, setInputValue, onChangeExternal, onInvalidExternal]);
+	const content = useMemo(() =>
+	{
+		if (shape === "filled")
+		{
+			return (
+				<>
+					{convertIconDefinition(leadingIcon)}
+					<div className="container" onMouseDown={() => requestAnimationFrame(() => ref.current?.focus())}>
+						{label && <span className="label">{fullLabel}</span>}
+						<div className={classNames("content", {prefix, suffix})}>
+							{prefix && <span className="prefix">{prefix}</span>}
+							{input}
+							{suffix && <span className="suffix">{suffix}</span>}
+						</div>
+					</div>
+					{trailingIcon}
+				</>
+			);
+		}
+		return (
+			<>
+				{convertIconDefinition(leadingIcon)}
+				<div className={classNames("content", {prefix, suffix})}>
+					{prefix && <span className="prefix">{prefix}</span>}
+					{input}
+					{suffix && <span className="suffix">{suffix}</span>}
+				</div>
+				{trailingIcon}
+			</>
+		);
+	}, [fullLabel, input, label, leadingIcon, prefix, shape, suffix, trailingIcon]);
+
+	return (
+		<div className={classNames("TextField", props.type, {error}, `label-position-${labelPosition}`)}>
+			{labelPosition !== "inside" && fullLabel && <label className={classNames("label", labelPosition)} htmlFor={inputId} onClick={() => ref.current?.focus()}>{fullLabel}</label>}
+			<div className="container">
+				{shape === "filled" ?
+				(
+					<FilledField label={labelPosition === "inside" ? fullLabel : undefined} filled={filled || !!props.prefix} focus={focus} error={!!error} density={density} className={classNames({leadingIcon, trailingIcon})}>
+						{content}
+					</FilledField>
+				) :
+				(
+					<OutlinedField label={labelPosition === "inside" ? fullLabel : undefined} filled={filled || !!props.prefix} focus={focus} error={!!error} density={density} className={classNames({leadingIcon, trailingIcon})}>
+						{content}
+					</OutlinedField>
+				)}
+				{(supportMessage || (props.maxLength && isCounter)) && <div className="support">
+					<div className="message">{supportMessage}</div>
+					{(props.maxLength && isCounter) && <div className="counter">{counter} / {props.maxLength}</div>}
+				</div>}
+			</div>
+		</div>
+	);
 }

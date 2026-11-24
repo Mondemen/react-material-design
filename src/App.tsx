@@ -135,6 +135,22 @@ export default function App()
 						<Accordion title="Test 3" contentPadding>
 							Content 3
 						</Accordion>
+						<TextField label="TextField label" labelPosition="inline" placeholder="test" shape="outlined"/>
+						<NumberField label="NumberField label" labelPosition="inline" shape="outlined"/>
+						<Select
+							// shape="filled"
+							label="Test"
+							labelPosition="inline"
+							multiple
+							clearable
+							required
+						>
+							<Option value="test1"/>
+							<Option value="test2" label={!swap ? "Test 2" : "Swapped Test 2"}/>
+							<Option value="test3"/>
+							<Option value="test4"/>
+							<Option value="test5"/>
+						</Select>
 			 			<Menu>
 			 				<MenuItem text={"Test 1"}/>
 			 				<MenuItem text={"Test 2"}>

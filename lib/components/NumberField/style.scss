@@ -2,73 +2,76 @@
 
 .TextField.NumberField
 {
-	>:is(.FilledField, .OutlinedField) >.arrow
+	>.container
 	{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-self: stretch;
-		gap: 2px;
-
-		&.density-0 >.button
+		>:is(.FilledField, .OutlinedField) >.arrow
 		{
-			width: calc(36px - #{theme.applySystemToken(measurement-space0)});
-			height: calc(22px - #{theme.applySystemToken(measurement-space0)});
-		}
-		&.density-1 >.button
-		{
-			width: calc(36px - #{theme.applySystemToken(measurement-space25)});
-			height: calc(22px - #{theme.applySystemToken(measurement-space25)});
-		}
-		&.density-2 >.button
-		{
-			width: calc(36px - #{theme.applySystemToken(measurement-space50)});
-			height: calc(22px - #{theme.applySystemToken(measurement-space50)});
-		}
-
-		>.button
-		{
-			@include theme.shape-corner-extra-small;
-			@include theme.on-surface-variant-text;
 			display: flex;
-			width: 36px;
-			height: 22px;
-			align-items: center;
+			flex-direction: column;
 			justify-content: center;
-			cursor: pointer;
-			transition: theme.motion-spring-expressive-fast-spatial((width, height));
+			align-self: stretch;
+			gap: 2px;
 
-			>.StateLayer >.target
-			{min-height: initial;}
+			&.density-0 >.button
+			{
+				width: calc(36px - #{theme.applySystemToken(measurement-space0)});
+				height: calc(22px - #{theme.applySystemToken(measurement-space0)});
+			}
+			&.density-1 >.button
+			{
+				width: calc(36px - #{theme.applySystemToken(measurement-space25)});
+				height: calc(22px - #{theme.applySystemToken(measurement-space25)});
+			}
+			&.density-2 >.button
+			{
+				width: calc(36px - #{theme.applySystemToken(measurement-space50)});
+				height: calc(22px - #{theme.applySystemToken(measurement-space50)});
+			}
+
+			>.button
+			{
+				@include theme.shape-corner-extra-small;
+				@include theme.on-surface-variant-text;
+				display: flex;
+				width: 36px;
+				height: 22px;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: theme.motion-spring-expressive-fast-spatial((width, height));
+
+				>.StateLayer >.target
+				{min-height: initial;}
+			}
 		}
-	}
 
-	>.FilledField >.arrow
-	{
-		margin-top: -1px;
-
-		>.button
-		{@include theme.color-surface-container}
-
-		&:nth-last-child(2)
+		>.FilledField >.arrow
 		{
-			&:dir(ltr)
-			{margin-right: -8px}
-			&:dir(rtl)
-			{margin-left: -8px}
+			margin-top: -1px;
+
+			>.button
+			{@include theme.color-surface-container}
+
+			&:nth-last-child(2)
+			{
+				&:dir(ltr)
+				{margin-right: -8px}
+				&:dir(rtl)
+				{margin-left: -8px}
+			}
 		}
-	}
-	>.OutlinedField >.arrow
-	{
-		>.button
-		{@include theme.color-surface-container-highest}
-
-		&:last-child
+		>.OutlinedField >.arrow
 		{
-			&:dir(ltr)
-			{margin-right: -6px}
-			&:dir(rtl)
-			{margin-left: -8px}
+			>.button
+			{@include theme.color-surface-container-highest}
+
+			&:last-child
+			{
+				&:dir(ltr)
+				{margin-right: -6px}
+				&:dir(rtl)
+				{margin-left: -8px}
+			}
 		}
 	}
 }
